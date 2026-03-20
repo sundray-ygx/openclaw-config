@@ -1,6 +1,9 @@
 # 环境变量（包含敏感信息）
 .env
 
+# 包含敏感信息的脚本
+skills/weekly-review/weekly_review.py
+
 # 本地配置文件
 .env.local
 .env.*.local
