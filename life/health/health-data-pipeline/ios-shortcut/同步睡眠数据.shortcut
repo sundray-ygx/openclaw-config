@@ -1,0 +1,307 @@
+{
+  "WFWorkflowClientVersion": "1092.0.2",
+  "WFWorkflowClientRelease": "4.0",
+  "WFWorkflowMinimumClientVersion": 900,
+  "WFWorkflowMinimumClientVersionString": "900",
+  "WFWorkflowIcon": {
+    "WFWorkflowIconStartColor": 4292093695,
+    "WFWorkflowIconGlyphNumber": 61440
+  },
+  "WFWorkflowTypes": [
+    "NCWidget",
+    "WatchKit"
+  ],
+  "WFWorkflowInputContentItemClasses": [
+    "WFAppStoreAppContentItem",
+    "WFArticleContentItem",
+    "WFContactContentItem",
+    "WFDateContentItem",
+    "WFEmailAddressContentItem",
+    "WFGenericFileContentItem",
+    "WFImageContentItem",
+    "WFiTunesProductContentItem",
+    "WFLocationContentItem",
+    "WFDCMapsLinkContentItem",
+    "WFAVAssetContentItem",
+    "WFPDFContentItem",
+    "WFPhoneNumberContentItem",
+    "WFRichTextContentItem",
+    "WFSafariWebPageContentItem",
+    "WFStringContentItem",
+    "WFURLContentItem"
+  ],
+  "WFWorkflowActions": [
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.gettext",
+      "WFWorkflowActionParameters": {
+        "WFTextActionText": "https://boss-health-tracker.workers.dev/api/health-data"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariableName": "WorkerURL"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.health.getsamples",
+      "WFWorkflowActionParameters": {
+        "WFHealthQuantitySampleQuantity": "Sleep Analysis",
+        "WFHealthQuantitySampleSort": "Start Date",
+        "WFHealthQuantitySampleSortOrder": "Latest First",
+        "WFHealthQuantitySampleLimit": 1
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getitemfromlist",
+      "WFWorkflowActionParameters": {
+        "WFItemFromListMode": "First Item"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.properties.health.quantity",
+      "WFWorkflowActionParameters": {
+        "WFContentItemSortProperty": "Duration"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariableName": "睡眠时长"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariable": {
+          "Value": {
+            "Type": "Variable",
+            "VariableName": "睡眠样本"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.properties.health.quantity",
+      "WFWorkflowActionParameters": {
+        "WFContentItemSortProperty": "Start Date"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariableName": "开始时间"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariable": {
+          "Value": {
+            "Type": "Variable",
+            "VariableName": "睡眠样本"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.properties.health.quantity",
+      "WFWorkflowActionParameters": {
+        "WFContentItemSortProperty": "End Date"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariableName": "结束时间"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariable": {
+          "Value": {
+            "Type": "Variable",
+            "VariableName": "开始时间"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariableName": "日期"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariable": {
+          "Value": {
+            "Type": "Variable",
+            "VariableName": "睡眠时长"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.gettimebetweendates",
+      "WFWorkflowActionParameters": {
+        "WFTimeUntilFromDate": {
+          "Value": {
+            "Type": "Variable",
+            "VariableName": "睡眠时长"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "WFTimeUntilUnit": "Minutes"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariableName": "睡眠分钟数"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.dictionary",
+      "WFWorkflowActionParameters": {
+        "WFItems": {
+          "Value": {
+            "WFDictionaryFieldValueItems": [
+              {
+                "WFItemType": 0,
+                "WFKey": "type",
+                "WFValue": "sleep"
+              },
+              {
+                "WFItemType": 0,
+                "WFKey": "date",
+                "WFValue": {
+                  "Value": {
+                    "Type": "Variable",
+                    "VariableName": "日期"
+                  },
+                  "WFSerializationType": "WFTextTokenAttachment"
+                }
+              },
+              {
+                "WFItemType": 0,
+                "WFKey": "duration",
+                "WFValue": {
+                  "Value": {
+                    "Type": "Variable",
+                    "VariableName": "睡眠分钟数"
+                  },
+                  "WFSerializationType": "WFTextTokenAttachment"
+                }
+              },
+              {
+                "WFItemType": 0,
+                "WFKey": "start_time",
+                "WFValue": {
+                  "Value": {
+                    "Type": "Variable",
+                    "VariableName": "开始时间"
+                  },
+                  "WFSerializationType": "WFTextTokenAttachment"
+                }
+              },
+              {
+                "WFItemType": 0,
+                "WFKey": "end_time",
+                "WFValue": {
+                  "Value": {
+                    "Type": "Variable",
+                    "VariableName": "结束时间"
+                  },
+                  "WFSerializationType": "WFTextTokenAttachment"
+                }
+              }
+            ]
+          },
+          "WFSerializationType": "WFDictionaryFieldValue"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariableName": "请求数据"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariable": {
+          "Value": {
+            "Type": "Variable",
+            "VariableName": "WorkerURL"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getvariable",
+      "WFWorkflowActionParameters": {
+        "WFVariable": {
+          "Value": {
+            "Type": "Variable",
+            "VariableName": "请求数据"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.geturl",
+      "WFWorkflowActionParameters": {
+        "WFHTTPMethod": "POST",
+        "WFHTTPBodyType": "JSON",
+        "WFHTTPBody": {
+          "Value": {
+            "Type": "Variable",
+            "VariableName": "请求数据"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.showresult",
+      "WFWorkflowActionParameters": {
+        "Text": {
+          "Value": {
+            "string": "✅ 睡眠数据已同步\n\n日期：￼\n时长：￼ 分钟\n开始：￼\n结束：￼",
+            "attachmentsByRange": {
+              "{10, 1}": {
+                "Type": "Variable",
+                "VariableName": "日期"
+              },
+              "{17, 1}": {
+                "Type": "Variable",
+                "VariableName": "睡眠分钟数"
+              },
+              "{25, 1}": {
+                "Type": "Variable",
+                "VariableName": "开始时间"
+              },
+              "{33, 1}": {
+                "Type": "Variable",
+                "VariableName": "结束时间"
+              }
+            }
+          },
+          "WFSerializationType": "WFTextTokenString"
+        }
+      }
+    }
+  ],
+  "WFWorkflowClientId": "health-data-sync",
+  "WFWorkflowName": "同步睡眠数据"
+}

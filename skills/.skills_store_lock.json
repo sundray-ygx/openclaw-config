@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-design-pro": {
+      "name": "Frontend Design Pro — 专业前端设计规范",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=frontend-design-pro",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "ui-ux-pro-max": {
+      "name": "UI/UX Pro Max",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=ui-ux-pro-max",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "self-improving-agent": {
+      "name": "self-improving-agent",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=self-improving-agent",
+      "source": "skillhub",
+      "version": "1.0.11"
+    },
+    "openspec": {
+      "name": "OpenSpec",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=openspec",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "openclaw-backup": {
+      "name": "OpenClaw Backup",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=openclaw-backup",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "nano-banana-pro": {
+      "name": "Nano Banana Pro",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=nano-banana-pro",
+      "source": "skillhub",
+      "version": "1.0.1"
+    },
+    "using-superpowers": {
+      "name": "Using Superpowers",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=using-superpowers",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "brainstorming": {
+      "name": "Brainstorming",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=brainstorming",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "writing-plans": {
+      "name": "Writing Plans",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=writing-plans",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "executing-plans": {
+      "name": "Executing Plans",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=executing-plans",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "reflection": {
+      "name": "Self Reflection",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=reflection",
+      "source": "skillhub",
+      "version": "1.1.0"
+    },
+    "copywriting": {
+      "name": "Copywriting",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=copywriting",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "content-strategy": {
+      "name": "Content Strategy",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=content-strategy",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "copy-editing": {
+      "name": "Copy Editing",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=copy-editing",
+      "source": "skillhub",
+      "version": "2.1.1"
+    }
+  }
+}
