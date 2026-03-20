@@ -16,7 +16,7 @@
 | 3 | 每日工作日报 | 8:30 | 生成昨日工作日报 | `/root/scripts/daily_report.py` | `cron/jobs.json` | `daily-reports/`, `memory/`, 飞书 | ✅ 完整 |
 | 4 | NAS备份通知 | 8:35 | 发送备份完成通知 | `cat /tmp/backup-notification-*.txt` | `cron/jobs.json` | `/tmp/backup-notification-*.txt` | ✅ 完整 |
 | 5 | NAS自动备份 | 2:00 | 备份配置到NAS | `/root/scripts/nas_backup.sh` | `cron/jobs.json` | NAS: `/aliyun_backup/server-backup/` | ✅ 完整 |
-| 6 | 每日归档 | 23:00 | 归档日报到月份目录 | `/root/.openclaw/workspace/growth/multi-agents/xiaomi/cron/daily_archive.py` | `cron/jobs.json` | `archive/` | ✅ 完整 |
+| 6 | 每日归档 | 23:00 | 归档日报到月份目录 | `/root/.openclaw/workspace/knowledge/tech/automation/cron/daily_archive.py` | `cron/jobs.json` | `archive/` | ✅ 完整 |
 
 ### 每周任务（5个）
 

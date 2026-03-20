@@ -26,10 +26,8 @@
 ├── skills/                   # 自定义 Skills
 ├── agents/                   # 多代理配置
 ├── archive/                  # 归档内容
-├── growth/                   # 成长相关
-├── knowledge/                # 知识库
-├── life/                     # 生活相关
-└── work/                     # 工作相关
+└── knowledge/                # 知识库（整合原 growth/life/work）
+
 ```
 
 ## 🚀 快速开始

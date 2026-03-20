@@ -35,7 +35,7 @@
 ### 每日归档
 - **时间**: 每天 23:00
 - **任务**: 执行每日归档
-- **命令**: `python3 /root/.openclaw/workspace/growth/multi-agents/xiaomi/cron/daily_archive.py`
+- **命令**: `python3 /root/.openclaw/workspace/knowledge/tech/automation/cron/daily_archive.py`
 
 ## 每周任务
 
@@ -47,7 +47,7 @@
 ### 周报提醒
 - **时间**: 周五 17:00
 - **任务**: 运行周报提醒脚本
-- **命令**: `python3 /root/.openclaw/workspace/growth/multi-agents/xiaomi/cron/weekly_reminder.py`
+- **命令**: `python3 /root/.openclaw/workspace/knowledge/tech/automation/cron/weekly_reminder.py`
 
 ### 周计划制定
 - **时间**: 周日 20:00

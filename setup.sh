@@ -46,7 +46,7 @@ if command -v rsync &> /dev/null; then
         ./ "${WORKSPACE_DIR}/"
 else
     cp -r AGENTS.md SOUL.md USER.md TOOLS.md HEARTBEAT.md IDENTITY.md \
-        memory/ skills/ agents/ archive/ growth/ knowledge/ life/ work/ \
+        memory/ skills/ agents/ archive/ knowledge/ \
         "${WORKSPACE_DIR}/" 2>/dev/null || true
 fi
 

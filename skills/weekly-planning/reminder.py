@@ -39,7 +39,7 @@ def send_reminder():
 • 周复盘任务运行正常（每周五 18:30）
 
 🔧 待完善的 Skill：
-位置：/root/.openclaw/workspace/growth/productivity/weekly-planning/
+位置：/root/.openclaw/workspace/knowledge/productivity/weekly-planning/
 
 需要实现的功能：
 1. 从 OKR 看板读取项目数据

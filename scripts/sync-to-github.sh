@@ -25,7 +25,7 @@ if git remote | grep -q origin; then
     echo "✅ 同步完成"
 else
     echo "⚠️  未配置 remote，请手动设置:"
-    echo "  git remote add origin https://github.com/用户名/openclaw-config.git"
+    echo "  git remote add origin https://github.com/sundray-ygx/openclaw-config.git"
     echo "  或使用 token:"
-    echo "  git remote add origin https://TOKEN@github.com/用户名/openclaw-config.git"
+    echo "  git remote add origin https://TOKEN@github.com/sundray-ygx/openclaw-config.git"
 fi
