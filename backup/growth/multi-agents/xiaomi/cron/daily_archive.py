@@ -25,10 +25,11 @@ def get_month_str():
     return datetime.now().strftime("%Y-%m")
 
 def archive_daily_reports():
-    """归档日报到月份目录"""
+    """归档日报到 daily/月份 目录"""
     today = get_today_str()
     month = get_month_str()
-    month_dir = f"{ARCHIVE_DIR}/{month}"
+    # 归档到 archive/daily/2026-03/ 目录下
+    month_dir = f"{DAILY_REPORTS}/{month}"
     os.makedirs(month_dir, exist_ok=True)
     
     # 移动今天的日报
@@ -37,20 +38,23 @@ def archive_daily_reports():
             src = f"{DAILY_REPORTS}/{filename}"
             dst = f"{month_dir}/{filename}"
             shutil.move(src, dst)
-            print(f"归档: {filename}")
+            print(f"归档: {filename} -> {dst}")
 
 def update_memory():
     """更新记忆文件"""
     today = get_today_str()
+    month = get_month_str()
     memory_file = f"{MEMORY_DIR}/{today}.md"
     
-    # 读取今日日报内容
+    # 读取今日日报内容（从 daily/月份目录读取，因为已经归档）
     report_content = ""
-    for filename in os.listdir(DAILY_REPORTS):
-        if filename.startswith(f"daily-report-{today}"):
-            with open(f"{DAILY_REPORTS}/{filename}", "r") as f:
-                report_content = f.read()
-            break
+    month_dir = f"{DAILY_REPORTS}/{month}"
+    if os.path.exists(month_dir):
+        for filename in os.listdir(month_dir):
+            if filename.startswith(f"daily-report-{today}"):
+                with open(f"{month_dir}/{filename}", "r") as f:
+                    report_content = f.read()
+                break
     
     # 生成记忆文件
     content = f"""# {today} 记忆

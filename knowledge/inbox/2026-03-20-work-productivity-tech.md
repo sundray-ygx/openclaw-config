@@ -1,3 +1,30 @@
+---
+{
+  "source": "memory",
+  "date": "2026-03-20",
+  "tags": [
+    "work",
+    "productivity",
+    "tech"
+  ],
+  "created_at": "2026-03-21T12:07:05.585579",
+  "status": "pending_review"
+}
+---
+
+# 记忆归档 - 2026-03-20
+
+**自动标签**: work, productivity, tech
+
+**建议归档位置**:
+- work
+- productivity
+- tech
+
+---
+
+## 原始内容
+
 # 2026-03-20 记忆
 
 ## 日报摘要
@@ -73,3 +100,14 @@ source: subagen...
 
 ---
 *重新生成于 11:50*
+
+
+---
+
+## 人工整理说明
+
+1. 阅读以上内容
+2. 确认标签是否准确
+3. 移动到对应目录: `knowledge/{category}/`
+4. 重命名为: `YYYY-MM-DD-title.md`
+5. 删除此 inbox 文件

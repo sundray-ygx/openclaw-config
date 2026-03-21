@@ -18,9 +18,10 @@ from email.header import decode_header
 import imaplib
 
 # ============ 配置 ============
-FEISHU_APP_ID = "cli_a93b96047e7a5bc3"
-FEISHU_APP_SECRET = "ir6uAf1L7O52AFgXrepgabIrYG1oOcbD"
-FEISHU_USER_ID = "ou_c2cde251e01a87fc09ba7561f76d8606"
+# 使用scheduler账号的配置
+FEISHU_APP_ID = "cli_a93c6b1e1ff89bd4"
+FEISHU_APP_SECRET = "gK0tXRdPTOHq3kZVKsP2PgZrUBoGSAsl"
+FEISHU_USER_ID = "ou_d8ae71cd421f8954a9c97e973d4f03d1"
 
 # 邮箱配置
 EMAIL_ACCOUNTS = [
@@ -102,15 +103,29 @@ def send_feishu_card(token, user_id, title, elements):
 def get_weather():
     """获取深圳天气"""
     try:
+        # Python 3.6兼容方式
+        import subprocess
         result = subprocess.run(
-            ['curl', '-s', 'wttr.in/Shenzhen?format=3', '-H', 'Accept-Language: zh-CN'],
-            capture_output=True, text=True, timeout=10
+            'curl -s "wttr.in/深圳?format=%l:+%c+%t+(体感+%f),+湿度+%h,+降水+%p,+风力+%w"',
+            shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=10
         )
-        if result.returncode == 0:
-            return result.stdout.strip()
+        if result.returncode == 0 and result.stdout:
+            return result.stdout.decode('utf-8', errors='ignore').strip()
+    except Exception as e:
+        print(f"  天气获取错误: {e}")
+    
+    # 备用方案
+    try:
+        result = subprocess.run(
+            'curl -s wttr.in/Shenzhen?format=3',
+            shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=10
+        )
+        if result.returncode == 0 and result.stdout:
+            return result.stdout.decode('utf-8', errors='ignore').strip()
     except:
         pass
-    return "获取失败"
+    
+    return "深圳: 获取失败"
 
 # ============ 邮件 ============
 def load_mail_state():
@@ -389,7 +404,7 @@ def parse_rss_simple(xml_content, source_name, limit):
                 for item in channel.findall("item"):
                     title = item.find("title")
                     link = item.find("link")
-                    pub_date = item.find("pubDate")
+                    desc = item.find("description")
                     
                     title_text = title.text if title is not None else ""
                     title_text = re.sub(r'<!\[CDATA\[(.*?)\]\]>', r'\1', title_text, flags=re.DOTALL)
@@ -401,13 +416,22 @@ def parse_rss_simple(xml_content, source_name, limit):
                     
                     link_text = link.text if link is not None else ""
                     
+                    # 获取摘要
+                    desc_text = desc.text if desc is not None else ""
+                    desc_text = re.sub(r'<!\[CDATA\[(.*?)\]\]>', r'\1', desc_text, flags=re.DOTALL)
+                    desc_text = re.sub(r'<[^>]+>', '', desc_text)
+                    desc_text = desc_text.strip()
+                    if len(desc_text) > 100:
+                        desc_text = desc_text[:97] + "..."
+                    
                     score = score_article(title_text, source_name)
                     
                     articles.append({
                         "title": title_text[:50],
                         "url": link_text,
                         "source": source_name,
-                        "score": score
+                        "score": score,
+                        "summary": desc_text
                     })
     except Exception as e:
         print(f"  解析错误: {e}")
@@ -561,15 +585,13 @@ def generate_briefing():
         })
         
         for article in news_articles:
-            print(f"  生成摘要: {article['title'][:30]}...")
-            summary = summarize_article(article['url'])
-            
             # 标题
             elements.append({
                 "tag": "div",
                 "text": {"tag": "lark_md", "content": f"[{article['title']}]({article['url']})"}
             })
-            # 摘要
+            # 摘要（直接使用RSS中的description）
+            summary = article.get('summary', '')
             if summary:
                 elements.append({
                     "tag": "div",
@@ -600,13 +622,32 @@ if __name__ == "__main__":
     print("\n" + "=" * 40)
     print(title)
     
-    # 发送
-    print("\n📤 发送到飞书...")
-    token = get_feishu_token()
-    if token:
-        if send_feishu_card(token, FEISHU_USER_ID, title, elements):
-            print("✅ 发送成功")
+    # 发送（可通过环境变量控制）
+    skip_send = os.environ.get('SKIP_FEISHU_SEND', '').lower() == 'true'
+    output_json = os.environ.get('OUTPUT_JSON', '').lower() == 'true'
+    
+    if output_json:
+        # 输出JSON格式，供其他程序读取
+        import json
+        output = {
+            "title": title,
+            "elements": elements,
+            "time_str": time_str,
+            "weekday": weekday
+        }
+        print("\n===JSON_OUTPUT_START===")
+        print(json.dumps(output, ensure_ascii=False))
+        print("===JSON_OUTPUT_END===")
+    
+    if not skip_send:
+        print("\n📤 发送到飞书...")
+        token = get_feishu_token()
+        if token:
+            if send_feishu_card(token, FEISHU_USER_ID, title, elements):
+                print("✅ 发送成功")
+            else:
+                print("❌ 发送失败")
         else:
-            print("❌ 发送失败")
+            print("❌ 获取token失败")
     else:
-        print("❌ 获取token失败")
+        print("\n⏭️ 跳过飞书发送（SKIP_FEISHU_SEND=true）")
