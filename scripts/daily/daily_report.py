@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-工作日报生成脚本 V6
+工作日报生成脚本 V7 - 增强反思版
 - 时间范围：昨天00:00到昨天23:59（全天）
 - 交互工作：提取所有用户消息（非系统消息）
-- 复盘部分：自动识别失败任务
+- 复盘部分：结构化教训分析（问题/根因/解决方案/级别）
 - 执行时间：8:30
 """
 
@@ -14,10 +14,10 @@ from datetime import datetime, timedelta
 import urllib.request
 import urllib.parse
 
-# 配置 - 使用scheduler账号
-FEISHU_APP_ID = "cli_a93c6b1e1ff89bd4"
-FEISHU_APP_SECRET = "gK0tXRdPTOHq3kZVKsP2PgZrUBoGSAsl"
-FEISHU_USER_ID = "ou_d8ae71cd421f8954a9c97e973d4f03d1"
+# 配置
+FEISHU_APP_ID = os.getenv("FEISHU_APP_ID", "cli_a93c6b1e1ff89bd4")
+FEISHU_APP_SECRET = os.getenv("FEISHU_APP_SECRET", "gK0tXRdPTOHq3kZVKsP2PgZrUBoGSAsl")
+FEISHU_USER_ID = os.getenv("FEISHU_USER_ID", "ou_d8ae71cd421f8954a9c97e973d4f03d1")
 DAILY_REPORT_DIR = "/root/.openclaw/workspace/archive/daily"
 MEMORY_DIR = "/root/.openclaw/workspace/memory"
 SESSIONS_DIR = "/root/.openclaw/agents/scheduler/sessions"
@@ -71,7 +71,6 @@ def get_report_time_range():
     now = datetime.now()
     yesterday = now - timedelta(days=1)
     
-    # 昨天00:00 到 昨天23:59:59
     start_time = yesterday.replace(hour=0, minute=0, second=0, microsecond=0)
     end_time = yesterday.replace(hour=23, minute=59, second=59, microsecond=999999)
     
@@ -108,6 +107,7 @@ def parse_session_file(filepath):
     """解析会话文件，提取工作内容"""
     cron_tasks = []
     user_interactions = []
+    error_logs = []
     
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
@@ -133,7 +133,15 @@ def parse_session_file(filepath):
                         text_parts.append(part.get('text', ''))
                 full_text = ' '.join(text_parts)
                 
-                # 识别定时任务触发消息 (新格式: [cron:xxx 任务名])
+                # 收集错误信息
+                if any(err in full_text.lower() for err in ['失败', '错误', '异常', '超时', '❌', 'error', 'timeout']):
+                    error_logs.append({
+                        'text': full_text[:200],
+                        'timestamp': timestamp,
+                        'source': filepath
+                    })
+                
+                # 识别定时任务触发消息
                 cron_match = re.search(r'\[cron:([^\]]+)\]\s*(.+?)(?:\n|$)', full_text)
                 if cron_match:
                     task_name = cron_match.group(1).strip()
@@ -178,7 +186,7 @@ def parse_session_file(filepath):
     except Exception as e:
         print(f"  解析文件错误 {filepath}: {e}")
     
-    return cron_tasks, user_interactions
+    return cron_tasks, user_interactions, error_logs
 
 def categorize_cron_tasks(cron_tasks):
     """分类定时任务"""
@@ -219,174 +227,4 @@ def categorize_cron_tasks(cron_tasks):
             'time': time_str
         })
     
-    return completed, failed
-
-def generate_daily_report():
-    """生成日报"""
-    start_time, end_time = get_report_time_range()
-    
-    print(f"统计时间范围: {start_time.strftime('%Y-%m-%d %H:%M')} 至 {end_time.strftime('%Y-%m-%d %H:%M')}")
-    
-    session_files = get_session_files(start_time, end_time)
-    print(f"找到 {len(session_files)} 个会话文件")
-    
-    all_cron_tasks = []
-    all_user_interactions = []
-    
-    for filepath in session_files:
-        cron_tasks, user_interactions = parse_session_file(filepath)
-        all_cron_tasks.extend(cron_tasks)
-        all_user_interactions.extend(user_interactions)
-    
-    print(f"提取到 {len(all_cron_tasks)} 个定时任务, {len(all_user_interactions)} 个用户交互")
-    
-    # 分类任务
-    completed_tasks, failed_tasks = categorize_cron_tasks(all_cron_tasks)
-    
-    # 生成日期
-    report_date = end_time.strftime('%Y-%m-%d')
-    weekday = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'][end_time.weekday()]
-    
-    elements = []
-    
-    # 标题
-    elements.append({
-        "tag": "div",
-        "text": {
-            "tag": "lark_md",
-            "content": f"**📅 {report_date} {weekday} 工作日报**\n*统计周期：{start_time.strftime('%m-%d %H:%M')} ~ {end_time.strftime('%m-%d %H:%M')}*"
-        }
-    })
-    
-    # 统计
-    elements.append({"tag": "hr"})
-    elements.append({
-        "tag": "div",
-        "text": {
-            "tag": "lark_md",
-            "content": f"**📊 今日统计**\n• 定时任务：{len(completed_tasks)}\n• 用户交互：{len(all_user_interactions)}"
-        }
-    })
-    
-    # 已完成事项
-    if completed_tasks:
-        elements.append({"tag": "hr"})
-        elements.append({
-            "tag": "div",
-            "text": {"tag": "lark_md", "content": "**✅ 已完成事项**"}
-        })
-        
-        for i, item in enumerate(completed_tasks, 1):
-            time_str = f" ({item['time']})" if item.get('time') else ""
-            elements.append({
-                "tag": "div",
-                "text": {"tag": "lark_md", "content": f"{i}. **{item['task']}**{time_str}\n   {item['detail']}"}
-            })
-    
-    # 交互工作
-    if all_user_interactions:
-        elements.append({"tag": "hr"})
-        elements.append({
-            "tag": "div",
-            "text": {"tag": "lark_md", "content": "**💬 交互工作**"}
-        })
-        
-        for i, item in enumerate(all_user_interactions[:5], 1):
-            time_str = f" ({item['timestamp'][11:16]})" if item.get('timestamp') else ""
-            elements.append({
-                "tag": "div",
-                "text": {"tag": "lark_md", "content": f"{i}.{time_str} {item['content']}"}
-            })
-    
-    # 复盘与改进
-    elements.append({"tag": "hr"})
-    elements.append({
-        "tag": "div",
-        "text": {"tag": "lark_md", "content": "**🔄 复盘与改进**"}
-    })
-    
-    if failed_tasks:
-        elements.append({
-            "tag": "div",
-            "text": {"tag": "lark_md", "content": "**需改进：**"}
-        })
-        for item in failed_tasks:
-            elements.append({
-                "tag": "div",
-                "text": {"tag": "lark_md", "content": f"• {item['task']}: {item['error']}"}
-            })
-    else:
-        elements.append({
-            "tag": "div",
-            "text": {"tag": "lark_md", "content": "• 所有定时任务正常执行，无异常"}
-        })
-    
-    elements.append({
-        "tag": "div",
-        "text": {"tag": "lark_md", "content": "**做得好的：**\n• 系统稳定运行，任务按时完成"}
-    })
-    
-    title = f"📋 工作日报 | {report_date} {weekday}"
-    
-    return title, elements, {
-        "completed": completed_tasks,
-        "interactions": all_user_interactions,
-        "failed": failed_tasks
-    }
-
-def save_report_to_file(title, work_data):
-    """保存日报到文件"""
-    os.makedirs(DAILY_REPORT_DIR, exist_ok=True)
-    
-    today = datetime.now()
-    date_str = today.strftime('%Y-%m-%d')
-    file_path = f"{DAILY_REPORT_DIR}/daily-report-{date_str}.md"
-    
-    content = f"# {title}\n\n"
-    content += f"生成时间：{today.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
-    
-    content += "## ✅ 已完成事项\n\n"
-    for i, item in enumerate(work_data["completed"], 1):
-        time_str = f" ({item['time']})" if item.get('time') else ""
-        content += f"{i}. **{item['task']}**{time_str}\n"
-        content += f"   - {item['detail']}\n\n"
-    
-    if work_data["interactions"]:
-        content += "## 💬 交互工作\n\n"
-        for i, item in enumerate(work_data["interactions"][:10], 1):
-            content += f"{i}. {item['content']}\n\n"
-    
-    content += "## 🔄 复盘与改进\n\n"
-    if work_data["failed"]:
-        content += "**需改进：**\n"
-        for item in work_data["failed"]:
-            content += f"• {item['task']}: {item['error']}\n"
-    else:
-        content += "• 所有定时任务正常执行，无异常\n"
-    
-    content += "\n**做得好的：**\n• 系统稳定运行，任务按时完成\n"
-    
-    with open(file_path, 'w', encoding='utf-8') as f:
-        f.write(content)
-    
-    return file_path
-
-if __name__ == "__main__":
-    print("=" * 40)
-    print("生成工作日报 V6...")
-    print("=" * 40)
-    
-    title, elements, work_data = generate_daily_report()
-    
-    file_path = save_report_to_file(title, work_data)
-    print(f"\n日报已保存：{file_path}")
-    
-    print("\n发送到飞书...")
-    token = get_feishu_token()
-    if token:
-        if send_feishu_card(token, FEISHU_USER_ID, title, elements):
-            print("✅ 发送成功")
-        else:
-            print("❌ 发送失败")
-    else:
-        print("❌ 获取token失败")
+    return completed

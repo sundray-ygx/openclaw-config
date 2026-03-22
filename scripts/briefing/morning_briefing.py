@@ -393,8 +393,8 @@ def score_article(title, source):
     
     return score
 
-def parse_rss_simple(xml_content, source_name, limit):
-    """解析RSS并按热度筛选"""
+def parse_rss_simple(xml_content, source_name, limit, use_summarize=False):
+    """解析RSS并按热度筛选，可选使用summarize生成AI摘要"""
     articles = []
     try:
         root = ET.fromstring(xml_content)
@@ -416,7 +416,7 @@ def parse_rss_simple(xml_content, source_name, limit):
                     
                     link_text = link.text if link is not None else ""
                     
-                    # 获取摘要
+                    # 获取RSS中的原始摘要作为备选
                     desc_text = desc.text if desc is not None else ""
                     desc_text = re.sub(r'<!\[CDATA\[(.*?)\]\]>', r'\1', desc_text, flags=re.DOTALL)
                     desc_text = re.sub(r'<[^>]+>', '', desc_text)
@@ -431,7 +431,8 @@ def parse_rss_simple(xml_content, source_name, limit):
                         "url": link_text,
                         "source": source_name,
                         "score": score,
-                        "summary": desc_text
+                        "summary": desc_text,  # 初始使用RSS摘要
+                        "needs_summarize": use_summarize  # 标记是否需要AI摘要
                     })
     except Exception as e:
         print(f"  解析错误: {e}")
@@ -440,45 +441,94 @@ def parse_rss_simple(xml_content, source_name, limit):
     articles.sort(key=lambda x: x["score"], reverse=True)
     return articles[:limit]
 
-def summarize_article(url):
-    """使用 summarize 生成 AI 摘要"""
+def summarize_article(url, fallback_summary=""):
+    """使用 summarize 生成 AI 摘要，带超时保护和降级"""
     try:
         env = os.environ.copy()
+        # 使用智谱AI的Claude API
         env["ANTHROPIC_API_KEY"] = "33838b1cec6b454c824d87bfd2161b87.j7D7D7gtNgACDHVa"
         env["ANTHROPIC_BASE_URL"] = "https://open.bigmodel.cn/api/anthropic"
         
-        cmd = ["summarize", url, "--length", SUMMARY_LENGTH, "--model", "anthropic/claude-3-5-sonnet-20241022"]
+        # 使用 summarize 自带的 timeout 参数，设置25秒
+        cmd = [
+            "summarize", url, 
+            "--length", SUMMARY_LENGTH, 
+            "--timeout", "25s",
+            "--retries", "1"
+        ]
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)
-        stdout, stderr = proc.communicate(timeout=60)
+        stdout, stderr = proc.communicate(timeout=30)  # 30秒总超时（比summarize稍长）
         
         if proc.returncode == 0:
             summary = stdout.decode('utf-8', errors='ignore').strip()
+            # 清理格式
             summary = re.sub(r'^#+\s*', '', summary)
             summary = re.sub(r'<[^>]+>', '', summary)
             summary = re.sub(r'[#*_`]', '', summary)
             summary = summary.replace('\n', ' ').strip()
+            # 提取核心内容（去掉元信息）
+            lines = summary.split('\n')
+            content_lines = []
+            for line in lines:
+                # 跳过元信息行（包含时间、字数、模型等）
+                if re.match(r'^\d+\.\d+s\s*·', line):
+                    continue
+                if line.strip() and not line.startswith('*'):
+                    content_lines.append(line)
+            summary = ' '.join(content_lines)
             if len(summary) > 120:
                 summary = summary[:117] + "..."
             return summary
-    except:
-        pass
+        else:
+            stderr_text = stderr.decode('utf-8', errors='ignore').strip()
+            if stderr_text:
+                print(f"    ⚠️ summarize 错误: {stderr_text[:80]}")
+    except subprocess.TimeoutExpired:
+        print(f"    ⚠️ summarize 超时: {url[:50]}...")
+        proc.kill()
+    except Exception as e:
+        print(f"    ⚠️ summarize 错误: {e}")
+    
+    # 降级：使用 RSS 中的 description 作为备选
+    if fallback_summary:
+        return fallback_summary
     return ""
 
 def get_news():
-    """获取国内资讯（精选9条）"""
+    """获取国内资讯（精选9条），使用summarize生成AI摘要"""
     all_articles = []
     for feed in RSS_FEEDS:
         print(f"  获取 {feed['name']}...")
         xml = fetch_rss(feed["url"], use_proxy=False)
         if xml:
-            items = parse_rss_simple(xml, feed["name"], feed.get("limit", 5))
+            # 启用summarize功能
+            items = parse_rss_simple(xml, feed["name"], feed.get("limit", 5), use_summarize=True)
             for item in items:
                 item["category"] = feed["category"]
             all_articles.extend(items)
     
     # 按分数排序，取前9条
     all_articles.sort(key=lambda x: x["score"], reverse=True)
-    return all_articles[:9]
+    selected = all_articles[:9]
+    
+    # 串行生成AI摘要（避免并发问题，带超时保护）
+    print(f"  生成AI摘要 ({len(selected)}篇文章)...")
+    success_count = 0
+    for i, article in enumerate(selected, 1):
+        if article.get("needs_summarize") and article.get("url"):
+            print(f"    [{i}/{len(selected)}] {article['title'][:40]}...")
+            ai_summary = summarize_article(article["url"], article.get("summary", ""))
+            if ai_summary and ai_summary != article.get("summary", ""):
+                article["summary"] = ai_summary
+                success_count += 1
+                print(f"      ✓ AI摘要生成成功")
+            elif ai_summary:
+                print(f"      ℹ 使用RSS摘要")
+            else:
+                print(f"      ⚠ 摘要生成失败，使用RSS摘要")
+    
+    print(f"  AI摘要生成完成: {success_count}/{len(selected)} 篇成功")
+    return selected
 
 def get_overseas_news():
     """获取海外中文资讯"""
