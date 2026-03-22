@@ -101,31 +101,128 @@ def send_feishu_card(token, user_id, title, elements):
 
 # ============ 天气 ============
 def get_weather():
-    """获取深圳天气"""
+    """获取深圳天气（JSON格式，更可靠）"""
     try:
-        # Python 3.6兼容方式
         import subprocess
+        import json
+        
+        # 使用 JSON 格式获取天气（更可靠）
         result = subprocess.run(
-            'curl -s "wttr.in/深圳?format=%l:+%c+%t+(体感+%f),+湿度+%h,+降水+%p,+风力+%w"',
-            shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=10
+            ['curl', '-s', 'wttr.in/深圳?format=j1'],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=15
         )
+        
         if result.returncode == 0 and result.stdout:
-            return result.stdout.decode('utf-8', errors='ignore').strip()
+            data = json.loads(result.stdout.decode('utf-8', errors='ignore'))
+            current = data['current_condition'][0]
+            weather = data['weather'][0]
+            
+            # 天气描述中文映射
+            weather_cn = {
+                'Sunny': '☀️ 晴',
+                'Clear': '☀️ 晴',
+                'Partly cloudy': '⛅ 多云',
+                'Partly Cloudy': '⛅ 多云',
+                'Cloudy': '☁️ 阴',
+                'Overcast': '☁️ 阴',
+                'Patchy rain nearby': '🌦️ 局部小雨',
+                'Light rain': '🌧️ 小雨',
+                'Moderate rain': '🌧️ 中雨',
+                'Heavy rain': '⛈️ 大雨',
+                'Patchy light rain': '🌦️ 零星小雨',
+                'Mist': '🌫️ 雾',
+                'Fog': '🌫️ 雾',
+                'Thunderstorm': '⛈️ 雷雨',
+            }
+            
+            weather_desc = current['weatherDesc'][0]['value']
+            weather_icon = weather_cn.get(weather_desc, f"🌡️ {weather_desc}")
+            
+            # 构建天气信息
+            temp = current['temp_C']
+            feels_like = current['FeelsLikeC']
+            humidity = current['humidity']
+            precip = current['precipMM']
+            wind = current['windspeedKmph']
+            uv = current['uvIndex']
+            
+            weather_str = f"{weather_icon} {temp}°C (体感{feels_like}°C), 湿度{humidity}%, 降水{precip}mm, 风力{wind}km/h"
+            
+            # 生成出行建议
+            advice = []
+            
+            # 基于天气
+            if '雨' in weather_icon or float(precip) > 0:
+                advice.append("🌧️ 带伞出行")
+            elif '晴' in weather_icon and int(temp) > 28:
+                advice.append("🧴 注意防晒")
+            elif '雾' in weather_icon:
+                advice.append("🚗 注意交通安全")
+            
+            # 基于温度
+            if int(feels_like) > 30:
+                advice.append("🥤 多喝水防中暑")
+            elif int(feels_like) < 15:
+                advice.append("🧥 注意保暖")
+            
+            # 基于紫外线
+            if int(uv) >= 5:
+                advice.append("☀️ 紫外线强，注意防护")
+            
+            # 基于风力
+            if int(wind) > 20:
+                advice.append("💨 风力较大")
+            
+            advice_str = " | ".join(advice) if advice else "✅ 天气适宜出行"
+            
+            return {
+                "text": weather_str,
+                "advice": advice_str,
+                "temp": temp,
+                "feels_like": feels_like,
+                "humidity": humidity,
+                "precip": precip,
+                "wind": wind,
+                "uv": uv,
+                "desc": weather_desc
+            }
+            
     except Exception as e:
         print(f"  天气获取错误: {e}")
     
-    # 备用方案
+    # 降级方案：使用简单格式
     try:
         result = subprocess.run(
-            'curl -s wttr.in/Shenzhen?format=3',
-            shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=10
+            ['curl', '-s', 'wttr.in/深圳?format=%l:+%c+%t,+%h'],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=10
         )
         if result.returncode == 0 and result.stdout:
-            return result.stdout.decode('utf-8', errors='ignore').strip()
+            text = result.stdout.decode('utf-8', errors='ignore').strip()
+            return {
+                "text": text,
+                "advice": "✅ 天气适宜出行",
+                "temp": "?",
+                "feels_like": "?",
+                "humidity": "?",
+                "precip": "0",
+                "wind": "?",
+                "uv": "?",
+                "desc": "Unknown"
+            }
     except:
         pass
     
-    return "深圳: 获取失败"
+    return {
+        "text": "深圳: 获取失败",
+        "advice": "⚠️ 天气信息获取失败",
+        "temp": "?",
+        "feels_like": "?",
+        "humidity": "?",
+        "precip": "0",
+        "wind": "?",
+        "uv": "?",
+        "desc": "Unknown"
+    }
 
 # ============ 邮件 ============
 def load_mail_state():
@@ -557,7 +654,14 @@ def generate_briefing():
         "tag": "div",
         "text": {
             "tag": "lark_md",
-            "content": f"**🌤️ 深圳天气** {weather}"
+            "content": f"**🌤️ 深圳天气** {weather['text']}"
+        }
+    })
+    elements.append({
+        "tag": "div",
+        "text": {
+            "tag": "lark_md",
+            "content": f"**💡 出行建议** {weather['advice']}"
         }
     })
     
