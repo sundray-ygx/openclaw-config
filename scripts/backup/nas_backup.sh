@@ -43,25 +43,25 @@ cp /root/frp_0.60.0_linux_amd64/frpc "$LOCAL_BACKUP_DIR/02-frp/"
 # 3. 脚本
 log "备份: 脚本"
 # 使用新的workspace目录结构
-cp /root/.openclaw/workspace/scripts/briefing/morning_briefing.py "$LOCAL_BACKUP_DIR/03-scripts/"
-cp /root/.openclaw/workspace/scripts/daily/daily_report.py "$LOCAL_BACKUP_DIR/03-scripts/"
-cp /root/.openclaw/workspace/scripts/backup/nas_backup.sh "$LOCAL_BACKUP_DIR/03-scripts/"
-cp /root/.openclaw/workspace/scripts/news/rss_news_fetch.py "$LOCAL_BACKUP_DIR/03-scripts/"
+cp /home/openclaw/.openclaw/workspace/scripts/briefing/morning_briefing.py "$LOCAL_BACKUP_DIR/03-scripts/"
+cp /home/openclaw/.openclaw/workspace/scripts/daily/daily_report.py "$LOCAL_BACKUP_DIR/03-scripts/"
+cp /home/openclaw/.openclaw/workspace/scripts/backup/nas_backup.sh "$LOCAL_BACKUP_DIR/03-scripts/"
+cp /home/openclaw/.openclaw/workspace/scripts/news/rss_news_fetch.py "$LOCAL_BACKUP_DIR/03-scripts/"
 
 # 4. OpenClaw工作区核心文档
 log "备份: OpenClaw工作区核心文档"
-cp /root/.openclaw/workspace/AGENTS.md "$LOCAL_BACKUP_DIR/04-workspace/"
-cp /root/.openclaw/workspace/SOUL.md "$LOCAL_BACKUP_DIR/04-workspace/"
-cp /root/.openclaw/workspace/USER.md "$LOCAL_BACKUP_DIR/04-workspace/"
-cp /root/.openclaw/workspace/TOOLS.md "$LOCAL_BACKUP_DIR/04-workspace/"
-cp /root/.openclaw/workspace/HEARTBEAT.md "$LOCAL_BACKUP_DIR/04-workspace/"
-cp /root/.openclaw/workspace/IDENTITY.md "$LOCAL_BACKUP_DIR/04-workspace/"
+cp /home/openclaw/.openclaw/workspace/AGENTS.md "$LOCAL_BACKUP_DIR/04-workspace/"
+cp /home/openclaw/.openclaw/workspace/SOUL.md "$LOCAL_BACKUP_DIR/04-workspace/"
+cp /home/openclaw/.openclaw/workspace/USER.md "$LOCAL_BACKUP_DIR/04-workspace/"
+cp /home/openclaw/.openclaw/workspace/TOOLS.md "$LOCAL_BACKUP_DIR/04-workspace/"
+cp /home/openclaw/.openclaw/workspace/HEARTBEAT.md "$LOCAL_BACKUP_DIR/04-workspace/"
+cp /home/openclaw/.openclaw/workspace/IDENTITY.md "$LOCAL_BACKUP_DIR/04-workspace/"
 
 # 5. OpenClaw完整配置
 log "备份: OpenClaw完整配置"
 # 使用tar排除.git目录，避免备份冗余数据
 tar -czf "$LOCAL_BACKUP_DIR/05-openclaw-config/openclaw-workspace.tar.gz" \
-    -C /root/.openclaw \
+    -C /home/openclaw/.openclaw \
     --exclude='.git' \
     --exclude='__pycache__' \
     --exclude='*.pyc' \
@@ -72,7 +72,7 @@ tar -czf "$LOCAL_BACKUP_DIR/05-openclaw-config/openclaw-workspace.tar.gz" \
 # 6. 安全脚本
 log "备份: 安全脚本"
 mkdir -p "$LOCAL_BACKUP_DIR/06-security-scripts"
-cp /root/.openclaw/scripts/*.sh "$LOCAL_BACKUP_DIR/06-security-scripts/"
+cp /home/openclaw/.openclaw/scripts/*.sh "$LOCAL_BACKUP_DIR/06-security-scripts/"
 
 # 生成备份信息
 SERVER_IP=$(curl -s ifconfig.me 2>/dev/null || echo "47.119.177.194")
@@ -146,17 +146,17 @@ backup-info.json      - 备份元数据
    systemctl restart frps
 
 3. 恢复脚本:
-   cp 03-scripts/* /root/.openclaw/workspace/scripts/
+   cp 03-scripts/* /home/openclaw/.openclaw/workspace/scripts/
    # 注意: 脚本已按功能分类存储在 scripts/{daily,briefing,news,backup,utils}/
 
 4. 恢复工作区核心文档:
-   cp 04-workspace/* /root/.openclaw/workspace/
+   cp 04-workspace/* /home/openclaw/.openclaw/workspace/
 
 5. 恢复完整OpenClaw工作区:
-   tar -xzf 05-openclaw-config/openclaw-workspace.tar.gz -C /root/.openclaw/
+   tar -xzf 05-openclaw-config/openclaw-workspace.tar.gz -C /home/openclaw/.openclaw/
 
 6. 恢复安全脚本:
-   cp 06-security-scripts/* /root/.openclaw/scripts/
+   cp 06-security-scripts/* /home/openclaw/.openclaw/scripts/
 
 ================================================================================
 服务管理命令:
@@ -170,7 +170,7 @@ systemctl status frps
 systemctl restart frps
 
 # 早间简报测试
-python3 /root/.openclaw/workspace/scripts/briefing/morning_briefing.py
+python3 /home/openclaw/.openclaw/workspace/scripts/briefing/morning_briefing.py
 
 ================================================================================
 定时任务:

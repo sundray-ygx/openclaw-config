@@ -10,7 +10,7 @@ import json
 from datetime import datetime, timedelta
 
 REFLECTION_DIR = "/root/reflection"
-MEMORY_DIR = "/root/.openclaw/workspace/memory"
+MEMORY_DIR = "/home/openclaw/.openclaw/workspace/memory"
 
 
 def extract_lessons_from_memory(date_str):

@@ -9,7 +9,7 @@ import shutil
 import json
 from datetime import datetime, timedelta
 
-WORKSPACE = "/root/.openclaw/workspace"
+WORKSPACE = "/home/openclaw/.openclaw/workspace"
 MEMORY_DIR = f"{WORKSPACE}/memory"
 ARCHIVE_DIR = f"{WORKSPACE}/archive"
 DAILY_REPORTS = f"{WORKSPACE}/archive/daily"

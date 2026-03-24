@@ -11,7 +11,7 @@ import re
 import json
 from datetime import datetime
 
-WORKSPACE = "/root/.openclaw/workspace"
+WORKSPACE = "/home/openclaw/.openclaw/workspace"
 INBOX_DIR = f"{WORKSPACE}/knowledge/inbox"
 MEMORY_DIR = f"{WORKSPACE}/memory"
 ARCHIVE_DIR = f"{WORKSPACE}/archive"

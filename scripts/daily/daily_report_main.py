@@ -14,7 +14,7 @@ import urllib.parse
 FEISHU_APP_ID = "cli_a93b96047e7a5bc3"
 FEISHU_APP_SECRET = "ir6uAf1L7O52AFgXrepgabIrYG1oOcbD"
 FEISHU_USER_ID = "ou_c2cde251e01a87fc09ba7561f76d8606"
-SESSIONS_DIR = "/root/.openclaw/agents/main/sessions"
+SESSIONS_DIR = "/home/openclaw/.openclaw/agents/main/sessions"
 
 def get_feishu_token():
     url = "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal"

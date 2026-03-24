@@ -10,7 +10,7 @@ import os
 import json
 from datetime import datetime
 
-WORKSPACE = "/root/.openclaw/workspace"
+WORKSPACE = "/home/openclaw/.openclaw/workspace"
 INBOX_DIR = f"{WORKSPACE}/knowledge/inbox"
 
 def scan_inbox():
@@ -46,7 +46,7 @@ def generate_report(files):
     
     report += """
 整理步骤：
-1. 进入 `/root/.openclaw/workspace/knowledge/inbox/`
+1. 进入 `/home/openclaw/.openclaw/workspace/knowledge/inbox/`
 2. 阅读每个文件内容
 3. 确认自动标签是否准确
 4. 移动到对应目录：
