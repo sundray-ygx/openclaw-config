@@ -7,10 +7,14 @@ Daily Reflection - 每日反思生成器
 import os
 import re
 import json
+import urllib.request
 from datetime import datetime, timedelta
 
-REFLECTION_DIR = "/root/reflection"
-MEMORY_DIR = "/home/openclaw/.openclaw/workspace/memory"
+REFLECTION_DIR = "/root/.openclaw/workspace/reflection"
+MEMORY_DIR = "/root/.openclaw/workspace/memory"
+FEISHU_APP_ID = "cli_a93b96047e7a5bc3"
+FEISHU_APP_SECRET = "ir6uAf1L7O52AFgXrepgabIrYG1oOcbD"
+FEISHU_USER_ID = "ou_c2cde251e01a87fc09ba7561f76d8606"
 
 
 def extract_lessons_from_memory(date_str):
@@ -49,6 +53,23 @@ def extract_lessons_from_memory(date_str):
                     "content": line[1:].strip(),
                     "category": "process"
                 })
+    
+    # 如果没有找到复盘记录，从错误/异常部分提取
+    if not lessons:
+        errors_match = re.search(r'## ⚠️ 错误与异常\s*\n\n(.*?)(?=\n## |\Z)', content, re.DOTALL)
+        if errors_match:
+            errors_text = errors_match.group(1).strip()
+            # 提取前3个错误作为教训
+            error_lines = [line.strip() for line in errors_text.split('\n') if line.strip().startswith('-')]
+            for line in error_lines[:3]:
+                # 清理错误内容
+                clean_error = re.sub(r'^-\s*[💻📱]\s*\*\*[^*]+\*\*\s*', '', line).strip()
+                if clean_error and len(clean_error) > 10:
+                    lessons.append({
+                        "type": "improve",
+                        "content": f"系统错误: {clean_error[:100]}",
+                        "category": "technical"
+                    })
     
     return lessons
 
@@ -193,6 +214,82 @@ def update_memory_stats():
         f.write(content)
 
 
+def get_feishu_token():
+    """获取飞书tenant_access_token"""
+    url = "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal"
+    data = json.dumps({"app_id": FEISHU_APP_ID, "app_secret": FEISHU_APP_SECRET}).encode()
+    req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=10) as response:
+            result = json.loads(response.read().decode())
+            return result.get("tenant_access_token")
+    except Exception as e:
+        print(f"  获取飞书token失败: {e}")
+        return None
+
+
+def send_feishu_report(date_str, lessons):
+    """发送反思报告到飞书"""
+    token = get_feishu_token()
+    if not token:
+        print("⚠️ 无法获取飞书token，跳过推送")
+        return False
+    
+    # 分类统计
+    good_lessons = [l for l in lessons if l["type"] == "good"]
+    improve_lessons = [l for l in lessons if l["type"] == "improve"]
+    
+    # 构建消息内容
+    content = f"""📊 每日反思报告 - {date_str}
+
+今日共提取 {len(lessons)} 条教训：
+
+✅ 做得好的（{len(good_lessons)}条）：
+"""
+    
+    for i, lesson in enumerate(good_lessons[:5], 1):
+        content += f"{i}. {lesson['content'][:50]}\n"
+    
+    content += f"""
+⚠️ 需改进（{len(improve_lessons)}条）：
+"""
+    
+    for i, lesson in enumerate(improve_lessons[:5], 1):
+        content += f"{i}. {lesson['content'][:50]}\n"
+    
+    content += f"""
+📁 反思记录已归档至：{REFLECTION_DIR}/reflections.md"""
+    
+    # 发送消息
+    url = "https://open.feishu.cn/open-apis/im/v1/messages"
+    params = {"receive_id_type": "open_id"}
+    full_url = f"{url}?{urllib.parse.urlencode(params)}"
+    
+    message_data = json.dumps({
+        "receive_id": FEISHU_USER_ID,
+        "msg_type": "text",
+        "content": json.dumps({"text": content})
+    }).encode()
+    
+    req = urllib.request.Request(full_url, data=message_data, headers={
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
+    }, method="POST")
+    
+    try:
+        with urllib.request.urlopen(req, timeout=10) as response:
+            result = json.loads(response.read().decode())
+            if result.get("code") == 0:
+                print(f"✅ 飞书报告发送成功")
+                return True
+            else:
+                print(f"⚠️ 飞书发送失败: {result.get('msg')}")
+                return False
+    except Exception as e:
+        print(f"⚠️ 飞书发送失败: {e}")
+        return False
+
+
 def main():
     print("🚀 开始生成每日反思...")
     
@@ -227,6 +324,10 @@ def main():
     # 更新统计
     update_memory_stats()
     print(f"✅ 已更新 memory.md 统计")
+    
+    # 发送飞书报告
+    print("📱 发送飞书报告...")
+    send_feishu_report(date_str, lessons)
     
     print("🎉 完成!")
 

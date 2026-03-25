@@ -17,10 +17,11 @@ import urllib.parse
 from datetime import datetime, timedelta
 
 # 配置
-DAILY_REPORT_DIR = "/home/openclaw/.openclaw/workspace/archive/daily"
+DAILY_REPORT_DIR = "/root/.openclaw/workspace/archive/daily"
+MEMORY_DIR = "/root/.openclaw/workspace/memory"
 SESSIONS_DIRS = [
-    "/home/openclaw/.openclaw/agents/scheduler/sessions",
-    "/home/openclaw/.openclaw/agents/main/sessions"
+    "/root/.openclaw/agents/scheduler/sessions",
+    "/root/.openclaw/agents/main/sessions"
 ]
 
 # 飞书配置
@@ -544,16 +545,72 @@ def generate_daily_report(target_date_str=None):
 """
         report += reflection_content + "\n"
     
-    # 保存报告
+    # 生成 memory 格式内容
+    memory_content = f"""# {date_str} 记忆
+
+## 日报摘要
+{report}
+
+## 🔄 复盘与改进
+
+**做得好的：**
+• 
+
+**需改进：**
+• 
+
+## 待跟进事项
+- [ ] 
+
+## 明日计划
+- 
+
+---
+*生成于 {datetime.now().strftime("%H:%M")}*
+"""
+    
+    # 保存到 memory 目录（主输出）
+    memory_file = os.path.join(MEMORY_DIR, f"{date_str}.md")
+    os.makedirs(MEMORY_DIR, exist_ok=True)
+    with open(memory_file, 'w', encoding='utf-8') as f:
+        f.write(memory_content)
+    
+    # 生成简化版存入 archive/daily/（仅关键指标）
     year, month = date_str.split('-')[:2]
     month_dir = os.path.join(DAILY_REPORT_DIR, f"{year}-{month}")
     os.makedirs(month_dir, exist_ok=True)
-    report_file = os.path.join(month_dir, f"daily-report-{date_str}.md")
     
-    with open(report_file, 'w', encoding='utf-8') as f:
-        f.write(report)
+    summary_report = f"""# 工作日报摘要 - {date_str}
+
+## 📊 关键指标
+- **日期**: {date_str}
+- **本地会话**: {len(session_files)} 个文件, {len(local_messages)} 条消息
+- **飞书消息**: {len(feishu_messages)} 条
+- **定时任务**: {len(cron_tasks)} 个
+- **本地交互**: {len(local_interactions)} 次
+- **飞书交互**: {len(feishu_interactions)} 次
+- **错误/异常**: {len(errors)} 条
+
+## 💬 关键交互
+"""
+    if local_interactions:
+        summary_report += "### 本地\n"
+        for i, interaction in enumerate(local_interactions[:5], 1):
+            summary_report += f"{i}. **{interaction['time']}** {interaction['summary']}\n"
     
-    print(f"\n✅ 日报已生成: {report_file}")
+    if feishu_interactions:
+        summary_report += "\n### 飞书\n"
+        for i, interaction in enumerate(feishu_interactions[:5], 1):
+            summary_report += f"{i}. **{interaction['time']}** {interaction['summary']}\n"
+    
+    summary_report += f"\n---\n*详细内容见 memory/{date_str}.md*"
+    
+    archive_file = os.path.join(month_dir, f"daily-report-{date_str}.md")
+    with open(archive_file, 'w', encoding='utf-8') as f:
+        f.write(summary_report)
+    
+    print(f"\n✅ 记忆文件已生成: {memory_file}")
+    print(f"✅ 归档摘要已生成: {archive_file}")
     print(f"  - 本地会话: {len(session_files)} 文件, {len(local_messages)} 消息")
     print(f"  - 飞书消息: {len(feishu_messages)} 条")
     print(f"  - 定时任务: {len(cron_tasks)} 个")

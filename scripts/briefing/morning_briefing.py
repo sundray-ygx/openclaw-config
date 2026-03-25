@@ -541,38 +541,17 @@ def parse_rss_simple(xml_content, source_name, limit, use_summarize=False):
 def summarize_article(url, fallback_summary=""):
     """使用 summarize 生成 AI 摘要，带超时保护和降级"""
     try:
-        env = os.environ.copy()
-        # 使用智谱AI的Claude API
-        env["ANTHROPIC_API_KEY"] = "33838b1cec6b454c824d87bfd2161b87.j7D7D7gtNgACDHVa"
-        env["ANTHROPIC_BASE_URL"] = "https://open.bigmodel.cn/api/anthropic"
-        
-        # 使用 summarize 自带的 timeout 参数，设置25秒
-        cmd = [
-            "summarize", url, 
-            "--length", SUMMARY_LENGTH, 
-            "--timeout", "25s",
-            "--retries", "1"
-        ]
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)
-        stdout, stderr = proc.communicate(timeout=30)  # 30秒总超时（比summarize稍长）
+        # 使用 summarize 命令，设置25秒超时
+        cmd = ["summarize", url, "--length", "short"]
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = proc.communicate(timeout=30)
         
         if proc.returncode == 0:
             summary = stdout.decode('utf-8', errors='ignore').strip()
             # 清理格式
-            summary = re.sub(r'^#+\s*', '', summary)
             summary = re.sub(r'<[^>]+>', '', summary)
             summary = re.sub(r'[#*_`]', '', summary)
             summary = summary.replace('\n', ' ').strip()
-            # 提取核心内容（去掉元信息）
-            lines = summary.split('\n')
-            content_lines = []
-            for line in lines:
-                # 跳过元信息行（包含时间、字数、模型等）
-                if re.match(r'^\d+\.\d+s\s*·', line):
-                    continue
-                if line.strip() and not line.startswith('*'):
-                    content_lines.append(line)
-            summary = ' '.join(content_lines)
             if len(summary) > 120:
                 summary = summary[:117] + "..."
             return summary
