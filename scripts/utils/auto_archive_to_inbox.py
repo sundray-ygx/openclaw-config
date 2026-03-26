@@ -11,7 +11,7 @@ import re
 import json
 from datetime import datetime
 
-WORKSPACE = "/home/openclaw/.openclaw/workspace"
+WORKSPACE = "/root/.openclaw/workspace"
 INBOX_DIR = f"{WORKSPACE}/knowledge/inbox"
 MEMORY_DIR = f"{WORKSPACE}/memory"
 ARCHIVE_DIR = f"{WORKSPACE}/archive"
@@ -119,6 +119,19 @@ def archive_memory_to_inbox(date_str):
     print(f"✅ 已归档到 inbox: {filename}")
     return True
 
+def send_feishu_notification(date_str, filename, tags):
+    """发送飞书通知"""
+    try:
+        # 使用 openclaw 命令发送飞书消息
+        tag_str = ', '.join(tags) if tags else '未分类'
+        message = f"📥 记忆归档完成\\n\\n日期: {date_str}\\n文件: {filename}\\n标签: {tag_str}\\n\\n请查看 knowledge/inbox/ 并进行人工整理"
+        
+        cmd = f'openclaw message send --channel feishu --to ou_c2cde251e01a87fc09ba7561f76d8606 "{message}"'
+        os.system(cmd)
+        print(f"✅ 已发送飞书通知")
+    except Exception as e:
+        print(f"⚠️ 发送飞书通知失败: {e}")
+
 def main():
     """主函数"""
     ensure_dirs()
@@ -127,7 +140,17 @@ def main():
     yesterday = (datetime.now() - __import__('datetime').timedelta(days=1)).strftime("%Y-%m-%d")
     
     print(f"开始归档 {yesterday} 的记忆到 inbox...")
-    archive_memory_to_inbox(yesterday)
+    result = archive_memory_to_inbox(yesterday)
+    
+    if result:
+        # 读取生成的文件名并发送通知
+        memory_file = f"{MEMORY_DIR}/{yesterday}.md"
+        with open(memory_file, "r") as f:
+            content = f.read()
+        tags = extract_tags(content)
+        filename = generate_inbox_filename(yesterday, tags)
+        send_feishu_notification(yesterday, filename, tags)
+    
     print("完成!")
 
 if __name__ == "__main__":

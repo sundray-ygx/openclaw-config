@@ -4,6 +4,14 @@
 
 ---
 
+## 2026-03-25 | assumptions
+**Miss:** 
+**Root:** 未充分准备，考虑不周全
+**Fix:** 建立检查清单，增加预检查环节
+
+---
+
+
 ## 2026-03-24 | assumptions
 **Miss:** 工作目录不一致（/root vs /home/openclaw）导致路径混乱
 **Root:** 未充分准备，考虑不周全

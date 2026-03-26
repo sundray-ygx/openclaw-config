@@ -1,3 +1,34 @@
+---
+{
+  "source": "memory",
+  "date": "2026-03-25",
+  "tags": [
+    "work",
+    "tech",
+    "productivity",
+    "security",
+    "lessons"
+  ],
+  "created_at": "2026-03-26T15:54:03.565340",
+  "status": "pending_review"
+}
+---
+
+# 记忆归档 - 2026-03-25
+
+**自动标签**: work, tech, productivity, security, lessons
+
+**建议归档位置**:
+- work
+- tech
+- productivity
+- security
+- lessons
+
+---
+
+## 原始内容
+
 # 2026-03-25 记忆
 
 ## 日报摘要
@@ -669,3 +700,14 @@ MEMORY_...
 
 ---
 *生成于 08:34*
+
+
+---
+
+## 人工整理说明
+
+1. 阅读以上内容
+2. 确认标签是否准确
+3. 移动到对应目录: `knowledge/{category}/`
+4. 重命名为: `YYYY-MM-DD-title.md`
+5. 删除此 inbox 文件
