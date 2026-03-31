@@ -76,8 +76,23 @@ def send_feishu(month_name, stats, top_issues, improvements, archive_path):
         return False
 
 
+def is_valid_reflection_entry(reflection):
+    """过滤无效的反思记录"""
+    miss = reflection.get("miss", "").strip()
+    if not miss or len(miss) < 10:
+        return False
+    code_patterns = [r'^#!/', r'^import\s+', r'^def\s+', r'^class\s+']
+    if any(re.search(p, miss) for p in code_patterns):
+        return False
+    if miss.startswith('error:') or miss.startswith('Error:'):
+        return False
+    if re.match(r'^\S+\s+\d+\.\d+\.\d+', miss):
+        return False
+    return True
+
+
 def load_reflections():
-    """加载所有反思记录"""
+    """加载所有反思记录（带数据质量过滤）"""
     reflections = []
     filepath = os.path.join(REFLECTION_DIR, "reflections.md")
     if not os.path.exists(filepath):
@@ -116,7 +131,13 @@ def load_reflections():
             "fix": fix
         })
     
-    return reflections
+    # 数据质量过滤
+    valid_refs = [r for r in reflections if is_valid_reflection_entry(r)]
+    filtered_count = len(reflections) - len(valid_refs)
+    if filtered_count > 0:
+        print(f"  ⚠️ 过滤 {filtered_count} 条无效记录")
+    
+    return valid_refs
 
 
 def categorize_lesson(lesson):
@@ -250,6 +271,7 @@ def generate_report(year, month, month_refs, stats, top_issues, improvements):
 
 > 生成时间: {now}
 > 数据来源: Self Reflection System
+> 数据质量: {stats['total']} 条有效记录
 
 ---
 

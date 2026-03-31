@@ -45,8 +45,8 @@ def extract_lessons_from_memory(date_str):
             line = line.strip()
             if line and (line.startswith('•') or line.startswith('-')):
                 lesson_content = line[1:].strip()
-                # 过滤掉空洞的描述
-                if not is_vague(lesson_content):
+                # 过滤掉空洞和无效的内容
+                if not is_valid_reflection(lesson_content):
                     lessons.append({
                         "type": "good",
                         "content": lesson_content,
@@ -60,7 +60,7 @@ def extract_lessons_from_memory(date_str):
             line = line.strip()
             if line and (line.startswith('•') or line.startswith('-')):
                 lesson_content = line[1:].strip()
-                if not is_vague(lesson_content):
+                if not is_valid_reflection(lesson_content):
                     lessons.append({
                         "type": "improve",
                         "content": lesson_content,
@@ -78,7 +78,7 @@ def extract_lessons_from_memory(date_str):
                 if line and line.startswith('- ['):
                     # 提取复选框内容
                     task_content = re.sub(r'^-\s*\[.\]\s*', '', line).strip()
-                    if task_content and not is_vague(task_content):
+                    if task_content and not is_valid_reflection(task_content):
                         lessons.append({
                             "type": "improve",
                             "content": task_content,
@@ -95,7 +95,7 @@ def extract_lessons_from_memory(date_str):
             # 提取具体错误信息
             clean_error = re.sub(r'^-\s*[💻📱]\s*\*\*[^*]+\*\*\s*', '', line).strip()
             # 过滤掉代码块和过长的内容
-            if clean_error and len(clean_error) > 10 and len(clean_error) < 200 and not is_vague(clean_error):
+            if clean_error and len(clean_error) > 10 and len(clean_error) < 200 and not is_valid_reflection(clean_error):
                 # 检查是否是代码片段（以 #!/ 或 import 或 def 开头）
                 if not any(clean_error.startswith(prefix) for prefix in ['#!/', 'import ', 'def ', '"""', 'class ']):
                     lessons.append({
@@ -108,26 +108,88 @@ def extract_lessons_from_memory(date_str):
     return lessons
 
 
-def is_vague(content):
-    """判断内容是否空洞或不是有效教训"""
-    # 过滤空内容
-    if not content or len(content.strip()) < 5:
+def is_valid_reflection(content):
+    """判断内容是否是有效的反思记录（反向逻辑：不合法返回True）"""
+    content = content.strip()
+    
+    # 1. 空内容/太短
+    if not content or len(content) < 10:
+        return True  # 无效
+    
+    # 2. 代码片段（各种语言特征）
+    code_patterns = [
+        r'^#!/',                     # shebang
+        r'^import\s+',               # Python import
+        r'^from\s+.+import',         # Python from-import
+        r'^def\s+',                  # Python 函数定义
+        r'^class\s+',                # Python 类定义
+        r'^"""\s*$',                 # Python docstring
+        r"^'''\s*$",                 # Python docstring
+        r'^{\s*$',                   # JSON/对象开头
+        r'^\[\s*$',                  # 数组开头
+        r'^\$\{',                    # Shell 变量
+        r'^function\s+',             # JS 函数
+        r'^const\s+',                # JS const
+        r'^var\s+',                  # JS var
+        r'^let\s+',                  # JS let
+    ]
+    if any(re.search(p, content) for p in code_patterns):
+        return True  # 无效
+    
+    # 3. CLI 错误信息（非反思内容）
+    cli_error_patterns = [
+        r'^error:\s+unknown option',
+        r'^error:\s+required option',
+        r'^error:\s+unrecognized',
+        r'^usage:\s+',               # CLI usage 输出
+        r'^Options:',
+        r'^Arguments:',
+        r'^Commands:',
+        r'^Traceback\s*\(most recent',
+        r'^\s+File\s+".*",\s+line\s+\d+',  # Python traceback 行
+    ]
+    if any(re.search(p, content, re.IGNORECASE) for p in cli_error_patterns):
+        return True  # 无效
+    
+    # 4. 版本号/更新日志信息
+    version_patterns = [
+        r'^\S+\s+\d+\.\d+\.\d+.*\(.*\)\s*[-—]',  # "OpenClaw 2026.3.23-2 (7ffe7e4) —"
+        r'^v?\d+\.\d+\.\d+[-\w]*\s*$',
+        r'^Version:',
+        r'^Changelog:',
+    ]
+    if any(re.search(p, content) for p in version_patterns):
+        return True  # 无效
+    
+    # 5. 日志前缀/系统输出
+    log_patterns = [
+        r'^💻',
+        r'^📱',
+        r'^🖥️',
+        r'^🖥',
+        r'^DEBUG:',
+        r'^INFO:',
+        r'^WARN(?:ING)?:',
+        r'^ERROR:',
+        r'^FATAL:',
+        r'^\[ERROR\]',
+        r'^\[WARN\]',
+        r'^\[INFO\]',
+    ]
+    if any(re.search(p, content) for p in log_patterns):
+        return True  # 无效
+    
+    # 6. JSON 内容
+    if content.startswith('{') and ('"' in content[:50]):
+        return True
+    if content.startswith('[') and ('"' in content[:50]):
         return True
     
-    # 过滤代码片段
-    code_patterns = ['#!/', 'import ', 'def ', 'class ', '"""', "'''", '{\n', '[\n']
-    if any(content.startswith(p) for p in code_patterns):
+    # 7. 纯特殊字符/符号
+    if re.match(r'^[\W\s]+$', content):
         return True
     
-    # 过滤日志/文件内容
-    if content.startswith('💻') or content.startswith('📱') or content.startswith('# '):
-        return True
-    
-    # 过滤JSON内容
-    if content.startswith('{') and ('"status"' in content or '"tool"' in content):
-        return True
-    
-    # 过滤空洞描述
+    # 8. 空洞描述（内容存在但没有信息量）
     vague_patterns = [
         r'^未充分准备',
         r'^考虑不周全',
@@ -137,12 +199,15 @@ def is_vague(content):
         r'^可以更好',
         r'^系统稳定运行',
         r'^所有定时任务',
-        r'^[\s\n]*$'  # 空内容
+        r'^无$',
+        r'^暂无',
+        r'^待补充',
+        r'^N/A',
     ]
-    for pattern in vague_patterns:
-        if re.search(pattern, content, re.IGNORECASE):
-            return True
-    return False
+    if any(re.search(p, content, re.IGNORECASE) for p in vague_patterns):
+        return True  # 无效
+    
+    return False  # 有效
 
 
 def extract_context(full_content, lesson_content):
@@ -257,7 +322,7 @@ def analyze_root_cause(content, context, category):
         else:
             return "流程执行缺乏检查清单，容易遗漏关键步骤"
     
-    # 默认根因
+    # 默认根因 - 不再返回模板套话，改为标记待分析
     if "时间" in content or "周期" in content:
         return "时间/周期定义不明确，缺乏标准化约定"
     elif "数据" in content:
@@ -267,7 +332,7 @@ def analyze_root_cause(content, context, category):
     elif "沟通" in content or "对齐" in content:
         return "沟通不充分，信息未同步"
     else:
-        return "未充分识别潜在风险，缺乏预检查机制"
+        return f"待分析：需人工补充根因（原文：{content[:30]}）"
 
 
 def generate_solution(content, root_cause, category):
@@ -305,14 +370,14 @@ def generate_solution(content, root_cause, category):
     
     if not solutions:
         if category == "technical":
-            solutions.append("增加单元测试覆盖边界情况")
-            solutions.append("代码审查时关注异常处理")
+            solutions.append(f"排查具体技术问题：{content[:30]}")
+            solutions.append("增加异常处理和边界检查")
         elif category == "data":
-            solutions.append("建立数据质量检查机制")
+            solutions.append(f"建立数据质量检查：{content[:30]}")
             solutions.append("定期审计数据完整性")
         else:
-            solutions.append("建立检查清单，增加预检查环节")
-            solutions.append("定期复盘，持续优化流程")
+            solutions.append(f"梳理流程问题：{content[:30]}")
+            solutions.append("增加预检查环节")
     
     return "；".join(solutions[:2])
 
@@ -434,8 +499,16 @@ def extract_keywords(content):
 
 
 def append_to_reflections(reflection):
-    """追加到 reflections.md"""
+    """追加到 reflections.md（带去重检查）"""
     filepath = os.path.join(REFLECTION_DIR, "reflections.md")
+    
+    # 去重检查：同一条 Miss 内容不重复入库
+    if os.path.exists(filepath):
+        with open(filepath, "r", encoding="utf-8") as f:
+            existing = f.read()
+        if f"**Miss:** {reflection['miss']}" in existing:
+            print(f"  ⏭️ 跳过重复记录: {reflection['miss'][:40]}")
+            return
     
     # 构建经验部分
     exp_text = ""

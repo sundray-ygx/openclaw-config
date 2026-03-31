@@ -62,6 +62,25 @@ def send_feishu(week_num, start_date, end_date, stats, archive_path):
         return False
 
 
+def is_valid_reflection_entry(reflection):
+    """过滤无效的反思记录"""
+    miss = reflection.get("miss", "").strip()
+    # 过滤空内容
+    if not miss or len(miss) < 10:
+        return False
+    # 过滤代码片段
+    code_patterns = [r'^#!/', r'^import\s+', r'^def\s+', r'^class\s+']
+    if any(re.search(p, miss) for p in code_patterns):
+        return False
+    # 过滤CLI错误
+    if miss.startswith('error:') or miss.startswith('Error:'):
+        return False
+    # 过滤版本号
+    if re.match(r'^\S+\s+\d+\.\d+\.\d+', miss):
+        return False
+    return True
+
+
 def load_reflections():
     reflections = []
     filepath = os.path.join(REFLECTION_DIR, "reflections.md")
@@ -72,6 +91,7 @@ def load_reflections():
         content = f.read()
     
     entries = re.split(r"\n---\n", content)
+    total_loaded = 0
     for entry in entries:
         lines = entry.strip().split("\n")
         if len(lines) < 3:
@@ -95,7 +115,13 @@ def load_reflections():
         
         reflections.append({"date": date, "category": category, "miss": miss, "root": root, "fix": fix})
     
-    return reflections
+    # 数据质量过滤
+    valid_refs = [r for r in reflections if is_valid_reflection_entry(r)]
+    filtered_count = len(reflections) - len(valid_refs)
+    if filtered_count > 0:
+        print(f"  ⚠️ 过滤 {filtered_count} 条无效记录")
+    
+    return valid_refs
 
 
 def categorize(week_refs):
@@ -122,6 +148,7 @@ def generate_report(week_num, start_date, end_date, week_refs, tech, work):
 
 > 生成时间: {datetime.now().strftime('%Y-%m-%d %H:%M')}
 > 数据来源: Self Reflection System
+> 数据质量: {len(week_refs)} 条有效记录
 
 ---
 
