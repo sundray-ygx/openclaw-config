@@ -4,6 +4,42 @@
 
 ---
 
+## 2026-03-27 | technical
+**Type:** improve | **Level:** P2一般
+**Miss:** 🦞 OpenClaw 2026.3.23-2 (7ffe7e4) — You had me at 'openclaw gateway start.'
+**Context:** 系统错误日志
+**Root:** 技术实现缺乏容错设计，未考虑边界情况
+**Fix:** 增加异常处理逻辑， graceful degradation；设计降级方案，核心功能在异常时仍可运行
+**Experience:**
+- **预检查机制**: 关键操作前执行检查清单，识别潜在风险（适用于：所有关键流程）
+
+---
+
+
+## 2026-03-27 | technical
+**Type:** improve | **Level:** P2一般
+**Miss:** error: unknown option '--chat-id'
+**Context:** 系统错误日志
+**Root:** 技术实现缺乏容错设计，未考虑边界情况
+**Fix:** 增加异常处理逻辑， graceful degradation；设计降级方案，核心功能在异常时仍可运行
+**Experience:**
+- **预检查机制**: 关键操作前执行检查清单，识别潜在风险（适用于：所有关键流程）
+
+---
+
+
+## 2026-03-27 | technical
+**Type:** improve | **Level:** P2一般
+**Miss:** error: required option '--name <name>' not specified
+**Context:** 系统错误日志
+**Root:** 技术实现缺乏容错设计，未考虑边界情况
+**Fix:** 增加异常处理逻辑， graceful degradation；设计降级方案，核心功能在异常时仍可运行
+**Experience:**
+- **预检查机制**: 关键操作前执行检查清单，识别潜在风险（适用于：所有关键流程）
+
+---
+
+
 ## 2026-03-26 | technical
 **Type:** improve | **Level:** P2一般
 **Miss:** #!/usr/bin/env python3

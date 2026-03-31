@@ -1,3 +1,34 @@
+---
+{
+  "source": "memory",
+  "date": "2026-03-30",
+  "tags": [
+    "productivity",
+    "work",
+    "lessons",
+    "security",
+    "tech"
+  ],
+  "created_at": "2026-03-31T05:03:44.009107",
+  "status": "pending_review"
+}
+---
+
+# 记忆归档 - 2026-03-30
+
+**自动标签**: productivity, work, lessons, security, tech
+
+**建议归档位置**:
+- productivity
+- work
+- lessons
+- security
+- tech
+
+---
+
+## 原始内容
+
 # 2026-03-30 记忆
 
 ## 日报摘要
@@ -5,15 +36,16 @@
 
 ## 📊 概览
 - **日期**: 2026-03-30
-- **本地会话**: 7 个文件, 323 条消息
+- **本地会话**: 9 个文件, 325 条消息
 - **飞书消息**: 1 条
-- **定时任务**: 9 个
+- **定时任务**: 11 个
 - **本地交互**: 73 次
 - **飞书交互**: 1 次
 - **错误/异常**: 35 条
 
 ## ⏰ 定时任务执行记录
 - **01:00** `bcf8f252-0549-4c74-977c-78e500bb254a weekly-security-config-check`: 执行每周安全配置巡检。
+- **18:00** `7d2604a7-41c2-4196-ba02-af7c9dc237ec NAS自动备份`: 执行NAS备份脚本并生成说明文档：/root/.openclaw/workspace/scripts/backup/nas_backup.sh
 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py
 - **13:00** `45bb07d7-5763-4453-90d1-7c2c52e7ffc7 月反思报告`: 执行月反思脚本: python3 /root/.openclaw/workspace/scripts/monthly/monthly_reflection.py
 - **13:00** `45bb07d7-5763-4453-90d1-7c2c52e7ffc7 月反思报告`: 执行月反思脚本: python3 /root/.openclaw/workspace/scripts/monthly/monthly_reflection.py
@@ -21,6 +53,7 @@
 - **13:01** `45bb07d7-5763-4453-90d1-7c2c52e7ffc7 月反思报告`: 执行月反思脚本: python3 /root/.openclaw/workspace/scripts/monthly/monthly_reflection.py
 - **13:01** `45bb07d7-5763-4453-90d1-7c2c52e7ffc7 月反思报告`: 执行月反思脚本: python3 /root/.openclaw/workspace/scripts/monthly/monthly_reflection.py
 - **13:01** `45bb07d7-5763-4453-90d1-7c2c52e7ffc7 月反思报告`: 执行月反思脚本: python3 /root/.openclaw/workspace/scripts/monthly/monthly_reflection.py
+- **00:00** `3f8b1b8c-e588-4379-9d2e-30c61d7be443 daily-runtime-monitor`: 执行每日运行时安全监控（阶段三数据收集）。
 - **01:00** `c81ec6ba-edf2-4aec-aa35-eed2660edf71 claude-budget-reminder`: 提醒用户：该准备 Claude Code 的采购预算了
 
 ## 💬 本地交互概要
@@ -297,4 +330,15 @@ _当日无...
 - 
 
 ---
-*生成于 08:33*
+*生成于 00:25*
+
+
+---
+
+## 人工整理说明
+
+1. 阅读以上内容
+2. 确认标签是否准确
+3. 移动到对应目录: `knowledge/{category}/`
+4. 重命名为: `YYYY-MM-DD-title.md`
+5. 删除此 inbox 文件
