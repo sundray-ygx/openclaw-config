@@ -5,7 +5,7 @@
 
 **执行命令**:
 ```bash
-python3 /root/scripts/morning_briefing.py
+python3 /root/scripts/briefing/morning_briefing.py
 ```
 
 **包含内容**:
@@ -17,7 +17,7 @@ python3 /root/scripts/morning_briefing.py
 
 ## 手动测试
 ```bash
-python3 /root/scripts/morning_briefing.py
+python3 /root/scripts/briefing/morning_briefing.py
 ```
 
 ## 记忆维护（每周一次）
