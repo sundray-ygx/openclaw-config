@@ -56,6 +56,24 @@
 **Fix**: 迁移前检查目标用户权限，或使用root执行crontab任务
 **级别**: 🟢 低
 
+### 百炼API月配额耗尽导致failover雪崩
+**问题**: NAS备份cron看似"重复触发"（18-36个error日志），实际是bailian provider配额耗尽后failover链路全部429
+**根因**: 百炼provider下所有模型共享月配额，配额耗尽后整个provider不可用
+**Fix**: (1) cron任务model直接设为非bailian模型 (2) 月初检查配额 (3) provider级429应跳过该provider下所有模型
+**级别**: 🟡 中
+
+### cron任务重复触发的误判
+**问题**: 多个error日志 ≠ 多次触发，需要区分failover重试和真正的重复调度
+**根因**: 对gateway failover机制理解不足
+**Fix**: 排查时先查cron runs确认触发次数，再分析单次run内部的error链路
+**级别**: 🟢 低
+
+### skillhub配置残留导致持续告警
+**问题**: `plugins.entries.skillhub` 已卸载但配置残留，每次CLI操作都产生warning
+**根因**: 卸载插件时未清理openclaw.json配置
+**Fix**: 从openclaw.json的plugins.entries中删除skillhub条目
+**级别**: 🟢 低
+
 ---
 
 ## 📝 最佳实践
