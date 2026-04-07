@@ -2,6 +2,11 @@
 # NAS自动备份脚本 - WebDAV方式
 # 每天凌晨2:00执行
 
+# 防并发锁：同一时间只允许一个实例运行
+LOCK_FILE="/tmp/nas-backup.lock"
+exec 200>"$LOCK_FILE"
+flock -n 200 || { echo "[$(date '+%Y-%m-%d %H:%M:%S')] 备份跳过：另一个实例正在运行"; exit 0; }
+
 # 配置
 WEBDAV_URL="http://47.119.177.194:5005"
 WEBDAV_USER="aliyun-ygx"
@@ -12,9 +17,9 @@ BACKUP_TIME=$(date '+%Y-%m-%d %H:%M:%S')
 LOCAL_BACKUP_DIR="/tmp/backup-$BACKUP_DATE"
 LOG_FILE="/var/log/nas-backup.log"
 
-# 日志函数
+# 日志函数（不使用tee，避免重复输出）
 log() {
-    echo "[$BACKUP_TIME] $1" | tee -a "$LOG_FILE"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
 
 # 创建本地临时备份目录
@@ -195,15 +200,33 @@ log "创建远程目录: $REMOTE_DIR"
 curl -s -o /dev/null -w "%{http_code}" -X MKCOL -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$WEBDAV_BASE/" 2>/dev/null
 curl -s -o /dev/null -w "%{http_code}" -X MKCOL -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$REMOTE_DIR/"
 
-# 上传打包文件
+# 上传打包文件（带重试，最多3次）
 log "上传备份包..."
-UPLOAD_RESULT=$(curl -s -o /dev/null -w "%{http_code}" -T "$LOCAL_BACKUP_DIR/../server-backup-$BACKUP_DATE.tar.gz" -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$REMOTE_DIR/server-backup-$BACKUP_DATE.tar.gz")
+MAX_RETRIES=3
+RETRY_DELAY=15
+UPLOAD_RESULT=""
+UPLOAD_SUCCESS=false
 
-if [ "$UPLOAD_RESULT" = "201" ] || [ "$UPLOAD_RESULT" = "200" ] || [ "$UPLOAD_RESULT" = "204" ]; then
+for i in $(seq 1 $MAX_RETRIES); do
+    UPLOAD_RESULT=$(curl -s -o /dev/null -w "%{http_code}" --max-time 120 -T "$LOCAL_BACKUP_DIR/../server-backup-$BACKUP_DATE.tar.gz" -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$REMOTE_DIR/server-backup-$BACKUP_DATE.tar.gz")
+    
+    if [ "$UPLOAD_RESULT" = "201" ] || [ "$UPLOAD_RESULT" = "200" ] || [ "$UPLOAD_RESULT" = "204" ]; then
+        UPLOAD_SUCCESS=true
+        break
+    fi
+    
+    log "上传失败 (第${i}次): HTTP $UPLOAD_RESULT"
+    if [ $i -lt $MAX_RETRIES ]; then
+        log "等待${RETRY_DELAY}秒后重试..."
+        sleep $RETRY_DELAY
+    fi
+done
+
+if [ "$UPLOAD_SUCCESS" = true ]; then
     log "上传成功: server-backup-$BACKUP_DATE.tar.gz (HTTP $UPLOAD_RESULT)"
     UPLOAD_STATUS="成功"
 else
-    log "上传失败: server-backup-$BACKUP_DATE.tar.gz (HTTP $UPLOAD_RESULT)"
+    log "上传最终失败: server-backup-$BACKUP_DATE.tar.gz (HTTP $UPLOAD_RESULT，已重试${MAX_RETRIES}次)"
     UPLOAD_STATUS="失败"
 fi
 
