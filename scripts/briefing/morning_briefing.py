@@ -7,6 +7,7 @@
 import urllib.request
 import json
 import os
+import sys
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 import re
@@ -51,7 +52,29 @@ OVERSEAS_RSS_FEEDS = [
 
 # 状态文件
 MAIL_STATE_FILE = "/root/mail-reports/mail_state.json"
+SENT_STATE_FILE = "/root/mail-reports/briefing_sent.json"
 SUMMARY_LENGTH = "100"
+
+def check_already_sent_today():
+    """检查今天是否已经发送过简报"""
+    today = datetime.now().strftime('%Y-%m-%d')
+    if os.path.exists(SENT_STATE_FILE):
+        try:
+            with open(SENT_STATE_FILE, 'r') as f:
+                state = json.load(f)
+            if state.get('last_sent_date') == today:
+                print(f"⚠️ 今天 ({today}) 已经发送过简报，跳过重复发送")
+                return True
+        except:
+            pass
+    return False
+
+def mark_as_sent_today():
+    """标记今天已经发送过简报"""
+    today = datetime.now().strftime('%Y-%m-%d')
+    os.makedirs(os.path.dirname(SENT_STATE_FILE), exist_ok=True)
+    with open(SENT_STATE_FILE, 'w') as f:
+        json.dump({'last_sent_date': today}, f)
 
 def get_feishu_token():
     """获取飞书 token"""
@@ -750,6 +773,11 @@ if __name__ == "__main__":
     print("生成早间简报...")
     print("=" * 40)
     
+    # 检查今天是否已经发送过（防重发机制）
+    if check_already_sent_today():
+        print("\n⏭️ 跳过执行：今天已经发送过简报")
+        sys.exit(0)
+    
     title, elements = generate_briefing()
     
     print("\n" + "=" * 40)
@@ -778,6 +806,8 @@ if __name__ == "__main__":
         if token:
             if send_feishu_card(token, FEISHU_USER_ID, title, elements):
                 print("✅ 发送成功")
+                # 标记今天已发送
+                mark_as_sent_today()
             else:
                 print("❌ 发送失败")
         else:

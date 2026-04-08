@@ -73,3 +73,15 @@
 **待决策**:
 - NAS备份cron model是否切换到zai/glm-5
 - 百炼账户是否需要充值
+
+---
+
+## 记忆维护
+**状态**: ✅ 完成
+**时间**: 2026-04-08
+**描述**: 执行记忆维护，更新 heartbeat-state.json
+
+**执行内容**:
+- 更新 lastMemoryMaintenance 为 2026-04-08
+- 更新 projects.md 添加 4/8 定时任务调整记录
+- 更新 lessons.md 添加记忆维护过期教训

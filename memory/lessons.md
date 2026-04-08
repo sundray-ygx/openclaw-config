@@ -100,3 +100,9 @@ SESSIONS_DIRS = [
 ]
 ```
 适用于需要整合多个agent会话数据的场景。
+
+### 记忆维护过期导致信息堆积
+**问题**: heartbeat-state.json 的 lastMemoryMaintenance 为 2026-01-01，过期 90+ 天
+**根因**: 记忆维护脚本未定期执行，缺少提醒机制
+**Fix**: 将记忆维护加入 HEARTBEAT.md，每周自动检查并执行
+**级别**: 🟡 中
