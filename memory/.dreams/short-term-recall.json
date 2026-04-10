@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-10T11:18:11.652Z",
+  "entries": {
+    "memory:memory/2026-03-25.md:1:35": {
+      "key": "memory:memory/2026-03-25.md:1:35",
+      "path": "memory/2026-03-25.md",
+      "startLine": 1,
+      "endLine": 35,
+      "source": "memory",
+      "snippet": "# 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时间调整到9:00（确保依赖数据就绪） **结果**: ✅ 日报/归档/反思流程理顺，数据冗余减少 ## OKR优化项目 **任务**: 基于knowledge/work/2026-03-23-okr-redesign-draft.md进行优化 **调整**: 1. O1去掉KR2和KR5，KR1修改：引入SXF成熟AI-Native实践并本土化适配 2. O2弱化构建设计描述，聚焦业务价值 3. 所有O和KR精简为\"动作+成效\"一句话描述 **交付**: `knowledge/work/2026-03-25-okr-smart-v2.md` **待跟进**: Boss审阅反馈 --- **详细日志**: 已压缩到projects.md和lessons.md",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8312558524055522,
+      "maxScore": 0.8312558524055522,
+      "firstRecalledAt": "2026-04-10T11:05:47.910Z",
+      "lastRecalledAt": "2026-04-10T11:05:47.910Z",
+      "queryHashes": [
+        "5096e416a778"
+      ],
+      "recallDays": [
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "日报/归档/反思流程理顺",
+        "引入sxf成熟ai-native实践并本土化适配",
+        "已压缩到projects.md和lessons.md",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-03-23.md:1:42": {
+      "key": "memory:memory/2026-03-23.md:1:42",
+      "path": "memory/2026-03-23.md",
+      "startLine": 1,
+      "endLine": 42,
+      "source": "memory",
+      "snippet": "# 2026-03-23 记忆 ## 日报摘要 ### 📋 工作日报 | 2026-03-23 周一 生成时间：2026-03-24 09:25（补录） --- ## ✅ 已完成事项 ### 1. 组织架构文档归档 (09:28) - **任务**：将《组织架构调整与岗位职责说明.md》按知识库规则归档 - **操作**：移动到 `knowledge/work/2026-03-23-org-structure-and-responsibilities.md` - **状态**：✅ 已完成 ### 2. 每周安全配置巡检 (09:00) - **任务**：执行每周安全配置检查 - **结果**：安全评分 85/100 (🟢 B级) - **发现问题**：1个低风险问题（以root运行） - **状态**：✅ 已完成，无高危问题 - **记录文件**：`memory/security-config-check-2026-03-23.md` ### 3. 综合管理部OKR四级拆解 (11:42-14:08) - **任务**：对组织架构文档中的OKR进行 O→KR→Project→Task 层级拆解 - **参考文件**： - `knowledge/work/2026-03-23-org-structure-and-responsibilities.md` - `knowledge/work/信锐研发体系ORK.docx` - **时间维度**：O→季度、KR→月度、Project→周、Task→天 - **优先级**：O1>O2>O3>O4 - **交付",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7875224339443613,
+      "maxScore": 0.7875224339443613,
+      "firstRecalledAt": "2026-04-10T11:05:47.910Z",
+      "lastRecalledAt": "2026-04-10T11:05:47.910Z",
+      "queryHashes": [
+        "5096e416a778"
+      ],
+      "recallDays": [
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "组织架构调整与岗位职责说明.md",
+        "85/100",
+        "42-14",
+        "knowledge/work/信锐研发体系ork.docx",
+        "记忆",
+        "日报",
+        "摘要",
+        "工作"
+      ]
+    },
+    "memory:memory/2026-03-23.md:32:82": {
+      "key": "memory:memory/2026-03-23.md:32:82",
+      "path": "memory/2026-03-23.md",
+      "startLine": 32,
+      "endLine": 82,
+      "source": "memory",
+      "snippet": "- **交付物**：`knowledge/work/2026-03-23-okr-decomposition-plan.md`（315行） - 4个O的完整拆解 - 15个Projects、60+个Tasks - 包含执行跟踪机制、风险升级机制、责任矩阵 - **状态**：✅ 已完成，待Boss审阅 --- ## 🔄 进行中/待跟进事项 ### 4. OpenClaw升级指导文档 (10:47) - **任务**：梳理OpenClaw升级过程，形成升级指导文档 - **背景**：之前升级遇到内存不足问题，已解决 - **已执行**： - 搜索记忆文件（未找到内存不足记录） - 检查备份文件：`/root/openclaw-backups/` - 发现配置审计日志：`/root/.openclaw/logs/config-audit.jsonl` - **状态**：⏸️ 待继续（Boss确认后执行） --- ## ⏰ 定时任务执行情况 | 时间 | 任务 | 状态 | |------|------|------| | 08:00 | 早间简报 | ✅ 自动执行 | | 09:00 | 每周安全配置巡检 | ✅ 已完成 | | 15:00 | 每日归档 | ✅ 自动执行 | --- ## 📊 今日统计 - **会话数量**：3个活跃会话 - **完成任务**：3项 - **待跟进任务**：1项 - **生成文档**：2份 - `knowledge/work/2026-03-23-okr-decomposition-plan.md`",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7605948412896615,
+      "maxScore": 0.7605948412896615,
+      "firstRecalledAt": "2026-04-10T11:05:47.910Z",
+      "lastRecalledAt": "2026-04-10T11:05:47.910Z",
+      "queryHashes": [
+        "5096e416a778"
+      ],
+      "recallDays": [
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "backup",
+        "backups",
+        "备份",
+        "进行中/待跟进事项",
+        "root/openclaw-backups",
+        "openclaw/logs/config-audit.jsonl",
+        "交付",
+        "knowledge"
+      ]
+    },
+    "memory:memory/2026-03-26.md:312:359": {
+      "key": "memory:memory/2026-03-26.md:312:359",
+      "path": "memory/2026-03-26.md",
+      "startLine": 312,
+      "endLine": 359,
+      "source": "memory",
+      "snippet": "- 💻 **07:54** error: required option '-t, --target <dest>' not specified 开始归档 2026-03-25 的记忆到 inbox... ✅ 已归档到 inbox: 2026-03-25-work-tech-productivity-security-lessons.md ✅ 已发送飞书通知 完成! Process exited with code 0. - 💻 **07:54** ✅ 全部修复完成 --- **1. skillhub Python 兼容性问题** - 修复了 `/root/.skillhub/skills_store_cli.py` 第 1385 行 - 将 `required=True` 参数改为兼容 Python 3.6 的写法 - 验证:`skillhub --version` 现在正常输出 `skillhub 2026.3.18` **2. 自... - 💻 **00:13** { \"url\": \"https://github.com/openclaw/openclaw/releases\", \"finalUrl\": \"https://github.com/openclaw/openclaw/releases\", \"status\": 200, \"contentType\": \"text/markdown\", \"title\": \"\\n<<<EXTERNAL_... - 💻 **00:14** { \"url\": \"https://github.com/",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8053607598774558,
+      "maxScore": 0.8053607598774558,
+      "firstRecalledAt": "2026-04-10T11:18:11.652Z",
+      "lastRecalledAt": "2026-04-10T11:18:11.652Z",
+      "queryHashes": [
+        "cd6899307322"
+      ],
+      "recallDays": [
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "skillhub/skills-store-cli.py",
+        "3.6",
+        "2026.3.18",
+        "text/markdown",
+        "github.com",
+        "error",
+        "required",
+        "option"
+      ]
+    },
+    "memory:memory/2026-04-08.md:125:165": {
+      "key": "memory:memory/2026-04-08.md:125:165",
+      "path": "memory/2026-04-08.md",
+      "startLine": 125,
+      "endLine": 165,
+      "source": "memory",
+      "snippet": "每天8:05自动执行，推送与OpenClaw相关的AI/科技资讯 \"\"\" import urllib.request import json import subprocess import xml.etree.ElementTree as ET import re from datetime import da... - 💻 **00:24** #!/usr/bin/env python3 \"\"\" 工作日报生成脚本 V10 - 飞书卡片推送版 - 时间范围：昨天00:00到昨天23:59（全天） - 数据源： 1. 本地会话文件（scheduler + main） 2. 飞书IM单聊消息 - 包含内容：摘要信息（定时任务、用户交互概要、飞书交互、错误统计） - 执行时间：8:30 - 输出：直接推送飞书卡片，不再询问 \"\"\" i... - 💻 **00:24** 获取 人人都是产品经理... 发送到飞书... 发送成功 ======================================== 生成OpenClaw资讯... ======================================== 获取OpenClaw GitHub动态... 获取RSS资讯... 获取 量子位... 获取 钛媒体... 获取 人人都是产品经理.... - 💻 **00:24** /root/.openclaw/workspace/backup/growth/multi-agents/xiaomi/SOUL.md:| 8:00 | 早间简报 | 执",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7884222489841405,
+      "maxScore": 0.7884222489841405,
+      "firstRecalledAt": "2026-04-10T11:18:11.652Z",
+      "lastRecalledAt": "2026-04-10T11:18:11.652Z",
+      "queryHashes": [
+        "cd6899307322"
+      ],
+      "recallDays": [
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "backup",
+        "推送与openclaw相关的ai/科技资讯",
+        "urllib.request",
+        "xml.etree.elementtree",
+        "usr/bin/env",
+        "每天",
+        "自动",
+        "执行"
+      ]
+    },
+    "memory:memory/2026-03-26.md:91:114": {
+      "key": "memory:memory/2026-03-26.md:91:114",
+      "path": "memory/2026-03-26.md",
+      "startLine": 91,
+      "endLine": 114,
+      "source": "memory",
+      "snippet": "- 💻 **00:10** ======================================== 生成早间简报... ======================================== 获取天气... 获取邮件... 检查 163邮箱... 检查 QQ邮箱... 检查 企业邮箱... 获取海外中文资讯... 获取 BBC中文... 获取 大纪元... 获取 阿波罗网... 获... - 💻 **00:10** {\"ts\":1774137720068,\"jobId\":\"9673ecbe-4d36-443f-a4c4-b5b265e3cfcb\",\"action\":\"finished\",\"status\":\"error\",\"error\":\"cron: job execution timed out\",\"deliveryStatus\":\"unknown\",\"runAtMs\":1774137600014,\"dura... - 💻 **00:10** **发现问题了!** 从运行记录来看: 1. **系统 crontab** 在 8:00 运行了脚本(`/var/log/morning-briefing.log` 显示 8:00 执行) 2. **OpenClaw 内置 cron** 的任务 `9673ecbe-4d36-443f-a4c4-b5b265e3cfcb` 也尝试运行,但显示超时错误 但是用户说收到了两次简报,让我再仔细检查一下... - 💻 **00:10** {\"ts\":1773778041909,\"jobId\":",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7763762814342788,
+      "maxScore": 0.7763762814342788,
+      "firstRecalledAt": "2026-04-10T11:18:11.652Z",
+      "lastRecalledAt": "2026-04-10T11:18:11.652Z",
+      "queryHashes": [
+        "cd6899307322"
+      ],
+      "recallDays": [
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "var/log/morning-briefing.log",
+        "生成",
+        "简报",
+        "获取",
+        "天气",
+        "邮件",
+        "检查",
+        "邮箱"
+      ]
+    }
+  }
+}

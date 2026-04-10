@@ -22,7 +22,11 @@ knowledge/
 ├── tech/                        # 技术知识
 │   ├── automation/              # 自动化技术
 │   ├── data-pipeline/           # 数据处理
-│   └── infrastructure/          # 基础设施
+│   ├── infrastructure/          # 基础设施
+│   │   ├── singbox/             # sing-box 代理服务
+│   │   ├── frp-config.md
+│   │   └── system-services-report.md
+│   └── openclaw/                # OpenClaw 相关技术
 └── work/                        # 工作相关
     └── YYYY-MM-DD-title.md
 ```
@@ -33,6 +37,29 @@ knowledge/
 - **人物文档**: `person-name.md`（小写，短横线分隔）
 - **项目文档**: `README.md` 或 `YYYY-MM-DD-title.md`
 - **说明文档**: `README.md` 或 `topic-name.md`
+
+## 文件存放决策树
+
+```
+生成新文件时：
+│
+├─ 是脚本/工具？
+│  ├─ 是自动化任务脚本 → scripts/{daily,weekly,monthly,backup,briefing,...}/
+│  ├─ 是系统管理脚本 → scripts/utils/
+│  └─ 是技术方案/配置 → knowledge/tech/{automation,data-pipeline,infrastructure,...}/
+│
+├─ 是报告/分析？
+│  ├─ 是日报/周报/月报 → archive/{daily,weekly,monthly}/
+│  ├─ 是技术报告 → knowledge/tech/对应子目录/
+│  └─ 是项目报告 → knowledge/projects/项目名称/
+│
+├─ 是工作记录？
+│  ├─ 是当日工作日志 → memory/YYYY-MM-DD.md
+│  ├─ 是项目跟踪 → memory/projects.md
+│  └─ 是经验教训 → memory/lessons.md
+│
+└─ 其他 → knowledge/inbox/ (待分类)
+```
 
 ## 归档规则
 
@@ -62,3 +89,4 @@ knowledge/
 - 定期清理过期内容
 - 保持命名规范一致
 - 及时归档有价值的经验
+- **每周检查 workspace 根目录**，及时归档散落文件

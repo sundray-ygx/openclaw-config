@@ -257,6 +257,38 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 
 **Don't overdo it:** One reaction per message max. Pick the one that fits best.
 
+## Workspace 文件管理规范
+
+### 文件存放决策树
+
+生成新文件时，按以下规则存放：
+
+```
+├─ 是脚本/工具？
+│  ├─ 自动化任务脚本 → scripts/{daily,weekly,monthly,backup,briefing,...}/
+│  ├─ 系统管理脚本 → scripts/utils/
+│  └─ 技术方案/配置 → knowledge/tech/{automation,data-pipeline,infrastructure,...}/
+│
+├─ 是报告/分析？
+│  ├─ 日报/周报/月报 → archive/{daily,weekly,monthly}/
+│  ├─ 技术报告 → knowledge/tech/对应子目录/
+│  └─ 项目报告 → knowledge/projects/项目名称/
+│
+├─ 是工作记录？
+│  ├─ 当日工作日志 → memory/YYYY-MM-DD.md
+│  ├─ 项目跟踪 → memory/projects.md
+│  └─ 经验教训 → memory/lessons.md
+│
+└─ 其他 → knowledge/inbox/ (待分类)
+```
+
+### 禁止行为
+- ❌ 不要将脚本/报告直接放在 workspace 根目录
+- ❌ 不要将临时文件留在 workspace
+- ✅ 生成文件前先确定存放位置
+
+---
+
 ## Tools
 
 Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
