@@ -1,0 +1,1559 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-11T15:00:42.054Z",
+  "entries": {
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:1:1": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:1:1",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 1,
+      "endLine": 1,
+      "source": "memory",
+      "snippet": "User: System: [2026-04-08 08:14:51 GMT+8] Feishu[scheduler] DM | ou_d8ae71cd421f8954a9c97e973d4f03d1 [msg:om_x100b526d9164e4a8b267c14c8da469d] Conversation info (untrusted metadata): ```json { \"message_id\": \"om_x100b526d9164e4a8b267c14c8da469d\", \"sender_id\": \"ou_d8ae71cd421f8954a",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "message-id",
+        "sender-id",
+        "ou-d8ae71cd421f8954a",
+        "user",
+        "system",
+        "gmt",
+        "feishu",
+        "scheduler"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:2:2": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:2:2",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 2,
+      "endLine": 2,
+      "source": "memory",
+      "snippet": "Assistant: 现在我找到了问题所在。让我查看一下crontab配置和日志来确认问题：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "现在",
+        "找到",
+        "问题",
+        "所在",
+        "查看",
+        "一下",
+        "crontab"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:3:3": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:3:3",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 3,
+      "endLine": 3,
+      "source": "memory",
+      "snippet": "Assistant: 我发现了问题！让我检查crontab中是否有重复的条目：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "发现",
+        "问题",
+        "检查",
+        "crontab",
+        "是否",
+        "重复",
+        "条目"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:4:4": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:4:4",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 4,
+      "endLine": 4,
+      "source": "memory",
+      "snippet": "Assistant: 现在我明白问题所在了。日志显示今天（4月8日）早间简报只发送了一次。但是用户说推送了两次。让我检查一下是否还有其他地方在运行这个脚本：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "现在",
+        "明白",
+        "问题",
+        "所在",
+        "日志",
+        "显示",
+        "今天"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:5:5": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:5:5",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 5,
+      "endLine": 5,
+      "source": "memory",
+      "snippet": "Assistant: 根据我的检查，crontab 配置是正确的，每天只在 8:00 执行一次 `morning_briefing.py`。从系统日志来看，4月8日也只执行了一次。 但是用户说早间日报推送了两次。让我再仔细检查一下是否有其他脚本也在发送消息：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "morning-briefing.py",
+        "assistant",
+        "根据",
+        "我的",
+        "检查",
+        "crontab",
+        "配置",
+        "正确"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:6:6": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:6:6",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 6,
+      "endLine": 6,
+      "source": "memory",
+      "snippet": "Assistant: 现在我找到了问题！有两个不同的脚本在推送消息： 1. **早间简报** (`morning_briefing.py`) - 每天 8:00 执行，发送\"☀️ 早间简报\" 2. **OpenClaw资讯** (`openclaw_news.py`) - 每天 8:05 执行，发送\"🦞 OpenClaw 资讯\" 这两个脚本都会发送消息给用户，所以用户会收到两次推送。 让我查看一下 `daily_report.py` 是否也会发送消息：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "morning-briefing.py",
+        "openclaw-news.py",
+        "daily-report.py",
+        "assistant",
+        "现在",
+        "找到",
+        "问题",
+        "不同"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:7:7": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:7:7",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 7,
+      "endLine": 7,
+      "source": "memory",
+      "snippet": "Assistant: 确认问题！实际上有三个脚本会发送消息： 1. **早间简报** (`morning_briefing.py`) - 8:00 发送\"☀️ 早间简报\" 2. **OpenClaw资讯** (`openclaw_news.py`) - 8:05 发送\"🦞 OpenClaw 资讯\" 3. **工作日报** (`daily_report.py`) - 8:30 发送\"📊 工作日报\" 但是用户说的是\"早间日报推送了两次\"，让我检查一下 `daily_report.py` 的配置，看看它是否也发送了类似\"早间简报\"的消息：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "morning-briefing.py",
+        "openclaw-news.py",
+        "daily-report.py",
+        "assistant",
+        "确认",
+        "问题",
+        "实际",
+        "有三"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:8:8": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:8:8",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 8,
+      "endLine": 8,
+      "source": "memory",
+      "snippet": "Assistant: 我发现问题了！`daily_report.py` 使用的是不同的飞书配置： - `morning_briefing.py` 和 `openclaw_news.py` 使用的是 **scheduler** 账号，发送到 `ou_d8ae71cd421f8954a9c97e973d4f03d1` - `daily_report.py` 使用的是 **main** 账号，发送到 `ou_c2cde251e01a87fc09ba7561f76d8606` 这意味着： 1. 早间简报 (8:00) 和 OpenClaw资讯 (8:05) 都发",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "daily-report.py",
+        "morning-briefing.py",
+        "openclaw-news.py",
+        "assistant",
+        "发现",
+        "问题",
+        "使用",
+        "的是"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:9:9": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:9:9",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 9,
+      "endLine": 9,
+      "source": "memory",
+      "snippet": "Assistant: 现在我明白问题所在了。用户说的\"早间日报推送了两次\"可能是因为： 1. **早间简报** (8:00) - 发送\"☀️ 早间简报 | 04月08日 周三\" 2. **OpenClaw资讯** (8:05) - 发送\"🦞 OpenClaw 资讯\" 这两个消息都在早上8点左右发送，用户可能把它们都理解为\"早间日报\"。 不过，根据用户的描述\"推送了两次\"，更可能是 `morning_briefing.py` 脚本本身被执行了两次。让我再检查一下是否有其他可能的原因：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "morning-briefing.py",
+        "assistant",
+        "现在",
+        "明白",
+        "问题",
+        "所在",
+        "用户",
+        "说的"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:10:10": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:10:10",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 10,
+      "endLine": 10,
+      "source": "memory",
+      "snippet": "Assistant: 从系统日志来看，`morning_briefing.py` 在 4月8日 8:00:01 只执行了一次。 让我检查一下用户实际收到的消息。由于我无法直接查看飞书消息记录，我需要询问用户具体收到了哪两条消息。但根据我的分析，最可能的情况是： 1. 用户收到了 **早间简报** (8:00) 和 **OpenClaw资讯** (8:05)，这两个消息都被用户理解为\"早间日报\" 2. 或者 `daily_report.py` 虽然配置发送到另一个用户 (main)，但可能由于某种原因也发送到了 scheduler 让我检查一下 `dail",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "morning-briefing.py",
+        "daily-report.py",
+        "assistant",
+        "系统",
+        "日志",
+        "来看",
+        "执行",
+        "一次"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:11:11": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:11:11",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 11,
+      "endLine": 11,
+      "source": "memory",
+      "snippet": "Assistant: `daily_report.py` 配置发送到 `ou_c2cde251e01a87fc09ba7561f76d8606`，而当前会话的用户是 `ou_d8ae71cd421f8954a9c97e973d4f03d1`，所以工作日报不会发送到当前用户。 那么问题应该是： 1. **早间简报** (8:00) 发送到当前用户 2. **OpenClaw资讯** (8:05) 也发送到当前用户 这两个消息都在早上8点左右，用户可能把它们都理解为\"早间日报\"。 不过，用户明确说\"早间日报推送了两次\"，这可能意味着 `morning_bri",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "daily-report.py",
+        "morning-bri",
+        "assistant",
+        "配置",
+        "发送",
+        "当前",
+        "会话",
+        "用户"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:12:12": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:12:12",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 12,
+      "endLine": 12,
+      "source": "memory",
+      "snippet": "Assistant: 我发现问题了！在 `HEARTBEAT.md` 文件中，记录的命令路径是： - `python3 /root/scripts/morning_briefing.py` 但实际脚本路径是： - `/root/.openclaw/workspace/scripts/briefing/morning_briefing.py` 而 crontab 中配置的是正确的路径： - `python3 /root/.openclaw/workspace/scripts/briefing/morning_briefing.py` 这不是导致重复推送的原",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "root/scripts/morning-briefing.py",
+        "assistant",
+        "发现",
+        "问题",
+        "文件",
+        "记录",
+        "命令"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:13:13": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:13:13",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 13,
+      "endLine": 13,
+      "source": "memory",
+      "snippet": "Assistant: 脚本逻辑看起来没有问题，只会在 `__main__` 中发送一次消息。 根据我的分析，用户说的\"早间日报推送了两次\"最可能是指： 1. **早间简报** (8:00) - \"☀️ 早间简报\" 2. **OpenClaw资讯** (8:05) - \"🦞 OpenClaw 资讯\" 这两个消息都在早上8点左右发送，用户可能把它们都理解为\"早间日报\"。 不过，如果用户确实收到了两条完全相同的\"早间简报\"消息，那么问题可能是 `morning_briefing.py` 被执行了两次。但从系统日志来看，今天只执行了一次。 让我检查一下是否有其",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "morning-briefing.py",
+        "assistant",
+        "脚本",
+        "逻辑",
+        "看起来",
+        "没有",
+        "问题",
+        "发送"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:14:14": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:14:14",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 14,
+      "endLine": 14,
+      "source": "memory",
+      "snippet": "Assistant: 日志显示今天（4月8日）早间简报只发送了一次。 让我再仔细检查一下，是否有其他脚本也在发送类似的消息：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "日志",
+        "显示",
+        "今天",
+        "简报",
+        "发送",
+        "一次",
+        "我再"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:15:15": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:15:15",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 15,
+      "endLine": 15,
+      "source": "memory",
+      "snippet": "Assistant: 现在我发现了问题！在 `/root/scripts/briefing/` 目录下有多个版本的早间简报脚本： 1. `morning_briefing.py` - 主脚本（当前crontab使用的是 `/root/.openclaw/workspace/scripts/briefing/morning_briefing.py`） 2. `morning_briefing_scheduler.py` - scheduler专用版本 3. `morning_briefing_wrapper.py` - wrapper版本 4. `morn",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "root/scripts/briefing",
+        "morning-briefing.py",
+        "morning-briefing-scheduler.py",
+        "morning-briefing-wrapper.py",
+        "assistant",
+        "现在",
+        "发现",
+        "问题"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:16:16": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:16:16",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 16,
+      "endLine": 16,
+      "source": "memory",
+      "snippet": "Assistant: crontab 中只有一条配置，指向 `/root/.openclaw/workspace/scripts/briefing/morning_briefing.py`。 让我检查一下 `/root/scripts/briefing/morning_briefing.py` 和 `/root/.openclaw/workspace/scripts/briefing/morning_briefing.py` 是否是同一个文件：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "crontab",
+        "只有",
+        "一条",
+        "配置",
+        "指向",
+        "root",
+        "openclaw"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:17:17": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:17:17",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 17,
+      "endLine": 17,
+      "source": "memory",
+      "snippet": "Assistant: 两个文件是相同的。 现在让我总结一下我的发现： ## 问题诊断 根据我的检查，**系统配置是正确的**，`morning_briefing.py` 每天只在 8:00 执行一次，并且今天（4月8日）的日志显示只发送了一次\"☀️ 早间简报\"。 但是，用户说\"早间日报推送了两次\"，可能有以下几种情况： ### 情况1：用户收到了两条不同的消息 - **早间简报** (8:00) - \"☀️ 早间简报\" - **OpenClaw资讯** (8:05) - \"🦞 OpenClaw 资讯\" 这两个消息都在早上8点左右，用户可能把它们都理解为",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "morning-briefing.py",
+        "assistant",
+        "文件",
+        "相同",
+        "现在",
+        "总结",
+        "一下",
+        "我的"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:18:18": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:18:18",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 18,
+      "endLine": 18,
+      "source": "memory",
+      "snippet": "Assistant: 现在我来为脚本添加防重发机制。我将在脚本中添加一个状态文件，用于记录今天是否已经发送过简报：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "现在",
+        "我来",
+        "脚本",
+        "添加",
+        "机制",
+        "一个",
+        "状态"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:19:19": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:19:19",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 19,
+      "endLine": 19,
+      "source": "memory",
+      "snippet": "Assistant: 现在我还需要在脚本顶部导入 `sys` 模块（如果还没有导入的话）：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "现在",
+        "我还",
+        "需要",
+        "脚本",
+        "导入",
+        "sys",
+        "如果"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:20:20": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:20:20",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 20,
+      "endLine": 20,
+      "source": "memory",
+      "snippet": "Assistant: `sys` 模块还没有导入，让我添加它：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "sys",
+        "没有",
+        "导入",
+        "添加"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:21:21": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:21:21",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 21,
+      "endLine": 21,
+      "source": "memory",
+      "snippet": "Assistant: 现在让我同步更新 `/root/scripts/briefing/morning_briefing.py`：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "现在",
+        "同步",
+        "更新",
+        "root",
+        "scripts",
+        "briefing",
+        "morning-briefing.py"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:22:22": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:22:22",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 22,
+      "endLine": 22,
+      "source": "memory",
+      "snippet": "Assistant: 两个文件是同一个文件（硬链接或符号链接），所以不需要复制。 现在让我验证修改是否正确：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "文件",
+        "一个",
+        "符号",
+        "所以",
+        "不需要",
+        "复制",
+        "现在"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:23:23": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:23:23",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 23,
+      "endLine": 23,
+      "source": "memory",
+      "snippet": "Assistant: 现在让我测试一下防重发机制是否正常工作：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "现在",
+        "测试",
+        "一下",
+        "机制",
+        "是否",
+        "正常",
+        "工作"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:24:24": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:24:24",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 24,
+      "endLine": 24,
+      "source": "memory",
+      "snippet": "Assistant: 脚本运行成功。现在让我检查一下防重发状态文件是否正确创建：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:00:03.278Z",
+      "lastRecalledAt": "2026-04-10T19:00:03.278Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "脚本",
+        "运行",
+        "成功",
+        "现在",
+        "检查",
+        "一下",
+        "状态"
+      ]
+    },
+    "memory:memory/2026-04-11.md:63:66": {
+      "key": "memory:memory/2026-04-11.md:63:66",
+      "path": "memory/2026-04-11.md",
+      "startLine": 63,
+      "endLine": 66,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 23 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:3-3, memory/.dreams/session-corpus/2026-04-08.txt:4-4; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "1.00",
+        "2-2",
+        "3-3",
+        "4-4",
+        "reflections",
+        "theme",
+        "assistant",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:67:70": {
+      "key": "memory:memory/2026-04-11.md:67:70",
+      "path": "memory/2026-04-11.md",
+      "startLine": 67,
+      "endLine": 70,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `现在` kept surfacing across 12 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:4-4, memory/.dreams/session-corpus/2026-04-08.txt:6-6; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "1.00",
+        "2-2",
+        "4-4",
+        "6-6",
+        "reflections",
+        "theme",
+        "现在",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:71:74": {
+      "key": "memory:memory/2026-04-11.md:71:74",
+      "path": "memory/2026-04-11.md",
+      "startLine": 71,
+      "endLine": 74,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `morning-briefing.py` kept surfacing across 10 memories.; confidence: 0.83; evidence: memory/.dreams/session-corpus/2026-04-08.txt:5-5, memory/.dreams/session-corpus/2026-04-08.txt:6-6, memory/.dreams/session-corpus/2026-04-08.txt:7-7; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "morning-briefing.py",
+        "0.83",
+        "5-5",
+        "6-6",
+        "7-7",
+        "reflections",
+        "theme",
+        "morning"
+      ]
+    },
+    "memory:memory/2026-04-11.md:75:78": {
+      "key": "memory:memory/2026-04-11.md:75:78",
+      "path": "memory/2026-04-11.md",
+      "startLine": 75,
+      "endLine": 78,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `问题` kept surfacing across 10 memories.; confidence: 0.83; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:3-3, memory/.dreams/session-corpus/2026-04-08.txt:4-4; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "0.83",
+        "2-2",
+        "3-3",
+        "4-4",
+        "reflections",
+        "theme",
+        "问题",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:81:81": {
+      "key": "memory:memory/2026-04-11.md:81:81",
+      "path": "memory/2026-04-11.md",
+      "startLine": 81,
+      "endLine": 81,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: No strong candidate truths surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "possible",
+        "lasting",
+        "truths",
+        "strong",
+        "candidate",
+        "surfaced"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:25:25": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:25:25",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 25,
+      "endLine": 25,
+      "source": "memory",
+      "snippet": "Assistant: 这是因为我们在测试时使用了 `SKIP_FEISHU_SEND=true`，所以不会标记为已发送。让我再运行一次测试，这次不跳过发送（但会实际检查是否已经发送过）：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "skip-feishu-send",
+        "assistant",
+        "因为",
+        "我们",
+        "测试",
+        "使用",
+        "true",
+        "所以"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:26:26": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:26:26",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 26,
+      "endLine": 26,
+      "source": "memory",
+      "snippet": "Assistant: 防重发机制工作正常！ 现在让我清理测试数据：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "assistant",
+        "机制",
+        "工作",
+        "正常",
+        "现在",
+        "清理",
+        "测试",
+        "数据"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:27:27": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:27:27",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 27,
+      "endLine": 27,
+      "source": "memory",
+      "snippet": "Assistant: 现在让我总结一下问题诊断和修复方案： ## 问题诊断与修复 ### 问题分析 根据我的检查，系统配置是正确的，`morning_briefing.py` 每天只在 8:00 执行一次。但是用户报告\"早间日报推送了两次\"，可能有以下几种情况： 1. **早间简报** (8:00) - \"☀️ 早间简报\" 2. **OpenClaw资讯** (8:05) - \"🦞 OpenClaw 资讯\" 这两个消息都在早上8点左右，用户可能把它们都理解为\"早间日报\"。 另外，我还发现了以下问题： - `HEARTBEAT.md` 中记录的脚本路径不",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "morning-briefing.py",
+        "heartbeat.md",
+        "assistant",
+        "现在",
+        "总结",
+        "一下",
+        "问题",
+        "诊断"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:28:28": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:28:28",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 28,
+      "endLine": 28,
+      "source": "memory",
+      "snippet": "User: System: [2026-04-08 08:29:12 GMT+8] Exec completed (sharp-ha, code 0) :: ======================================== 生成早间简报... ======================================== 获取天气... 获取邮件... 检查 163邮箱... 检查 QQ邮箱... 检查 企业邮箱... 获取海外中文资讯... 获取 BBC中文... 获取 大纪元... 获取 … System: [2026-04-08",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "sharp-ha",
+        "user",
+        "system",
+        "gmt",
+        "exec",
+        "completed",
+        "sharp",
+        "code"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-08.txt:29:29": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-08.txt:29:29",
+      "path": "memory/.dreams/session-corpus/2026-04-08.txt",
+      "startLine": 29,
+      "endLine": 29,
+      "source": "memory",
+      "snippet": "Assistant: 我已经完成了问题诊断和修复。让我为你总结一下： ## 问题诊断 经过检查，我发现： 1. **系统配置正确**：crontab 中 `morning_briefing.py` 只在每天 8:00 执行一次 2. **今天日志正常**：系统日志显示今天（4月8日）早间简报只发送了一次 3. **可能的原因**： - 你收到了 **早间简报** (8:00) 和 **OpenClaw资讯** (8:05) 两条不同的消息，但都理解为\"早间日报\" - 或者之前确实存在重复执行的情况 ## 修复内容 我为脚本添加了**防重发机制**： 1.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "dd2a162d175b"
+      ],
+      "recallDays": [
+        "2026-04-08",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "morning-briefing.py",
+        "assistant",
+        "已经",
+        "完成",
+        "问题",
+        "诊断",
+        "修复",
+        "总结"
+      ]
+    },
+    "memory:memory/2026-04-11.md:143:146": {
+      "key": "memory:memory/2026-04-11.md:143:146",
+      "path": "memory/2026-04-11.md",
+      "startLine": 143,
+      "endLine": 146,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 29 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:3-3, memory/.dreams/session-corpus/2026-04-08.txt:4-4; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T20:00:01.610Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "1.00",
+        "2-2",
+        "3-3",
+        "4-4",
+        "reflections",
+        "theme",
+        "assistant",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:147:150": {
+      "key": "memory:memory/2026-04-11.md:147:150",
+      "path": "memory/2026-04-11.md",
+      "startLine": 147,
+      "endLine": 150,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `现在` kept surfacing across 16 memories.; confidence: 0.82; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:4-4, memory/.dreams/session-corpus/2026-04-08.txt:6-6; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T20:00:01.610Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "0.82",
+        "2-2",
+        "4-4",
+        "6-6",
+        "reflections",
+        "theme",
+        "现在",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:151:154": {
+      "key": "memory:memory/2026-04-11.md:151:154",
+      "path": "memory/2026-04-11.md",
+      "startLine": 151,
+      "endLine": 154,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `morning-briefing.py` kept surfacing across 10 memories.; confidence: 0.83; evidence: memory/.dreams/session-corpus/2026-04-08.txt:5-5, memory/.dreams/session-corpus/2026-04-08.txt:6-6, memory/.dreams/session-corpus/2026-04-08.txt:7-7; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "morning-briefing.py",
+        "0.83",
+        "5-5",
+        "6-6",
+        "7-7",
+        "reflections",
+        "theme",
+        "morning"
+      ]
+    },
+    "memory:memory/2026-04-11.md:155:158": {
+      "key": "memory:memory/2026-04-11.md:155:158",
+      "path": "memory/2026-04-11.md",
+      "startLine": 155,
+      "endLine": 158,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `问题` kept surfacing across 10 memories.; confidence: 0.83; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:3-3, memory/.dreams/session-corpus/2026-04-08.txt:4-4; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "0.83",
+        "2-2",
+        "3-3",
+        "4-4",
+        "reflections",
+        "theme",
+        "问题",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:161:161": {
+      "key": "memory:memory/2026-04-11.md:161:161",
+      "path": "memory/2026-04-11.md",
+      "startLine": 161,
+      "endLine": 161,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: No strong candidate truths surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T19:30:01.054Z",
+      "lastRecalledAt": "2026-04-10T19:30:01.054Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "possible",
+        "lasting",
+        "truths",
+        "strong",
+        "candidate",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-11.md:153:153": {
+      "key": "memory:memory/2026-04-11.md:153:153",
+      "path": "memory/2026-04-11.md",
+      "startLine": 153,
+      "endLine": 153,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: No strong candidate truths surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T20:00:01.610Z",
+      "lastRecalledAt": "2026-04-10T20:00:01.610Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "possible",
+        "lasting",
+        "truths",
+        "strong",
+        "candidate",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-11.md:148:151": {
+      "key": "memory:memory/2026-04-11.md:148:151",
+      "path": "memory/2026-04-11.md",
+      "startLine": 148,
+      "endLine": 151,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 30 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:3-3, memory/.dreams/session-corpus/2026-04-08.txt:4-4; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T20:00:01.610Z",
+      "lastRecalledAt": "2026-04-10T20:30:01.625Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "1.00",
+        "2-2",
+        "3-3",
+        "4-4",
+        "reflections",
+        "theme",
+        "assistant",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:152:155": {
+      "key": "memory:memory/2026-04-11.md:152:155",
+      "path": "memory/2026-04-11.md",
+      "startLine": 152,
+      "endLine": 155,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `现在` kept surfacing across 17 memories.; confidence: 0.79; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:4-4, memory/.dreams/session-corpus/2026-04-08.txt:6-6; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T20:00:01.610Z",
+      "lastRecalledAt": "2026-04-10T20:30:01.625Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "0.79",
+        "2-2",
+        "4-4",
+        "6-6",
+        "reflections",
+        "theme",
+        "现在",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:158:158": {
+      "key": "memory:memory/2026-04-11.md:158:158",
+      "path": "memory/2026-04-11.md",
+      "startLine": 158,
+      "endLine": 158,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: No strong candidate truths surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T20:00:01.610Z",
+      "lastRecalledAt": "2026-04-10T20:30:01.625Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "possible",
+        "lasting",
+        "truths",
+        "strong",
+        "candidate",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-11.md:153:156": {
+      "key": "memory:memory/2026-04-11.md:153:156",
+      "path": "memory/2026-04-11.md",
+      "startLine": 153,
+      "endLine": 156,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 31 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:3-3, memory/.dreams/session-corpus/2026-04-08.txt:4-4; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T20:30:01.625Z",
+      "lastRecalledAt": "2026-04-10T21:00:02.086Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "1.00",
+        "2-2",
+        "3-3",
+        "4-4",
+        "reflections",
+        "theme",
+        "assistant",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:157:160": {
+      "key": "memory:memory/2026-04-11.md:157:160",
+      "path": "memory/2026-04-11.md",
+      "startLine": 157,
+      "endLine": 160,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `现在` kept surfacing across 18 memories.; confidence: 0.78; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:4-4, memory/.dreams/session-corpus/2026-04-08.txt:6-6; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T20:30:01.625Z",
+      "lastRecalledAt": "2026-04-10T21:00:02.086Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "0.78",
+        "2-2",
+        "4-4",
+        "6-6",
+        "reflections",
+        "theme",
+        "现在",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:163:163": {
+      "key": "memory:memory/2026-04-11.md:163:163",
+      "path": "memory/2026-04-11.md",
+      "startLine": 163,
+      "endLine": 163,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: No strong candidate truths surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T20:30:01.625Z",
+      "lastRecalledAt": "2026-04-10T21:00:02.086Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "possible",
+        "lasting",
+        "truths",
+        "strong",
+        "candidate",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-11.md:158:161": {
+      "key": "memory:memory/2026-04-11.md:158:161",
+      "path": "memory/2026-04-11.md",
+      "startLine": 158,
+      "endLine": 161,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 32 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:3-3, memory/.dreams/session-corpus/2026-04-08.txt:4-4; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T21:00:01.985Z",
+      "lastRecalledAt": "2026-04-11T15:00:42.054Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "1.00",
+        "2-2",
+        "3-3",
+        "4-4",
+        "reflections",
+        "theme",
+        "assistant",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:162:165": {
+      "key": "memory:memory/2026-04-11.md:162:165",
+      "path": "memory/2026-04-11.md",
+      "startLine": 162,
+      "endLine": 165,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `现在` kept surfacing across 19 memories.; confidence: 0.78; evidence: memory/.dreams/session-corpus/2026-04-08.txt:2-2, memory/.dreams/session-corpus/2026-04-08.txt:4-4, memory/.dreams/session-corpus/2026-04-08.txt:6-6; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T21:00:01.985Z",
+      "lastRecalledAt": "2026-04-11T15:00:42.054Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "0.78",
+        "2-2",
+        "4-4",
+        "6-6",
+        "reflections",
+        "theme",
+        "现在",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-04-11.md:168:168": {
+      "key": "memory:memory/2026-04-11.md:168:168",
+      "path": "memory/2026-04-11.md",
+      "startLine": 168,
+      "endLine": 168,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: No strong candidate truths surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-10T21:00:01.985Z",
+      "lastRecalledAt": "2026-04-11T15:00:42.054Z",
+      "queryHashes": [
+        "2213b71c3c98"
+      ],
+      "recallDays": [
+        "2026-04-11",
+        "2026-04-10"
+      ],
+      "conceptTags": [
+        "possible",
+        "lasting",
+        "truths",
+        "strong",
+        "candidate",
+        "surfaced"
+      ]
+    }
+  }
+}

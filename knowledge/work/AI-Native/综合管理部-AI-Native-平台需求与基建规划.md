@@ -4,6 +4,7 @@
 > **基于**: 体系OKR + 各团队AI-Native OKR + RPP/PPT方法论  
 > **目标**: 梳理通用平台需求与基建需求，输出可落地执行的里程碑计划  
 > **制定日期**: 2026年4月10日
+> **归档位置**: knowledge/work/AI-Native/综合管理部-AI-Native-平台需求与基建规划.md
 
 ---
 
@@ -574,7 +575,7 @@
 
 | 文档 | 路径 | 内容 |
 |------|------|------|
-| 平台需求与基建规划 | docs/training/ai-native-platform-requirements.md | 通用需求、基建清单、里程碑计划 |
+| 平台需求与基建规划 | knowledge/work/AI-Native/综合管理部-AI-Native-平台需求与基建规划.md | 通用需求、基建清单、里程碑计划 |
 
 ### 8.3 后续待产出文档
 
