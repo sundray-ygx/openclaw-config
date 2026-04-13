@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-12T14:01:27.055Z",
+  "updatedAt": "2026-04-13T15:02:34.886Z",
   "entries": {
     "memory:memory/2026-03-25.md:1:35": {
       "key": "memory:memory/2026-03-25.md:1:35",
@@ -419,14 +419,15 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "84c029107fed"
       ],
       "recallDays": [
         "2026-04-09",
         "2026-04-10",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "日期",
@@ -450,14 +451,15 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "84c029107fed"
       ],
       "recallDays": [
         "2026-04-09",
         "2026-04-10",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "错误/异常",
@@ -480,14 +482,15 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "84c029107fed"
       ],
       "recallDays": [
         "2026-04-09",
         "2026-04-10",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "任务",
@@ -513,14 +516,15 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "84c029107fed"
       ],
       "recallDays": [
         "2026-04-09",
         "2026-04-10",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "本地",
@@ -543,14 +547,15 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "84c029107fed"
       ],
       "recallDays": [
         "2026-04-09",
         "2026-04-10",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "了解ai-coding",
@@ -576,14 +581,15 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "84c029107fed"
       ],
       "recallDays": [
         "2026-04-09",
         "2026-04-10",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "错误",
@@ -714,7 +720,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "4320a7af2f21"
       ],
@@ -722,7 +728,8 @@
         "2026-04-08",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "日期",
@@ -746,7 +753,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "4320a7af2f21"
       ],
@@ -754,7 +761,8 @@
         "2026-04-08",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "错误/异常",
@@ -777,7 +785,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "4320a7af2f21"
       ],
@@ -785,7 +793,8 @@
         "2026-04-08",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "任务",
@@ -811,7 +820,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "4320a7af2f21"
       ],
@@ -819,7 +828,8 @@
         "2026-04-08",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "本地",
@@ -842,7 +852,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "4320a7af2f21"
       ],
@@ -850,7 +860,8 @@
         "2026-04-08",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "交互",
@@ -876,7 +887,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "4320a7af2f21"
       ],
@@ -884,7 +895,8 @@
         "2026-04-08",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "错误",
@@ -7481,7 +7493,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "87c77efd6245"
       ],
@@ -7489,7 +7501,8 @@
         "2026-04-07",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "日期",
@@ -7513,7 +7526,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "87c77efd6245"
       ],
@@ -7521,7 +7534,8 @@
         "2026-04-07",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "错误/异常",
@@ -7544,7 +7558,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "87c77efd6245"
       ],
@@ -7552,7 +7566,8 @@
         "2026-04-07",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "任务",
@@ -7578,7 +7593,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "87c77efd6245"
       ],
@@ -7586,7 +7601,8 @@
         "2026-04-07",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "任务",
@@ -7612,7 +7628,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "87c77efd6245"
       ],
@@ -7620,7 +7636,8 @@
         "2026-04-07",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "本地",
@@ -7643,7 +7660,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "87c77efd6245"
       ],
@@ -7651,7 +7668,8 @@
         "2026-04-07",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "备份",
@@ -7677,7 +7695,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "b1f16f36272f"
       ],
@@ -7685,7 +7703,8 @@
         "2026-04-06",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "日期",
@@ -7709,7 +7728,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "b1f16f36272f"
       ],
@@ -7717,7 +7736,8 @@
         "2026-04-06",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "错误/异常",
@@ -7740,7 +7760,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "b1f16f36272f"
       ],
@@ -7748,7 +7768,8 @@
         "2026-04-06",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "claude-budget-reminder",
@@ -7774,7 +7795,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "b1f16f36272f"
       ],
@@ -7782,7 +7803,8 @@
         "2026-04-06",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "claude-budget-reminder",
@@ -7808,7 +7830,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "b1f16f36272f"
       ],
@@ -7816,7 +7838,8 @@
         "2026-04-06",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "claude-budget-reminder",
@@ -7842,7 +7865,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "b1f16f36272f"
       ],
@@ -7850,7 +7873,8 @@
         "2026-04-06",
         "2026-04-10",
         "2026-04-11",
-        "2026-04-12"
+        "2026-04-12",
+        "2026-04-13"
       ],
       "conceptTags": [
         "weekly-security-config-check",
@@ -7876,7 +7900,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-12T23:30:00.633Z",
       "queryHashes": [
         "5215110c3ca9"
       ],
@@ -7910,7 +7934,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-12T23:30:00.633Z",
       "queryHashes": [
         "5215110c3ca9"
       ],
@@ -7944,7 +7968,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-12T23:30:00.633Z",
       "queryHashes": [
         "5215110c3ca9"
       ],
@@ -7978,7 +8002,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-12T23:30:00.633Z",
       "queryHashes": [
         "5215110c3ca9"
       ],
@@ -8012,7 +8036,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-12T23:30:00.633Z",
       "queryHashes": [
         "5215110c3ca9"
       ],
@@ -8046,7 +8070,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-10T19:00:01.051Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-12T23:30:00.633Z",
       "queryHashes": [
         "5215110c3ca9"
       ],
@@ -19207,13 +19231,14 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-11T00:30:41.155Z",
-      "lastRecalledAt": "2026-04-11T00:30:41.155Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "ed3026e16517"
       ],
       "recallDays": [
         "2026-04-10",
-        "2026-04-11"
+        "2026-04-11",
+        "2026-04-13"
       ],
       "conceptTags": [
         "日期",
@@ -19237,13 +19262,14 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-11T00:30:41.155Z",
-      "lastRecalledAt": "2026-04-11T00:30:41.155Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "ed3026e16517"
       ],
       "recallDays": [
         "2026-04-10",
-        "2026-04-11"
+        "2026-04-11",
+        "2026-04-13"
       ],
       "conceptTags": [
         "错误/异常",
@@ -19266,13 +19292,14 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-11T00:30:41.155Z",
-      "lastRecalledAt": "2026-04-11T00:30:41.155Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "ed3026e16517"
       ],
       "recallDays": [
         "2026-04-10",
-        "2026-04-11"
+        "2026-04-11",
+        "2026-04-13"
       ],
       "conceptTags": [
         "任务",
@@ -19298,13 +19325,14 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-11T00:30:41.155Z",
-      "lastRecalledAt": "2026-04-11T00:30:41.155Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "ed3026e16517"
       ],
       "recallDays": [
         "2026-04-10",
-        "2026-04-11"
+        "2026-04-11",
+        "2026-04-13"
       ],
       "conceptTags": [
         "本地",
@@ -19330,13 +19358,14 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-11T00:30:41.155Z",
-      "lastRecalledAt": "2026-04-11T00:30:41.155Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "ed3026e16517"
       ],
       "recallDays": [
         "2026-04-10",
-        "2026-04-11"
+        "2026-04-11",
+        "2026-04-13"
       ],
       "conceptTags": [
         "网络",
@@ -19362,13 +19391,14 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-11T00:30:41.155Z",
-      "lastRecalledAt": "2026-04-11T00:30:41.155Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
       "queryHashes": [
         "ed3026e16517"
       ],
       "recallDays": [
         "2026-04-10",
-        "2026-04-11"
+        "2026-04-11",
+        "2026-04-13"
       ],
       "conceptTags": [
         "本地",
@@ -30484,7 +30514,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-12T02:31:26.989Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
       "queryHashes": [
         "01679c334ef2"
       ],
@@ -30511,7 +30541,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-12T02:31:26.989Z",
-      "lastRecalledAt": "2026-04-12T14:01:27.055Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
       "queryHashes": [
         "01679c334ef2"
       ],
@@ -30589,6 +30619,5220 @@
         "完成",
         "本周",
         "记录"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:16:16": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:16:16",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 16,
+      "endLine": 16,
+      "source": "memory",
+      "snippet": "User: System: [2026-04-11 03:00:00 GMT+8] __openclaw_memory_core_short_term_promotion_dream__ System: [2026-04-11 05:00:00 GMT+8] 自动归档昨日记忆到knowledge inbox: python3 /root/.openclaw/workspace/scripts/utils/auto_archive_to_inbox.py System: [2026-04-11 08:46:51 GMT+8] 每日反思已生成并推送到飞书，分",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "user",
+        "system",
+        "gmt",
+        "自动",
+        "归档",
+        "昨日",
+        "记忆",
+        "knowledge"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:17:17": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:17:17",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 17,
+      "endLine": 17,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:18:18": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:18:18",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 18,
+      "endLine": 18,
+      "source": "memory",
+      "snippet": "Assistant: 用户发送了 HEARTBEAT 检查请求，我需要读取 HEARTBEAT.md 文件确认是否有需要处理的任务。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "assistant",
+        "用户",
+        "发送",
+        "heartbeat",
+        "检查",
+        "请求",
+        "需要"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:19:19": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:19:19",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 19,
+      "endLine": 19,
+      "source": "memory",
+      "snippet": "Assistant: 检查 HEARTBEAT.md 任务状态： - 早间简报：已错过执行时间（8:00） - 记忆维护：上次 2026-04-08，距今 4 天，无需执行 - 工作区整洁检查：lastWorkspaceCheck 字段不存在（之前已提醒） HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "assistant",
+        "检查",
+        "任务",
+        "状态",
+        "简报",
+        "错过"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:20:20": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:20:20",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 20,
+      "endLine": 20,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:21:21": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:21:21",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 21,
+      "endLine": 21,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:22:22": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:22:22",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 22,
+      "endLine": 22,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:23:23": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:23:23",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 23,
+      "endLine": 23,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Sun 2026-04-12 23:10 GMT+8] 默认模型采用 zai/glm-4.7 ,请配置并生效,并报告执行情况.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "zai/glm-4.7",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:24:24": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:24:24",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 24,
+      "endLine": 24,
+      "source": "memory",
+      "snippet": "Assistant: 我来配置默认模型为 zai/glm-4.7。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "zai/glm-4.7",
+        "assistant",
+        "我来",
+        "配置",
+        "默认",
+        "模型",
+        "zai",
+        "glm"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:25:25": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:25:25",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 25,
+      "endLine": 25,
+      "source": "memory",
+      "snippet": "Assistant: 我看到配置中 `agents.defaults.model.primary` 已经是 `zai/glm-4.7`，但 `main` agent 的模型仍然是 `bailian/kimi-k2.5`。我来修改配置并使其生效。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "agents.defaults.model.primary",
+        "zai/glm-4.7",
+        "bailian/kimi-k2.5",
+        "assistant",
+        "我看到",
+        "配置",
+        "已经",
+        "zai"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:26:26": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:26:26",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 26,
+      "endLine": 26,
+      "source": "memory",
+      "snippet": "Assistant: 配置已修改。现在重启网关使配置生效。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "网关",
+        "assistant",
+        "配置",
+        "修改",
+        "现在",
+        "生效"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:27:27": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:27:27",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 27,
+      "endLine": 27,
+      "source": "memory",
+      "snippet": "Assistant: 网关重启完成（systemctl 检查失败是因为 OpenClaw 不是以 systemd 服务运行，这是正常的）。让我验证配置是否生效。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "网关",
+        "assistant",
+        "完成",
+        "systemctl",
+        "检查",
+        "失败",
+        "因为",
+        "openclaw"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:28:28": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:28:28",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 28,
+      "endLine": 28,
+      "source": "memory",
+      "snippet": "User: System: [2026-04-12 23:30:00 GMT+8] 执行GitHub同步: cd /root/.openclaw/workspace && ./scripts/sync-to-github.sh A scheduled reminder has been triggered. The reminder content is: 执行GitHub同步: cd /root/.openclaw/workspace && ./scripts/sync-to-github.sh Handle this reminder interna",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "openclaw/workspace",
+        "scripts/sync-to-github.sh",
+        "user",
+        "system",
+        "gmt",
+        "执行",
+        "github",
+        "同步"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:29:29": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:29:29",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 29,
+      "endLine": 29,
+      "source": "memory",
+      "snippet": "Assistant: NO_REPLY",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "no-reply",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:1:1": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:1:1",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 1,
+      "endLine": 1,
+      "source": "memory",
+      "snippet": "User: System (untrusted): [2026-04-13 02:01:44 GMT+8] Exec completed (swift-sl, code 0) :: 405201 Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When readin",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "swift-sl",
+        "heartbeat.md",
+        "heartbeat-ok",
+        "user",
+        "system",
+        "untrusted",
+        "gmt",
+        "exec"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:2:2": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:2:2",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 2,
+      "endLine": 2,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:3:3": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:3:3",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 3,
+      "endLine": 3,
+      "source": "memory",
+      "snippet": "User: [cron:7d2604a7-41c2-4196-ba02-af7c9dc237ec NAS自动备份] 执行NAS备份脚本并生成说明文档：/root/.openclaw/workspace/scripts/backup/nas_backup.sh Current time: Monday, April 13th, 2026 - 2:00 AM (Asia/Shanghai) / 2026-04-12 18:00 UTC Return your summary as plain text; it will be delivered automa",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "backup",
+        "备份",
+        "asia/shanghai",
+        "user",
+        "cron",
+        "7d2604a7",
+        "41c2",
+        "ba02"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:4:4": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:4:4",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 4,
+      "endLine": 4,
+      "source": "memory",
+      "snippet": "Assistant: NAS备份执行成功 ✅ - **备份时间**: 2026-04-13 02:00 - **上传路径**: WebDAV `/aliyun_backup/server-backup/20260413/` - **上传状态**: HTTP 201（成功） - **耗时**: ~82秒 - **备份内容**: sing-box配置、FRP配置、自动化脚本、OpenClaw工作区文档、完整配置打包、安全脚本",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "backup",
+        "备份",
+        "sing-box配置",
+        "assistant",
+        "nas",
+        "执行",
+        "成功",
+        "时间"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:30:30": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:30:30",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 30,
+      "endLine": 30,
+      "source": "memory",
+      "snippet": "Assistant: 配置已生效。让我总结执行情况。 --- ## ✅ 默认模型配置完成 **配置变更：** - 修改 `agents.list[0].model` 从 `bailian/kimi-k2.5` → `zai/glm-4.7` - 配置文件：`/root/.openclaw/openclaw.json` **执行状态：** - ✅ 配置已写入 - ✅ 网关已重启（PID 23720） - ✅ main agent 现在使用 `zai/glm-4.7` 作为默认模型 **当前模型配置：** ```json { \"id\": \"main\", \"n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "网关",
+        "agents.list",
+        "bailian/kimi-k2.5",
+        "zai/glm-4.7",
+        "openclaw/openclaw.json",
+        "assistant",
+        "配置",
+        "生效"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:31:31": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:31:31",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 31,
+      "endLine": 31,
+      "source": "memory",
+      "snippet": "User: System (untrusted): [2026-04-12 23:11:55 GMT+8] Exec completed (marine-s, code 1) :: search_messages [plugins] feishu_im: Registered feishu_im_bot_image [plugins] Registered all OAPI tools (calendar, task, bitable, search, drive, wiki, sheets, im) [plugins] feishu… Read HEA",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "marine-s",
+        "search-messages",
+        "feishu-im",
+        "feishu-im-bot-image",
+        "user",
+        "system",
+        "untrusted",
+        "gmt"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:32:32": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:32:32",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 32,
+      "endLine": 32,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:33:33": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:33:33",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 33,
+      "endLine": 33,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-12.txt:34:34": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-12.txt:34:34",
+      "path": "memory/.dreams/session-corpus/2026-04-12.txt",
+      "startLine": 34,
+      "endLine": 34,
+      "source": "memory",
+      "snippet": "Assistant: 用户发送了 HEARTBEAT 检查请求。根据 HEARTBEAT.md： - 早间简报：已错过执行时间（8:00） - 记忆维护：上次 2026-04-08，距今 4 天，无需执行 - 工作区整洁检查：lastWorkspaceCheck 字段不存在（之前已提醒） 没有需要处理的任务，回复 HEARTBEAT_OK。HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "d67a1d127bbd"
+      ],
+      "recallDays": [
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "assistant",
+        "用户",
+        "发送",
+        "heartbeat",
+        "检查",
+        "请求"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:5:5": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:5:5",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 5,
+      "endLine": 5,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:6:6": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:6:6",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 6,
+      "endLine": 6,
+      "source": "memory",
+      "snippet": "Assistant: 用户发送了 HEARTBEAT 检查请求。根据 HEARTBEAT.md： - 早间简报：还没到执行时间（8:00） - 记忆维护：上次 2026-04-08，距今 4 天，无需执行 - 工作区整洁检查：lastWorkspaceCheck 字段不存在（之前已提醒） 没有需要处理的任务，回复 HEARTBEAT_OK。HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "assistant",
+        "用户",
+        "发送",
+        "heartbeat",
+        "检查",
+        "请求"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:7:7": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:7:7",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 7,
+      "endLine": 7,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:8:8": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:8:8",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 8,
+      "endLine": 8,
+      "source": "memory",
+      "snippet": "Assistant: 用户发送了 HEARTBEAT 检查请求。根据 HEARTBEAT.md： - 早间简报：还没到执行时间（8:00） - 记忆维护：上次 2026-04-08，距今 5 天，无需执行 - 工作区整洁检查：lastWorkspaceCheck 字段不存在（之前已提醒） 没有需要处理的任务，回复 HEARTBEAT_OK。HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "assistant",
+        "用户",
+        "发送",
+        "heartbeat",
+        "检查",
+        "请求"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:9:9": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:9:9",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 9,
+      "endLine": 9,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:10:10": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:10:10",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 10,
+      "endLine": 10,
+      "source": "memory",
+      "snippet": "Assistant: 用户发送了 HEARTBEAT 检查请求。根据 HEARTBEAT.md： - 早间简报：还没到执行时间（8:00） - 记忆维护：上次 2026-04-08，距今 5 天，无需执行 - 工作区整洁检查：lastWorkspaceCheck 字段不存在（之前已提醒） 没有需要处理的任务，回复 HEARTBEAT_OK。HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "assistant",
+        "用户",
+        "发送",
+        "heartbeat",
+        "检查",
+        "请求"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:11:11": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:11:11",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 11,
+      "endLine": 11,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:00:00.571Z",
+      "lastRecalledAt": "2026-04-12T19:00:00.571Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/2026-04-13.md:453:453": {
+      "key": "memory:memory/2026-04-13.md:453:453",
+      "path": "memory/2026-04-13.md",
+      "startLine": 453,
+      "endLine": 453,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T19:30:00.559Z",
+      "lastRecalledAt": "2026-04-12T19:30:00.559Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:456:458": {
+      "key": "memory:memory/2026-04-13.md:456:458",
+      "path": "memory/2026-04-13.md",
+      "startLine": 456,
+      "endLine": 458,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T19:30:00.559Z",
+      "lastRecalledAt": "2026-04-12T19:30:00.559Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:12:12": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:12:12",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 12,
+      "endLine": 12,
+      "source": "memory",
+      "snippet": "Assistant: 用户发送了 HEARTBEAT 检查请求。根据 HEARTBEAT.md： - 早间简报：还没到执行时间（8:00） - 记忆维护：上次 2026-04-08，距今 5 天，无需执行 - 工作区整洁检查：lastWorkspaceCheck 字段不存在（之前已提醒） 没有需要处理的任务，回复 HEARTBEAT_OK。HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:30:00.559Z",
+      "lastRecalledAt": "2026-04-12T19:30:00.559Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "assistant",
+        "用户",
+        "发送",
+        "heartbeat",
+        "检查",
+        "请求"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:13:13": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:13:13",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 13,
+      "endLine": 13,
+      "source": "memory",
+      "snippet": "User: System: [2026-04-13 02:01:57 GMT+8] NAS备份执行成功 ✅ System: System: - **备份时间**: 2026-04-13 02:00 System: - **上传路径**: WebDAV `/aliyun_backup/server-backup/20260413/` System: - **上传状态**: HTTP 201（成功） System: - **耗时**: ~82秒 System: - **备份内容**: sing-box配置、FRP配置、自动化脚本、OpenClaw工作区文档、",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:30:00.559Z",
+      "lastRecalledAt": "2026-04-12T19:30:00.559Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "backup",
+        "备份",
+        "sing-box配置",
+        "user",
+        "system",
+        "gmt",
+        "nas",
+        "执行"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:14:14": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:14:14",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 14,
+      "endLine": 14,
+      "source": "memory",
+      "snippet": "Assistant: 用户发送了 HEARTBEAT 检查请求，同时系统通知 NAS 备份已完成。根据 HEARTBEAT.md 检查任务： - 早间简报：还没到执行时间（8:00） - 记忆维护：上次 2026-04-08，距今 5 天，无需执行 - 工作区整洁检查：lastWorkspaceCheck 字段不存在（之前已提醒） 没有需要处理的任务，回复 HEARTBEAT_OK。HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-12T19:30:00.559Z",
+      "lastRecalledAt": "2026-04-12T19:30:00.559Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "备份",
+        "heartbeat.md",
+        "heartbeat-ok",
+        "assistant",
+        "用户",
+        "发送",
+        "heartbeat",
+        "检查"
+      ]
+    },
+    "memory:memory/2026-04-13.md:408:408": {
+      "key": "memory:memory/2026-04-13.md:408:408",
+      "path": "memory/2026-04-13.md",
+      "startLine": 408,
+      "endLine": 408,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T19:30:00.559Z",
+      "lastRecalledAt": "2026-04-12T20:00:00.558Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:411:413": {
+      "key": "memory:memory/2026-04-13.md:411:413",
+      "path": "memory/2026-04-13.md",
+      "startLine": 411,
+      "endLine": 413,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T19:30:00.559Z",
+      "lastRecalledAt": "2026-04-12T20:00:00.558Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:398:398": {
+      "key": "memory:memory/2026-04-13.md:398:398",
+      "path": "memory/2026-04-13.md",
+      "startLine": 398,
+      "endLine": 398,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T20:00:00.558Z",
+      "lastRecalledAt": "2026-04-12T20:30:01.108Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:401:403": {
+      "key": "memory:memory/2026-04-13.md:401:403",
+      "path": "memory/2026-04-13.md",
+      "startLine": 401,
+      "endLine": 403,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T20:00:00.558Z",
+      "lastRecalledAt": "2026-04-12T20:30:01.108Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:388:388": {
+      "key": "memory:memory/2026-04-13.md:388:388",
+      "path": "memory/2026-04-13.md",
+      "startLine": 388,
+      "endLine": 388,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T20:30:01.108Z",
+      "lastRecalledAt": "2026-04-13T10:32:34.470Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:391:393": {
+      "key": "memory:memory/2026-04-13.md:391:393",
+      "path": "memory/2026-04-13.md",
+      "startLine": 391,
+      "endLine": 393,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T20:30:01.108Z",
+      "lastRecalledAt": "2026-04-13T10:32:34.470Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:378:378": {
+      "key": "memory:memory/2026-04-13.md:378:378",
+      "path": "memory/2026-04-13.md",
+      "startLine": 378,
+      "endLine": 378,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T21:00:00.327Z",
+      "lastRecalledAt": "2026-04-12T21:30:01.103Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:381:383": {
+      "key": "memory:memory/2026-04-13.md:381:383",
+      "path": "memory/2026-04-13.md",
+      "startLine": 381,
+      "endLine": 383,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T21:00:00.327Z",
+      "lastRecalledAt": "2026-04-12T21:30:01.103Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:368:368": {
+      "key": "memory:memory/2026-04-13.md:368:368",
+      "path": "memory/2026-04-13.md",
+      "startLine": 368,
+      "endLine": 368,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T21:30:01.103Z",
+      "lastRecalledAt": "2026-04-12T22:00:01.127Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:371:373": {
+      "key": "memory:memory/2026-04-13.md:371:373",
+      "path": "memory/2026-04-13.md",
+      "startLine": 371,
+      "endLine": 373,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T21:30:01.103Z",
+      "lastRecalledAt": "2026-04-12T22:00:01.127Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:358:358": {
+      "key": "memory:memory/2026-04-13.md:358:358",
+      "path": "memory/2026-04-13.md",
+      "startLine": 358,
+      "endLine": 358,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T22:00:01.127Z",
+      "lastRecalledAt": "2026-04-12T22:30:01.115Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:361:363": {
+      "key": "memory:memory/2026-04-13.md:361:363",
+      "path": "memory/2026-04-13.md",
+      "startLine": 361,
+      "endLine": 363,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T22:00:01.127Z",
+      "lastRecalledAt": "2026-04-12T22:30:01.115Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:348:348": {
+      "key": "memory:memory/2026-04-13.md:348:348",
+      "path": "memory/2026-04-13.md",
+      "startLine": 348,
+      "endLine": 348,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T22:30:01.115Z",
+      "lastRecalledAt": "2026-04-12T23:00:01.117Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:351:353": {
+      "key": "memory:memory/2026-04-13.md:351:353",
+      "path": "memory/2026-04-13.md",
+      "startLine": 351,
+      "endLine": 353,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T22:30:01.115Z",
+      "lastRecalledAt": "2026-04-12T23:00:01.117Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:343:343": {
+      "key": "memory:memory/2026-04-13.md:343:343",
+      "path": "memory/2026-04-13.md",
+      "startLine": 343,
+      "endLine": 343,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T23:00:01.117Z",
+      "lastRecalledAt": "2026-04-13T11:32:34.883Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:346:348": {
+      "key": "memory:memory/2026-04-13.md:346:348",
+      "path": "memory/2026-04-13.md",
+      "startLine": 346,
+      "endLine": 348,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T23:00:01.117Z",
+      "lastRecalledAt": "2026-04-13T11:32:34.883Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:333:333": {
+      "key": "memory:memory/2026-04-13.md:333:333",
+      "path": "memory/2026-04-13.md",
+      "startLine": 333,
+      "endLine": 333,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T23:30:00.633Z",
+      "lastRecalledAt": "2026-04-13T00:00:00.642Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:336:338": {
+      "key": "memory:memory/2026-04-13.md:336:338",
+      "path": "memory/2026-04-13.md",
+      "startLine": 336,
+      "endLine": 338,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-12T23:30:00.633Z",
+      "lastRecalledAt": "2026-04-13T00:00:00.642Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13",
+        "2026-04-12"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:323:323": {
+      "key": "memory:memory/2026-04-13.md:323:323",
+      "path": "memory/2026-04-13.md",
+      "startLine": 323,
+      "endLine": 323,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T00:00:00.642Z",
+      "lastRecalledAt": "2026-04-13T13:02:34.876Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:326:328": {
+      "key": "memory:memory/2026-04-13.md:326:328",
+      "path": "memory/2026-04-13.md",
+      "startLine": 326,
+      "endLine": 328,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T00:00:00.642Z",
+      "lastRecalledAt": "2026-04-13T13:02:34.876Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:328:328": {
+      "key": "memory:memory/2026-04-13.md:328:328",
+      "path": "memory/2026-04-13.md",
+      "startLine": 328,
+      "endLine": 328,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T00:30:00.310Z",
+      "lastRecalledAt": "2026-04-13T12:32:34.906Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:331:333": {
+      "key": "memory:memory/2026-04-13.md:331:333",
+      "path": "memory/2026-04-13.md",
+      "startLine": 331,
+      "endLine": 333,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T00:30:00.310Z",
+      "lastRecalledAt": "2026-04-13T12:32:34.906Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-12.md:7:10": {
+      "key": "memory:memory/2026-04-12.md:7:10",
+      "path": "memory/2026-04-12.md",
+      "startLine": 7,
+      "endLine": 10,
+      "source": "memory",
+      "snippet": "📊 概览: **日期**: 2026-04-12; **本地会话**: 3 个文件, 40 条消息; **飞书消息**: 2 条; **定时任务**: 2 个",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "日期",
+        "本地",
+        "会话",
+        "文件",
+        "消息",
+        "任务"
+      ]
+    },
+    "memory:memory/2026-04-12.md:11:13": {
+      "key": "memory:memory/2026-04-12.md:11:13",
+      "path": "memory/2026-04-12.md",
+      "startLine": 11,
+      "endLine": 13,
+      "source": "memory",
+      "snippet": "📊 概览: **本地交互**: 0 次; **飞书交互**: 0 次; **错误/异常**: 4 条",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "错误/异常",
+        "本地",
+        "交互",
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-04-12.md:16:17": {
+      "key": "memory:memory/2026-04-12.md:16:17",
+      "path": "memory/2026-04-12.md",
+      "startLine": 16,
+      "endLine": 17,
+      "source": "memory",
+      "snippet": "⏰ 定时任务执行记录: **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py; **12:00** `6b87d4b5-f05d-4676-80a0-7dfeb97155e3 周反思报告`: 执行周反思脚本: python3 /root/.openclaw/workspace/scripts/weekly/weekly_reflection.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "任务",
+        "执行",
+        "记录",
+        "0b5f7ab0",
+        "424c",
+        "49ff",
+        "aa03",
+        "69a2acf1a864"
+      ]
+    },
+    "memory:memory/2026-04-12.md:20:20": {
+      "key": "memory:memory/2026-04-12.md:20:20",
+      "path": "memory/2026-04-12.md",
+      "startLine": 20,
+      "endLine": 20,
+      "source": "memory",
+      "snippet": "💬 本地交互概要: _当日无本地交互记录_",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本地",
+        "交互",
+        "概要",
+        "当日",
+        "记录"
+      ]
+    },
+    "memory:memory/2026-04-12.md:23:23": {
+      "key": "memory:memory/2026-04-12.md:23:23",
+      "path": "memory/2026-04-12.md",
+      "startLine": 23,
+      "endLine": 23,
+      "source": "memory",
+      "snippet": "📱 飞书交互概要: _当日无飞书交互记录_",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "交互",
+        "概要",
+        "当日",
+        "记录"
+      ]
+    },
+    "memory:memory/2026-04-12.md:27:27": {
+      "key": "memory:memory/2026-04-12.md:27:27",
+      "path": "memory/2026-04-12.md",
+      "startLine": 27,
+      "endLine": 27,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **15:33** │",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-04-12.md:28:30": {
+      "key": "memory:memory/2026-04-12.md:28:30",
+      "path": "memory/2026-04-12.md",
+      "startLine": 28,
+      "endLine": 30,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: ◇ Config warnings ──────────────────────────────────────────────────────╮ │ │ │ - plugins.entries.skillhub: plugin not found:...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "plugins.entries.skillhub",
+        "错误",
+        "异常",
+        "config",
+        "warnings",
+        "plugin",
+        "not",
+        "found"
+      ]
+    },
+    "memory:memory/2026-04-12.md:31:31": {
+      "key": "memory:memory/2026-04-12.md:31:31",
+      "path": "memory/2026-04-12.md",
+      "startLine": 31,
+      "endLine": 31,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **12:00** # 📋 周反思报告 | 第15周 (2026-04-06 ~ 2026-04-12)",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "报告"
+      ]
+    },
+    "memory:memory/2026-04-12.md:33:35": {
+      "key": "memory:memory/2026-04-12.md:33:35",
+      "path": "memory/2026-04-12.md",
+      "startLine": 33,
+      "endLine": 35,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: > 生成时间: 2026-04-12 20:00 > 数据来源: Self Reflection System > 数据质量: 3 条有效记录",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "生成",
+        "时间",
+        "数据",
+        "来源",
+        "self",
+        "reflection"
+      ]
+    },
+    "memory:memory/2026-04-12.md:41:44": {
+      "key": "memory:memory/2026-04-12.md:41:44",
+      "path": "memory/2026-04-12.md",
+      "startLine": 41,
+      "endLine": 44,
+      "source": "memory",
+      "snippet": "📊 本周统计: | 指标 | 数值 | |------|------| | 新增反思记录 | 3 条 | | 技术教训 | 3 条 |",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本周",
+        "统计",
+        "指标",
+        "数值",
+        "新增",
+        "记录",
+        "技术",
+        "教训"
+      ]
+    },
+    "memory:memory/2026-04-12.md:45:45": {
+      "key": "memory:memory/2026-04-12.md:45:45",
+      "path": "memory/2026-04-12.md",
+      "startLine": 45,
+      "endLine": 45,
+      "source": "memory",
+      "snippet": "📊 本周统计: | 工作教训 ...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本周",
+        "统计",
+        "工作",
+        "教训"
+      ]
+    },
+    "memory:memory/2026-04-12.md:46:46": {
+      "key": "memory:memory/2026-04-12.md:46:46",
+      "path": "memory/2026-04-12.md",
+      "startLine": 46,
+      "endLine": 46,
+      "source": "memory",
+      "snippet": "📊 本周统计: 💻 **12:00** **周反思报告已生成完成**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本周",
+        "统计",
+        "报告",
+        "生成",
+        "完成"
+      ]
+    },
+    "memory:memory/2026-04-12.md:48:48": {
+      "key": "memory:memory/2026-04-12.md:48:48",
+      "path": "memory/2026-04-12.md",
+      "startLine": 48,
+      "endLine": 48,
+      "source": "memory",
+      "snippet": "📊 本周统计: 本周（第15周，2026-04-06 ~ 2026-04-12）共记录 **3 条反思**，全部为技术类教训：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本周",
+        "统计",
+        "记录",
+        "全部",
+        "技术",
+        "教训"
+      ]
+    },
+    "memory:memory/2026-04-12.md:50:50": {
+      "key": "memory:memory/2026-04-12.md:50:50",
+      "path": "memory/2026-04-12.md",
+      "startLine": 50,
+      "endLine": 50,
+      "source": "memory",
+      "snippet": "📊 本周统计: **主要问题：**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本周",
+        "统计",
+        "主要",
+        "问题"
+      ]
+    },
+    "memory:memory/2026-04-12.md:51:52": {
+      "key": "memory:memory/2026-04-12.md:51:52",
+      "path": "memory/2026-04-12.md",
+      "startLine": 51,
+      "endLine": 52,
+      "source": "memory",
+      "snippet": "📊 本周统计: **技术实现容错不足** - 网络设备研发课题生成和深信服项目中，缺乏边界情况处理; **备份任务失败** - 4月6日备份任务未完成，缺少监控告警机制",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "备份",
+        "网络",
+        "本周",
+        "统计",
+        "技术",
+        "实现",
+        "不足",
+        "设备"
+      ]
+    },
+    "memory:memory/2026-04-12.md:54:54": {
+      "key": "memory:memory/2026-04-12.md:54:54",
+      "path": "memory/2026-04-12.md",
+      "startLine": 54,
+      "endLine": 54,
+      "source": "memory",
+      "snippet": "📊 本周统计: **改进方向：**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本周",
+        "统计",
+        "改进",
+        "方向"
+      ]
+    },
+    "memory:memory/2026-04-12.md:55:57": {
+      "key": "memory:memory/2026-04-12.md:55:57",
+      "path": "memory/2026-04-12.md",
+      "startLine": 55,
+      "endLine": 57,
+      "source": "memory",
+      "snippet": "📊 本周统计: 增加异常处理和优雅降级设计; 为核心任务建...; 📱 **08:45** 📊 每日反思报告 - 2026-04-11",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本周",
+        "统计",
+        "增加",
+        "异常",
+        "处理",
+        "优雅",
+        "降级",
+        "设计"
+      ]
+    },
+    "memory:memory/2026-04-12.md:59:59": {
+      "key": "memory:memory/2026-04-12.md:59:59",
+      "path": "memory/2026-04-12.md",
+      "startLine": 59,
+      "endLine": 59,
+      "source": "memory",
+      "snippet": "📊 本周统计: ━━━━━━━━━━━━━━━━━━━━━",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本周",
+        "统计"
+      ]
+    },
+    "memory:memory/2026-04-12.md:62:63": {
+      "key": "memory:memory/2026-04-12.md:62:63",
+      "path": "memory/2026-04-12.md",
+      "startLine": 62,
+      "endLine": 63,
+      "source": "memory",
+      "snippet": "📊 本周统计: • 今日提取教训：1 条 • 类型分布：technical 1条",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本周",
+        "统计",
+        "今日",
+        "提取",
+        "教训",
+        "类型",
+        "分布",
+        "technical"
+      ]
+    },
+    "memory:memory/2026-04-12.md:65:65": {
+      "key": "memory:memory/2026-04-12.md:65:65",
+      "path": "memory/2026-04-12.md",
+      "startLine": 65,
+      "endLine": 65,
+      "source": "memory",
+      "snippet": "📊 本周统计: ━━━━━━━━━━━━━━━━━━━━━",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本周",
+        "统计"
+      ]
+    },
+    "memory:memory/2026-04-12.md:69:69": {
+      "key": "memory:memory/2026-04-12.md:69:69",
+      "path": "memory/2026-04-12.md",
+      "startLine": 69,
+      "endLine": 69,
+      "source": "memory",
+      "snippet": "📊 本周统计: ━━━━━━━━━━━━━━━━━━━━━━━━━",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "本周",
+        "统计"
+      ]
+    },
+    "memory:memory/2026-04-12.md:73:73": {
+      "key": "memory:memory/2026-04-12.md:73:73",
+      "path": "memory/2026-04-12.md",
+      "startLine": 73,
+      "endLine": 73,
+      "source": "memory",
+      "snippet": "📊 本周统计: 我来为不同岗位生成网络设备相关的研发课题。基于网络设备行业特点，结合各岗位技术栈，生成...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "网络",
+        "本周",
+        "统计",
+        "我来",
+        "不同",
+        "岗位",
+        "生成",
+        "设备"
+      ]
+    },
+    "memory:memory/2026-04-12.md:78:78": {
+      "key": "memory:memory/2026-04-12.md:78:78",
+      "path": "memory/2026-04-12.md",
+      "startLine": 78,
+      "endLine": 78,
+      "source": "memory",
+      "snippet": "🔄 复盘与改进: **做得好的：**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "改进",
+        "做得",
+        "好的"
+      ]
+    },
+    "memory:memory/2026-04-12.md:81:81": {
+      "key": "memory:memory/2026-04-12.md:81:81",
+      "path": "memory/2026-04-12.md",
+      "startLine": 81,
+      "endLine": 81,
+      "source": "memory",
+      "snippet": "🔄 复盘与改进: **需改进：**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "改进"
+      ]
+    },
+    "memory:memory/2026-04-12.md:91:91": {
+      "key": "memory:memory/2026-04-12.md:91:91",
+      "path": "memory/2026-04-12.md",
+      "startLine": 91,
+      "endLine": 91,
+      "source": "memory",
+      "snippet": "明日计划: *生成于 08:30*",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "01679c334ef2"
+      ],
+      "recallDays": [
+        "2026-04-12",
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "明日",
+        "计划",
+        "生成"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:15:15": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:15:15",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 15,
+      "endLine": 15,
+      "source": "memory",
+      "snippet": "User: [cron:0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成] 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py Current time: Monday, April 13th, 2026 - 8:45 AM (Asia/Shanghai) / 2026-04-13 00:45 UTC Return your summary as plain text; it will be delivered a",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "asia/shanghai",
+        "user",
+        "cron",
+        "0b5f7ab0",
+        "424c",
+        "49ff",
+        "aa03",
+        "69a2acf1a864"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:16:16": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:16:16",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 16,
+      "endLine": 16,
+      "source": "memory",
+      "snippet": "Assistant: 每日反思脚本执行完成。分析了 2026-04-12 的记忆，提取了 1 条教训，已写入 reflections.md 并推送到飞书。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "reflections.md",
+        "assistant",
+        "每日",
+        "脚本",
+        "执行",
+        "完成",
+        "分析",
+        "记忆"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:17:17": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:17:17",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 17,
+      "endLine": 17,
+      "source": "memory",
+      "snippet": "User: System: [2026-04-13 08:30:03 GMT+8] 运行日报脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_report.py A scheduled reminder has been triggered. The reminder content is: 运行日报脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_report.py Please relay this reminder t",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "user",
+        "system",
+        "gmt",
+        "运行",
+        "日报",
+        "脚本",
+        "python3",
+        "root"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:18:18": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:18:18",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 18,
+      "endLine": 18,
+      "source": "memory",
+      "snippet": "Assistant: ⏰ 日报脚本执行时间到了",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "日报",
+        "脚本",
+        "执行",
+        "时间",
+        "到了"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:19:19": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:19:19",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 19,
+      "endLine": 19,
+      "source": "memory",
+      "snippet": "Assistant: ✅ 日报已生成并推送 **2026-04-12 概览:** - 本地消息: 40 条 - 飞书消息: 2 条 - 定时任务: 2 个 - 异常记录: 4 条 记忆文件已保存至 `memory/2026-04-12.md`",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "memory/2026-04-12.md",
+        "assistant",
+        "日报",
+        "生成",
+        "推送",
+        "本地",
+        "消息",
+        "任务"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:20:20": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:20:20",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 20,
+      "endLine": 20,
+      "source": "memory",
+      "snippet": "User: System: [2026-04-13 08:35:00 GMT+8] 读取NAS备份通知: cat /tmp/backup-notification-$(date +%Y%m%d).txt 2>/dev/null || echo '备份通知文件不存在' A scheduled reminder has been triggered. The reminder content is: 读取NAS备份通知: cat /tmp/backup-notification-$(date +%Y%m%d).txt 2>/dev/null || echo",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "backup",
+        "备份",
+        "tmp/backup-notification",
+        "dev/null",
+        "user",
+        "system",
+        "gmt",
+        "nas"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:21:21": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:21:21",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 21,
+      "endLine": 21,
+      "source": "memory",
+      "snippet": "Assistant: ⏰ 检查NAS备份状态",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "备份",
+        "assistant",
+        "检查",
+        "nas",
+        "状态"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:22:22": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:22:22",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 22,
+      "endLine": 22,
+      "source": "memory",
+      "snippet": "Assistant: ✅ NAS备份成功 **2026-04-13 02:00** 自动备份已完成 - 备份路径：`/aliyun_backup/server-backup/20260413/` - 文件：server-backup-20260413.tar.gz - 状态：🟢 成功",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:00:01.166Z",
+      "lastRecalledAt": "2026-04-13T01:00:01.166Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "backup",
+        "备份",
+        "server-backup-20260413.tar.gz",
+        "assistant",
+        "nas",
+        "成功",
+        "自动",
+        "完成"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:23:23": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:23:23",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 23,
+      "endLine": 23,
+      "source": "memory",
+      "snippet": "User: [cron:c81ec6ba-edf2-4aec-aa35-eed2660edf71 claude-budget-reminder] 提醒用户：该准备 Claude Code 的采购预算了 Current time: Monday, April 13th, 2026 - 9:01 AM (Asia/Shanghai) / 2026-04-13 01:01 UTC Return your summary as plain text; it will be delivered automatically. If the task explicit",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:30:01.995Z",
+      "lastRecalledAt": "2026-04-13T01:30:01.995Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "claude-budget-reminder",
+        "asia/shanghai",
+        "user",
+        "cron:c81ec6ba",
+        "edf2",
+        "4aec",
+        "aa35",
+        "eed2660edf71"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:24:24": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:24:24",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 24,
+      "endLine": 24,
+      "source": "memory",
+      "snippet": "Assistant: ⚡ **Claude Code 预算提醒** 该准备采购预算了。建议你考虑： **人数与授权方式** - 开发团队规模（每人一个授权？） - 使用场景（日常开发 vs 临时项目） - 订阅类型（月付/年付） **预算项目** - 许可费用（按人头算） - 培训成本（如果团队不熟悉） - 迁移时间成本 **时间节点** - 财年/季度预算截止日期 - 需要提前多久提交审批 要我帮你： 1. 整理一份预算评估草稿？ 2. 列出 Claude Code 的最新定价？ 3. 准备采购申请的要点？ 直接说哪个就行。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:30:01.995Z",
+      "lastRecalledAt": "2026-04-13T01:30:01.995Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "月付/年付",
+        "财年/季度预算截止日期",
+        "assistant",
+        "claude",
+        "code",
+        "预算",
+        "提醒",
+        "准备"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:25:25": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:25:25",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 25,
+      "endLine": 25,
+      "source": "memory",
+      "snippet": "User: [cron:bcf8f252-0549-4c74-977c-78e500bb254a weekly-security-config-check] 执行每周安全配置巡检。 1. 运行配置检查脚本： python3 ~/.openclaw/workspace/skills/security-audit/scripts/config_checker.py 2. 读取检查结果和评分 3. 如果评分低于 70 分或有高危问题，发送飞书告警给我 4. 将结果记录到 memory/security-config-check-YYYY-MM-DD.md Cu",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:30:01.995Z",
+      "lastRecalledAt": "2026-04-13T01:30:01.995Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "weekly-security-config-check",
+        "user",
+        "cron:bcf8f252",
+        "4c74",
+        "977c",
+        "78e500bb254a",
+        "weekly",
+        "security"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:26:26": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:26:26",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 26,
+      "endLine": 26,
+      "source": "memory",
+      "snippet": "Assistant: ## 每周安全配置巡检完成 ✅ 检查脚本已执行 - **安全评分**: 85/100 (🟢 B) - **高危问题**: 0 - **中危问题**: 1（以 root 运行） ✅ 结果已记录到: `memory/security-config-check-2026-04-13.md` ✅ 无需发送告警（评分 > 70，无高危问题） **唯一建议**: 考虑使用非特权用户运行 OpenClaw，最小化权限原则",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T01:30:01.995Z",
+      "lastRecalledAt": "2026-04-13T01:30:01.995Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "85/100",
+        "assistant",
+        "每周",
+        "安全",
+        "配置",
+        "完成",
+        "检查",
+        "脚本"
+      ]
+    },
+    "memory:memory/2026-04-03.md:91:134": {
+      "key": "memory:memory/2026-04-03.md:91:134",
+      "path": "memory/2026-04-03.md",
+      "startLine": 91,
+      "endLine": 134,
+      "source": "memory",
+      "snippet": "**问题**: 日报脚本配置错误（只扫描scheduler目录）运行多天未发现 **根因**: 缺少配置验证和监控告警 **Fix**: 建立配置检查清单，增加任务失败告警机制 **级别**: 🟡 中 ### 多用户环境路径规划不足 **问题**: OpenClauw迁移中，/root vs /home/openclaw... - 💻 **09:14** # 项目追踪 ## 日报机制优化 **状态**: ✅ 完成 **时间**: 2026-03-24 ~ 2026-03-25 **描述**: 修复日报生成脚本，支持多目录扫描、飞书IM集成、记忆文件直接写入 **关键改进**: - 数据源：从单一scheduler目录扩展到scheduler+main多目录扫描 - 飞书集成：通过chat_id缓存获取飞书IM单聊消息 - 输出模式：同时输出到a... - 💻 **09:15** #!/usr/bin/env python3 \"\"\" Weekly Reflection Report - 周反思报告生成器 汇总本周每日反思，提取核心教训，生成周报 \"\"\" import os import re import json import requests from datetime import datetime, timedelta REFLECTION_DIR = \"/ro... - 💻 **09:15** { \"status\": \"error\", \"tool\": \"read\", \"error\": \"ENOENT: no such file or dir",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7400602270358075,
+      "maxScore": 0.7400602270358075,
+      "firstRecalledAt": "2026-04-13T03:18:16.739Z",
+      "lastRecalledAt": "2026-04-13T03:18:16.739Z",
+      "queryHashes": [
+        "f327b288153c"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "home/openclaw",
+        "通过chat-id缓存获取飞书im单聊消息",
+        "usr/bin/env",
+        "reflection-dir",
+        "问题",
+        "日报",
+        "脚本",
+        "配置"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:27:27": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:27:27",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 27,
+      "endLine": 27,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 11:16 GMT+8] 更新调整： 1、补充组织，综合管理部还下设测试中心，负责体系平台级中台建设，包括测试自动化平台、DFX平台能力以及其他中台能力，同时一起为AI-Native变革落地负责。另外，AI效能组除了上述职责外，还",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T03:30:01.438Z",
+      "lastRecalledAt": "2026-04-13T03:30:01.438Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "同时一起为ai-native变革落地负责",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:28:28": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:28:28",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 28,
+      "endLine": 28,
+      "source": "memory",
+      "snippet": "Assistant: 我来帮你更新这个内容。先搜索一下相关文档，看看需要更新哪个文件。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T03:30:01.438Z",
+      "lastRecalledAt": "2026-04-13T03:30:01.438Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "我来",
+        "更新",
+        "这个",
+        "内容",
+        "搜索",
+        "一下",
+        "相关"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:29:29": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:29:29",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 29,
+      "endLine": 29,
+      "source": "memory",
+      "snippet": "Assistant: 让我先在workspace中搜索一下相关文档：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T03:30:01.438Z",
+      "lastRecalledAt": "2026-04-13T03:30:01.438Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "我先",
+        "搜索",
+        "一下",
+        "相关"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:30:30": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:30:30",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 30,
+      "endLine": 30,
+      "source": "memory",
+      "snippet": "Assistant: 我来帮你更新这个文档。我会： 1. 补充组织架构 - 添加测试中心 2. 更新AI效能组职责 - 补充具体方案落地实现 3. 将详细里程碑计划汇总成全局视角的表格",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T03:30:01.438Z",
+      "lastRecalledAt": "2026-04-13T03:30:01.438Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "我来",
+        "更新",
+        "这个",
+        "补充",
+        "组织",
+        "架构",
+        "添加"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:31:31": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:31:31",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 31,
+      "endLine": 31,
+      "source": "memory",
+      "snippet": "Assistant: 已完成更新，主要改动： **1. 补充组织架构** - 在组织架构图中新增\"测试中心\"下设部门，负责： - 测试自动化平台 - DFX平台能力 - 其他中台能力 - AI-Native落地责任支撑 - 在职责分工矩阵中新增\"测试中心负责人\"角色 - 更新AI效能组长职责，增加\"具体方案落地实现\" **2. 详细里程碑计划改为全局视角表格** 第五部分重构为： - **5.1 里程碑交付物与赋能关系表**：按阶段（Phase 0-4）、月份、关键交付物、赋能团队联系、负责角色、基础设施依赖维度汇总 - **5.2 里程碑优先级与赋能价",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T03:30:01.438Z",
+      "lastRecalledAt": "2026-04-13T03:30:01.438Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "ai-native落地责任支撑",
+        "5.1",
+        "0-4",
+        "5.2",
+        "assistant",
+        "完成",
+        "更新",
+        "主要"
+      ]
+    },
+    "memory:memory/2026-04-13.md:403:403": {
+      "key": "memory:memory/2026-04-13.md:403:403",
+      "path": "memory/2026-04-13.md",
+      "startLine": 403,
+      "endLine": 403,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T03:30:01.438Z",
+      "lastRecalledAt": "2026-04-13T08:00:01.825Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:406:408": {
+      "key": "memory:memory/2026-04-13.md:406:408",
+      "path": "memory/2026-04-13.md",
+      "startLine": 406,
+      "endLine": 408,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T03:30:01.438Z",
+      "lastRecalledAt": "2026-04-13T08:00:01.825Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:32:32": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:32:32",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 32,
+      "endLine": 32,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 15:35 GMT+8] 更新调整：需要基于上述文档材料，新生成一个演讲文档，用于跟研发体系以及各团队对齐综合管理部AI-Native落地计划。要求： 1、需要汇总当前的所有信息，分章节按逻辑呈现关键结论信息。逻辑如下： 1.1",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T08:00:01.825Z",
+      "lastRecalledAt": "2026-04-13T08:00:01.825Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "用于跟研发体系以及各团队对齐综合管理部ai-native落地计划",
+        "1.1",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:33:33": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:33:33",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 33,
+      "endLine": 33,
+      "source": "memory",
+      "snippet": "Assistant: 收到。我先理解需求并做规划，经你决策后再执行。 ## 需求理解 **目标**：生成演讲文档，用于向研发体系和各团队对齐综合管理部AI-Native落地计划 **核心要求**： 1. 分章节按逻辑呈现关键结论信息 2. 结构清晰，易于理解，不冗余 3. 演讲友好（有开场、结论、过渡） **主要结构**（按你提出的1.1-1.4）： **1.1 需求收集信息汇总** - 输入来源： - 信锐研发体系OKR.docx - 信锐AI-Native专项变革机制.pptx - 各团队AI-Native OKR（各团队AI-Native-OKR.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T08:00:01.825Z",
+      "lastRecalledAt": "2026-04-13T08:00:01.825Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "用于向研发体系和各团队对齐综合管理部ai-native落地计划",
+        "按你提出的1.1-1.4",
+        "1.1",
+        "信锐研发体系okr.docx",
+        "信锐ai-native专项变革机制.pptx",
+        "各团队ai-native",
+        "各团队ai-native-okr",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:34:34": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:34:34",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 34,
+      "endLine": 34,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 15:41 GMT+8] 1、信锐研发体系OKR.docx：knowledge/work/信锐研发体系ORK.docx ；信锐AI-Native专项变革机制.pptx 也在 knowledge/work/ 目录下 2、无线、交换机",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T08:00:01.825Z",
+      "lastRecalledAt": "2026-04-13T08:00:01.825Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "信锐研发体系okr.docx",
+        "knowledge/work/信锐研发体系ork.docx",
+        "信锐ai-native专项变革机制.pptx",
+        "knowledge/work",
+        "user",
+        "sender",
+        "untrusted"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:35:35": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:35:35",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 35,
+      "endLine": 35,
+      "source": "memory",
+      "snippet": "Assistant: 好的，信息已明确。现在开始执行。 ## 执行计划 1. 读取核心文档 2. 查找各团队OKR和落地计划 3. 按1.1-1.4结构整理信息 4. 生成演讲文档",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T08:00:01.825Z",
+      "lastRecalledAt": "2026-04-13T08:00:01.825Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "按1.1-1.4结构整理信息",
+        "assistant",
+        "好的",
+        "信息",
+        "明确",
+        "现在",
+        "开始",
+        "执行"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:36:36": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:36:36",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 36,
+      "endLine": 36,
+      "source": "memory",
+      "snippet": "Assistant: 好的，所有核心文档已读取完毕。现在开始整理并生成演讲文档。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T08:00:01.825Z",
+      "lastRecalledAt": "2026-04-13T08:00:01.825Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "好的",
+        "所有",
+        "核心",
+        "完毕",
+        "现在",
+        "开始",
+        "整理"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:37:37": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:37:37",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 37,
+      "endLine": 37,
+      "source": "memory",
+      "snippet": "Assistant: 已完成，演讲文档已生成。 ## 完成情况 **文档路径**：`/root/.openclaw/workspace/knowledge/work/AI-Native/综合管理部AI-Native落地计划-对齐报告.md` **文档规模**：577行，约16KB **主要内容**： ### 一、需求收集信息汇总 - **1.1 信锐研发体系OKR核心诉求**：效率提升（40-50%）+ 创新加速（验证周期缩短50%） - **1.2 各团队AI-Native落地需求汇总**：无线、交换机、NMC、会议主机四团队的表格汇总 - **1.3",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T08:00:01.825Z",
+      "lastRecalledAt": "2026-04-13T08:00:01.825Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "1.1",
+        "40-50",
+        "1.2",
+        "各团队ai-native落地需求汇总",
+        "1.3",
+        "assistant",
+        "完成",
+        "演讲"
+      ]
+    },
+    "memory:memory/2026-04-13.md:428:428": {
+      "key": "memory:memory/2026-04-13.md:428:428",
+      "path": "memory/2026-04-13.md",
+      "startLine": 428,
+      "endLine": 428,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T08:00:01.825Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:431:433": {
+      "key": "memory:memory/2026-04-13.md:431:433",
+      "path": "memory/2026-04-13.md",
+      "startLine": 431,
+      "endLine": 433,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T08:00:01.825Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:38:38": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:38:38",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 38,
+      "endLine": 38,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 17:12 GMT+8] 更新调整： 会议主机团队更新了落地计划文档 会议主机产品线 2026年度 OKR与里程碑计划(第三版).md ，评估更新会议主机团队的相关章节及关联章节。 先理解需求，做好规划，经我决策后，再执行。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw",
+        "tui"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:39:39": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:39:39",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 39,
+      "endLine": 39,
+      "source": "memory",
+      "snippet": "Assistant: 收到。我先读取新版本的会议主机落地计划文档，对比旧版本，理解更新内容，然后制定更新规划。 ## 需求理解 **目标**：评估并更新对齐报告中会议主机团队的相关章节及关联章节 **需要评估的章节**： 1. **1.2 各团队AI-Native落地需求汇总**：会议主机团队的核心目标、关键里程碑、关键动作、核心障碍 2. **1.3 团队共性需求提炼**：可能需要根据会议主机的新需求调整共性需求优先级 3. **2.1 通用平台需求**：可能需要根据会议主机的新需求调整平台需求 4. **2.3 关键里程碑计划表**：可能需要根据会议",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "1.2",
+        "各团队ai-native落地需求汇总",
+        "1.3",
+        "2.1",
+        "2.3",
+        "assistant",
+        "收到",
+        "先读"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:40:40": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:40:40",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 40,
+      "endLine": 40,
+      "source": "memory",
+      "snippet": "Assistant: 好的，已对比完成。以下是更新规划和评估。 --- ## 更新规划与评估 ### 一、关键变化总结 **新增内容**： 1. **第3章：为什么做与做什么** - 明确业务痛点、业务复杂性、核心策略（SDD+TDD）、MVP路径 2. **第4章：角色与分工** - AI布道师、管理布道师、AI-Native开发，及里程碑分工矩阵 3. **第5章：Skill清单** - 13个技能，分为5大类（核心闭环、代码质量、TD管理、知识库、运维支撑） 4. **第5章：知识库建设** - 代码知识库、问题知识库、测试用例知识库 5. **第",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "ai-native开发",
+        "assistant",
+        "好的",
+        "对比",
+        "完成",
+        "以下",
+        "更新",
+        "规划"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:41:41": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:41:41",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 41,
+      "endLine": 41,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 17:19 GMT+8] 执行，基于之前的文档 综合管理部AI-Native落地计划-对齐报告.md ，更新上述内容，生成新的文档。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "综合管理部ai-native落地计划-对齐报告.md",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:42:42": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:42:42",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 42,
+      "endLine": 42,
+      "source": "memory",
+      "snippet": "Assistant: 好的，开始执行更新。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "好的",
+        "开始",
+        "执行",
+        "更新"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:43:43": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:43:43",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 43,
+      "endLine": 43,
+      "source": "memory",
+      "snippet": "Assistant: 现在开始更新文档。我将分步骤进行： ### 第一步：更新1.2 各团队AI-Native落地需求汇总（会议主机行）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "更新1.2",
+        "各团队ai-native落地需求汇总",
+        "assistant",
+        "现在",
+        "开始",
+        "更新",
+        "步骤",
+        "进行"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:44:44": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:44:44",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 44,
+      "endLine": 44,
+      "source": "memory",
+      "snippet": "Assistant: ### 第二步：更新1.3 团队共性需求提炼（会议主机相关）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "更新1.3",
+        "assistant",
+        "第二",
+        "更新",
+        "1.3",
+        "团队",
+        "共性",
+        "需求"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:45:45": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:45:45",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 45,
+      "endLine": 45,
+      "source": "memory",
+      "snippet": "Assistant: ### 第三步：更新2.3 关键里程碑计划表（会议主机相关里程碑）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "更新2.3",
+        "assistant",
+        "三步",
+        "更新",
+        "2.3",
+        "关键",
+        "里程碑",
+        "计划"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:46:46": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:46:46",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 46,
+      "endLine": 46,
+      "source": "memory",
+      "snippet": "Assistant: ### 第四步：更新3.1章节中关于各团队流程差异的描述",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "更新3.1章节中关于各团队流程差异的描述",
+        "assistant",
+        "第四",
+        "更新",
+        "3.1",
+        "章节",
+        "关于",
+        "团队"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:47:47": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:47:47",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 47,
+      "endLine": 47,
+      "source": "memory",
+      "snippet": "Assistant: ### 第五步：更新AI布道师网络职责（会议主机）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "网络",
+        "assistant",
+        "五步",
+        "更新",
+        "职责",
+        "会议",
+        "主机"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:48:48": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:48:48",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 48,
+      "endLine": 48,
+      "source": "memory",
+      "snippet": "Assistant: ### 第六步：更新4.2关键里程碑计划汇总（补充会议主机赋能内容）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "更新4.2关键里程碑计划汇总",
+        "assistant",
+        "第六",
+        "更新",
+        "4.2",
+        "关键",
+        "里程碑",
+        "计划"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:49:49": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:49:49",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 49,
+      "endLine": 49,
+      "source": "memory",
+      "snippet": "Assistant: ### 第七步：验证更新完成情况",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "第七",
+        "验证",
+        "更新",
+        "完成",
+        "情况"
+      ]
+    },
+    "memory:memory/2026-04-13.md:443:443": {
+      "key": "memory:memory/2026-04-13.md:443:443",
+      "path": "memory/2026-04-13.md",
+      "startLine": 443,
+      "endLine": 443,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:446:448": {
+      "key": "memory:memory/2026-04-13.md:446:448",
+      "path": "memory/2026-04-13.md",
+      "startLine": 446,
+      "endLine": 448,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:50:50": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:50:50",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 50,
+      "endLine": 50,
+      "source": "memory",
+      "snippet": "Assistant: ### 第八步：更新文档版本信息",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "八步",
+        "更新",
+        "版本",
+        "信息"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:51:51": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:51:51",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 51,
+      "endLine": 51,
+      "source": "memory",
+      "snippet": "Assistant: ### 第九步：生成更新总结",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "第九",
+        "生成",
+        "更新",
+        "总结"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:52:52": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:52:52",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 52,
+      "endLine": 52,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 17:19 GMT+8] 执行，基于之前的文档 综合管理部AI-Native落地计划-对齐报告.md ，更新上述内容，生成新的文档。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "综合管理部ai-native落地计划-对齐报告.md",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:53:53": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:53:53",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 53,
+      "endLine": 53,
+      "source": "memory",
+      "snippet": "Assistant: 更新完成。以下是更新总结： --- ## 更新完成情况 **文档路径**：`/root/.openclaw/workspace/knowledge/work/AI-Native/综合管理部AI-Native落地计划-对齐报告.md` **文档版本**：V1.0 → V1.1 **文档规模**：577行 → 590行（+13行） --- ## 更新内容汇总 ### 1. 更新1.2 各团队AI-Native落地需求汇总（会议主机行） | 字段 | 旧版 | 新版 | |------|------|------| | **核心目标**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "v1.0",
+        "v1.1",
+        "更新1.2",
+        "各团队ai-native落地需求汇总",
+        "assistant",
+        "更新",
+        "完成",
+        "以下"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:54:54": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:54:54",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 54,
+      "endLine": 54,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 17:27 GMT+8] 更新调整： 1、会议主机团队重新给了落地计划，会议主机产品线 2026年度 OKR与里程碑计划(第四版).md，主要是调整了里程碑的时间点。 2、交换机团队的落地计划，应该是参考这一版，交换机部门2026",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw",
+        "tui"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:55:55": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:55:55",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 55,
+      "endLine": 55,
+      "source": "memory",
+      "snippet": "Assistant: 收到。我先读取新版本文档，对比了解变化，然后制定更新规划。 ## 第一步：读取新版本文档",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "收到",
+        "先读",
+        "新版",
+        "本文",
+        "对比",
+        "了解",
+        "变化"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:56:56": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:56:56",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 56,
+      "endLine": 56,
+      "source": "memory",
+      "snippet": "Assistant: 好的，读取了会议主机第四版。现在读取交换机的新落地计划。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "好的",
+        "会议",
+        "主机",
+        "第四",
+        "现在",
+        "交换",
+        "落地"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:57:57": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:57:57",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 57,
+      "endLine": 57,
+      "source": "memory",
+      "snippet": "Assistant: 好的，已读取两个新版本文档。现在对比分析并制定更新规划。 --- ## 需求理解与对比分析 ### 一、会议主机第四版 vs 第三版 关键变化 | 维度 | 第三版 | 第四版 | 变化说明 | |------|--------|--------|---------| | **角色分工** | 3角色：AI布道师、管理布道师、AI-Native开发 | 2角色：AI布道师（合并管理职责）、AI-Native开发 | 管理布道师职责合并到AI布道师 | | **里程碑分工** | Q3 7-8月闭环补全、Q3 9月BYOM闭环、Q4",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T09:30:01.437Z",
+      "lastRecalledAt": "2026-04-13T09:30:01.437Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "ai-native开发",
+        "7-8月闭环补全",
+        "assistant",
+        "好的",
+        "新版",
+        "本文",
+        "现在",
+        "对比"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:58:58": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:58:58",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 58,
+      "endLine": 58,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 17:30 GMT+8] 执行",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw",
+        "tui"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:59:59": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:59:59",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 59,
+      "endLine": 59,
+      "source": "memory",
+      "snippet": "Assistant: 收到，开始执行更新。 ## 第一步：复制V1.1文档为V1.2",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "复制v1.1文档为v1.2",
+        "assistant",
+        "收到",
+        "开始",
+        "执行",
+        "更新",
+        "一步",
+        "复制"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:60:60": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:60:60",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 60,
+      "endLine": 60,
+      "source": "memory",
+      "snippet": "Assistant: ## 第二步：更新1.2章节（会议主机和交换机行）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "更新1.2章节",
+        "assistant",
+        "第二",
+        "更新",
+        "1.2",
+        "章节",
+        "会议",
+        "主机"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:61:61": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:61:61",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 61,
+      "endLine": 61,
+      "source": "memory",
+      "snippet": "Assistant: ## 第三步：更新1.3章节（团队共性需求提炼）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "更新1.3章节",
+        "assistant",
+        "三步",
+        "更新",
+        "1.3",
+        "章节",
+        "团队",
+        "共性"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:62:62": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:62:62",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 62,
+      "endLine": 62,
+      "source": "memory",
+      "snippet": "Assistant: ## 第四步：更新2.3章节（关键里程碑计划表）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "更新2.3章节",
+        "assistant",
+        "第四",
+        "更新",
+        "2.3",
+        "章节",
+        "关键",
+        "里程碑"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:63:63": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:63:63",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 63,
+      "endLine": 63,
+      "source": "memory",
+      "snippet": "Assistant: ## 第五步：更新3.1章节（各团队流程差异描述）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "更新3.1章节",
+        "assistant",
+        "五步",
+        "更新",
+        "3.1",
+        "章节",
+        "团队",
+        "流程"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:64:64": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:64:64",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 64,
+      "endLine": 64,
+      "source": "memory",
+      "snippet": "Assistant: ## 第六步：更新AI布道师网络职责（会议主机）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "网络",
+        "assistant",
+        "第六",
+        "更新",
+        "职责",
+        "会议",
+        "主机"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:65:65": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:65:65",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 65,
+      "endLine": 65,
+      "source": "memory",
+      "snippet": "Assistant: ## 第七步：更新4.2章节（关键里程碑计划汇总）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "更新4.2章节",
+        "assistant",
+        "第七",
+        "更新",
+        "4.2",
+        "章节",
+        "关键",
+        "里程碑"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:66:66": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:66:66",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 66,
+      "endLine": 66,
+      "source": "memory",
+      "snippet": "Assistant: ## 第八步：更新文档版本信息（开头和末尾）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "八步",
+        "更新",
+        "版本",
+        "信息",
+        "开头",
+        "末尾"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:67:67": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:67:67",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 67,
+      "endLine": 67,
+      "source": "memory",
+      "snippet": "Assistant: ## 第九步：生成更新总结",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "第九",
+        "生成",
+        "更新",
+        "总结"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:68:68": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:68:68",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 68,
+      "endLine": 68,
+      "source": "memory",
+      "snippet": "Assistant: 更新完成。以下是更新总结： --- ## 更新完成情况 **新文档路径**：`/root/.openclaw/workspace/knowledge/work/AI-Native/综合管理部AI-Native落地计划-对齐报告-V1.2.md` **原文档保留**：`/root/.openclaw/workspace/knowledge/work/AI-Native/综合管理部AI-Native落地计划-对齐报告.md`（V1.1） **文档规模**：V1.1（590行）→ V1.2（605行，+15行） --- ## 更新内容汇总",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "v1.1",
+        "v1.2",
+        "assistant",
+        "更新",
+        "完成",
+        "以下",
+        "总结",
+        "情况"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:69:69": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:69:69",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 69,
+      "endLine": 69,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 17:54 GMT+8] 基于这个 合管理部AI-Native落地计划-对齐报告-V1.2.md 文档 以及各产线最新的落地计划文档，重新更新 各团队AI-Native里程碑汇总表.md 这个文档，可以生成新文档。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "合管理部ai-native落地计划-对齐报告-v1.2.md",
+        "各团队ai-native里程碑汇总表.md",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:70:70": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:70:70",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 70,
+      "endLine": 70,
+      "source": "memory",
+      "snippet": "Assistant: 收到。我先读取现有文档和各产线最新落地计划，然后制定更新规划。 ## 第一步：读取现有文档和最新落地计划",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "收到",
+        "先读",
+        "现有",
+        "最新",
+        "落地",
+        "计划",
+        "然后"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:71:71": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:71:71",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 71,
+      "endLine": 71,
+      "source": "memory",
+      "snippet": "Assistant: 文档已读取。现在读取各团队最新落地计划的关键信息，然后生成更新后的汇总表。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "现在",
+        "团队",
+        "最新",
+        "落地",
+        "计划",
+        "关键",
+        "信息"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:72:72": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:72:72",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 72,
+      "endLine": 72,
+      "source": "memory",
+      "snippet": "Assistant: 收到。我先读取现有文档和各产线最新落地计划，然后制定更新规划。 ## 第一步：读取现有文档和最新落地计划文档已读取。现在读取各团队最新落地计划的关键信息，然后生成更新后的汇总表。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "收到",
+        "先读",
+        "现有",
+        "最新",
+        "落地",
+        "计划",
+        "然后"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:73:73": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:73:73",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 73,
+      "endLine": 73,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 17:55 GMT+8] 基于这个 合管理部AI-Native落地计划-对齐报告-V1.2.md 文档 以及各产线最新的落地计划文档，重新更新 各团队AI-Native里程碑汇总表.md 这个文档，可以生成新文档。先理解需求，做好",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "合管理部ai-native落地计划-对齐报告-v1.2.md",
+        "各团队ai-native里程碑汇总表.md",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:74:74": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:74:74",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 74,
+      "endLine": 74,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 17:55 GMT+8] 基于这个 合管理部AI-Native落地计划-对齐报告-V1.2.md 文档 以及各产线最新的落地计划文档，重新更新 各团队AI-Native里程碑汇总表.md 这个文档，可以生成新文档。先理解需求，做好",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "合管理部ai-native落地计划-对齐报告-v1.2.md",
+        "各团队ai-native里程碑汇总表.md",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:75:75": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:75:75",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 75,
+      "endLine": 75,
+      "source": "memory",
+      "snippet": "Assistant: 收到。我先理解需求，读取相关文档，制定更新规划。 ## 需求理解 **目标**：基于 V1.2 对齐报告和各产线最新落地计划，更新\"各团队 AI-Native 里程碑汇总表.md\" **输入文档**： 1. 综合管理部 AI-Native 落地计划 - 对齐报告-V1.2.md（已更新） 2. 各团队最新落地计划： - 无线：无线 AI 落地计划_V2.md - 交换机：交换机部门 2026 年 AI-Coding 行动计划.md - NMC：NMC-AI-Native 落地计划.xlsx - 会议主机：会议主机产品线 2026 年",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "v1.2",
+        "ai-native",
+        "里程碑汇总表.md",
+        "对齐报告-v1.2.md",
+        "落地计划-v2.md",
+        "ai-coding",
+        "行动计划.md",
+        "nmc-ai-native"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:76:76": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:76:76",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 76,
+      "endLine": 76,
+      "source": "memory",
+      "snippet": "Assistant: 文件读取有问题，但我已掌握足够信息。让我基于 V1.2 对齐报告制定更新规划。 --- ## 更新规划 ### 一、输入文档分析 | 文档 | 版本 | 关键信息 | |------|------|---------| | **V1.2 对齐报告** | V1.2（最新） | 无线、交换机、NMC、会议主机 4 团队完整信息 | | **无线落地计划** | V2 | Q1-Q4 四阶段，双布道师制，SPEC 模式 | | **交换机行动计划** | 新版 | 5 阶段（破冰/嵌入/创新/体系化/引领），4 大项目 | | **NM",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "v1.2",
+        "q1-q4",
+        "破冰/嵌入/创新/体系化/引领",
+        "assistant",
+        "文件",
+        "问题",
+        "掌握",
+        "足够"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:77:77": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:77:77",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 77,
+      "endLine": 77,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 17:58 GMT+8] 执行，另外，IPSIP和硬件 不需要呈现。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw",
+        "tui"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:78:78": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:78:78",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 78,
+      "endLine": 78,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 17:58 GMT+8] 执行，另外，IPSIP和硬件 不需要呈现。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw",
+        "tui"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:79:79": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:79:79",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 79,
+      "endLine": 79,
+      "source": "memory",
+      "snippet": "Assistant: 用户确认执行，并且明确说明 IPSIP 和硬件不需要呈现。所以只需要更新无线、交换机、NMC、会议主机这 4 个团队。 让我基于 V1.2 对齐报告，生成新的汇总表 V2.0，只包含 4 个团队：无线、交换机、NMC、会议主机。 我将从 V1.2 对齐报告中提取关键信息： - 1.2 章节：各团队核心目标、关键里程碑、关键动作、核心障碍 - 2.3 章节：月度里程碑计划 - 3.1 章节：RPP 分析 - 3.2 章节：PPT 分析 - 3.3 章节：6 原则分析 然后生成新的汇总表。收到，开始执行。将基于 V1.2 对齐报告生成新",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "v1.2",
+        "v2.0",
+        "1.2",
+        "2.3",
+        "3.1",
+        "3.2",
+        "3.3",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:80:80": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:80:80",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 80,
+      "endLine": 80,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Mon 2026-04-13 17:58 GMT+8] 执行，另外，IPSIP和硬件 不需要呈现。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:02:35.419Z",
+      "lastRecalledAt": "2026-04-13T10:02:35.419Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "user",
+        "sender",
+        "untrusted",
+        "metadata",
+        "label",
+        "openclaw",
+        "tui"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:81:81": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:81:81",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 81,
+      "endLine": 81,
+      "source": "memory",
+      "snippet": "Assistant: 用户确认执行，并且明确说明 IPSIP 和硬件不需要呈现。现在我将基于 V1.2 对齐报告生成新的汇总表 V2.0，仅包含 4 个团队（无线、交换机、NMC、会议主机）。 由于文件读取有问题，我将直接生成新的汇总表文档。好的，开始执行生成新文档。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:32:34.470Z",
+      "lastRecalledAt": "2026-04-13T10:32:34.470Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "v1.2",
+        "v2.0",
+        "assistant",
+        "用户",
+        "确认",
+        "执行",
+        "并且",
+        "明确"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:82:82": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:82:82",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 82,
+      "endLine": 82,
+      "source": "memory",
+      "snippet": "Assistant: 好的，已备份原文档。现在我将生成新的汇总表 V2.0。由于 V1.2 对齐报告内容已经比较完整，我将基于其中的内容生成新的汇总表。 由于文件读取存在编码问题，我将直接使用 exec 命令生成新文档。好的，开始生成新汇总表。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:32:34.470Z",
+      "lastRecalledAt": "2026-04-13T10:32:34.470Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "备份",
+        "v2.0",
+        "v1.2",
+        "assistant",
+        "好的",
+        "原文",
+        "现在",
+        "生成"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:83:83": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:83:83",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 83,
+      "endLine": 83,
+      "source": "memory",
+      "snippet": "Assistant: 好的，V2.0文档已创建（205行），比V1.1（216行）略少，这是因为去掉了IPSIP和硬件的章节。现在让我确认一下文档内容是否正确。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:32:34.470Z",
+      "lastRecalledAt": "2026-04-13T10:32:34.470Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "v2.0文档已创建",
+        "比v1.1",
+        "assistant",
+        "好的",
+        "v2.0",
+        "创建",
+        "v1.1",
+        "因为"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:84:84": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:84:84",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 84,
+      "endLine": 84,
+      "source": "memory",
+      "snippet": "Assistant: 很好，文档内容看起来正确。让我确认一下是否包含所有关键章节和月度里程碑。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:32:34.470Z",
+      "lastRecalledAt": "2026-04-13T10:32:34.470Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "assistant",
+        "很好",
+        "内容",
+        "看起来",
+        "正确",
+        "确认",
+        "一下",
+        "是否"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:85:85": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:85:85",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 85,
+      "endLine": 85,
+      "source": "memory",
+      "snippet": "Assistant: 很好，V2.0文档包含了所有关键章节。现在我需要确认一下V1.1文档是否被正确备份，然后生成最终总结。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:32:34.470Z",
+      "lastRecalledAt": "2026-04-13T10:32:34.470Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "备份",
+        "v2.0文档包含了所有关键章节",
+        "现在我需要确认一下v1.1文档是否被正确备份",
+        "assistant",
+        "很好",
+        "v2.0",
+        "包含",
+        "所有"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:86:86": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:86:86",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 86,
+      "endLine": 86,
+      "source": "memory",
+      "snippet": "Assistant: 让我检查一下备份文件的位置。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:32:34.470Z",
+      "lastRecalledAt": "2026-04-13T10:32:34.470Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "备份",
+        "assistant",
+        "检查",
+        "一下",
+        "文件",
+        "位置"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:87:87": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:87:87",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 87,
+      "endLine": 87,
+      "source": "memory",
+      "snippet": "Assistant: 很好，文件都存在。让我检查一下V2.0文档的实际大小，确认生成完整。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:32:34.470Z",
+      "lastRecalledAt": "2026-04-13T10:32:34.470Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "让我检查一下v2.0文档的实际大小",
+        "assistant",
+        "很好",
+        "文件",
+        "存在",
+        "检查",
+        "一下",
+        "v2.0"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-13.txt:88:88": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-13.txt:88:88",
+      "path": "memory/.dreams/session-corpus/2026-04-13.txt",
+      "startLine": 88,
+      "endLine": 88,
+      "source": "memory",
+      "snippet": "Assistant: 好的，V2.0文档（15590字符）比原文档（14259字符）大，这是因为增加了综合管理部支撑计划章节。现在我需要生成最终总结。 ## 更新完成情况 **新文档路径**：`/root/.openclaw/workspace/knowledge/work/AI-Native/各团队AI-Native里程碑汇总表-V2.0.md` **原文档保留**：`/root/.openclaw/workspace/knowledge/work/AI-Native/各团队AI-Native里程碑汇总表.md` **备份文档**：`/root/.op",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-13T10:32:34.470Z",
+      "lastRecalledAt": "2026-04-13T10:32:34.470Z",
+      "queryHashes": [
+        "27426694d940"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "备份",
+        "v2.0文档",
+        "assistant",
+        "好的",
+        "v2.0",
+        "字符",
+        "原文",
+        "因为"
+      ]
+    },
+    "memory:memory/2026-04-13.md:353:353": {
+      "key": "memory:memory/2026-04-13.md:353:353",
+      "path": "memory/2026-04-13.md",
+      "startLine": 353,
+      "endLine": 353,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T10:32:34.470Z",
+      "lastRecalledAt": "2026-04-13T11:02:34.372Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:356:358": {
+      "key": "memory:memory/2026-04-13.md:356:358",
+      "path": "memory/2026-04-13.md",
+      "startLine": 356,
+      "endLine": 358,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T10:32:34.470Z",
+      "lastRecalledAt": "2026-04-13T11:02:34.372Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:338:338": {
+      "key": "memory:memory/2026-04-13.md:338:338",
+      "path": "memory/2026-04-13.md",
+      "startLine": 338,
+      "endLine": 338,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T11:32:34.883Z",
+      "lastRecalledAt": "2026-04-13T12:02:34.368Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:341:343": {
+      "key": "memory:memory/2026-04-13.md:341:343",
+      "path": "memory/2026-04-13.md",
+      "startLine": 341,
+      "endLine": 343,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T11:32:34.883Z",
+      "lastRecalledAt": "2026-04-13T12:02:34.368Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:313:313": {
+      "key": "memory:memory/2026-04-13.md:313:313",
+      "path": "memory/2026-04-13.md",
+      "startLine": 313,
+      "endLine": 313,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T13:02:34.876Z",
+      "lastRecalledAt": "2026-04-13T13:32:34.874Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:316:318": {
+      "key": "memory:memory/2026-04-13.md:316:318",
+      "path": "memory/2026-04-13.md",
+      "startLine": 316,
+      "endLine": 318,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T13:02:34.876Z",
+      "lastRecalledAt": "2026-04-13T13:32:34.874Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:308:308": {
+      "key": "memory:memory/2026-04-13.md:308:308",
+      "path": "memory/2026-04-13.md",
+      "startLine": 308,
+      "endLine": 308,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T13:32:34.874Z",
+      "lastRecalledAt": "2026-04-13T14:02:34.876Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:311:313": {
+      "key": "memory:memory/2026-04-13.md:311:313",
+      "path": "memory/2026-04-13.md",
+      "startLine": 311,
+      "endLine": 313,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T13:32:34.874Z",
+      "lastRecalledAt": "2026-04-13T14:02:34.876Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-04-13.md:303:303": {
+      "key": "memory:memory/2026-04-13.md:303:303",
+      "path": "memory/2026-04-13.md",
+      "startLine": 303,
+      "endLine": 303,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T14:02:34.876Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-04-13.md:306:308": {
+      "key": "memory:memory/2026-04-13.md:306:308",
+      "path": "memory/2026-04-13.md",
+      "startLine": 306,
+      "endLine": 308,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: # 2026-03-25 记忆 ## 日报生成与归档流程优化 **问题**: 24日记忆文件为空，归档任务连续2天失败 **根因**: - 日报生成到archive/daily/，依赖23:00归档任务更新memory/ - 归档任务配置错误（sessionTarget: main）导致400错误 **修复**: 1. 日报脚本改为双输出模式（archive/daily/ + memory/YYYY-MM-DD.md） 2. 日报生成时间：8:30 3. 归档任务改为isolated模式 4. 每日反思时",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-13T14:02:34.876Z",
+      "lastRecalledAt": "2026-04-13T15:02:34.886Z",
+      "queryHashes": [
+        "0dac2e09ca9b"
+      ],
+      "recallDays": [
+        "2026-04-13"
+      ],
+      "conceptTags": [
+        "日报生成到archive/daily",
+        "archive/daily",
+        "memory/yyyy-mm-dd.md",
+        "possible",
+        "lasting",
+        "truths",
+        "记忆",
+        "日报"
       ]
     }
   }

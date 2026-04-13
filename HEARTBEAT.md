@@ -37,3 +37,11 @@ python3 /root/scripts/briefing/morning_briefing.py
 1. 运行检查脚本：`sh scripts/utils/check_workspace_root.sh`
 2. 如发现散落文件，提醒用户归档
 3. 更新 `heartbeat-state.json` 的 `lastWorkspaceCheck` 为今天
+
+## 待办提醒检查
+
+读取 `/root/.openclaw/workspace/memory/todo-state.json`，检查是否有需要提醒的待办事项。
+检查逻辑：
+1. 解析 JSON 中的 reminders 数组，提取 remind_time 和 status
+2. 如果当前时间 >= remind_time，且 status 为 "⏳ 待提醒"，则提醒用户
+3. 提醒后，将 status 更新为 "📋 已提醒"
