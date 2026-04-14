@@ -106,3 +106,36 @@
 - 明天 9:00 需要提供基础信息和试点项目信息
 
 **待跟进**: Boss提供基础信息和试点项目信息后，开始执行流程梳理
+
+---
+
+## 定时任务优化方案 C（第二阶段）
+**状态**: ✅ 完成
+**时间**: 2026-04-14
+**描述**: 执行方案 C 折中优化，精简定时任务数量
+
+**删除任务（6 个）**:
+1. NAS 备份通知-main（合并到备份任务）
+2. 周计划制定提醒-OpenClaw（周复盘已覆盖）
+3. 日计划生成（delivery:none，不交付）
+4. claude-budget-reminder（连续 3 次失败）
+5. 月反思报告（连续 4 次失败，超时问题）
+6. 月度 inbox 整理提醒（改为手动触发）
+
+**清理文件（11 个）**:
+- scripts/daily/daily_report.py.backup
+- scripts/daily/daily_report_v9.py
+- scripts/daily/daily_reflection_v2.py
+- scripts/briefing/morning_briefing_*.py (4 个)
+- 其他冗余脚本 (4 个)
+
+**效果**:
+- 任务数量：16 个 → 10 个（减少 37.5%）
+- 预期 token 节省：35-45%
+- 失败任务清零
+
+**备份文件**: `archive/cron-backup-20260414-092400.json`
+
+**待跟进**:
+- [ ] 观察 3 天运行效果
+- [ ] 记录实际 token 节省情况
