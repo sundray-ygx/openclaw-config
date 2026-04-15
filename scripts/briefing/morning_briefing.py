@@ -39,6 +39,9 @@ RSS_FEEDS = [
     {"name": "人人都是产品经理", "url": "https://www.woshipm.com/feed", "category": "📱 产品", "limit": 3},
 ]
 
+# OpenClaw 相关关键词
+OPENCLAW_KEYWORDS = ["openclaw", "OpenClaw", "AI Agent", "AI代理", "智能体", "Multi-agent", "多智能体"]
+
 # 关键词筛选（AI/产品/科技相关）
 KEYWORDS_PRIORITY = ["AI", "人工智能", "大模型", "ChatGPT", "OpenAI", "产品", "发布", "上线", "新品", "科技", "创新", "融资", "字节", "阿里", "腾讯", "百度", "华为", "小米", "理想", "蔚来", "小鹏", "特斯拉", "苹果", "谷歌", "微软"]
 KEYWORDS_EXCLUDE = ["广告", "推广", "招聘", "活动", "会议", "论坛", "峰会"]
@@ -430,6 +433,105 @@ def get_new_emails():
     save_mail_state(state)
     return account_results, len(all_new)
 
+# ============ OpenClaw 资讯 ============
+def get_github_openclaw_news():
+    """获取OpenClaw GitHub最新动态"""
+    news = []
+    try:
+        # 获取最新issues
+        cmd = 'curl -s "https://api.github.com/repos/openclaw/openclaw/issues?state=all&sort=updated&direction=desc&per_page=2" 2>/dev/null'
+        result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=15)
+        if result.returncode == 0 and result.stdout:
+            issues = json.loads(result.stdout.decode('utf-8'))
+            for issue in issues:
+                news.append({
+                    "title": f"[GitHub] {issue.get('title', '')[:50]}",
+                    "url": issue.get('html_url', ''),
+                    "summary": f"{'Issue' if 'pull_request' not in issue else 'PR'} by {issue.get('user', {}).get('login', 'unknown')}",
+                    "source": "OpenClaw官方",
+                    "category": "🦞 官方",
+                    "score": 200
+                })
+
+        # 获取最新release
+        cmd = 'curl -s "https://api.github.com/repos/openclaw/openclaw/releases/latest" 2>/dev/null'
+        result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=15)
+        if result.returncode == 0 and result.stdout:
+            release = json.loads(result.stdout.decode('utf-8'))
+            if release and 'tag_name' in release:
+                news.append({
+                    "title": f"[Release] {release.get('tag_name', '')}",
+                    "url": release.get('html_url', ''),
+                    "summary": f"新版本: {release.get('name', '')[:40]}",
+                    "source": "OpenClaw官方",
+                    "category": "🦞 官方",
+                    "score": 250
+                })
+    except Exception as e:
+        print(f"  获取GitHub数据错误: {e}")
+
+    return news
+
+def score_openclaw_article(article):
+    """根据OpenClaw关键词匹配度给文章打分"""
+    score = 0
+    title_lower = article['title'].lower()
+    summary_lower = article.get('summary', '').lower()
+    text = title_lower + " " + summary_lower
+
+    # OpenClaw直接匹配（最高优先级）
+    if 'openclaw' in text:
+        score += 100
+
+    # AI Agent相关
+    if any(kw.lower() in text for kw in ['ai agent', 'ai代理', '智能体']):
+        score += 50
+
+    # Multi-agent相关
+    if any(kw.lower() in text for kw in ['multi-agent', '多智能体', 'multi agent']):
+        score += 40
+
+    # 大模型相关
+    if any(kw.lower() in text for kw in ['大模型', 'llm', 'gpt', 'claude', 'ai模型']):
+        score += 20
+
+    # 自动化/工作流相关
+    if any(kw.lower() in text for kw in ['自动化', '工作流', 'workflow', 'automation']):
+        score += 15
+
+    # 来源权重
+    if article['source'] in ['量子位', '机器之心']:
+        score += 10
+
+    return score
+
+def get_openclaw_news():
+    """从RSS源获取OpenClaw相关资讯"""
+    all_articles = []
+
+    for feed in RSS_FEEDS:
+        print(f"  获取 {feed['name']} (OpenClaw相关)...")
+        xml = fetch_rss(feed["url"], use_proxy=False)
+        if xml:
+            articles = parse_rss_simple(xml, feed["name"], 10, use_summarize=False)
+            for article in articles:
+                # 计算OpenClaw相关分数
+                article["score"] = score_openclaw_article({
+                    "title": article.get("title", ""),
+                    "summary": article.get("summary", "")
+                })
+                article["source"] = feed["name"]
+                article["category"] = feed["category"]
+            all_articles.extend(articles)
+
+    # 合并GitHub新闻
+    github_news = get_github_openclaw_news()
+    all_articles.extend(github_news)
+
+    # 按分数排序，取前8条
+    all_articles.sort(key=lambda x: x["score"], reverse=True)
+    return all_articles[:8]
+
 # ============ 资讯 ============
 def fetch_rss(feed_url, use_proxy=False):
     """获取RSS内容，海外源使用代理"""
@@ -757,6 +859,54 @@ def generate_briefing():
                 elements.append({
                     "tag": "div",
                     "text": {"tag": "lark_md", "content": f"*{article['source']} {article['category']}"}
+                })
+    
+    # 5. OpenClaw 相关资讯
+    print("获取OpenClaw相关资讯...")
+    elements.append({"tag": "hr"})
+    openclaw_articles = get_openclaw_news()
+    
+    if not openclaw_articles:
+        elements.append({
+            "tag": "div",
+            "text": {"tag": "lark_md", "content": "**🦞 OpenClaw 资讯** 暂无更新"}
+        })
+    else:
+        elements.append({
+            "tag": "div",
+            "text": {"tag": "lark_md", "content": f"**🦞 OpenClaw 相关资讯** {len(openclaw_articles)} 条精选"}
+        })
+        elements.append({
+            "tag": "div",
+            "text": {"tag": "lark_md", "content": "*关键词：OpenClaw、AI Agent、智能体、Multi-agent*"}
+        })
+        
+        current_category = ""
+        for article in openclaw_articles:
+            # 按分类分组
+            if article.get('category') and article['category'] != current_category:
+                current_category = article['category']
+                elements.append({
+                    "tag": "div",
+                    "text": {"tag": "lark_md", "content": f"**{current_category}**"}
+                })
+            
+            # 标题和链接
+            elements.append({
+                "tag": "div",
+                "text": {"tag": "lark_md", "content": f"• [{article.get('title', '')}]({article.get('url', '')})"}
+            })
+            # 摘要和来源
+            summary = article.get('summary', '')
+            if summary:
+                elements.append({
+                    "tag": "div",
+                    "text": {"tag": "lark_md", "content": f"  *{summary}* ·{article.get('source', '')}"}
+                })
+            else:
+                elements.append({
+                    "tag": "div",
+                    "text": {"tag": "lark_md", "content": f"  *{article.get('source', '')}*"}
                 })
     
     elements.append({"tag": "hr"})
