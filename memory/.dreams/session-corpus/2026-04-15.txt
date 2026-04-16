@@ -29,3 +29,5 @@
 [main/sessions/484ae80b-5754-444c-8994-fe836ddb43f6.jsonl#L46] Assistant: 日报已自动生成并推送到飞书。 📊 4月14日日报概要：128条本地消息、1条飞书消息、7次交互、23条异常。
 [main/sessions/86d75529-13e5-4d1b-87ce-65d9e47d4cb8.jsonl#L5] User: [cron:0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成] 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py Current time: Wednesday, April 15th, 2026 - 8:45 AM (Asia/Shanghai) / 2026-04-15 00:45 UTC Return your summary as plain text; it will be delivere
 [main/sessions/86d75529-13e5-4d1b-87ce-65d9e47d4cb8.jsonl#L8] Assistant: 每日反思已生成并发送飞书报告。分析的是 2026-04-14 的数据，提取了 1 条教训（需改进），已追加到 reflections.md。
+[main/sessions/39edbbb7-4189-4028-85d4-83a4e6f584a4.jsonl#L99] User: System: [2026-04-15 23:30:00 GMT+8] 执行GitHub同步: cd /root/.openclaw/workspace && ./scripts/sync-to-github.sh A scheduled reminder has been triggered. The reminder content is: 执行GitHub同步: cd /root/.openclaw/workspace && ./scripts/sync-to-github.sh Handle this reminder interna
+[main/sessions/39edbbb7-4189-4028-85d4-83a4e6f584a4.jsonl#L102] Assistant: NO_REPLY

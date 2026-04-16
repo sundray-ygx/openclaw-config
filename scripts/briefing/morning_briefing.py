@@ -500,7 +500,7 @@ def score_openclaw_article(article):
         score += 15
 
     # 来源权重
-    if article['source'] in ['量子位', '机器之心']:
+    if article.get('source', '') in ['量子位', '机器之心']:
         score += 10
 
     return score
