@@ -4,6 +4,18 @@
 
 ---
 
+## 2026-04-16 | technical
+**Type:** improve | **Level:** P2一般
+**Miss:** - 时间范围：昨天00:00到昨天23:59（全天）
+**Context:** 系统错误日志
+**Root:** 技术实现缺乏容错设计，未考虑边界情况
+**Fix:** 增加异常处理逻辑， graceful degradation；设计降级方案，核心功能在异常时仍可运行
+**Experience:**
+- **时间标准化**: 时间范围使用标准格式（如 00:00-23:59），避免歧义（适用于：所有时间相关的配置和文档）
+
+---
+
+
 ## 2026-04-15 | technical
 **Type:** improve | **Level:** P2一般
 **Miss:** ## Hermes vs OpenClaw 对比分析
