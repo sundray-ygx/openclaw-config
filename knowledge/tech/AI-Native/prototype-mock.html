@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>度量管理平台</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .nav-tabs { display: flex; gap: 20px; margin-bottom: 20px; border-bottom: 2px solid #ddd; }
+        .nav-item { padding: 10px 20px; cursor: pointer; }
+        .nav-item.active { border-bottom: 3px solid #007bff; font-weight: bold; }
+        .filter-bar { background: #f5f5f5; padding: 15px; margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .filter-bar label { margin-right: 5px; }
+        .filter-bar select, .filter-bar input, .filter-bar button { padding: 8px; }
+        .metric-cards { display: flex; gap: 20px; margin-bottom: 20px; }
+        .metric-card { background: white; border: 1px solid #ddd; padding: 20px; flex: 1; min-width: 200px; }
+        .metric-card .title { font-size: 14px; color: #666; margin-bottom: 10px; }
+        .metric-card .value { font-size: 24px; font-weight: bold; }
+        .metric-card .subvalue { font-size: 12px; color: #999; margin-top: 5px; }
+        .breadcrumb { margin-bottom: 20px; color: #666; }
+        .breadcrumb-item { display: inline-block; margin-right: 10px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #f5f5f5; }
+        tbody tr:hover { background: #f9f9f9; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="nav-tabs" role="tablist">
+        <div class="nav-item active" role="tab">度量管理</div>
+        <div class="nav-item" role="tab">Token使用量</div>
+        <div class="nav-item" role="tab">硅基含量</div>
+    </div>
+
+    <div class="filter-bar">
+        <label>团队:</label>
+        <select id="team-select" name="team">
+            <option value="">全部</option>
+            <option value="security">终端安全产品研发部</option>
+            <option value="network">网络安全产品研发部</option>
+        </select>
+
+        <label>职类:</label>
+        <select id="job-type-select" name="job_type">
+            <option value="">全部</option>
+            <option value="dev">开发类</option>
+            <option value="test">测试类</option>
+        </select>
+
+        <label>日期:</label>
+        <input type="date" id="date-start" name="start_date" value="2025-01-01">
+        <span>~</span>
+        <input type="date" id="date-end" name="end_date" value="2025-12-31">
+
+        <label>AI-Native阈值:</label>
+        <input type="number" id="threshold" name="threshold" value="100000" placeholder="输入Token数">
+
+        <button type="button" onclick="query()">查询</button>
+    </div>
+
+    <div class="metric-cards">
+        <div class="metric-card">
+            <div class="title">AI-Native人数</div>
+            <div class="value">28</div>
+            <div class="subvalue">体系总人数: 120</div>
+        </div>
+        <div class="metric-card">
+            <div class="title">Token消耗总量</div>
+            <div class="value">156.8万</div>
+            <div class="subvalue">人均: 5.6万</div>
+        </div>
+        <div class="metric-card">
+            <div class="title">请求总次数</div>
+            <div class="value">12,450</div>
+            <div class="subvalue">日均: 34次</div>
+        </div>
+        <div class="metric-card">
+            <div class="title">总费用</div>
+            <div class="value">¥31,360</div>
+            <div class="subvalue">人均: ¥1,120</div>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <span class="breadcrumb-item">体系整体</span>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>团队名称</th>
+                <th>AI-Native人数</th>
+                <th>Token消耗总量</th>
+                <th>请求总次数</th>
+                <th>总费用</th>
+                <th>人均费用</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr onclick="drillDown('终端安全产品研发部')">
+                <td>终端安全产品研发部</td>
+                <td>12</td>
+                <td>5.2万</td>
+                <td>1,200</td>
+                <td>¥200</td>
+                <td>¥16.67</td>
+            </tr>
+            <tr onclick="drillDown('网络安全产品研发部')">
+                <td>网络安全产品研发部</td>
+                <td>8</td>
+                <td>3.1万</td>
+                <td>800</td>
+                <td>¥150</td>
+                <td>¥18.75</td>
+            </tr>
+            <tr onclick="drillDown('云安全产品研发部')">
+                <td>云安全产品研发部</td>
+                <td>5</td>
+                <td>2.8万</td>
+                <td>650</td>
+                <td>¥130</td>
+                <td>¥26.00</td>
+            </tr>
+            <tr onclick="drillDown('数据安全产品研发部')">
+                <td>数据安全产品研发部</td>
+                <td>3</td>
+                <td>1.5万</td>
+                <td>420</td>
+                <td>¥85</td>
+                <td>¥28.33</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function query() {
+            console.log('执行查询...');
+            // 模拟 API 请求
+            fetch('/api/token-usage/overview', {
+                method: 'POST',
+                body: JSON.stringify({
+                    team: document.getElementById('team-select').value,
+                    job_type: document.getElementById('job-type-select').value,
+                    start_date: document.getElementById('date-start').value,
+                    end_date: document.getElementById('date-end').value,
+                    threshold: document.getElementById('threshold').value
+                })
+            });
+        }
+
+        function drillDown(teamName) {
+            console.log('下钻到团队:', teamName);
+            // 模拟下钻请求
+            fetch(`/api/token-usage/team?dept=${encodeURIComponent(teamName)}`);
+        }
+    </script>
+</body>
+</html>
