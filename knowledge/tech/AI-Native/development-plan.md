@@ -117,82 +117,118 @@ threshold:   阈值（待确认默认值和范围）
 
 **目标**: 初始化项目 + 提取原型页面真实结构
 
-#### 步骤 1: 归档当前代码 + 从 master 重置（5分钟）
+#### 步骤 1: 从远程 master 拉取最新代码 + 创建本地新分支（5分钟）
 
-> **背景**: 当前分支已有部分开发代码但未完成。旧代码的 API 设计基于需求文档假设，与新方案冲突。需要归档旧代码后，将当前分支重置为 master 最新状态。
+> **工作流程**：从远程分支 master 拉取最新代码，创建本地新分支 `feature-52273`（仅创建本地分支，先不创建远程分支），后续均在新分支 `feature-52273` 下开发。
 
 **Claude Code 提示词**:
 ```
 请帮我完成以下操作：
 
-1. 归档当前分支的代码（保留在 git 历史中，方便回溯）：
-   - git add -A && git commit -m "archive: 旧方案代码归档，切换新方案"
-   - git tag archive-before-redesign
+1. 检查当前 git 状态，如果未提交的改动：
+   - 保存当前改动：git stash push -m "保存当前改动，准备切换到 feature-52273 分支"
 
-2. 将当前分支重置为 master 最新代码：
-   - git fetch origin
-   - git reset --hard origin/master
+2. 切换到 master 分支并拉取最新代码：
+   - git checkout master
+   - git pull origin master
 
-3. 分析项目结构，告诉我：
+3. 创建本地新分支：
+   - git checkout -b feature-52273
+
+4. 如果之前有保存的改动，恢复到新分支：
+   - git stash pop
+
+5. 分析项目结构，告诉我：
    - 前端用了什么框架（React/Vue/其他）
    - 后端用了什么框架（FastAPI/Flask/Django）
    - 已有的目录结构和配置文件
    - docker-compose.yml 中的服务配置
    - ES 连接配置在哪里
 
-4. 确认项目骨架能正常启动：
+6. 确认项目骨架能正常启动：
    - 本地启动后端，确认健康检查 API 正常
    - 本地启动前端，确认页面能加载
    - 确认能连接 ES: http://10.65.134.124:8200
 
-分支名称保持不变，不做任何修改。
+7. 确认当前分支：
+   - git branch -v
+   - 当前应该在 feature-52273 分支（本地）
+
+当前在本地分支 feature-52273 开发，暂不创建远程分支。
 ```
 
-#### 步骤 2: 提取原型页面结构（10分钟）
+#### 步骤 2: 提取原型页面结构 + 样式信息（15分钟）
 
-> 详见 `frontend-replication-guide.md` 第一节和第二节
+> **已确认**：`/metrics` 是单页应用（SPA），token-usage 和 silicon 不是独立路由，是同一页面内的内容切换。
+> 因此只需提取 `/metrics` 一个 URL 即可获取全部信息。
+
+##### 2a. 页面结构提取（Selenium，已完成）
 
 ```powershell
-# 环境检查
-python check_env.py
-
-# 提取三个页面
 python extract_structure.py http://10.65.134.124:8080/metrics -o page-overview.json
-python extract_structure.py http://10.65.134.124:8080/metrics/token-usage -o page-token.json
-python extract_structure.py http://10.65.134.124:8080/metrics/silicon -o page-silicon.json
-
-# 测试下钻
-python extract_structure.py http://10.65.134.124:8080/metrics --drill-down "终端安全产品研发部" -o drill-down.json
-
-# 如需登录
-python extract_structure.py http://10.65.134.124:8080/metrics --cookie cookies.json -o page-overview.json
 ```
 
-#### 步骤 3: 确认实际页面结构（5分钟）
+> 已生成 `page-overview.json`，包含 API 清单、表格结构、筛选字段等。
 
-**Claude Code 提示词**:
-```
-请分析以下原型页面 JSON 提取结果，帮我确认：
+##### 2c. 下载原平台完整前端资源（方案 B，推荐）
 
-1. 导航 Tab：实际有几个？文字是什么？
-2. 筛选字段：实际有几个？分别是什么类型？
-3. 指标卡片：实际有几个？标题分别是什么？
-4. 表格列名：实际有几列？列名分别是什么？
-5. 下钻层级：实际有几层？每层的表格列是否不同？
-6. 网络请求：前端调用了哪些 API？
+> **直接下载原平台的所有前端资源（HTML/CSS/JS/图片/字体），替换 API 地址即可 100% 复刻。**
+> 不需要自己写前端代码，不需要手动还原样式。
 
-[粘贴 page-token.json]
-[粘贴 page-silicon.json]
-[粘贴 drill-down.json]
-
-请输出一份"API 设计确认报告"，包括：
-- 需要哪些 API 端点
-- 每个 API 的查询参数
-- 每个 API 的返回字段
-- 前后端数据格式约定
+**执行**：
+```powershell
+python download_frontend.py http://10.65.134.124:8080/metrics -o original-frontend
 ```
 
-**验证**: 产出 API 设计确认报告，作为阶段 2 的输入
+**输出**：
+- `original-frontend/index.html` — 渲染后 HTML
+- `original-frontend/static/` — 所有 CSS、JS、图片、字体
+- `original-frontend/screenshot-original.png` — 原平台截图
+- `original-frontend/replace-api.sh` — API 地址替换脚本
+- `original-frontend/download-report.json` — 下载报告（含发现的 API 路径和配置）
+
+**替换 API 地址**：
+```bash
+bash replace-api.sh http://你的后端地址:端口
+```
+
+**本地测试**：
+```bash
+cd original-frontend
+python -m http.server 3000
+# 浏览器访问 http://localhost:3000
+```
+
+#### 步骤 3: 确认 API 设计报告
+
+> **已从 page-overview.json 确认实际 API**，无需重新分析。
+
+**已确认 API 清单**：
+
+| API | 方法 | 参数 | 说明 |
+|-----|------|------|------|
+| `/api/metrics/token-usage/dept-tree?team_type=department` | GET | team_type | 部门树（带层级） |
+| `/api/metrics/token-usage/dept-tree` | GET | - | 部门树 |
+| `/api/metrics/token-usage/zhilei-list` | GET | - | 职类列表（24个） |
+| `/api/metrics/token-usage/stats-by-project` | POST | days, limit, start_date, end_date, teams, zhilei, ai_native_threshold, team_type | 核心统计数据 |
+
+**POST body 示例**：
+```json
+{"days":30,"limit":10000,"start_date":null,"end_date":null,"teams":[],"zhilei":[],"ai_native_threshold":0.1,"team_type":"department"}
+```
+
+**返回数据结构**：
+- `cards_by_zhilei` — 指标卡片（dev/other/test/total 四组）
+- `projects` — 表格数据（project_name, ai_native_count, total_tokens, request_count, total_price, has_children, children_data）
+- `daily_median` — 日均中位数
+
+**表格列**：# | 团队名称 | AI-NATIVE人数 | TOTAL TOKENS | 请求次数 | 人均费用/总费用（占比） | 操作
+
+**筛选字段**：全部团队（按钮）、全部职类（按钮）、最近30天（按钮）、阈值输入框（number, 默认0.1）、刷新按钮
+
+**下钻逻辑**：has_children=true 的行可点击，展示 children_data
+
+**验证**: API 清单已确认，可直接进入阶段1开发
 
 ---
 
@@ -470,7 +506,7 @@ ES 地址: http://10.65.134.124:8200
 
 | 阶段 | 时间 | 说明 |
 |------|------|------|
-| 阶段0: 初始化 + 前端信息采集 | 20min | **新增**前端提取步骤 |
+| 阶段0: 初始化 + 前端信息采集 | 20min | 从远程 master 拉取最新代码，创建本地分支 feature-52273，前端提取步骤 |
 | 阶段1: 数据层 | 30min | 输入改为 API 设计确认报告 |
 | 阶段2: API层 | 30min | 严格按确认报告实现 |
 | 阶段3: 前端页面 | 60min | 以 JSON 为准 |
@@ -492,7 +528,8 @@ ES 地址: http://10.65.134.124:8200
 | API 设计与前端不匹配 | **阶段0确认 API 设计后，再开发后端** |
 | Docker 构建失败 | 不修改 docker-compose.yml 的 6 个环境变量 |
 | 考试超时 | 先实现核心功能，DFX和非功能需求最后处理 |
-| 考试方反自动化限制 | 脚本已内置反检测措施（见 frontend-replication-guide.md 2.4节） |
+| 考试方反自动化限制 | 脚本已内置反检测措施（见 frontend-replication-guide.md 2.4节）+ CDP 兜底 + 手动 F12 保底 |
+| API 拦截失效（SSR/WebSocket） | 自动检测并警告，降级到手动 F12 抓包（见 frontend-replication-guide.md 2.5节） |
 
 ---
 
@@ -506,6 +543,8 @@ ES 地址: http://10.65.134.124:8200
 
 ---
 
-*方案版本: v2.0*
-*更新时间: 2026-04-19*
-*核心改动: 先提取前端 → 确认 API → 再开发后端，一切以实际页面 JSON 为准*
+*方案版本: v2.1*
+*更新时间: 2026-04-20*
+*方案版本: v3.0*
+*更新时间: 2026-04-20*
+*核心改动: 新增 Playwright 样式提取方案，用于前端页面 1:1 复刻；API 清单已确认*

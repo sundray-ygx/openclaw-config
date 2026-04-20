@@ -1,6 +1,11 @@
 """环境验证脚本 - Win10 + Selenium"""
 import sys
 
+# Windows GBK 控制台兼容
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 def check_python():
     print(f"Python: {sys.version}")
 

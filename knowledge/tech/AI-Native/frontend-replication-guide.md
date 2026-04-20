@@ -242,18 +242,25 @@ if __name__ == '__main__':
 ### 2.2 使用方法
 
 ```powershell
-# 提取单个页面（Token 使用量）
-python extract_structure.py http://10.65.134.124:8080/metrics/token-usage -o metrics-token.json
+# 提取所有页面（包括度量管理 Tab）
+python extract_structure.py http://10.65.134.124:8080/metrics -o page-overview.json
+python extract_structure.py http://10.65.134.124:8080/metrics/token-usage -o page-token.json
+python extract_structure.py http://10.65.134.124:8080/metrics/silicon -o page-silicon.json
 
-# 提取硅基含量页面
-python extract_structure.py http://10.65.134.124:8080/metrics/silicon -o metrics-silicon.json
+# 如果度量管理 Tab 有独立路由，也要提取
+# python extract_structure.py http://10.65.134.124:8080/metrics/overview -o page-metrics-home.json
 
 # 测试下钻交互
 python extract_structure.py http://10.65.134.124:8080/metrics --drill-down "终端安全产品研发部" -o drill-down.json
 
 # 如果 chromedriver 不在 PATH 中
 python extract_structure.py http://10.65.134.124:8080/metrics --chromedriver C:\Tools\chromedriver.exe -o metrics.json
+
+# 如需登录
+# python extract_structure.py http://10.65.134.124:8080/metrics --cookie cookies.json -o page-overview.json
 ```
+
+> **⚠️ 如果自动提取的 `api_calls` 字段显示 `_source: no_api_detected` 或 `ssr_warning`，说明自动化 API 拦截失效，需要手动 F12 抓包。详见下方「手动 F12 抓包保底方案」。**
 
 ### 2.3 输出格式说明
 
@@ -273,32 +280,22 @@ python extract_structure.py http://10.65.134.124:8080/metrics --chromedriver C:\
   "navigation": {
     "tabs": [
       {"text": "度量管理", "href": "/metrics", "active": true},
-      {"text": "Token使用量", "href": "/metrics/token-usage", "active": false},
-      {"text": "硅基含量", "href": "/metrics/silicon", "active": false}
+      {"text": "Token使用量", "href": "/metrics/token-usage", "active": false}
     ]
   },
   "filters": {
     "fields": [
-      {"tag": "select", "type": "", "name": "team", "id": "team-select", "options": ["全部", "终端安全产品研发部"]},
-      {"tag": "select", "type": "", "name": "job_type", "id": "job-type-select"},
-      {"tag": "input", "type": "date", "name": "start_date", "id": "date-start"},
-      {"tag": "input", "type": "date", "name": "end_date", "id": "date-end"},
-      {"tag": "input", "type": "number", "name": "threshold", "id": "threshold", "value": "100000"},
-      {"tag": "button", "type": "button", "text": "查询"}
+      {"tag": "select", "name": "team", "id": "team-select", "options": ["全部", "终端安全"]},
+      {"tag": "input", "type": "number", "name": "threshold", "value": "100000"},
+      {"tag": "button", "text": "查询"}
     ]
   },
   "metric_cards": [
-    {"title": "AI-Native人数", "value": "28", "subvalue": "体系总人数: 120"},
-    {"title": "Token消耗总量", "value": "156.8万", "subvalue": "人均: 5.6万"},
-    {"title": "请求总次数", "value": "12,450", "subvalue": "日均: 34次"},
-    {"title": "总费用", "value": "¥31,360", "subvalue": "人均: ¥1,120"}
+    {"title": "AI-Native人数", "value": "28", "subvalue": "体系总人数: 120"}
   ],
   "table": {
-    "headers": ["团队名称", "AI-Native人数", "Token消耗总量", "请求总次数", "总费用", "人均费用"],
-    "rows": [
-      ["终端安全产品研发部", "12", "5.2万", "1,200", "¥200", "¥16.67"],
-      ["网络安全产品研发部", "8", "3.1万", "800", "¥150", "¥18.75"]
-    ],
+    "headers": ["团队名称", "AI-Native人数", "Token消耗总量"],
+    "rows": [["终端安全产品研发部", "12", "5.2万"]],
     "row_count": 4
   },
   "breadcrumb": {
@@ -306,11 +303,34 @@ python extract_structure.py http://10.65.134.124:8080/metrics --chromedriver C:\
   },
   "network_requests": [
     {"url": "http://10.65.134.124:8080/api/token-usage/overview", "type": "xmlhttprequest", "duration": 120}
+  ],
+  "api_calls": [
+    {
+      "url": "http://10.65.134.124:8080/api/token-usage/overview?job_type=dev&start_date=2025-01-01&end_date=2025-12-31&threshold=100000",
+      "method": "GET",
+      "requestBody": null,
+      "status": 200,
+      "responseBody": "{\"ai_native_count\": 28, \"total_tokens\": \"156.8万\", ...}",
+      "timestamp": 1713523200000
+    }
   ]
 }
 ```
 
-**上下文占用**: 单页面 ~2-3 KB，3 个页面 ~6-9 KB，远低于 minimax 2.7 限制 ✅
+**`api_calls` 字段说明（关键！）**：
+
+脚本使用三层兆底策略捕获 API 请求：
+
+| `_source` 值 | 含义 | 数据完整性 |
+|-------------|------|-----------|
+| `js_intercept` | JS 注入拦截 fetch/XHR（主方案） | ✅ 完整（URL + 参数 + 响应体） |
+| `cdp_network` | CDP Network 域底层监听（兆底方案） | ⚠️ URL + 参数 + 状态码，无响应体 |
+| `ssr_warning` | 检测到 SSR，没有 API 请求 | ❌ 只有警告信息 |
+| `no_api_detected` | 未检测到任何 API 请求 | ❌ 只有建议信息 |
+
+**这是后端 API 设计的核心参考**：前端调了什么接口、传了什么参数、期望什么格式，全在这里。
+
+**上下文占用**: 单页面 ~3-5 KB，3 个页面 ~9-15 KB，远低于 minimax 2.7 限制 ✅
 
 ### 2.4 考试环境兼容性
 
@@ -338,6 +358,35 @@ python extract_structure.py http://10.65.134.124:8080/metrics --cookie cookies.j
 # 如果页面没有懒加载，可以跳过滚动
 python extract_structure.py http://10.65.134.124:8080/metrics --no-scroll -o metrics.json
 ```
+
+### 2.5 手动 F12 抓包保底方案
+
+> **触发条件**: 如果自动提取的 JSON 中 `api_calls` 字段出现 `_source: no_api_detected` 或 `ssr_warning`，说明自动化拦截失效，必须手动抓包。
+
+**操作步骤**（约 5 分钟）：
+
+1. **打开 Chrome F12 → Network 面板**，勾选「Preserve log」
+2. **访问原型页面** `http://10.65.134.124:8080/metrics`
+3. **操作页面**：
+   - 切到 Token 使用量 Tab，点查询
+   - 点击某行下钻
+   - 切到硅基含量 Tab，点查询
+   - 每次操作后检查 Network 面板新出现的请求
+4. **记录每个 API 请求**：
+   - 右键请求 → Copy → Copy as cURL（含完整参数）
+   - 点击请求 → Preview/Response → 复制响应 JSON
+5. **整理成文档**，格式参考：
+   ```
+   API 1: GET /api/token-usage/overview?job_type=dev&start_date=...&threshold=100000
+   请求参数: job_type=dev, start_date=2025-01-01, end_date=2025-12-31, threshold=100000
+   响应: { "ai_native_count": 28, "total_tokens": "156.8万", ... }
+   
+   API 2: GET /api/token-usage/team?dept=终端安全产品研发部&...
+   ...
+   ```
+6. **将手动记录的 API 信息保存**，作为后端开发的参考（替代自动提取的 `api_calls`）
+
+> **提示**: 手动抓包虽然慢，但数据最完整最可靠。如果自动化失效，优先用这个方案。
 
 ---
 

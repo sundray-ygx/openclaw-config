@@ -46,20 +46,25 @@ ES 脏数据（3种，必须过滤）：
 
 ## 🚀 阶段 0: 项目初始化 + 前端信息采集（~20min）
 
-### 提示词 0-1: 归档旧代码 + 从 master 重置
+### 提示词 0-1: 从远程 master 拉取最新代码 + 创建本地新分支
 
 ```
 请执行以下操作：
 
-1. 归档当前分支的代码（保留在 git 历史中）：
-   - git add -A && git commit -m "archive: 旧方案代码归档，切换新方案"
-   - git tag archive-before-redesign
+1. 检查当前 git 状态，如果未提交的改动：
+   - 保存当前改动：git stash push -m "保存当前改动，准备切换到 feature-52273 分支"
 
-2. 将当前分支重置为 master 最新代码：
-   - git fetch origin
-   - git reset --hard origin/master
+2. 切换到 master 分支并拉取最新代码：
+   - git checkout master
+   - git pull origin master
 
-3. 分析并输出以下信息：
+3. 创建本地新分支：
+   - git checkout -b feature-52273
+
+4. 如果之前有保存的改动，恢复到新分支：
+   - git stash pop
+
+5. 分析并输出以下信息：
    a) 项目结构树（3层深度）
    b) 前端技术栈：框架、UI组件库、构建工具
    c) 后端技术栈：语言、框架、已有的路由/模型
@@ -67,63 +72,100 @@ ES 脏数据（3种，必须过滤）：
    e) ES 连接配置在哪里
    f) 已有的依赖（package.json / requirements.txt）
 
-4. 确认项目骨架能正常启动：
+6. 确认项目骨架能正常启动：
    - 本地启动后端，确认健康检查 API 正常
    - 本地启动前端，确认页面能加载
    - 确认能连接 ES: http://10.65.134.124:8200
 
+7. 确认当前分支：
+   - git branch -v
+   - 当前应该在 feature-52273 分支（本地）
+
 不要修改基础设施配置（docker-compose.yml、ES 连接等）。
 输出完整的项目分析报告。
+
+注意：当前在本地分支 feature-52273 开发，暂不创建远程分支。
+后续均在该分支下开发。
 ```
 
-### 提示词 0-2: 提取原型页面结构（在 PowerShell 中执行）
+### 提示词 0-2: 提取原型页面结构 + 样式（在 PowerShell 中执行）
 
-> 这一步在 Claude Code 外部执行，使用 scripts/frontend/ 下的脚本
+> 已确认 `/metrics` 是 SPA，token-usage/silicon 不是独立路由，只需提取 `/metrics` 一个 URL。
+
+##### 步骤 2a: 页面结构提取（Selenium）
 
 ```powershell
-# 环境检查
-python check_env.py
-
-# 提取三个页面
+# 已执行，生成 page-overview.json
 python extract_structure.py http://10.65.134.124:8080/metrics -o page-overview.json
-python extract_structure.py http://10.65.134.124:8080/metrics/token-usage -o page-token.json
-python extract_structure.py http://10.65.134.124:8080/metrics/silicon -o page-silicon.json
-
-# 测试下钻交互
-python extract_structure.py http://10.65.134.124:8080/metrics --drill-down "终端安全产品研发部" -o drill-down.json
-
-# 如需登录
-# python extract_structure.py http://10.65.134.124:8080/metrics --cookie cookies.json -o page-overview.json
 ```
 
-### 提示词 0-3: 确认 API 设计
+##### 步骤 2b: 页面样式提取（Playwright，用于 1:1 复刻）
 
-> 将提取的 JSON 结果粘贴给 Claude Code
+```powershell
+# 首次安装
+pip install playwright
+python -m playwright install chromium
 
+# 提取样式
+python extract_styles.py http://10.65.134.124:8080/metrics -o metrics-style
+
+# 带下钻测试（用实际存在的团队名）
+python extract_styles.py http://10.65.134.124:8080/metrics -o metrics-style --drill-down "溯源研发部"
 ```
-请分析以下原型页面 JSON 提取结果，帮我确认 API 设计。
 
-[粘贴 page-token.json 的内容]
+**输出文件**：
+- `01-full-page.png` — 全页截图
+- `02-page-meta.json` — 元信息（字体、颜色、CSS 变量）
+- `03-full-page.html` — 完整 HTML
+- `04-all-styles.css` — 所有 CSS
+- `05-component-styles.json` — 各组件计算样式
+- `06-layout.json` — 布局信息
+- `07-icons.json` — 图标/Logo 资源
+- `08-api-calls.json` — API 日志
+- `09/10/11-drill-*.png` — 下钻截图
 
-[粘贴 page-silicon.json 的内容]
+### 提示词 0-3: API 设计已确认
 
-[粘贴 drill-down.json 的内容]
+> 已从 page-overview.json 直接确认，无需重新分析。
 
-请输出一份「API 设计确认报告」，包括：
+**已确认 API 清单**：
 
-1. 导航 Tab：实际有几个？文字是什么？
-2. 筛选字段：实际有几个？分别是什么类型？name 和 id 是什么？
-3. 指标卡片：实际有几个？标题分别是什么？
-4. 表格列名：实际有几列？列名分别是什么？
-5. 下钻层级：实际有几层？每层的表格列是否不同？
-6. 网络请求：前端调用了哪些 API？
+| API | 方法 | 参数 |
+|-----|------|------|
+| `/api/metrics/token-usage/dept-tree?team_type=department` | GET | team_type |
+| `/api/metrics/token-usage/dept-tree` | GET | - |
+| `/api/metrics/token-usage/zhilei-list` | GET | - |
+| `/api/metrics/token-usage/stats-by-project` | POST | days, limit, start_date, end_date, teams, zhilei, ai_native_threshold, team_type |
 
-基于以上分析，输出后端需要实现的 API 清单：
-- 每个 API 的路径、方法、查询参数
-- 每个 API 的返回字段（字段名、类型）
-- 前后端数据格式约定
+### 提示词 0-4: 基于下载的原平台前端资源修复页面
 
-这份报告将作为后续阶段 1-3 的输入，请务必准确。
+> 方案 B：直接使用原平台的前端资源，只需替换 API 地址
+
+**执行下载**：
+```powershell
+python download_frontend.py http://10.65.134.124:8080/metrics -o original-frontend
+```
+
+**提示词**（下载完成后给 Claude Code）：
+```
+我已用 Playwright 下载了原平台的完整前端资源到 original-frontend/ 目录。
+请帮我完成以下操作：
+
+1. 查看 download-report.json，确认下载了哪些文件，发现了哪些 API 路径
+
+2. 查看 api_base_config 部分，确认原平台的 API 地址配置方式
+
+3. 将原平台前端集成到当前项目中：
+   a) 把 static/ 下的资源复制到当前项目的前端目录
+   b) 替换 API 地址为当前项目后端地址
+   c) 确保页面能正常加载
+
+4. 测试验证：
+   - 启动前端，确认页面样式与原平台一致
+   - 启动后端，确认 API 调用正常
+   - 确认数据展示正确
+
+⚠️ 不要修改后端 API 代码，只修改前端。
 ```
 
 ---
@@ -493,6 +535,8 @@ JSON 中有几个卡片就实现几个，有几列就实现几列。
 
 ---
 
-*文档版本: v2.0*
-*更新时间: 2026-04-19*
-*核心改动: 以 JSON 为准、先前端后后端、3种脏数据、本地测试优先*
+*文档版本: v2.1*
+*更新时间: 2026-04-20*
+*文档版本: v3.0*
+*更新时间: 2026-04-20*
+*核心改动: 新增 Playwright 样式提取方案，用于前端页面 1:1 复刻；API 清单已从 page-overview.json 确认*

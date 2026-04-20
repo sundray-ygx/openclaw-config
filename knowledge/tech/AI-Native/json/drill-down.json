@@ -1,0 +1,19 @@
+{
+  "url": "http://10.65.134.124:8080/metrics",
+  "drill_down_path": [
+    "体系整体"
+  ],
+  "levels": {
+    "level_1_system": {
+      "url": "http://10.65.134.124:8080/metrics",
+      "breadcrumb": {
+        "items": []
+      },
+      "table": {
+        "headers": [],
+        "rows": [],
+        "row_count": 0
+      }
+    }
+  }
+}
