@@ -122,3 +122,35 @@ SESSIONS_DIRS = [
 **根因**: 记忆维护脚本未定期执行，缺少提醒机制
 **Fix**: 将记忆维护加入 HEARTBEAT.md，每周自动检查并执行
 **级别**: 🟡 中
+
+---
+
+## 🛠️ 前端开发
+
+### Unicode编码导致脚本执行失败
+**问题**: Python脚本包含emoji字符，在Win10 PowerShell中执行时报 "There's a Unicode encoding error with emoji characters in the script"
+**根因**: PowerShell默认编码不支持emoji，脚本文件保存时未指定UTF-8编码
+**Fix**: (1) 在Python脚本顶部添加 `# -*- coding: utf-8 -*-` (2) 确保文件保存为UTF-8格式 (3) PowerShell执行前设置 `$OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = [System.Text.Encoding]::UTF8`
+**级别**: 🟢 低
+
+### Selenium环境配置复杂性
+**问题**: (1) ChromeDriver版本与Chrome版本不匹配 (2) 网络超时（ERR_CONNECTION_TIMED_OUT） (3) CDP Network 域启用失败
+**根因**: (1) Chrome自动更新后驱动版本未同步 (2) 内网环境网络配置复杂（代理、防火墙） (3) Chromium headless模式CDP支持有限
+**Fix**: (1) 使用 webdriver-manager 自动管理驱动版本 (2) 配置代理设置（$env:HTTPS_PROXY） (3) 增加重试机制和超时配置 (4) CDP失败不影响主要功能，仅降级处理
+**级别**: 🟡 中
+
+### 前端页面数据加载问题（CORS）
+**问题**: 后端API可通，但前端页面看不到数据
+**根因**: 跨域（CORS）问题 - 前端端口与后端端口不一致
+**Fix**: (1) 检查后端CORS配置（FastAPI添加CORSMiddleware） (2) 检查前端JS中API路径是否硬编码了原平台地址 (3) 确保前端代理配置正确
+**级别**: 🟡 中
+
+---
+
+## 🎯 考试与技术评估
+
+### 考试平台技术限制评估
+**问题**: 担心考试方通过技术限制阻止自动化提取（如禁用F12、限制API拦截）
+**评估结果**: 浏览器必须接收HTML才能渲染，因此无法阻止 `driver.page_source` 获取；CDP网络拦截无法阻止（浏览器内置功能）；但可能限制截图、阻止devtools协议
+**建议**: 以JSON提取为主，截图为辅；假设最坏情况（部分功能受限），提前准备替代方案
+**级别**: 🟢 低

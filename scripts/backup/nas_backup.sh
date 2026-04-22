@@ -261,3 +261,35 @@ cat > "$NOTIFICATION_FILE" << EOF
 EOF
 
 log "通知内容已保存"
+
+# ==================== 自动清理过期备份 ====================
+RETAIN_DAYS=15
+log "开始清理过期备份（保留最近 ${RETAIN_DAYS} 天）..."
+
+# 计算截止日期（删除此日期之前的备份）
+CUTOFF_DATE=$(date -d "-${RETAIN_DAYS} days" +%Y%m%d)
+log "清理截止日期: $CUTOFF_DATE（此日期之前的备份将被删除）"
+
+# 获取远程备份目录列表
+LIST_RESPONSE=$(curl -s -u "$WEBDAV_USER:$WEBDAV_PASS" -X PROPFIND -H "Depth: 1" "$WEBDAV_URL$WEBDAV_BASE/" 2>/dev/null)
+
+# 提取日期目录名
+BACKUP_DIRS=$(echo "$LIST_RESPONSE" | grep -oP '(?<=server-backup/)\d{8}' | sort -u)
+
+deleted_count=0
+for dir in $BACKUP_DIRS; do
+    if [ "$dir" -lt "$CUTOFF_DATE" ] 2>/dev/null; then
+        log "删除过期备份: $dir"
+        # 删除目录下的文件
+        dir_response=$(curl -s -u "$WEBDAV_USER:$WEBDAV_PASS" -X PROPFIND -H "Depth: 1" "$WEBDAV_URL$WEBDAV_BASE/$dir/" 2>/dev/null)
+        files=$(echo "$dir_response" | grep -oP "(?<=<href>)[^<]+" | grep -v "^$WEBDAV_BASE/$dir/?$")
+        for file in $files; do
+            curl -s -o /dev/null -X DELETE -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$file" 2>/dev/null
+        done
+        # 删除日期目录
+        curl -s -o /dev/null -X DELETE -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$WEBDAV_BASE/$dir/" 2>/dev/null
+        deleted_count=$((deleted_count + 1))
+    fi
+done
+
+log "清理完成: 删除 ${deleted_count} 个过期备份"
