@@ -59,43 +59,127 @@ openspec instructions --change feature-xxx
 
 ---
 
-## 三、硬件研发工程师课题（1个）
+## 三、硬件研发工程师课题（3个）
 
 > **说明**: 硬件课题采用软件仿真方式，通过模拟器/虚拟机实现，无需额外硬件器件
 
-### HW-01: 嵌入式网络协议栈实现
-**难度**: ⭐⭐⭐⭐  
-**技术栈**: C + lwIP/自定义协议栈 + 网络仿真
+### HW-01: 基于Arduino框架的虚拟开发板入门
+**难度**: ⭐
+**技术栈**: C/C++ (Arduino语法) + QEMU (模拟STM32/AVR) + 虚拟串口工具
 
 **核心功能**:
-- 实现简化版TCP/IP协议栈（或基于lwIP）
-- ARP/IP/ICMP协议处理
-- 套接字API封装
-- 简单的HTTP客户端实现
-- 网络数据包捕获与分析（pcap文件）
+1. 搭建QEMU虚拟Arduino开发板（如STM32F103或Arduino Uno）
+2. 用`digitalWrite()`/`analogWrite()`实现LED呼吸灯效果
+3. 用`random()`模拟温度传感器数据，通过`Serial.print()`输出到虚拟串口
+4. 实现简单逻辑："温度>30℃时LED快闪，否则慢闪"
+5. 用QEMU+GDB单步调试，观察变量变化
 
 **学习要点**:
-- 网络协议分层
-- 缓冲区管理
-- 协议状态机
-- 网络字节序处理
-- Wireshark分析
+- 嵌入式开发环境搭建（交叉编译、QEMU启动参数）
+- Arduino框架下的GPIO/串口/定时器基础使用
+- 基本的状态机逻辑（if-else/switch-case实现）
+- 仿真环境下的调试方法（断点、变量查看）
 
 **软件环境**:
-- lwIP协议栈（轻量级）
-- 虚拟网卡（TAP/TUN）
-- Wireshark抓包分析
+- QEMU for Arduino (预配置好的虚拟开发板镜像)
+- Arduino CLI 或 PlatformIO (简化编译流程)
+- 虚拟串口监视器 (如PuTTY或Arduino IDE自带串口监视器)
 
 **Specs示例**:
 ```markdown
-### Requirement: ARP协议处理
-The system SHALL 实现ARP请求与响应
+### Requirement: 温度监控与LED指示
+The system SHALL 模拟温度采集并根据温度控制LED
 
-#### Scenario: ARP请求
-- GIVEN 目标IP地址已知
-- WHEN 发送ARP请求
-- THEN 收到ARP响应
-- AND 更新ARP缓存表
+#### Scenario: 正常温度模式
+- GIVEN QEMU虚拟开发板已启动
+- WHEN 模拟温度为25℃ (<=30℃)
+- THEN LED每1000ms切换一次状态
+- AND 串口输出: "Temperature: 25.0 C, LED: Slow Blink"
+
+#### Scenario: 高温报警模式
+- GIVEN QEMU虚拟开发板已启动
+- WHEN 模拟温度为35℃ (>30℃)
+- THEN LED每200ms切换一次状态
+- AND 串口输出: "Temperature: 35.0 C, LED: Fast Blink"
+```
+
+---
+
+### HW-02: 基础外设驱动的单元测试入门
+**难度**: ⭐⭐
+**技术栈**: C (基础语法) + Unity测试框架 + Python辅助脚本 + 软件仿真
+
+**核心功能**:
+1. 编写两个基础驱动：`led_driver.c` (控制LED开关) 和 `button_driver.c` (读取按键状态)
+2. 用Unity框架写单元测试：验证"调用led_on()时LED状态为1"等基础逻辑
+3. 用Python脚本模拟"按键按下/释放"信号，注入到驱动中
+4. 生成简单的测试报告（通过/失败统计）
+5. *选做：用gcov查看代码覆盖率（仅要求覆盖核心函数）*
+
+**学习要点**:
+- 硬件驱动的基本结构（初始化、读写函数）
+- 单元测试的核心概念（测试用例、断言）
+- 简单的"信号注入"思想（用全局变量/函数参数模拟硬件输入）
+- 测试报告的阅读与分析
+
+**软件环境**:
+- Unity测试框架 (单文件集成，无需复杂构建)
+- GCC编译器 (本地编译即可，无需交叉编译)
+- Python 3.x (用于生成测试输入数据)
+
+**Specs示例**:
+```markdown
+### Requirement: LED驱动测试
+The system SHALL 验证LED驱动的基本功能
+
+#### Scenario: 打开LED
+- GIVEN LED驱动已初始化
+- WHEN 调用 led_on() 函数
+- THEN 读取 LED状态变量 应为 1
+- AND 测试用例通过
+
+#### Scenario: 关闭LED
+- GIVEN LED驱动已初始化
+- WHEN 调用 led_off() 函数
+- THEN 读取 LED状态变量 应为 0
+- AND 测试用例通过
+```
+
+---
+
+### HW-03: 基于lwIP的简单网络通信
+**难度**: ⭐⭐⭐
+**技术栈**: C (基础网络编程) + lwIP (轻量级IP栈) + QEMU虚拟网卡 + Wireshark
+
+**核心功能**:
+1. 用QEMU搭建带虚拟TAP网卡的虚拟开发板，连接到宿主机
+2. 基于lwIP的`socket API`，实现一个简单的UDP客户端
+3. 客户端向宿主机发送"Hello from Embedded!"字符串
+4. 用Wireshark捕获虚拟网卡的数据包，分析UDP/IP头
+5. *选做：实现ARP请求的观察（用Wireshark看ARP交互过程）*
+
+**学习要点**:
+- 网络分层的基本概念（链路层、IP层、传输层）
+- lwIP的基础配置（网卡初始化、IP地址设置）
+- Socket API的基本使用（socket()、sendto()、close()）
+- 用Wireshark分析简单网络数据包的能力
+
+**软件环境**:
+- lwIP (预移植好的QEMU版本，只需修改应用层代码)
+- QEMU with TAP/TUN支持 (宿主机需配置虚拟网卡)
+- Wireshark (用于抓包分析)
+
+**Specs示例**:
+```markdown
+### Requirement: UDP数据发送
+The system SHALL 通过虚拟网卡发送UDP数据包
+
+#### Scenario: 发送字符串
+- GIVEN 虚拟网卡已配置 (IP: 192.168.1.10)
+- AND 宿主机UDP服务端已启动 (IP: 192.168.1.1, Port: 8888)
+- WHEN 调用 send_udp_message() 函数
+- THEN 宿主机收到字符串: "Hello from Embedded!"
+- AND Wireshark能捕获到源IP为192.168.1.10的UDP数据包
 ```
 
 ---
@@ -461,7 +545,9 @@ The system SHALL 支持拖拽组件设计表单
 #### 硬件研发工程师（纯软件仿真）
 | 推荐排序 | 课题 | 难度 | 理由 |
 |---------|------|------|------|
-| 1 | HW-01 网络协议栈实现 | ⭐⭐⭐⭐ | 纯软件网络协议，深度最高 |
+| 1 | HW-01 Arduino虚拟开发板 | ⭐ | 入门友好，快速上手 |
+| 2 | HW-02 外设驱动单元测试 | ⭐⭐ | 测试思维培养，实用性强 |
+| 3 | HW-03 lwIP网络通信 | ⭐⭐⭐ | 网络协议深度学习 |
 
 **软件环境说明**:
 - 仅需安装QEMU、交叉编译工具链、GDB
@@ -499,21 +585,21 @@ The system SHALL 支持拖拽组件设计表单
 
 | 基础水平 | 推荐课题 |
 |---------|---------|
-| 基础较弱 | QA-01, FE-01, SD-01, SD-05, SD-06 |
-| 基础中等 | QA-02, SD-04, SD-07, SD-08, SD-09, SD-10 |
-| 基础较好 | HW-01, SD-02, SD-03, SD-11, SD-12 |
+| 基础较弱 | QA-01, FE-01, SD-01, SD-05, SD-06, HW-01 |
+| 基础中等 | QA-02, SD-04, SD-07, SD-08, SD-09, SD-10, HW-02 |
+| 基础较好 | HW-03, SD-02, SD-03, SD-11, SD-12 |
 
 ### 7.3 按兴趣方向推荐
 
 | 兴趣方向 | 推荐课题 |
 |---------|---------|
-| 底层/系统 | SD-02, SD-03, SD-11, HW-01 |
+| 底层/系统 | SD-02, SD-03, SD-11, HW-01, HW-02, HW-03 |
 | 工具开发 | SD-05, SD-06, SD-07, SD-08 |
-| 网络/分布式 | SD-03, SD-04, SD-09, SD-11, SD-12, HW-01 |
+| 网络/分布式 | SD-03, SD-04, SD-09, SD-11, SD-12, HW-03 |
 | 数据/算法 | SD-02, SD-06, SD-07, SD-10 |
 | 前端/可视化 | FE-01 |
-| 嵌入式/硬件 | HW-01 |
-| 测试/质量 | QA-01, QA-02 |
+| 嵌入式/硬件 | HW-01, HW-02, HW-03 |
+| 测试/质量 | QA-01, QA-02, HW-02 |
 
 ---
 
@@ -687,7 +773,16 @@ The system SHALL [功能描述]
 
 ---
 
-## 九、评审标准
+## 九、成果提交
+
+培训成果提交至 **GitHub 个人仓库**，提交作品链接即可。要求：
+- 仓库包含完整的项目代码及 SDD 各阶段文档（proposal、specs、design、tasks）
+- Git 提交历史清晰，按 Task 提交，commit message 规范
+- README.md 包含项目说明、运行方式、测试结果截图
+
+---
+
+## 十、评审标准
 
 ### 9.1 SDD过程完整性（40分）
 
@@ -727,7 +822,7 @@ The system SHALL [功能描述]
 
 ---
 
-## 十、常见问题FAQ
+## 十一、常见问题FAQ
 
 ### Q1: 遇到AI生成的代码有bug怎么办？
 **A**: 这是正常的。把错误信息和相关代码给AI，让它修复。记录你发现的AI常见错误模式。
@@ -758,7 +853,7 @@ The system SHALL [功能描述]
 
 ---
 
-## 十一、资源链接
+## 十二、资源链接
 
 - **OpenSpec文档**: https://github.com/fission-ai/openspec
 - **Conventional Commits**: https://www.conventionalcommits.org/
@@ -770,4 +865,4 @@ The system SHALL [功能描述]
 
 *文档生成时间: 2026-04-23*  
 *版本: v3.0*  
-*课题总计: 15个（硬件1 + 测试2 + 前端1 + 软件11）*
+*课题总计: 17个（硬件3 + 测试2 + 前端1 + 软件11）*

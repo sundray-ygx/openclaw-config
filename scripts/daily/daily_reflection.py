@@ -1,641 +1,349 @@
 #!/usr/bin/env python3
 """
-Daily Reflection V2 - 每日反思生成器（改进版）
-基于当日会话历史和记忆文件，生成结构化、具体的反思报告
+Daily Reflection V3 - 基于 AI 的深度反思生成器
 
-改进点：
-1. 从空洞→具体：提取具体场景、数据、影响
-2. 增加关联经验：提炼可复用的方法论
-3. 结构化呈现：数据概览、做得好的、需改进、关联经验
+核心改进：
+1. 不再从固定格式提取"教训"，而是收集当日完整工作上下文
+2. 交给 AI 做真正的反思（不是模板匹配）
+3. 对比历史反思避免重复
+4. 输出可执行的改进行动项
 """
 
 import os
 import re
 import json
 import urllib.request
+import urllib.parse
 from datetime import datetime, timedelta
-from collections import Counter
 
-REFLECTION_DIR = "/root/.openclaw/workspace/reflection"
 MEMORY_DIR = "/root/.openclaw/workspace/memory"
+REFLECTION_DIR = "/root/.openclaw/workspace/reflection"
+LESSONS_FILE = "/root/.openclaw/workspace/memory/lessons.md"
 FEISHU_APP_ID = "cli_a93b96047e7a5bc3"
 FEISHU_APP_SECRET = "ir6uAf1L7O52AFgXrepgabIrYG1oOcbD"
 FEISHU_USER_ID = "ou_c2cde251e01a87fc09ba7561f76d8606"
 
+# AI API 配置（使用内置的百炼 API）
+AI_API_URL = "https://coding.dashscope.aliyuncs.com/v1/chat/completions"
 
-def extract_lessons_from_memory(date_str):
-    """从记忆文件提取教训 - 改进版：提取具体内容而非套话"""
-    lessons = []
-    memory_file = os.path.join(MEMORY_DIR, f"{date_str}.md")
-    
-    if not os.path.exists(memory_file):
-        return lessons
-    
-    with open(memory_file, "r", encoding="utf-8") as f:
-        content = f.read()
-    
-    # 提取复盘与改进部分 - 改进：提取完整上下文
-    # 支持多种格式："做得好的：" 或 "做得好的："
-    reflection_match = re.search(r'## 🔄 复盘与改进\s*\n.*?\*\*做得好的：?\*\*\s*\n(.*?)(?=\n\*\*需改进：?\*\*|\n## |\Z)', content, re.DOTALL)
-    improve_match = re.search(r'\*\*需改进的?：?\*\*\s*\n(.*?)(?=\n## |\Z)', content, re.DOTALL)
-    
-    if reflection_match:
-        good_text = reflection_match.group(1).strip()
-        for line in good_text.split('\n'):
-            line = line.strip()
-            if line and (line.startswith('•') or line.startswith('-')):
-                lesson_content = line[1:].strip()
-                # 过滤掉空洞和无效的内容
-                if not is_valid_reflection(lesson_content):
-                    lessons.append({
-                        "type": "good",
-                        "content": lesson_content,
-                        "category": categorize_lesson(lesson_content),
-                        "context": extract_context(content, lesson_content)
-                    })
-    
-    if improve_match:
-        improve_text = improve_match.group(1).strip()
-        for line in improve_text.split('\n'):
-            line = line.strip()
-            if line and (line.startswith('•') or line.startswith('-')):
-                lesson_content = line[1:].strip()
-                if not is_valid_reflection(lesson_content):
-                    lessons.append({
-                        "type": "improve",
-                        "content": lesson_content,
-                        "category": categorize_lesson(lesson_content),
-                        "context": extract_context(content, lesson_content)
-                    })
-    
-    # 如果没有找到复盘记录，从待跟进事项提取
-    if not lessons:
-        todo_match = re.search(r'## 待跟进事项\s*\n(.*?)(?=\n## |\Z)', content, re.DOTALL)
-        if todo_match:
-            todo_text = todo_match.group(1).strip()
-            for line in todo_text.split('\n'):
-                line = line.strip()
-                if line and line.startswith('- ['):
-                    # 提取复选框内容
-                    task_content = re.sub(r'^-\s*\[.\]\s*', '', line).strip()
-                    if task_content and not is_valid_reflection(task_content):
-                        lessons.append({
-                            "type": "improve",
-                            "content": task_content,
-                            "category": categorize_lesson(task_content),
-                            "context": "待跟进任务"
-                        })
-    
-    # 从错误/异常部分提取具体错误
-    errors_match = re.search(r'## ⚠️ 错误与异常\s*\n\n(.*?)(?=\n## |\Z)', content, re.DOTALL)
-    if errors_match:
-        errors_text = errors_match.group(1).strip()
-        error_lines = [line.strip() for line in errors_text.split('\n') if line.strip().startswith('-')]
-        for line in error_lines[:3]:
-            # 提取具体错误信息
-            clean_error = re.sub(r'^-\s*[💻📱]\s*\*\*[^*]+\*\*\s*', '', line).strip()
-            # 过滤掉代码块和过长的内容
-            if clean_error and len(clean_error) > 10 and len(clean_error) < 200 and not is_valid_reflection(clean_error):
-                # 检查是否是代码片段（以 #!/ 或 import 或 def 开头）
-                if not any(clean_error.startswith(prefix) for prefix in ['#!/', 'import ', 'def ', '"""', 'class ']):
-                    lessons.append({
-                        "type": "improve",
-                        "content": clean_error[:150],
-                        "category": "technical",
-                        "context": "系统错误日志"
-                    })
-    
-    return lessons
+# 从 openclaw.json 读取 API Key
+def _load_api_key():
+    try:
+        import json as _json
+        with open('/root/.openclaw/openclaw.json', 'r') as _f:
+            _cfg = _json.load(_f)
+        return _cfg['models']['providers']['bailian']['apiKey']
+    except Exception:
+        return os.environ.get("DASHSCOPE_API_KEY", "")
+
+AI_API_KEY = _load_api_key()
+AI_MODEL = "qwen3-coder-plus"
 
 
-def is_valid_reflection(content):
-    """判断内容是否是有效的反思记录（反向逻辑：不合法返回True）"""
-    content = content.strip()
-    
-    # 1. 空内容/太短
-    if not content or len(content) < 10:
-        return True  # 无效
-    
-    # 2. 代码片段（各种语言特征）
-    code_patterns = [
-        r'^#!/',                     # shebang
-        r'^import\s+',               # Python import
-        r'^from\s+.+import',         # Python from-import
-        r'^def\s+',                  # Python 函数定义
-        r'^class\s+',                # Python 类定义
-        r'^"""\s*$',                 # Python docstring
-        r"^'''\s*$",                 # Python docstring
-        r'^{\s*$',                   # JSON/对象开头
-        r'^\[\s*$',                  # 数组开头
-        r'^\$\{',                    # Shell 变量
-        r'^function\s+',             # JS 函数
-        r'^const\s+',                # JS const
-        r'^var\s+',                  # JS var
-        r'^let\s+',                  # JS let
-    ]
-    if any(re.search(p, content) for p in code_patterns):
-        return True  # 无效
-    
-    # 3. CLI 错误信息（非反思内容）
-    cli_error_patterns = [
-        r'^error:\s+unknown option',
-        r'^error:\s+required option',
-        r'^error:\s+unrecognized',
-        r'^usage:\s+',               # CLI usage 输出
-        r'^Options:',
-        r'^Arguments:',
-        r'^Commands:',
-        r'^Traceback\s*\(most recent',
-        r'^\s+File\s+".*",\s+line\s+\d+',  # Python traceback 行
-    ]
-    if any(re.search(p, content, re.IGNORECASE) for p in cli_error_patterns):
-        return True  # 无效
-    
-    # 4. 版本号/更新日志信息
-    version_patterns = [
-        r'^\S+\s+\d+\.\d+\.\d+.*\(.*\)\s*[-—]',  # "OpenClaw 2026.3.23-2 (7ffe7e4) —"
-        r'^v?\d+\.\d+\.\d+[-\w]*\s*$',
-        r'^Version:',
-        r'^Changelog:',
-    ]
-    if any(re.search(p, content) for p in version_patterns):
-        return True  # 无效
-    
-    # 5. 日志前缀/系统输出
-    log_patterns = [
-        r'^💻',
-        r'^📱',
-        r'^🖥️',
-        r'^🖥',
-        r'^DEBUG:',
-        r'^INFO:',
-        r'^WARN(?:ING)?:',
-        r'^ERROR:',
-        r'^FATAL:',
-        r'^\[ERROR\]',
-        r'^\[WARN\]',
-        r'^\[INFO\]',
-    ]
-    if any(re.search(p, content) for p in log_patterns):
-        return True  # 无效
-    
-    # 6. JSON 内容
-    if content.startswith('{') and ('"' in content[:50]):
-        return True
-    if content.startswith('[') and ('"' in content[:50]):
-        return True
-    
-    # 7. 纯特殊字符/符号
-    if re.match(r'^[\W\s]+$', content):
-        return True
-    
-    # 8. 空洞描述（内容存在但没有信息量）
-    vague_patterns = [
-        r'^未充分准备',
-        r'^考虑不周全',
-        r'^需要改进$',
-        r'^有待提高',
-        r'^不够完善',
-        r'^可以更好',
-        r'^系统稳定运行',
-        r'^所有定时任务',
-        r'^无$',
-        r'^暂无',
-        r'^待补充',
-        r'^N/A',
-    ]
-    if any(re.search(p, content, re.IGNORECASE) for p in vague_patterns):
-        return True  # 无效
-    
-    return False  # 有效
+def get_ai_response(system_prompt, user_prompt, max_tokens=2000):
+    """调用 AI API 生成反思"""
+    data = json.dumps({
+        "model": AI_MODEL,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ],
+        "max_tokens": max_tokens,
+        "temperature": 0.7
+    }).encode()
+
+    req = urllib.request.Request(AI_API_URL, data=data, headers={
+        "Authorization": f"Bearer {AI_API_KEY}",
+        "Content-Type": "application/json"
+    }, method="POST")
+
+    try:
+        with urllib.request.urlopen(req, timeout=60) as response:
+            result = json.loads(response.read().decode())
+            return result["choices"][0]["message"]["content"]
+    except Exception as e:
+        print(f"  AI API 调用失败: {e}")
+        return None
 
 
-def extract_context(full_content, lesson_content):
-    """提取教训的上下文信息"""
-    # 查找包含该教训的段落
-    paragraphs = full_content.split('\n\n')
-    for para in paragraphs:
-        if lesson_content in para or any(word in para for word in lesson_content.split()[:3]):
-            # 返回该段落的前200字符作为上下文
-            return para[:200].replace('\n', ' ')
-    return ""
-
-
-def categorize_lesson(content):
-    """自动分类教训"""
-    tech_kw = ["technical", "code", "script", "api", "error", "timeout", "配置", 
-               "安装", "部署", "环境", "python", "docker", "git", "数据库", "脚本",
-               "路径", "目录", "文件", "权限", "token", "认证", "网络", "服务器"]
-    work_kw = ["communication", "process", "scope", "assumptions", "沟通", 
-               "流程", "计划", "对齐", "会议", "文档", "管理", "复盘", "协作"]
-    data_kw = ["数据", "记录", "归档", "备份", "统计", "分析", "日志", "监控"]
-    
-    content_lower = content.lower()
-    
-    if any(k in content_lower for k in tech_kw):
-        return "technical"
-    elif any(k in content_lower for k in data_kw):
-        return "data"
-    elif any(k in content_lower for k in work_kw):
-        return "process"
-    else:
-        return "assumptions"
-
-
-def determine_level(content):
-    """确定教训级别"""
-    p0_kw = ["致命", "严重", "崩溃", "无法", "阻断", "全部失败", "数据丢失", "重大", "安全"]
-    p1_kw = ["重要", "影响", "延迟", "错误", "失败", "问题", "连续", "多次"]
-    
-    if any(k in content for k in p0_kw):
-        return "P0致命"
-    elif any(k in content for k in p1_kw):
-        return "P1严重"
-    return "P2一般"
-
-
-def generate_structured_reflection(lesson, date_str):
-    """生成结构化反思记录 - 改进版：具体场景 + 根因 + 可执行方案"""
-    category = lesson.get("category", "assumptions")
-    level = determine_level(lesson["content"])
-    content = lesson["content"]
-    context = lesson.get("context", "")
-    
-    # 智能根因分析 - 基于具体内容
-    root_cause = analyze_root_cause(content, context, category)
-    
-    # 智能解决方案 - 可执行、具体
-    solution = generate_solution(content, root_cause, category)
-    
-    # 提取可复用经验
-    reusable_experience = extract_reusable_experience(content, root_cause, category)
-    
-    return {
+def collect_daily_context(date_str):
+    """收集当日完整工作上下文"""
+    context = {
         "date": date_str,
-        "category": category,
-        "level": level,
-        "type": lesson["type"],
-        "miss": content,
-        "context": context,
-        "root": root_cause,
-        "fix": solution,
-        "experience": reusable_experience
+        "daily_log": "",
+        "interactions": [],
+        "errors": [],
+        "tasks_executed": [],
+        "projects": []
     }
 
+    # 1. 读取当日记忆日志
+    memory_file = os.path.join(MEMORY_DIR, f"{date_str}.md")
+    if os.path.exists(memory_file):
+        with open(memory_file, "r", encoding="utf-8") as f:
+            context["daily_log"] = f.read()
 
-def analyze_root_cause(content, context, category):
-    """智能根因分析"""
-    # 技术类根因
-    if category == "technical":
-        if "路径" in content or "目录" in content:
-            return "工作目录/路径配置未标准化，存在多环境混用"
-        elif "配置" in content:
-            return "配置项未文档化，依赖口头约定或隐性假设"
-        elif "超时" in content or "失败" in content:
-            return "缺乏任务状态监控和失败告警机制"
-        elif "权限" in content:
-            return "权限管理不规范，未按最小权限原则配置"
-        elif "token" in content.lower() or "认证" in content:
-            return "认证凭据管理不当，可能存在过期或泄露风险"
-        else:
-            return "技术实现缺乏容错设计，未考虑边界情况"
-    
-    # 数据类根因
-    elif category == "data":
-        if "归档" in content or "备份" in content:
-            return "数据生命周期管理不完善，缺乏自动化监控"
-        elif "记录" in content:
-            return "数据记录标准不明确，格式/位置不统一"
-        elif "统计" in content:
-            return "数据统计口径不一致，缺乏标准化定义"
-        else:
-            return "数据管理流程未文档化，执行依赖个人习惯"
-    
-    # 流程类根因
-    elif category == "process":
-        if "沟通" in content or "对齐" in content:
-            return "沟通机制不完善，关键信息未同步或确认"
-        elif "计划" in content or "排期" in content:
-            return "任务规划未考虑依赖关系和缓冲时间"
-        elif "文档" in content:
-            return "文档更新不及时，与实际情况存在偏差"
-        else:
-            return "流程执行缺乏检查清单，容易遗漏关键步骤"
-    
-    # 默认根因 - 不再返回模板套话，改为标记待分析
-    if "时间" in content or "周期" in content:
-        return "时间/周期定义不明确，缺乏标准化约定"
-    elif "数据" in content:
-        return "缺乏历史数据积累，无法支撑决策"
-    elif "配置" in content:
-        return "配置项未明确文档化"
-    elif "沟通" in content or "对齐" in content:
-        return "沟通不充分，信息未同步"
-    else:
-        return f"待分析：需人工补充根因（原文：{content[:30]}）"
+    # 2. 提取工作交互（去掉系统心跳和噪音）
+    if context["daily_log"]:
+        lines = context["daily_log"].split('\n')
+        for line in lines:
+            # 提取用户实际交互
+            if "**" in line and ("GMT+8]" in line or "本地交互" in line):
+                clean = re.sub(r'\*\*[^*]+\*\*', '', line).strip()
+                clean = re.sub(r'^\d+\.\s*', '', clean).strip()
+                if clean and "HEARTBEAT" not in clean and len(clean) > 15:
+                    context["interactions"].append(clean)
 
+            # 提取定时任务执行
+            if "定时任务执行记录" in line or "cron" in line.lower():
+                context["tasks_executed"].append(line.strip())
 
-def generate_solution(content, root_cause, category):
-    """生成可执行的解决方案"""
-    solutions = []
-    
-    # 基于根因生成具体方案
-    if "配置" in root_cause:
-        solutions.append("建立配置检查清单，关键路径/环境变量文档化")
-        solutions.append("在代码中增加配置校验，启动时检查必要配置项")
-    
-    if "监控" in root_cause or "告警" in root_cause:
-        solutions.append("为关键定时任务增加状态监控和失败告警")
-        solutions.append("建立任务执行日志，记录开始/结束/异常状态")
-    
-    if "文档化" in root_cause:
-        solutions.append("更新相关文档，明确标准操作流程")
-        solutions.append("在关键位置添加注释说明，减少口头依赖")
-    
-    if "标准化" in root_cause:
-        solutions.append("制定统一规范，消除多版本混用")
-        solutions.append("建立模板/示例，降低执行差异")
-    
-    if "沟通" in root_cause:
-        solutions.append("建立信息同步机制，关键变更需确认")
-        solutions.append("使用异步文档记录决策，减少信息丢失")
-    
-    if "检查清单" in root_cause:
-        solutions.append("设计检查清单，覆盖关键步骤和风险点")
-        solutions.append("在关键节点设置检查点，强制确认后再继续")
-    
-    if "容错" in root_cause:
-        solutions.append("增加异常处理逻辑， graceful degradation")
-        solutions.append("设计降级方案，核心功能在异常时仍可运行")
-    
-    if not solutions:
-        if category == "technical":
-            solutions.append(f"排查具体技术问题：{content[:30]}")
-            solutions.append("增加异常处理和边界检查")
-        elif category == "data":
-            solutions.append(f"建立数据质量检查：{content[:30]}")
-            solutions.append("定期审计数据完整性")
-        else:
-            solutions.append(f"梳理流程问题：{content[:30]}")
-            solutions.append("增加预检查环节")
-    
-    return "；".join(solutions[:2])
+            # 提取项目相关
+            if "[PROJECT:" in line:
+                context["projects"].append(line.strip())
+
+    # 3. 提取真正的错误（过滤噪音）
+    if context["daily_log"]:
+        error_section = re.search(
+            r'## ⚠️ 错误与异常\s*\n(.*?)(?=\n## |\Z)',
+            context["daily_log"], re.DOTALL
+        )
+        if error_section:
+            error_text = error_section.group(1)
+            for line in error_text.split('\n'):
+                line = line.strip()
+                # 过滤掉文件内容、代码片段、JSON等噪音
+                if not line or line.startswith('```') or line.startswith('#!/') or line.startswith('import '):
+                    continue
+                if line.startswith('- 💻') or line.startswith('- 📱'):
+                    # 提取实际错误信息，去掉文件内容和代码
+                    content = re.sub(r'^-\s*[💻📱]\s*\*\*[^*]+\*\*\s*', '', line).strip()
+                    # 过滤代码片段和过长内容
+                    if (content and len(content) > 10 and len(content) < 200
+                            and not content.startswith('{') and not content.startswith('#!/')
+                            and not content.startswith('"""') and 'def ' not in content[:10]
+                            and 'class ' not in content[:10]
+                            and not content.startswith('import ')
+                            and 'Traceback' not in content
+                            and 'open-apis' not in content):
+                        context["errors"].append(content)
+
+    return context
 
 
-def extract_reusable_experience(content, root_cause, category):
-    """提取可复用的经验"""
-    experiences = []
-    
-    # 配置相关
-    if "配置" in content or "配置" in root_cause:
-        experiences.append({
-            "type": "配置文档化",
-            "practice": "关键路径、环境变量必须文档化，避免口头约定",
-            "apply_to": "所有涉及路径/配置的功能"
-        })
-    
-    # 监控相关
-    if "监控" in root_cause or "失败" in content or "超时" in content:
-        experiences.append({
-            "type": "任务可观测",
-            "practice": "定时任务必须配套状态监控和失败告警",
-            "apply_to": "所有自动化任务"
-        })
-    
-    # 重复问题
-    if "连续" in content or "多次" in content or "重复" in content:
-        experiences.append({
-            "type": "防冗余设计",
-            "practice": "同一问题出现2次+，需建立检查清单或自动化检测",
-            "apply_to": "高频操作/关键流程"
-        })
-    
-    # 沟通相关
-    if "沟通" in content or "对齐" in content:
-        experiences.append({
-            "type": "信息同步",
-            "practice": "关键信息变更需书面确认，避免'我以为'",
-            "apply_to": "跨团队协作/需求变更"
-        })
-    
-    # 时间相关
-    if "时间" in content or "周期" in content:
-        experiences.append({
-            "type": "时间标准化",
-            "practice": "时间范围使用标准格式（如 00:00-23:59），避免歧义",
-            "apply_to": "所有时间相关的配置和文档"
-        })
-    
-    # 数据相关
-    if category == "data":
-        experiences.append({
-            "type": "数据生命周期",
-            "practice": "关键数据需有归档策略和完整性校验",
-            "apply_to": "业务数据/日志/备份"
-        })
-    
-    if not experiences:
-        experiences.append({
-            "type": "预检查机制",
-            "practice": "关键操作前执行检查清单，识别潜在风险",
-            "apply_to": "所有关键流程"
-        })
-    
-    return experiences
-
-
-def calculate_lesson_stats(lessons):
-    """计算教训统计数据"""
-    stats = {
-        "total": len(lessons),
-        "good_count": len([l for l in lessons if l["type"] == "good"]),
-        "improve_count": len([l for l in lessons if l["type"] == "improve"]),
-        "categories": Counter([l["category"] for l in lessons]),
-        "levels": Counter([determine_level(l["content"]) for l in lessons]),
-        "repeated": find_repeated_lessons(lessons)
-    }
-    return stats
-
-
-def find_repeated_lessons(lessons):
-    """找出重复出现的教训主题"""
-    # 读取历史反思记录
+def load_recent_reflections(days=7):
+    """加载最近几天的反思，用于去重"""
     reflections_file = os.path.join(REFLECTION_DIR, "reflections.md")
     if not os.path.exists(reflections_file):
-        return []
-    
+        return ""
+
+    # 只读取最近部分
     with open(reflections_file, "r", encoding="utf-8") as f:
-        history = f.read()
-    
-    repeated = []
-    for lesson in lessons:
-        # 提取关键词
-        keywords = extract_keywords(lesson["content"])
-        # 在历史记录中查找
-        matches = 0
-        for kw in keywords:
-            if kw in history:
-                matches += history.count(kw)
-        if matches >= 2:  # 出现2次以上视为重复
-            repeated.append({
-                "content": lesson["content"][:50],
-                "keywords": keywords,
-                "frequency": matches
-            })
-    
-    return repeated
+        content = f.read()
+
+    # 取最近的反思（前 3000 字符即可）
+    entries = content.split("---")
+    recent = "---".join(entries[:min(8, len(entries))])
+    return recent[:3000]
 
 
-def extract_keywords(content):
-    """提取内容关键词"""
-    # 简单的关键词提取：名词短语
-    keywords = []
-    important_words = ["配置", "路径", "目录", "任务", "监控", "告警", "数据", 
-                       "归档", "备份", "文档", "沟通", "对齐", "超时", "失败"]
-    for word in important_words:
-        if word in content:
-            keywords.append(word)
-    return keywords
+def load_lessons():
+    """加载已有经验教训"""
+    if not os.path.exists(LESSONS_FILE):
+        return ""
+    with open(LESSONS_FILE, "r", encoding="utf-8") as f:
+        return f.read()[:2000]
 
 
-def append_to_reflections(reflection):
-    """追加到 reflections.md（带去重检查）"""
-    filepath = os.path.join(REFLECTION_DIR, "reflections.md")
-    
-    # 去重检查：同一条 Miss 内容不重复入库
-    if os.path.exists(filepath):
-        with open(filepath, "r", encoding="utf-8") as f:
-            existing = f.read()
-        if f"**Miss:** {reflection['miss']}" in existing:
-            print(f"  ⏭️ 跳过重复记录: {reflection['miss'][:40]}")
-            return
-    
-    # 构建经验部分
-    exp_text = ""
-    if reflection.get("experience"):
-        exp_text = "\n**Experience:**\n"
-        for exp in reflection["experience"]:
-            exp_text += f"- **{exp['type']}**: {exp['practice']}（适用于：{exp['apply_to']}）\n"
-    
-    entry = f"""## {reflection['date']} | {reflection['category']}
-**Type:** {reflection['type']} | **Level:** {reflection['level']}
-**Miss:** {reflection['miss']}
-**Context:** {reflection.get('context', 'N/A')[:100]}
-**Root:** {reflection['root']}
-**Fix:** {reflection['fix']}{exp_text}
+def generate_reflection(context, recent_reflections, existing_lessons):
+    """用 AI 生成深度反思"""
+
+    # 构建工作摘要（限制长度避免 token 爆炸）
+    work_summary = ""
+    if context["daily_log"]:
+        # 只取关键部分
+        work_summary = context["daily_log"][:3000]
+
+    interaction_list = "\n".join([f"- {i}" for i in context["interactions"][:10]])
+    error_list = "\n".join([f"- {e}" for e in context["errors"][:5]])
+    project_list = "\n".join([f"- {p}" for p in context["projects"][:5]])
+
+    system_prompt = """你是一位深度反思教练。你的任务是分析一天的工作记录，产出有价值的反思。
+
+严格要求：
+1. **不要泛泛而谈** — 每个反思点必须对应具体的事件、决策或行为
+2. **不要重复** — 对比历史反思，如果某个点已经反思过，就不要再提
+3. **要深入根因** — 不是表面描述"出了什么错"，而是分析"为什么会这样"，连问3个为什么
+4. **要可执行** — 改进建议必须是具体的行动项，不是"加强注意"这种废话
+5. **要发现亮点** — 做得好的事情也要记录，分析为什么做得好，提炼可复用的方法
+
+输出格式（严格遵循）：
+
+## 反思报告
+
+### 今日关键事件
+（列出今天最重要的 2-4 件事，每件一句话）
+
+### 深度反思
+
+#### 反思点 1：[标题]
+- **触发事件**：（具体什么事触发了这个反思）
+- **根因分析**：（为什么5分析，至少2层深度）
+- **可执行改进**：（具体的、可立即执行的行动项）
+- **预期效果**：（改进后能带来什么变化）
+
+（如果有更多反思点，继续添加）
+
+### 做得好的
+（1-2件做得好的事，分析为什么好，提炼方法）
+
+### 本日行动项
+（从反思中提炼 1-3 个具体的、可立即执行的行动项）
+
+### 关键洞察
+（一句话总结今天的核心收获）"""
+
+    user_prompt = f"""请对以下 {context['date']} 的工作进行深度反思。
+
+## 当日工作日志
+{work_summary}
+
+## 主要交互
+{interaction_list if interaction_list else "无特殊交互"}
+
+## 项目进展
+{project_list if project_list else "无项目记录"}
+
+## 当日错误
+{error_list if error_list else "无明显错误"}
+
+## 最近反思历史（用于去重，避免重复相同反思点）
+{recent_reflections if recent_reflections else "无历史反思"}
+
+## 已有经验教训（避免重复已有经验）
+{existing_lessons if existing_lessons else "无"}
+
 ---
+请基于以上信息，生成深度、具体、不重复的反思报告。如果今天确实是平淡的一天，没有值得反思的点，就直接说"今日无特殊反思点"。不要为了反思而反思。"""
 
-"""
-    
+    return get_ai_response(system_prompt, user_prompt, max_tokens=2000)
+
+
+def save_reflection(date_str, reflection_text):
+    """保存反思到文件"""
+    os.makedirs(REFLECTION_DIR, exist_ok=True)
+    filepath = os.path.join(REFLECTION_DIR, "reflections.md")
+
     # 读取现有内容
     existing = ""
     if os.path.exists(filepath):
         with open(filepath, "r", encoding="utf-8") as f:
             existing = f.read()
-    
-    # 在标题后插入新记录
+
+    # 构建新条目
+    entry = f"""
+---
+
+## {date_str}
+
+{reflection_text}
+
+"""
+
+    # 在文件开头（标题后）插入新记录
     if "# Reflections Log" in existing:
         parts = existing.split("# Reflections Log", 1)
-        new_content = parts[0] + "# Reflections Log\n\n> Most recent first. Archive monthly to `archive/YYYY-MM.md`.\n\n---\n\n" + entry + parts[1].split("\n---\n", 1)[-1]
+        after_title = parts[1]
+        # 找到第一个 --- 后插入
+        first_sep = after_title.find("---")
+        if first_sep != -1:
+            new_content = (parts[0] + "# Reflections Log" +
+                           after_title[:first_sep + 3] + entry + after_title[first_sep + 3:])
+        else:
+            new_content = parts[0] + "# Reflections Log\n" + entry + after_title
     else:
-        new_content = f"""# Reflections Log
+        new_content = f"# Reflections Log\n\n> Most recent first.\n{entry}"
 
-> Most recent first. Archive monthly to `archive/YYYY-MM.md`.
-
----
-{entry}"""
-    
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(new_content)
 
+    print(f"  ✅ 反思已保存到 {filepath}")
 
-def generate_feishu_report(date_str, stats, good_lessons, improve_lessons, reflections):
-    """生成飞书报告 - 结构化呈现"""
-    
-    # 数据概览部分
+
+def extract_action_items(reflection_text):
+    """从反思中提取行动项"""
+    action_items = []
+    in_action_section = False
+
+    for line in reflection_text.split('\n'):
+        if '本日行动项' in line or '行动项' in line:
+            in_action_section = True
+            continue
+        if in_action_section:
+            if line.startswith('###') or line.startswith('## '):
+                break
+            if line.strip().startswith('-') or line.strip().startswith('1') or line.strip().startswith('2') or line.strip().startswith('3'):
+                clean = re.sub(r'^[-\d.]\s*', '', line.strip())
+                if clean and len(clean) > 5:
+                    action_items.append(clean)
+
+    return action_items[:3]
+
+
+def generate_feishu_report(date_str, reflection_text, action_items):
+    """生成飞书推送报告（精简版）"""
     lines = [
-        f"📊 每日反思报告 - {date_str}",
+        f"🪞 每日反思 - {date_str}",
         "",
         "━━━━━━━━━━━━━━━━━━━━━",
-        "",
-        "📈 数据概览",
-        f"• 今日提取教训：{stats['total']} 条",
-        f"• 类型分布：{' | '.join([f'{k} {v}条' for k, v in stats['categories'].most_common()])}",
     ]
-    
-    if stats['repeated']:
-        lines.append(f"• 重复主题：{len(stats['repeated'])} 个（需重点关注）")
-    
-    lines.extend([
-        "",
-        "━━━━━━━━━━━━━━━━━━━━━",
-        "",
-        "✅ 做得好的",
-        ""
-    ])
-    
-    # 做得好的部分
-    for i, lesson in enumerate(good_lessons[:3], 1):
-        ref = [r for r in reflections if r['miss'] == lesson['content']]
-        if ref:
-            r = ref[0]
-            lines.append(f"{i}. {r['miss']}")
-            if r.get('context'):
-                lines.append(f"   • 背景：{r['context'][:80]}{'...' if len(r['context']) > 80 else ''}")
-        else:
-            lines.append(f"{i}. {lesson['content']}")
+
+    # 提取关键事件
+    in_section = False
+    key_events = []
+    for line in reflection_text.split('\n'):
+        if '今日关键事件' in line:
+            in_section = True
+            continue
+        if in_section:
+            if line.startswith('###'):
+                in_section = False
+                continue
+            if line.strip().startswith('-'):
+                key_events.append(line.strip().lstrip('- '))
+
+    if key_events:
         lines.append("")
-    
-    lines.extend([
-        "━━━━━━━━━━━━━━━━━━━━━━━━━",
-        "",
-        "⚠️ 需改进的",
-        ""
-    ])
-    
-    # 需改进的部分
-    for i, lesson in enumerate(improve_lessons[:3], 1):
-        ref = [r for r in reflections if r['miss'] == lesson['content']]
-        if ref:
-            r = ref[0]
-            lines.append(f"{i}. {r['miss']}")
-            lines.append(f"   • 根因：{r['root']}")
-            lines.append(f"   • 改进：{r['fix']}")
-        else:
-            lines.append(f"{i}. {lesson['content']}")
+        lines.append("📌 关键事件")
+        for event in key_events[:4]:
+            lines.append(f"• {event}")
+
+    # 提取反思点标题
+    reflection_points = re.findall(r'#### 反思点 \d+：(.+)', reflection_text)
+
+    if reflection_points:
         lines.append("")
-    
-    # 关联经验
-    all_experiences = []
-    for r in reflections:
-        if r.get('experience'):
-            all_experiences.extend(r['experience'])
-    
-    if all_experiences:
-        lines.extend([
-            "━━━━━━━━━━━━━━━━━━━━━━━━━",
-            "",
-            "💡 关联经验（可复用）",
-            "",
-            "| 经验类型 | 具体做法 |",
-            "|---------|---------|"
-        ])
-        
-        seen = set()
-        for exp in all_experiences[:5]:
-            key = exp['type']
-            if key not in seen:
-                seen.add(key)
-                lines.append(f"| {exp['type']} | {exp['practice']} |")
-        
+        lines.append("🔮 反思要点")
+        for i, point in enumerate(reflection_points, 1):
+            lines.append(f"{i}. {point}")
+
+    # 行动项
+    if action_items:
         lines.append("")
-    
-    lines.extend([
-        "━━━━━━━━━━━━━━━━━━━━━━━━━",
-        "",
-        f"📁 完整记录：{REFLECTION_DIR}/reflections.md"
-    ])
-    
+        lines.append("✅ 行动项")
+        for i, item in enumerate(action_items, 1):
+            lines.append(f"{i}. {item}")
+
+    # 关键洞察
+    insight_match = re.search(r'### 关键洞察\n+(.+)', reflection_text)
+    if insight_match:
+        lines.append("")
+        lines.append(f"💡 {insight_match.group(1).strip()}")
+
+    lines.append("")
+    lines.append("━━━━━━━━━━━━━━━━━━━━━")
+    lines.append(f"📁 完整反思：{REFLECTION_DIR}/reflections.md")
+
     return "\n".join(lines)
 
 
@@ -659,82 +367,88 @@ def send_feishu_message(message_text):
     if not token:
         print("⚠️ 无法获取飞书token，跳过推送")
         return False
-    
+
     url = "https://open.feishu.cn/open-apis/im/v1/messages"
     params = {"receive_id_type": "open_id"}
     full_url = f"{url}?{urllib.parse.urlencode(params)}"
-    
+
     message_data = json.dumps({
         "receive_id": FEISHU_USER_ID,
         "msg_type": "text",
         "content": json.dumps({"text": message_text})
     }).encode()
-    
+
     req = urllib.request.Request(full_url, data=message_data, headers={
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json"
     }, method="POST")
-    
+
     try:
         with urllib.request.urlopen(req, timeout=10) as response:
             result = json.loads(response.read().decode())
             if result.get("code") == 0:
-                print(f"✅ 飞书报告发送成功")
+                print(f"  ✅ 飞书报告发送成功")
                 return True
             else:
-                print(f"⚠️ 飞书发送失败: {result.get('msg')}")
+                print(f"  ⚠️ 飞书发送失败: {result.get('msg')}")
                 return False
     except Exception as e:
-        print(f"⚠️ 飞书发送失败: {e}")
+        print(f"  ⚠️ 飞书发送失败: {e}")
         return False
 
 
 def main():
-    print("🚀 开始生成每日反思 V2...")
-    
+    print("🪞 每日反思 V3 - AI 深度反思")
+    print("=" * 40)
+
     # 获取昨天日期
     yesterday = datetime.now() - timedelta(days=1)
     date_str = yesterday.strftime('%Y-%m-%d')
-    
-    print(f"📅 分析日期: {date_str}")
-    
-    # 从记忆文件提取教训
-    lessons = extract_lessons_from_memory(date_str)
-    print(f"✅ 从记忆文件提取 {len(lessons)} 条教训")
-    
-    if not lessons:
-        print("⚠️ 未找到可记录的教训")
+    print(f"📅 反思日期: {date_str}")
+
+    # 1. 收集当日工作上下文
+    print("📂 收集工作上下文...")
+    context = collect_daily_context(date_str)
+    print(f"  交互记录: {len(context['interactions'])} 条")
+    print(f"  错误记录: {len(context['errors'])} 条")
+    print(f"  项目记录: {len(context['projects'])} 条")
+
+    if not context["daily_log"]:
+        print("⚠️ 当日无工作日志，跳过反思")
         return
-    
-    # 计算统计
-    stats = calculate_lesson_stats(lessons)
-    print(f"📊 统计：总计{stats['total']}条，做得好{stats['good_count']}条，需改进{stats['improve_count']}条")
-    
-    # 生成结构化反思
-    reflections = []
-    for lesson in lessons:
-        reflection = generate_structured_reflection(lesson, date_str)
-        reflections.append(reflection)
-        print(f"📝 生成反思: {reflection['miss'][:40]}...")
-        
-        # 只记录需改进的到 reflections.md
-        if lesson["type"] == "improve":
-            append_to_reflections(reflection)
-            print(f"✅ 已追加到 reflections.md")
-    
-    # 分类
-    good_lessons = [l for l in lessons if l["type"] == "good"]
-    improve_lessons = [l for l in lessons if l["type"] == "improve"]
-    
-    # 生成飞书报告
+
+    # 2. 加载历史反思（去重用）
+    print("📋 加载历史反思...")
+    recent_reflections = load_recent_reflections(7)
+    existing_lessons = load_lessons()
+
+    # 3. AI 生成深度反思
+    print("🤖 AI 深度反思生成中...")
+    reflection_text = generate_reflection(context, recent_reflections, existing_lessons)
+
+    if not reflection_text:
+        print("⚠️ AI 反思生成失败")
+        return
+
+    # 检查是否无反思点
+    if "无特殊反思点" in reflection_text:
+        print("  ℹ️ 今日无特殊反思点，跳过")
+        return
+
+    print(f"  ✅ 反思生成完成，长度: {len(reflection_text)} 字")
+
+    # 4. 保存反思
+    save_reflection(date_str, reflection_text)
+
+    # 5. 提取行动项
+    action_items = extract_action_items(reflection_text)
+
+    # 6. 生成并发送飞书报告
     print("📱 生成飞书报告...")
-    report = generate_feishu_report(date_str, stats, good_lessons, improve_lessons, reflections)
-    
-    # 发送飞书报告
-    print("📤 发送飞书报告...")
+    report = generate_feishu_report(date_str, reflection_text, action_items)
     send_feishu_message(report)
-    
-    print("🎉 完成!")
+
+    print("🎉 反思完成!")
 
 
 if __name__ == "__main__":

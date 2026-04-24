@@ -1,25 +1,5 @@
 # HEARTBEAT.md - 定时任务处理
 
-## 早间简报
-**触发条件**: 每天 8:00 自动执行，无需确认
-
-**执行命令**:
-```bash
-python3 /root/scripts/briefing/morning_briefing.py
-```
-
-**包含内容**:
-- 🌤️ 深圳天气预报
-- 📧 新增邮件汇总
-- 📰 精选资讯（带AI摘要）
-
-**执行方式**: 自动触发，不询问用户
-
-## 手动测试
-```bash
-python3 /root/scripts/briefing/morning_briefing.py
-```
-
 ## 记忆维护（每周一次）
 
 读取 `memory/heartbeat-state.json`，检查 `lastMemoryMaintenance` 字段。
