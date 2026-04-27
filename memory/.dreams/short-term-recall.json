@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-25T00:00:07.666Z",
+  "updatedAt": "2026-04-27T07:02:04.197Z",
   "entries": {
     "memory:memory/2026-03-25.md:1:35": {
       "key": "memory:memory/2026-03-25.md:1:35",
@@ -104938,6 +104938,130 @@
         "软件",
         "开发",
         "工程"
+      ]
+    },
+    "memory:memory/2026-04-11.md:129:165": {
+      "key": "memory:memory/2026-04-11.md:129:165",
+      "path": "memory/2026-04-11.md",
+      "startLine": 129,
+      "endLine": 165,
+      "source": "memory",
+      "snippet": "- 💻 **09:11** 已完成。文档已更新为纯软件版本，归档到 `/root/.openclaw/workspace/docs/training/ai-coding-training-by-role.md`（共1024行）。 --- ## 核心变更说明 ### 硬件课题调整（原需硬件 → 现纯软件仿真） | 原课题 | 需硬件 | 新课题 | 软件方案 | |--------|--------|--------|... - 💻 **14:51** # 综合管理部 AI-Native 落地计划 V3.0 > **基于 RPP + PPT 战略执行方法论** > > **定位**：平台组织，为各团队提供通用AI能力赋能 > **核心策略**：聚焦解决各团队通用障碍，完整执行RPP-PPT流程 > **组织架构**：产研变革组（统筹）+ AI效能组（执行）+ 可扩展资源 --- ## 一、组织架构与职责分工 ### 1.1 组织架构图 ... - 💻 **01:06** { \"status\": \"error\", \"tool\": \"edit\", \"error\": \"Could not find edits[0] in /root/.openclaw/workspace/knowledge/work/AI-Native/综合管理部-AI-Native-平台需求与基建规划.md. The oldText must match exactly includin... - 💻 **01:06** { \"status\": \"error\", \"to",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7703553778045644,
+      "maxScore": 0.7703553778045644,
+      "firstRecalledAt": "2026-04-27T07:02:04.197Z",
+      "lastRecalledAt": "2026-04-27T07:02:04.197Z",
+      "queryHashes": [
+        "b3f7317d5335"
+      ],
+      "recallDays": [
+        "2026-04-27"
+      ],
+      "conceptTags": [
+        "ai-native",
+        "v3.0",
+        "完整执行rpp-ppt流程",
+        "1.1",
+        "完成",
+        "更新",
+        "软件",
+        "版本"
+      ]
+    },
+    "memory:memory/2026-04-13.md:141:169": {
+      "key": "memory:memory/2026-04-13.md:141:169",
+      "path": "memory/2026-04-13.md",
+      "startLine": 141,
+      "endLine": 169,
+      "source": "memory",
+      "snippet": "\"error\": \"ENOENT: no such file or directory, access '/root/.openclaw/workspace/knowledge/work/交换机部门 2026 年 AI-Coding 行动计划.md'\" } - 💻 **09:55** { \"status\": \"error\", \"tool\": \"read\", \"error\": \"ENOENT: no such file or directory, access '/root/.openclaw/workspace/knowledge/work/AI-Native/交换机部门 2026 年 AI-Coding 行动计划.md'\" } - 💻 **09:57** { \"status\": \"error\", \"tool\": \"read\", \"error\": \"ENOENT: no such file or directory, access '/root/.openclaw/workspace/knowledge/work/AI-Native/各团队 AI-Native 里程碑汇总表.md'\" } - 💻 **09:57** { \"status\": \"error\", \"tool\": \"read\", \"error\": \"ENOENT: no such file or directory, access '/root/.openclaw/workspace/knowledge/work/AI-Native/各团队 AI-Native 里程碑汇总表",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7665787158987297,
+      "maxScore": 0.7665787158987297,
+      "firstRecalledAt": "2026-04-27T07:02:04.197Z",
+      "lastRecalledAt": "2026-04-27T07:02:04.197Z",
+      "queryHashes": [
+        "b3f7317d5335"
+      ],
+      "recallDays": [
+        "2026-04-27"
+      ],
+      "conceptTags": [
+        "ai-coding",
+        "行动计划.md",
+        "ai-native",
+        "里程碑汇总表.md",
+        "error",
+        "enoent",
+        "such",
+        "directory"
+      ]
+    },
+    "memory:memory/2026-04-19.md:226:264": {
+      "key": "memory:memory/2026-04-19.md:226:264",
+      "path": "memory/2026-04-19.md",
+      "startLine": 226,
+      "endLine": 264,
+      "source": "memory",
+      "snippet": "- 体系级：团队名称、AI-Native人数、Token消耗总量、请求总次数、总费用、人均费用 - 个人级：姓名、日均Token、Token总量、请求次数、总费用、是否AI-Native 交互： - 行 hover 高亮，行可点击下钻 - 面包屑显示层级路径 - AI-Native 用户高亮标识 - ... - 💻 **14:17** 好问题。从技术角度系统评估一下。 --- ## 评估：考试方可能的技术限制 ### Selenium 能获取什么（考试方无法阻止） | 信息类型 | 获取方式 | 考试方能限制吗 | 原因 | |---------|---------|--------------|------| | HTML 源码 | `driver.page_source` | ❌ 不能 | 浏览器必须接收 HTML ... - 💻 **14:18** { \"status\": \"error\", \"tool\": \"edit\", \"error\": \"Could not find the exact text in /root/.openclaw/workspace/scripts/frontend/extract_structure.py. The old text must match exactly including all whi... - 💻 **14:26** # AI Native 平台度量 - SDD 开发方案 > **目标**: 8小时内完成 AI Native 度量平台 1:1 复刻 > **方法**: Spec-Driven D",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7642895579989195,
+      "maxScore": 0.7642895579989195,
+      "firstRecalledAt": "2026-04-27T07:02:04.197Z",
+      "lastRecalledAt": "2026-04-27T07:02:04.197Z",
+      "queryHashes": [
+        "b3f7317d5335"
+      ],
+      "recallDays": [
+        "2026-04-27"
+      ],
+      "conceptTags": [
+        "ai-native人数",
+        "是否ai-native",
+        "ai-native",
+        "driver.page-source",
+        "spec-driven",
+        "体系",
+        "团队",
+        "名称"
+      ]
+    },
+    "memory:memory/2026-04-11.md:160:187": {
+      "key": "memory:memory/2026-04-11.md:160:187",
+      "path": "memory/2026-04-11.md",
+      "startLine": 160,
+      "endLine": 187,
+      "source": "memory",
+      "snippet": "\"error\": \"Could not find edits[0] in /root/.openclaw/workspace/knowledge/work/AI-Native/综合管理部-AI-Native-平台需求与基建规划.md. The oldText must match exactly includin... - 💻 **01:07** 更新完成 ✗ 归档位置添加失败 ✓ 旧路径已替换 - 💻 **02:31** # 综合管理部 AI-Native 平台需求与基建规划 > **版本**: v1.0 > **基于**: 体系OKR + 各团队AI-Native OKR + RPP/PPT方法论 > **目标**: 梳理通用平台需求与基建需求，输出可落地执行的里程碑计划 > **制定日期**: 2026年4月10日 > **归档位置**: knowledge/work/AI-Native/综合管理... - 💻 **21:00** Config warnings:\\n- plugins.entries.skillhub: plugin not found: skillhub (stale config entry ignored; remove it from plugins config) error: required option '-t, --target <dest>' not specified 开始归档 202... - 💻 **04:40** { \"url\": \"https://github.com/openclaw/open",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7561957618530695,
+      "maxScore": 0.7561957618530695,
+      "firstRecalledAt": "2026-04-27T07:02:04.197Z",
+      "lastRecalledAt": "2026-04-27T07:02:04.197Z",
+      "queryHashes": [
+        "b3f7317d5335"
+      ],
+      "recallDays": [
+        "2026-04-27"
+      ],
+      "conceptTags": [
+        "ai-native",
+        "v1.0",
+        "各团队ai-native",
+        "rpp/ppt方法论",
+        "knowledge/work/ai-native/综合管理",
+        "plugins.entries.skillhub",
+        "github.com/openclaw/open",
+        "error"
       ]
     }
   }
