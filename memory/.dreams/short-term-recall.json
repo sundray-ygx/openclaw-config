@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-30T14:45:41.816Z",
+  "updatedAt": "2026-04-30T19:00:01.298Z",
   "entries": {
     "memory:memory/2026-03-25.md:1:35": {
       "key": "memory:memory/2026-03-25.md:1:35",
@@ -95240,7 +95240,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-23T01:07:24.525Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T17:45:42.491Z",
       "queryHashes": [
         "b7fd25b71b44"
       ],
@@ -105460,7 +105460,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-28T19:00:01.753Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
       "queryHashes": [
         "6c24d11cf4d7"
       ],
@@ -105493,7 +105493,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-28T19:00:01.753Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
       "queryHashes": [
         "6c24d11cf4d7"
       ],
@@ -105526,7 +105526,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-28T19:00:01.753Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
       "queryHashes": [
         "6c24d11cf4d7"
       ],
@@ -105559,7 +105559,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-28T19:00:01.753Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
       "queryHashes": [
         "9b4c3d373463"
       ],
@@ -105590,7 +105590,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-28T19:00:01.753Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
       "queryHashes": [
         "9b4c3d373463"
       ],
@@ -111981,7 +111981,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-29T19:00:01.200Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
       "queryHashes": [
         "90c0a0f693f1"
       ],
@@ -112014,7 +112014,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-29T19:00:01.200Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
       "queryHashes": [
         "90c0a0f693f1"
       ],
@@ -112047,7 +112047,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-29T19:00:01.200Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
       "queryHashes": [
         "90c0a0f693f1"
       ],
@@ -112079,7 +112079,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-29T19:00:01.200Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T17:45:42.491Z",
       "queryHashes": [
         "409c33906af9"
       ],
@@ -112112,7 +112112,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-29T19:00:01.200Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T17:45:42.491Z",
       "queryHashes": [
         "409c33906af9"
       ],
@@ -112145,7 +112145,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-29T19:00:01.200Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T17:45:42.491Z",
       "queryHashes": [
         "409c33906af9"
       ],
@@ -112178,7 +112178,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-29T19:00:01.200Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T17:45:42.491Z",
       "queryHashes": [
         "409c33906af9"
       ],
@@ -112211,7 +112211,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-29T19:00:01.200Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T17:45:42.491Z",
       "queryHashes": [
         "b7fd25b71b44"
       ],
@@ -121932,14 +121932,14 @@
       "startLine": 423,
       "endLine": 426,
       "source": "memory",
-      "snippet": "Reflections: Theme: `assistant` kept surfacing across 417 memories.; confidence: 0.83; evidence: memory/.dreams/session-corpus/2026-04-23.txt:1-1, memory/.dreams/session-corpus/2026-04-23.txt:2-2, memory/.dreams/session-corpus/2026-04-23.txt:3-3; note: reflection",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 418 memories.; confidence: 0.84; evidence: memory/.dreams/session-corpus/2026-04-23.txt:1-1, memory/.dreams/session-corpus/2026-04-23.txt:2-2, memory/.dreams/session-corpus/2026-04-23.txt:3-3; note: reflection",
       "recallCount": 0,
       "dailyCount": 1,
       "groundedCount": 0,
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-30T02:45:41.749Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T16:45:41.787Z",
       "queryHashes": [
         "e757f9360616"
       ],
@@ -121947,7 +121947,7 @@
         "2026-04-30"
       ],
       "conceptTags": [
-        "0.83",
+        "0.84",
         "1-1",
         "2-2",
         "3-3",
@@ -121970,7 +121970,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-04-30T02:45:41.749Z",
-      "lastRecalledAt": "2026-04-30T14:45:41.816Z",
+      "lastRecalledAt": "2026-04-30T16:45:41.787Z",
       "queryHashes": [
         "e757f9360616"
       ],
@@ -122585,6 +122585,306 @@
       ],
       "recallDays": [
         "2026-04-30"
+      ],
+      "conceptTags": [
+        "possible",
+        "lasting",
+        "truths",
+        "适用",
+        "对象",
+        "软件",
+        "开发",
+        "工程"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-30.txt:26:26": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-30.txt:26:26",
+      "path": "memory/.dreams/session-corpus/2026-04-30.txt",
+      "startLine": 26,
+      "endLine": 26,
+      "source": "memory",
+      "snippet": "User: System: [2026-04-30 23:30:00 GMT+8] 执行GitHub同步: cd /root/.openclaw/workspace && ./scripts/sync-to-github.sh A scheduled reminder has been triggered. The reminder content is: 执行GitHub同步: cd /root/.openclaw/workspace && ./scripts/sync-to-github.sh Handle this reminder interna",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-30T15:45:41.825Z",
+      "lastRecalledAt": "2026-04-30T15:45:41.825Z",
+      "queryHashes": [
+        "cf3cd2e1e340"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "openclaw/workspace",
+        "scripts/sync-to-github.sh",
+        "user",
+        "system",
+        "gmt",
+        "执行",
+        "github",
+        "同步"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-04-30.txt:27:27": {
+      "key": "memory:memory/.dreams/session-corpus/2026-04-30.txt:27:27",
+      "path": "memory/.dreams/session-corpus/2026-04-30.txt",
+      "startLine": 27,
+      "endLine": 27,
+      "source": "memory",
+      "snippet": "Assistant: NO_REPLY",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-30T15:45:41.825Z",
+      "lastRecalledAt": "2026-04-30T15:45:41.825Z",
+      "queryHashes": [
+        "cf3cd2e1e340"
+      ],
+      "recallDays": [
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "no-reply",
+        "assistant"
+      ]
+    },
+    "memory:memory/2026-05-01.md:428:431": {
+      "key": "memory:memory/2026-05-01.md:428:431",
+      "path": "memory/2026-05-01.md",
+      "startLine": 428,
+      "endLine": 431,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 419 memories.; confidence: 0.84; evidence: memory/.dreams/session-corpus/2026-04-23.txt:1-1, memory/.dreams/session-corpus/2026-04-23.txt:2-2, memory/.dreams/session-corpus/2026-04-23.txt:3-3; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-30T17:45:42.491Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
+      "queryHashes": [
+        "f16f2797a8f9"
+      ],
+      "recallDays": [
+        "2026-05-01",
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "0.84",
+        "1-1",
+        "2-2",
+        "3-3",
+        "reflections",
+        "theme",
+        "assistant",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-05-01.md:434:436": {
+      "key": "memory:memory/2026-05-01.md:434:436",
+      "path": "memory/2026-05-01.md",
+      "startLine": 434,
+      "endLine": 436,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: > **适用对象**: 校招入职软件开发工程师 > **执行周期**: 5个工作日 > **评审方式**: 代码审查 + 10分钟演示 --- ## 一、培训目标 1. **掌握SDD规范驱动编程**: 理解并实践OpenSpec框架的完整流程 2. **熟练使用AI Coding工具**: ... - 💻 **08:34** 959 /root/.openclaw/workspace/docs/training/ai-coding-training-by-role.md # 校招新员工AI Codin",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-30T17:45:42.491Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
+      "queryHashes": [
+        "f16f2797a8f9"
+      ],
+      "recallDays": [
+        "2026-05-01",
+        "2026-04-30"
+      ],
+      "conceptTags": [
+        "possible",
+        "lasting",
+        "truths",
+        "适用",
+        "对象",
+        "软件",
+        "开发",
+        "工程"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-01.txt:1:1": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-01.txt:1:1",
+      "path": "memory/.dreams/session-corpus/2026-05-01.txt",
+      "startLine": 1,
+      "endLine": 1,
+      "source": "memory",
+      "snippet": "User: System (untrusted): [2026-05-01 02:01:42 GMT+8] Exec completed (warm-dun, code 0) :: 405201 Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When readin",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-30T19:00:01.298Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
+      "queryHashes": [
+        "23c989536796"
+      ],
+      "recallDays": [
+        "2026-05-01"
+      ],
+      "conceptTags": [
+        "warm-dun",
+        "heartbeat.md",
+        "heartbeat-ok",
+        "user",
+        "system",
+        "untrusted",
+        "gmt",
+        "exec"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-01.txt:2:2": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-01.txt:2:2",
+      "path": "memory/.dreams/session-corpus/2026-05-01.txt",
+      "startLine": 2,
+      "endLine": 2,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-30T19:00:01.298Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
+      "queryHashes": [
+        "23c989536796"
+      ],
+      "recallDays": [
+        "2026-05-01"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-01.txt:3:3": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-01.txt:3:3",
+      "path": "memory/.dreams/session-corpus/2026-05-01.txt",
+      "startLine": 3,
+      "endLine": 3,
+      "source": "memory",
+      "snippet": "User: [cron:7d2604a7-41c2-4196-ba02-af7c9dc237ec NAS自动备份] 执行NAS备份脚本并生成说明文档：/root/.openclaw/workspace/scripts/backup/nas_backup.sh Current time: Friday, May 1st, 2026 - 2:00 AM (Asia/Shanghai) / 2026-04-30 18:00 UTC Return your summary as plain text; it will be delivered automatic",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-30T19:00:01.298Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
+      "queryHashes": [
+        "23c989536796"
+      ],
+      "recallDays": [
+        "2026-05-01"
+      ],
+      "conceptTags": [
+        "backup",
+        "备份",
+        "asia/shanghai",
+        "user",
+        "cron",
+        "7d2604a7",
+        "41c2",
+        "ba02"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-01.txt:4:4": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-01.txt:4:4",
+      "path": "memory/.dreams/session-corpus/2026-05-01.txt",
+      "startLine": 4,
+      "endLine": 4,
+      "source": "memory",
+      "snippet": "Assistant: NAS备份完成。 - **备份时间**: 2026-05-01 02:00 - **备份文件**: `server-backup-20260501.tar.gz`，已上传至 NAS（HTTP 201） - **备份内容**: sing-box配置、FRP配置、自动化脚本、工作区文档、OpenClaw完整配置、安全脚本 - **过期清理**: 删除了 2 个过期备份（20260322、20260415），保留最近15天 - **状态**: 全部成功 ✅",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-04-30T19:00:01.298Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
+      "queryHashes": [
+        "23c989536796"
+      ],
+      "recallDays": [
+        "2026-05-01"
+      ],
+      "conceptTags": [
+        "backup",
+        "备份",
+        "server-backup-20260501.tar.gz",
+        "sing-box配置",
+        "assistant",
+        "nas",
+        "完成",
+        "时间"
+      ]
+    },
+    "memory:memory/2026-05-01.md:433:436": {
+      "key": "memory:memory/2026-05-01.md:433:436",
+      "path": "memory/2026-05-01.md",
+      "startLine": 433,
+      "endLine": 436,
+      "source": "memory",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 419 memories.; confidence: 0.84; evidence: memory/.dreams/session-corpus/2026-04-23.txt:1-1, memory/.dreams/session-corpus/2026-04-23.txt:2-2, memory/.dreams/session-corpus/2026-04-23.txt:3-3; note: reflection",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-30T19:00:01.298Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
+      "queryHashes": [
+        "f16f2797a8f9"
+      ],
+      "recallDays": [
+        "2026-05-01"
+      ],
+      "conceptTags": [
+        "0.84",
+        "1-1",
+        "2-2",
+        "3-3",
+        "reflections",
+        "theme",
+        "assistant",
+        "kept"
+      ]
+    },
+    "memory:memory/2026-05-01.md:439:441": {
+      "key": "memory:memory/2026-05-01.md:439:441",
+      "path": "memory/2026-05-01.md",
+      "startLine": 439,
+      "endLine": 441,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: > **适用对象**: 校招入职软件开发工程师 > **执行周期**: 5个工作日 > **评审方式**: 代码审查 + 10分钟演示 --- ## 一、培训目标 1. **掌握SDD规范驱动编程**: 理解并实践OpenSpec框架的完整流程 2. **熟练使用AI Coding工具**: ... - 💻 **08:34** 959 /root/.openclaw/workspace/docs/training/ai-coding-training-by-role.md # 校招新员工AI Codin",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-04-30T19:00:01.298Z",
+      "lastRecalledAt": "2026-04-30T19:00:01.298Z",
+      "queryHashes": [
+        "f16f2797a8f9"
+      ],
+      "recallDays": [
+        "2026-05-01"
       ],
       "conceptTags": [
         "possible",
