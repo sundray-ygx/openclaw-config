@@ -199,9 +199,14 @@ def generate_reflection(context, recent_reflections, existing_lessons):
 
 ### 本日行动项
 （从反思中提炼 1-3 个具体的、可立即执行的行动项）
+每个行动项必须包含分类标签：
+- [🔧自动] 可自动执行的技术任务（写脚本、改配置）
+- [📋流程] 需人工决策的流程改进
+- [⚙️配置] 可半自动完成的配置调整
+格式示例：[🔧自动] 开发数据完整性检查脚本
 
-### 关键洞察
-（一句话总结今天的核心收获）"""
+### 行动项进展回顾
+（检查上次反思的行动项，逐一说明是否已完成/进行中/已搁置）"""
 
     user_prompt = f"""请对以下 {context['date']} 的工作进行深度反思。
 
@@ -223,8 +228,14 @@ def generate_reflection(context, recent_reflections, existing_lessons):
 ## 已有经验教训（避免重复已有经验）
 {existing_lessons if existing_lessons else "无"}
 
+## 待处理行动项（检查进展，在"行动项进展回顾"部分逐一说明）
+{{pending_actions}}
+
 ---
-请基于以上信息，生成深度、具体、不重复的反思报告。如果今天确实是平淡的一天，没有值得反思的点，就直接说"今日无特殊反思点"。不要为了反思而反思。"""
+请基于以上信息，生成深度、具体、不重复的反思报告。在"行动项进展回顾"部分，逐一检查上面的待处理行动项，判断其状态（已完成/进行中/已搁置），并简要说明判断依据。如果今天确实是平淡的一天，没有值得反思的点，就直接说"今日无特殊反思点"。不要为了反思而反思。"""
+
+    pending_actions = get_pending_actions_context()
+    user_prompt = user_prompt.replace("{pending_actions}", pending_actions)
 
     return get_ai_response(system_prompt, user_prompt, max_tokens=2000)
 
@@ -271,23 +282,223 @@ def save_reflection(date_str, reflection_text):
 
 
 def extract_action_items(reflection_text):
-    """从反思中提取行动项"""
+    """从反思中提取行动项（带分类标签）"""
     action_items = []
     in_action_section = False
 
     for line in reflection_text.split('\n'):
-        if '本日行动项' in line or '行动项' in line:
+        if '本日行动项' in line:
             in_action_section = True
             continue
         if in_action_section:
             if line.startswith('###') or line.startswith('## '):
                 break
-            if line.strip().startswith('-') or line.strip().startswith('1') or line.strip().startswith('2') or line.strip().startswith('3'):
+            if line.strip().startswith('-') or line.strip().startswith('[') or line.strip()[0:1].isdigit():
                 clean = re.sub(r'^[-\d.]\s*', '', line.strip())
                 if clean and len(clean) > 5:
                     action_items.append(clean)
 
     return action_items[:3]
+
+
+def classify_action_item(item_text):
+    """分析行动项分类"""
+    item_lower = item_text.lower()
+    auto_keywords = ['开发脚本', '写脚本', '创建脚本', '批量', '自动化', '检查脚本',
+                     '监控脚本', '工具', '爬虫', '数据处理']
+    config_keywords = ['配置', '参数', '权限', '设置', '调整配置', '修改配置']
+
+    for kw in auto_keywords:
+        if kw in item_text:
+            return '🔧自动'
+    for kw in config_keywords:
+        if kw in item_text:
+            return '⚙️配置'
+    return '📋流程'
+
+
+def load_pending_actions():
+    """加载待处理的行动项"""
+    tracker_file = os.path.join(MEMORY_DIR, 'action-tracker.json')
+    if not os.path.exists(tracker_file):
+        return []
+    try:
+        with open(tracker_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return [a for a in data.get('actions', []) if a.get('status') == '⏳ 进行中']
+    except Exception:
+        return []
+
+
+def save_action_items(date_str, action_items):
+    """保存行动项到 tracker 和 todo-state"""
+    tracker_file = os.path.join(MEMORY_DIR, 'action-tracker.json')
+    todo_file = os.path.join(MEMORY_DIR, 'todo-state.json')
+
+    # 1. 读取或初始化 tracker
+    tracker = {'actions': []}
+    if os.path.exists(tracker_file):
+        try:
+            with open(tracker_file, 'r', encoding='utf-8') as f:
+                tracker = json.load(f)
+        except Exception:
+            pass
+
+    # 2. 添加新行动项
+    new_count = 0
+    for i, item in enumerate(action_items):
+        category = classify_action_item(item)
+        action = {
+            'id': f'{date_str}-action-{i}',
+            'text': item,
+            'category': category,
+            'status': '⏳ 进行中',
+            'created_at': date_str,
+            'source': 'daily_reflection',
+            'check_count': 0
+        }
+        # 去重：同类文本不重复添加
+        exists = any(a['text'] == item for a in tracker['actions'])
+        if not exists:
+            tracker['actions'].append(action)
+            new_count += 1
+
+    # 3. 保存 tracker
+    with open(tracker_file, 'w', encoding='utf-8') as f:
+        json.dump(tracker, f, indent=2, ensure_ascii=False)
+
+    # 4. 写入 todo-state（复用已有提醒机制）
+    try:
+        with open(todo_file, 'r', encoding='utf-8') as f:
+            todo_data = json.load(f)
+    except Exception:
+        todo_data = {'reminders': []}
+
+    for i, item in enumerate(action_items):
+        category = classify_action_item(item)
+        # 24小时后提醒
+        remind_dt = datetime.now() + timedelta(days=1)
+        remind_time = remind_dt.strftime('%Y-%m-%dT%H:%M:%S+08:00')
+
+        reminder = {
+            'id': f'{date_str}-action-{i}',
+            'title': f'[反思行动] {item[:40]}',
+            'remind_time': remind_time,
+            'status': '⏳ 待提醒',
+            'created_at': datetime.now().strftime('%Y-%m-%dT%H:%M:%S+08:00'),
+            'description': f'{category} {item}',
+            'source': 'daily_reflection',
+            'ref_date': date_str
+        }
+        # 去重
+        exists = any(r['id'] == reminder['id'] for r in todo_data['reminders'])
+        if not exists:
+            todo_data['reminders'].append(reminder)
+
+    with open(todo_file, 'w', encoding='utf-8') as f:
+        json.dump(todo_data, f, indent=2, ensure_ascii=False)
+
+    return new_count
+
+
+def check_action_progress(date_str, context_log):
+    """检查待处理行动项的进展（通过搜索日志判断是否已完成）"""
+    pending = load_pending_actions()
+    if not pending:
+        return {}
+
+    tracker_file = os.path.join(MEMORY_DIR, 'action-tracker.json')
+    try:
+        with open(tracker_file, 'r', encoding='utf-8') as f:
+            tracker = json.load(f)
+    except Exception:
+        return {}
+
+    progress = {}
+    for action in pending:
+        action_id = action['id']
+        text = action['text']
+        # 提取关键词（去掉分类标签）
+        keywords = re.sub(r'^\[.+?\]\s*', '', text)
+        # 取核心词（去停用词）
+        core_words = [w for w in keywords if len(w) > 1 and w not in ('的', '了', '和', '与', '等', '要', '到', '在', '对')]
+
+        # 在日志中搜索关键词出现次数
+        match_count = sum(1 for w in core_words if w in context_log)
+        action['check_count'] = action.get('check_count', 0) + 1
+
+        if match_count >= len(core_words) * 0.6:
+            # 大部分关键词在日志中出现，视为可能完成
+            progress[action_id] = '✅ 可能完成'
+        elif action['check_count'] >= 7:
+            # 7天未确认，标记搁置
+            progress[action_id] = '⏸️ 已搁置'
+        else:
+            progress[action_id] = '⏳ 进行中'
+
+        # 更新状态
+        for a in tracker['actions']:
+            if a['id'] == action_id:
+                a['status'] = progress[action_id]
+                a['check_count'] = action['check_count']
+                break
+
+    with open(tracker_file, 'w', encoding='utf-8') as f:
+        json.dump(tracker, f, indent=2, ensure_ascii=False)
+
+    return progress
+
+
+def get_pending_actions_context():
+    """获取待处理行动项，作为反思上下文传入 AI"""
+    pending = load_pending_actions()
+    if not pending:
+        return "无待处理行动项"
+
+    lines = []
+    for a in pending[:5]:
+        lines.append(f"- [{a['category']}] {a['text']}（创建于 {a['created_at']}，已检查 {a.get('check_count', 0)} 次）")
+    return "\n".join(lines)
+
+
+def update_action_status_in_tracker(action_id, new_status):
+    """更新行动项状态"""
+    tracker_file = os.path.join(MEMORY_DIR, 'action-tracker.json')
+    try:
+        with open(tracker_file, 'r', encoding='utf-8') as f:
+            tracker = json.load(f)
+        for a in tracker['actions']:
+            if a['id'] == action_id:
+                a['status'] = new_status
+                break
+        with open(tracker_file, 'w', encoding='utf-8') as f:
+            json.dump(tracker, f, indent=2, ensure_ascii=False)
+    except Exception:
+        pass
+
+
+def extract_action_progress(reflection_text):
+    """从反思中提取行动项进展更新"""
+    progress = {}
+    in_section = False
+    current_id = None
+
+    for line in reflection_text.split('\n'):
+        if '行动项进展回顾' in line:
+            in_section = True
+            continue
+        if in_section and (line.startswith('### 本日行动项') or line.startswith('### 关键洞察')):
+            break
+        if in_section and line.strip().startswith('-'):
+            text = line.strip().lstrip('- ')
+            if '已完成' in text or '✅' in text:
+                progress['status'] = '✅ 已完成'
+            elif '搁置' in text or '不再' in text or '放弃' in text:
+                progress['status'] = '⏸️ 已搁置'
+            elif '进行中' in text or '部分' in text:
+                progress['status'] = '⏳ 进行中'
+
+    return progress
 
 
 def generate_feishu_report(date_str, reflection_text, action_items):
@@ -332,7 +543,10 @@ def generate_feishu_report(date_str, reflection_text, action_items):
         lines.append("")
         lines.append("✅ 行动项")
         for i, item in enumerate(action_items, 1):
-            lines.append(f"{i}. {item}")
+            category = classify_action_item(item)
+            # 清理分类标签避免重复显示
+            display = re.sub(r'^\[.+?\]\s*', '', item)
+            lines.append(f"{i}. {category} {display}")
 
     # 关键洞察
     insight_match = re.search(r'### 关键洞察\n+(.+)', reflection_text)
@@ -443,7 +657,21 @@ def main():
     # 5. 提取行动项
     action_items = extract_action_items(reflection_text)
 
-    # 6. 生成并发送飞书报告
+    # 6. 保存行动项到 tracker + todo
+    if action_items:
+        new_count = save_action_items(date_str, action_items)
+        if new_count > 0:
+            print(f"  ✅ 已将 {new_count} 个新行动项写入待办系统")
+        else:
+            print(f"  ℹ️ {len(action_items)} 个行动项已存在，跳过")
+
+    # 7. 检查历史行动项进展
+    progress = check_action_progress(date_str, context['daily_log'])
+    ai_progress = extract_action_progress(reflection_text)
+    if progress or ai_progress:
+        print(f"  📊 行动项进展检查: {len(progress)} 项待跟踪")
+
+    # 8. 生成并发送飞书报告
     print("📱 生成飞书报告...")
     report = generate_feishu_report(date_str, reflection_text, action_items)
     send_feishu_message(report)

@@ -2,20 +2,16 @@
   "version": 1,
   "files": {
     "memory/2026-05-01.md": {
-      "mtimeMs": 1777571152546,
-      "size": 27532
+      "mtimeMs": 1777575604253,
+      "size": 28536
     },
     "memory/2026-04-30.md": {
-      "mtimeMs": 1777563951809,
-      "size": 26929
+      "mtimeMs": 1777595426752,
+      "size": 2951
     },
     "memory/2026-04-29.md": {
       "mtimeMs": 1777509011119,
       "size": 7135
-    },
-    "memory/2026-04-28.md": {
-      "mtimeMs": 1777422613814,
-      "size": 5259
     }
   }
 }

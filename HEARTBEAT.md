@@ -25,3 +25,14 @@
 1. 解析 JSON 中的 reminders 数组，提取 remind_time 和 status
 2. 如果当前时间 >= remind_time，且 status 为 "⏳ 待提醒"，则提醒用户
 3. 提醒后，将 status 更新为 "📋 已提醒"
+
+## 系统健康检查（每日一次）
+
+运行 `weekly_health_checklist.py` 脚本检查系统健康状态：
+- 磁盘空间
+- 内存使用
+- 僵尸进程
+- 过期文件
+- Cron 任务状态
+
+如果发现问题，在 heartbeat 中直接提醒。
