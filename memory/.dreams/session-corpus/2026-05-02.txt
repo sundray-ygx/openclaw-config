@@ -172,3 +172,15 @@
 [main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L334] Assistant: HEARTBEAT_OK
 [main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L335] User: System: [2026-05-02 20:31:07 GMT+8] Feishu[main] DM | ou_c2cde251e01a87fc09ba7561f76d8606 [msg:om_x100b506aa65138a0b3f14348f1235c4, reply_to:om_x100b506a938df4b8c3c39d41119893f] Conversation info (untrusted metadata): ```json { "message_id": "om_x100b506aa65138a0b3f14348f12
 [main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L336] Assistant: 开始执行。三项并行推进。 **1. 清理磁盘空间和过期文件**
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L338] Assistant: /tmp 大量 pip 残留。清理：
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L340] Assistant: 释放了 3.7G。继续清理过期文件：
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L342] Assistant: **2. 集成脚本到定时任务**
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L370] Assistant: 现在清楚了。用 `--system-event` 执行脚本：
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L376] Assistant: ✅ Cron健康检查任务已添加。 再添加磁盘空间检查（每周一早上）：
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L396] User: System: [2026-05-02 20:31:07 GMT+8] Feishu[main] DM | ou_c2cde251e01a87fc09ba7561f76d8606 [msg:om_x100b506aa65138a0b3f14348f1235c4, reply_to:om_x100b506a938df4b8c3c39d41119893f] Conversation info (untrusted metadata): ```json { "message_id": "om_x100b506aa65138a0b3f14348f12
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L403] User: System: [2026-05-02 20:31:07 GMT+8] Feishu[main] DM | ou_c2cde251e01a87fc09ba7561f76d8606 [msg:om_x100b506aa65138a0b3f14348f1235c4, reply_to:om_x100b506a938df4b8c3c39d41119893f] Conversation info (untrusted metadata): ```json { "message_id": "om_x100b506aa65138a0b3f14348f12
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L410] User: System: [2026-05-02 20:31:07 GMT+8] Feishu[main] DM | ou_c2cde251e01a87fc09ba7561f76d8606 [msg:om_x100b506aa65138a0b3f14348f1235c4, reply_to:om_x100b506a938df4b8c3c39d41119893f] Conversation info (untrusted metadata): ```json { "message_id": "om_x100b506aa65138a0b3f14348f12
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L418] User: System: [2026-05-02 20:31:07 GMT+8] Feishu[main] DM | ou_c2cde251e01a87fc09ba7561f76d8606 [msg:om_x100b506aa65138a0b3f14348f1235c4, reply_to:om_x100b506a938df4b8c3c39d41119893f] Conversation info (untrusted metadata): ```json { "message_id": "om_x100b506aa65138a0b3f14348f12
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L425] User: System: [2026-05-02 20:31:07 GMT+8] Feishu[main] DM | ou_c2cde251e01a87fc09ba7561f76d8606 [msg:om_x100b506aa65138a0b3f14348f1235c4, reply_to:om_x100b506a938df4b8c3c39d41119893f] Conversation info (untrusted metadata): ```json { "message_id": "om_x100b506aa65138a0b3f14348f12
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L426] Assistant: 开始执行三项任务。 **1. 清理磁盘空间和过期文件**
+[main/sessions/b50fc53b-56d4-4284-abec-71d06d093fda.jsonl#L428] Assistant: 磁盘已清理到 81%（7.2G 可用）。继续深度清理 + 集成脚本 + 处理流程类行动项。 **1. 深度磁盘清理**
