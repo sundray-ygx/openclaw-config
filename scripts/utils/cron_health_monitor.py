@@ -35,7 +35,8 @@ def check_openclaw_crons(max_gap_hours=48):
         return {'error': f'openclaw cron list 失败: {result.stderr[:200]}'}
     
     try:
-        crons = json.loads(result.stdout)
+        parsed = json.loads(result.stdout)
+        crons = parsed.get('jobs', parsed) if isinstance(parsed, dict) else parsed
     except json.JSONDecodeError:
         # 解析表格格式
         lines = result.stdout.strip().split('\n')
@@ -56,11 +57,21 @@ def check_openclaw_crons(max_gap_hours=48):
     
     issues = []
     healthy = 0
+    now_ms = datetime.now().timestamp() * 1000
+    gap_ms = max_gap_hours * 3600 * 1000
     for c in crons:
-        if c.get('status') == 'ok':
-            healthy += 1
+        if not isinstance(c, dict):
+            continue
+        name = c.get('name', c.get('id', '?'))
+        enabled = c.get('enabled', True)
+        if not enabled:
+            continue  # skip disabled jobs
+        updated_ms = c.get('updatedAtMs', 0)
+        if updated_ms and (now_ms - updated_ms) > gap_ms:
+            last_time = datetime.fromtimestamp(updated_ms / 1000).strftime('%Y-%m-%d %H:%M')
+            issues.append(f"⚠️ {name}: 上次更新 {last_time} (> {max_gap_hours}h)")
         else:
-            issues.append(f"⚠️ {c.get('name', c.get('id', '?'))}: status={c.get('status')}")
+            healthy += 1
     
     return {
         'total': len(crons),

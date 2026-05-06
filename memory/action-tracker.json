@@ -425,6 +425,33 @@
       "created_at": "2026-05-04",
       "source": "daily_reflection",
       "check_count": 1
+    },
+    {
+      "id": "2026-05-05-action-0",
+      "text": "[🔧自动] 建立插件配置一致性检查机制，自动清理无效插件配置",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-05",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-05-action-1",
+      "text": "[⚙️配置] 实施文件读取前的存在性验证，建立缺失文件恢复机制",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-05",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-05-action-2",
+      "text": "[📋流程] 创建数据完整性检查脚本，每日验证关键数据文件",
+      "category": "🔧自动",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-05",
+      "source": "daily_reflection",
+      "check_count": 1
     }
   ]
 }
