@@ -142,11 +142,10 @@ def main():
 
 【六、待办事项】
 
-1. 🔴 百炼 API 配额确认 (4 月初应重置)
-2. 🟡 周反思/月反思超时问题排查
-3. 🟡 Claude 预算提醒 API 错误修复
-4. 🟡 执行记忆维护 (已过期 90+ 天)
-5. 🟢 清理 openclaw.json 中 skillhub 残留
+1. 🟡 周反思/月反思超时问题排查
+2. 🟡 Claude 预算提醒 API 错误修复
+3. 🟡 执行记忆维护 (已过期 90+ 天)
+4. 🟢 清理 openclaw.json 中 skillhub 残留
 
 【七、健康度评分】
 
@@ -161,10 +160,9 @@ def main():
 ═══════════════════════════
 
 💡 建议操作:
-1. 检查百炼 API 配额状态
-2. 调整超时任务的 timeoutSeconds
-3. 执行记忆维护脚本
-4. 监控内存使用情况"""
+1. 调整超时任务的 timeoutSeconds
+2. 执行记忆维护脚本
+3. 监控内存使用情况"""
     
     if send_feishu_text(token, FEISHU_USER_ID, report):
         return 0

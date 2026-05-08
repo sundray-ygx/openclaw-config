@@ -32,46 +32,41 @@ FEISHU_APP_ID = "cli_a93b96047e7a5bc3"
 FEISHU_APP_SECRET = "ir6uAf1L7O52AFgXrepgabIrYG1oOcbD"
 FEISHU_USER_ID = "ou_c2cde251e01a87fc09ba7561f76d8606"
 
-# AI API
-def _load_ai_config():
-    try:
-        import json as _json
-        with open('/root/.openclaw/openclaw.json', 'r') as _f:
-            _cfg = _json.load(_f)
-        return {
-            "url": _cfg['models']['providers']['bailian']['baseUrl'] + '/chat/completions',
-            "key": _cfg['models']['providers']['bailian']['apiKey'],
-            "model": "qwen3-coder-plus"
-        }
-    except Exception:
-        return {"url": "", "key": "", "model": ""}
+# AI 配置 - 使用 zai/glm-5
+import subprocess
 
-AI_CONFIG = _load_ai_config()
+AI_MODEL = "zai/glm-5"
 
 
 def get_ai_response(system_prompt, user_prompt, max_tokens=4000):
-    """调用 AI API"""
-    data = json.dumps({
-        "model": AI_CONFIG["model"],
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ],
-        "max_tokens": max_tokens,
-        "temperature": 0.7
-    }).encode()
+    """通过 OpenClaw CLI 调用 zai/glm-5"""
+    # 构建完整的 prompt
+    full_prompt = f"""{system_prompt}
 
-    req = urllib.request.Request(AI_CONFIG["url"], data=data, headers={
-        "Authorization": f"Bearer {AI_CONFIG['key']}",
-        "Content-Type": "application/json"
-    }, method="POST")
-
+{user_prompt}"""
+    
     try:
-        with urllib.request.urlopen(req, timeout=120) as response:
-            result = json.loads(response.read().decode())
-            return result["choices"][0]["message"]["content"]
+        # 使用 openclaw 命令行工具调用 AI
+        result = subprocess.run(
+            ["openclaw", "ai", "complete", "--model", AI_MODEL, "--max-tokens", str(max_tokens)],
+            input=full_prompt,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            universal_newlines=True,
+            timeout=180
+        )
+        
+        if result.returncode == 0:
+            output = result.stdout.strip()
+            return output
+        else:
+            print(f"  AI 调用失败: {result.stderr}")
+            return None
+    except subprocess.TimeoutExpired:
+        print(f"  AI 调用超时")
+        return None
     except Exception as e:
-        print(f"  AI API 调用失败: {e}")
+        print(f"  AI 调用失败: {e}")
         return None
 
 

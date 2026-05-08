@@ -27,13 +27,17 @@
 - **周一 4/14**: 定时任务优化方案 C 执行完成
 - 删除 6 个冗余任务，清理 11 个冗余脚本文件
 - 预期 token 节省：35-45%
+- **周四 5/8**: 系统性切换至 zai/glm-5
+- 删除 bailian provider 配置，所有 AI 调用统一使用 zai/glm-5
+- 更新 daily_reflection.py 和 weekly_review.py
 
 ### 待办
 - [ ] 观察反思 V3 效果（关注是否有重复反思点）
 
 ## 最近日志
+- `memory/2026-05-08.md` - 系统性切换至 zai/glm-5
 - `memory/2026-04-14.md` - 定时任务优化方案 C 执行记录
-- `memory/2026-04-05.md` - 百炼 API 配额耗尽导致 failover 雪崩分析
+- `memory/2026-04-05.md` - 旧 API 配置问题分析（已解决）
 - `memory/2026-04-03.md` - 周反思质量改进、cron 冗余清理
 - `memory/2026-04-01.md` - 定时任务评估清理
 - `memory/2026-03-31.md` - Claude Code 预算提醒重复执行修复
