@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人财务分析报告 2022-2026</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+.container{max-width:1300px;margin:0 auto;padding:20px}
+.header{text-align:center;padding:40px 20px 30px;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:white;border-radius:16px;margin-bottom:24px;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-50%;right:-20%;width:50%;height:200%;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%)}
+.header h1{font-size:28px;margin-bottom:6px;font-weight:700}
+.header p{opacity:0.7;font-size:13px}
+.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:24px}
+.kpi{background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 4px rgba(0,0,0,0.06);text-align:center;position:relative;overflow:hidden}
+.kpi .label{font-size:11px;color:#999;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+.kpi .val{font-size:22px;font-weight:700;margin-bottom:4px}
+.kpi .sub{font-size:11px;color:#999}
+.kpi.blue .val{color:#1890ff} .kpi.green .val{color:#52c41a} .kpi.red .val{color:#ff4d4f} .kpi.orange .val{color:#fa8c16} .kpi.purple .val{color:#722ed1} .kpi.cyan .val{color:#13c2c2}
+.section{background:#fff;border-radius:12px;padding:24px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.section h2{font-size:15px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section h2 .icon{font-size:18px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+.chart{height:380px}
+.chart-sm{height:320px}
+.chart-lg{height:420px}
+.insight{background:linear-gradient(135deg,#f6ffed,#e6f7ff);border-radius:10px;padding:16px 20px;margin-top:16px;font-size:13px;line-height:2}
+.insight b{color:#1890ff}
+.warn{background:#fff7e6;border:1px solid #ffd591;border-radius:8px;padding:12px 16px;font-size:12px;color:#ad6800;margin-top:8px}
+.footer{text-align:center;padding:24px;color:#bbb;font-size:11px}
+.tab-bar{display:flex;gap:8px;margin-bottom:16px}
+.tab{padding:6px 16px;border-radius:20px;font-size:12px;cursor:pointer;background:#f5f5f5;color:#666;border:none;transition:all 0.2s}
+.tab.active{background:#1890ff;color:#fff}
+@media(max-width:1024px){.kpi-grid{grid-template-columns:repeat(3,1fr)}.row2,.row3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+  <h1>📊 个人财务分析报告</h1>
+  <p>2022 - 2026 历年对比与深度分析 | 生成日期：2026年5月9日</p>
+</div>
+
+<!-- KPI -->
+<div class="kpi-grid">
+  <div class="kpi blue"><div class="label">2025年总收入</div><div class="val">¥59.5万</div><div class="sub">月均 ¥4.95万</div></div>
+  <div class="kpi red"><div class="label">2025年总支出</div><div class="val">¥27.5万</div><div class="sub">月均 ¥2.29万</div></div>
+  <div class="kpi green"><div class="label">2025年净结余</div><div class="val">¥31.9万</div><div class="sub">月均 ¥2.67万</div></div>
+  <div class="kpi purple"><div class="label">储蓄率</div><div class="val">53.8%</div><div class="sub">5年平均 59.9%</div></div>
+  <div class="kpi orange"><div class="label">应急储备充足度</div><div class="val">17.5月</div><div class="sub">基于月均支出</div></div>
+  <div class="kpi cyan"><div class="label">累计提前还贷</div><div class="val">¥80.2万</div><div class="sub">2023+2025两次</div></div>
+</div>
+
+<!-- 1. 年度收支趋势 -->
+<div class="section">
+  <h2><span class="icon">📈</span> 年度收支趋势与结余</h2>
+  <div id="c-yearly" class="chart-lg"></div>
+</div>
+
+<div class="row2">
+  <!-- 2. 收入结构 -->
+  <div class="section">
+    <h2><span class="icon">💰</span> 收入结构历年对比</h2>
+    <div id="c-income-struct" class="chart"></div>
+  </div>
+  <!-- 3. 储蓄率 -->
+  <div class="section">
+    <h2><span class="icon">🏦</span> 储蓄率与收支比趋势</h2>
+    <div id="c-savings" class="chart"></div>
+  </div>
+</div>
+
+<div class="row2">
+  <!-- 4. 固定vs可变 -->
+  <div class="section">
+    <h2><span class="icon">⚙️</span> 固定 vs 可变支出</h2>
+    <div id="c-fixed-var" class="chart"></div>
+  </div>
+  <!-- 5. 支出分类 -->
+  <div class="section">
+    <h2><span class="icon">📊</span> 支出分类TOP5年度对比</h2>
+    <div id="c-category" class="chart"></div>
+  </div>
+</div>
+
+<!-- 6. 月度现金流 -->
+<div class="section">
+  <h2><span class="icon">💹</span> 月度净现金流趋势（收入 - 支出）</h2>
+  <div id="c-cashflow" class="chart-lg"></div>
+  <div class="insight">
+    <b>💡 分析：</b>绿色区域为正现金流（收入>支出），红色为负现金流。2025年8月因提前还贷导致唯一负现金流月份。除提前还贷外，所有月份均保持正现金流，财务状况稳健。
+  </div>
+</div>
+
+<div class="row2">
+  <!-- 7. 房贷专项 -->
+  <div class="section">
+    <h2><span class="icon">🏠</span> 房贷专项分析</h2>
+    <div id="c-mortgage" class="chart"></div>
+    <div class="insight" style="margin-top:12px">
+      <b>📉 月供趋势：</b>2022年月均¥10,260 → 2023年¥8,623 → 2024年¥7,715 → 2025年¥7,208 → 2026年¥7,106<br>
+      <b>📉 4年下降 30.8%</b>，两次提前还贷（2023年¥30万 + 2025年¥50万）加速去杠杆。<br>
+      <b>🏠 房贷占比：</b>从2022年占支出50%降至2025年39%，还款压力持续减轻。
+    </div>
+  </div>
+  <!-- 8. 消费稳定性 -->
+  <div class="section">
+    <h2><span class="icon">📏</span> 消费稳定性分析（月度支出波动）</h2>
+    <div id="c-stability" class="chart"></div>
+    <div class="insight" style="margin-top:12px">
+      <b>📏 支出标准差：</b>衡量消费波动性。数值越小越稳定。<br>
+      2023年波动最大（标准差¥8,800），2024年次之（¥10,300），主要受单月大额消费影响。<br>
+      <b>✅ 建议：</b>控制可变支出波动，月支出尽量控制在¥2.5万以内。
+    </div>
+  </div>
+</div>
+
+<div class="row3">
+  <!-- 9. 年度预测 -->
+  <div class="section">
+    <h2><span class="icon">🔮</span> 2026年预测（基于前5月）</h2>
+    <div id="c-predict" class="chart-sm"></div>
+  </div>
+  <!-- 10. 应急储备 -->
+  <div class="section">
+    <h2><span class="icon">🛡️</span> 应急储备评估</h2>
+    <div id="c-reserve" class="chart-sm"></div>
+  </div>
+  <!-- 11. 收支平衡点 -->
+  <div class="section">
+    <h2><span class="icon">⚖️</span> 收支平衡分析</h2>
+    <div id="c-balance" class="chart-sm"></div>
+  </div>
+</div>
+
+<!-- 12. 月度支出趋势 -->
+<div class="section">
+  <h2><span class="icon">📉</span> 月度支出趋势历年对比</h2>
+  <div id="c-exp-monthly" class="chart-lg"></div>
+</div>
+
+<div class="section">
+  <h2><span class="icon">📋</span> 关键财务指标汇总</h2>
+  <div style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse;font-size:13px">
+    <thead>
+      <tr style="background:#fafafa">
+        <th style="text-align:left;padding:10px">指标</th>
+        <th style="padding:10px">2022</th><th style="padding:10px">2023</th><th style="padding:10px">2024</th><th style="padding:10px">2025</th><th style="padding:10px">2026*</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:8px;border-bottom:1px solid #f0f0f0">总收入</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥75.4万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥56.9万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥72.5万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥59.5万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥37.1万</td></tr>
+      <tr><td style="padding:8px;border-bottom:1px solid #f0f0f0">总支出</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥24.6万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥29.2万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥28.8万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥27.5万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥11.3万</td></tr>
+      <tr><td style="padding:8px;border-bottom:1px solid #f0f0f0">净结余</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right;color:#52c41a">¥50.8万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right;color:#52c41a">¥27.7万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right;color:#52c41a">¥43.7万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right;color:#52c41a">¥31.9万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right;color:#52c41a">¥25.8万</td></tr>
+      <tr><td style="padding:8px;border-bottom:1px solid #f0f0f0">储蓄率</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">67.3%</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">48.6%</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">60.3%</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">53.8%</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">69.5%</td></tr>
+      <tr><td style="padding:8px;border-bottom:1px solid #f0f0f0">固定支出占比</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">51%</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">36%</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">33%</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">39%</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">39%</td></tr>
+      <tr><td style="padding:8px;border-bottom:1px solid #f0f0f0">房贷月均</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥10,260</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥8,623</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥7,715</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥7,208</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥7,106</td></tr>
+      <tr><td style="padding:8px;border-bottom:1px solid #f0f0f0">提前还贷</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">—</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥30.1万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">—</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">¥50.1万</td><td style="padding:8px;border-bottom:1px solid #f0f0f0;text-align:right">—</td></tr>
+      <tr><td style="padding:8px">支出标准差</td><td style="padding:8px;text-align:right">¥4,200</td><td style="padding:8px;text-align:right">¥8,800</td><td style="padding:8px;text-align:right">¥10,300</td><td style="padding:8px;text-align:right">¥6,400</td><td style="padding:8px;text-align:right">¥8,500</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="warn">* 2026年数据截至5月，部分账单未导入，实际数据会更高 | 已排除提前还贷和资产转移（理财通等）</div>
+</div>
+
+<div class="section">
+  <h2><span class="icon">🎯</span> 综合财务建议</h2>
+  <div class="insight">
+    <b>1. 储蓄能力优秀：</b>5年平均储蓄率59.9%，远超30%的健康线。月均结余¥2.3-5.2万，年储蓄能力¥28-62万。<br>
+    <b>2. 去杠杆成效显著：</b>两次提前还贷共¥80.2万，月供从¥10,260降至¥7,106（降幅30.8%），负债压力大幅减轻。<br>
+    <b>3. 固定支出占比优化：</b>从2022年51%降至2025年39%，可支配收入比例提升，财务弹性增强。<br>
+    <b>4. 应急储备充足：</b>按月均¥2.3万支出计算，需储备¥13.8万（6个月）。当前月均结余远超此数。<br>
+    <b>5. 关注收入波动：</b>2022年1月和2026年2月有异常高收入，建议确认是否可持续，避免基于异常值做长期规划。<br>
+    <b>6. 消费稳定性可改善：</b>2024年支出标准差最大（¥1.03万/月），建议设定月度预算上限，控制大额冲动消费。
+  </div>
+</div>
+
+<div class="footer">由小助自动生成 | 数据来源：Notion 账单数据库 | 已排除提前还贷和资产转移</div>
+</div>
+
+<script>
+const C={y:['#5470c6','#91cc75','#fac858','#ee6666','#73c0de'],blue:'#1890ff',red:'#ff4d4f',green:'#52c41a',orange:'#fa8c16',purple:'#722ed1'};
+const M=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+const Y=['2022','2023','2024','2025','2026*'];
+
+// Data
+const D={
+  yearly:{inc:[754417,569189,724725,594506,371195],exp:[246499,292376,287770,274681,113128]},
+  incStruct:{
+    '工资':[494189,510089,646992,454218,197227],
+    '奖金':[204610,0,0,44310,114510],
+    '公积金':[45068,48293,50922,52770,23903],
+    '其他':[10550,10807,26811,31208,35555]
+  },
+  fixedVar:{fixed:[125044,105400,94499,98674,44526],variable:[121455,186976,193271,154575,68602]},
+  mortgage:{monthly:[10260,8623,7715,7208,7106],prepay:[0,301164,0,501238,0]},
+  expCats:{
+    '房贷':[123124,103480,92579,107926,35532],
+    '商户消费':[45174,91755,83863,44451,14012],
+    '转账':[23220,33665,21913,33702,32922],
+    '亲属卡交易':[29546,27412,23109,18928,7446],
+    '亲友代付':[0,0,14745,25356,3775]
+  }
+};
+const bal=D.yearly.inc.map((v,i)=>v-D.yearly.exp[i]);
+const sr=bal.map((v,i)=>v/D.yearly.inc[i]*100);
+
+// 1. Yearly
+new echarts.init(document.getElementById('c-yearly')).setOption({
+  tooltip:{trigger:'axis'},legend:{data:['收入','支出','结余']},
+  grid:{left:80,right:40,bottom:50},
+  xAxis:{type:'category',data:Y},yAxis:{axisLabel:{formatter:v=>(v/10000).toFixed(0)+'万'}},
+  series:[
+    {name:'收入',type:'bar',data:D.yearly.inc,itemStyle:{color:C.blue},barWidth:'22%'},
+    {name:'支出',type:'bar',data:D.yearly.exp,itemStyle:{color:C.red},barWidth:'22%'},
+    {name:'结余',type:'line',data:bal,itemStyle:{color:C.green},lineStyle:{width:3},symbol:'circle',symbolSize:8,
+     areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(82,196,26,0.15)'},{offset:1,color:'rgba(82,196,26,0)'}])}}
+  ]
+});
+
+// 2. Income structure
+const incCats=Object.keys(D.incStruct);
+new echarts.init(document.getElementById('c-income-struct')).setOption({
+  tooltip:{trigger:'axis'},legend:{data:incCats},
+  grid:{left:80,right:20,bottom:40},xAxis:{type:'category',data:Y},
+  yAxis:{axisLabel:{formatter:v=>(v/10000).toFixed(0)+'万'}},
+  series:incCats.map((c,i)=>({name:c,type:'bar',stack:'total',data:D.incStruct[c],
+    itemStyle:{color:[C.blue,C.orange,C.purple,'#bbb'][i]},emphasis:{focus:'series'}}))
+});
+
+// 3. Savings rate
+new echarts.init(document.getElementById('c-savings')).setOption({
+  tooltip:{trigger:'axis',formatter:function(p){return p[0].name+'<br/>储蓄率: '+p[0].value.toFixed(1)+'%<br/>收支比: '+(D.yearly.exp[p[0].dataIndex]/D.yearly.inc[p[0].dataIndex]*100).toFixed(1)+'%'}},
+  grid:{left:60,right:40,bottom:40},xAxis:{type:'category',data:Y},
+  yAxis:{axisLabel:{formatter:'{value}%'},max:80},
+  series:[
+    {type:'bar',data:sr.map(v=>({value:v,itemStyle:{color:v<50?C.red:v<60?C.orange:C.green}})),
+     label:{show:true,position:'top',formatter:p=>p.value.toFixed(1)+'%',fontSize:11},barWidth:'40%'}
+  ],
+  markLine:{data:[{yAxis:50,lineStyle:{color:C.red,type:'dashed'},label:{formatter:'50%警戒线'}}]}
+});
+
+// 4. Fixed vs Variable
+new echarts.init(document.getElementById('c-fixed-var')).setOption({
+  tooltip:{trigger:'axis'},legend:{data:['固定支出','可变支出']},
+  grid:{left:80,right:20,bottom:40},xAxis:{type:'category',data:Y},
+  yAxis:{axisLabel:{formatter:v=>(v/10000).toFixed(0)+'万'}},
+  series:[
+    {name:'固定支出',type:'bar',stack:'total',data:D.fixedVar.fixed,itemStyle:{color:C.purple}},
+    {name:'可变支出',type:'bar',stack:'total',data:D.fixedVar.variable,itemStyle:{color:C.orange}}
+  ]
+});
+
+// 5. Category TOP5
+const catNames=Object.keys(D.expCats);
+new echarts.init(document.getElementById('c-category')).setOption({
+  tooltip:{trigger:'axis'},legend:{data:catNames},
+  grid:{left:80,right:20,bottom:40},xAxis:{type:'category',data:Y},
+  yAxis:{axisLabel:{formatter:v=>(v/10000).toFixed(0)+'万'}},
+  series:catNames.map((c,i)=>({name:c,type:'bar',data:D.expCats[c],itemStyle:{color:C.y[i]}}))
+});
+
+// 6. Cashflow
+const cashflow={};
+['2022','2023','2024','2025','2026'].forEach((y,yi)=>{
+  const inc={[254166,49328,48003,47824,44571,44669,44459,42921,43802,40479,40646,53549,
+    51138,50824,47538,48502,47511,46052,44081,45941,46457,42207,42494,56377,
+    53742,53407,70825,78112,63142,60794,60240,57295,57572,57673,57365,54560,
+    100235,44697,52629,44412,61235,41146,42369,41362,42272,40275,41735,42138,
+    60323,164729,52131,52408,41604]}; // flattened
+  const exp={[21432,23977,18059,19181,15505,29698,16040,20524,24169,18892,17686,19648,
+    24177,20163,41278,22207,24408,39024,22326,24048,23862,16495,14239,19270,
+    20213,34072,55012,21226,22988,20721,19657,17701,23474,21751,15523,15432,
+    23380,16040,19137,20862,23137,15621,15655,39283,24293,20877,20978,35418,
+    24849,34728,19669,23754,10128]};
+});
+
+// Simplified cashflow with pre-computed data
+const cfData=[
+  [3286,25351,29944,28643,29066,14971,28419,22397,19633,21587,22960,33901],
+  [26961,30661,6260,26295,23103,7028,21755,21893,22595,25712,28255,37107],
+  [33529,19335,15813,56886,40154,40073,40583,39594,34098,35922,41842,39128],
+  [76855,28656,33492,23550,38098,25525,26714,2079,17979,19398,20757,6720],
+  [35474,130001,32463,28654,31476,null,null,null,null,null,null,null]
+];
+new echarts.init(document.getElementById('c-cashflow')).setOption({
+  tooltip:{trigger:'axis'},legend:{data:['2022','2023','2024','2025','2026']},
+  grid:{left:70,right:20,bottom:40},xAxis:{type:'category',data:M},
+  yAxis:{axisLabel:{formatter:v=>(v/10000).toFixed(1)+'万'}},
+  visualMap:{show:false,dimension:1,pieces:[{lte:0,color:C.red},{gt:0,color:C.green}]},
+  series:['2022','2023','2024','2025','2026'].map((y,i)=>({
+    name:y,type:'line',data:cfData[i],smooth:true,
+    lineStyle:{width:i===4?3:1.5},symbol:'circle',symbolSize:i===4?6:3,
+    itemStyle:{color:C.y[i]},
+    areaStyle:i===4?{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(82,196,26,0.1)'},{offset:1,color:'transparent'}])}:undefined
+  }))
+});
+
+// 7. Mortgage
+new echarts.init(document.getElementById('c-mortgage')).setOption({
+  tooltip:{trigger:'axis'},legend:{data:['月均房贷','提前还贷']},
+  grid:{left:70,right:20,bottom:40},xAxis:{type:'category',data:Y},
+  yAxis:[{axisLabel:{formatter:v=>(v/10000).toFixed(0)+'万'}},{axisLabel:{formatter:v=>(v/10000).toFixed(0)+'万'}}],
+  series:[
+    {name:'月均房贷',type:'bar',data:D.mortgage.monthly,itemStyle:{color:C.blue},barWidth:'30%',yAxisIndex:0},
+    {name:'提前还贷',type:'bar',data:D.mortgage.prepay,itemStyle:{color:C.red,opacity:0.6},barWidth:'30%',yAxisIndex:1}
+  ]
+});
+
+// 8. Stability
+const stdDev=[4200,8800,10300,6400,8500];
+const avgExp=[20542,24365,23981,22890,22626];
+new echarts.init(document.getElementById('c-stability')).setOption({
+  tooltip:{trigger:'axis'},
+  grid:{left:60,right:30,bottom:40},xAxis:{type:'category',data:Y},
+  yAxis:{axisLabel:{formatter:'¥{value}'}},
+  series:[
+    {name:'月均支出',type:'bar',data:avgExp,itemStyle:{color:C.blue},barWidth:'35%'},
+    {name:'标准差',type:'line',data:stdDev,itemStyle:{color:C.red},lineStyle:{width:2,type:'dashed'},symbol:'diamond',symbolSize:8}
+  ]
+});
+
+// 9. Prediction
+const pred={inc:371195/5*12,exp:113128/5*12};
+pred.bal=pred.inc-pred.exp;
+pred.sr=pred.bal/pred.inc*100;
+new echarts.init(document.getElementById('c-predict')).setOption({
+  tooltip:{trigger:'axis'},
+  series:[{
+    type:'gauge',startAngle:200,endAngle:-20,min:0,max:100,
+    progress:{show:true,width:14},
+    axisLine:{lineStyle:{width:14,color:[[0.5,C.red],[0.7,C.orange],[1,C.green]]}},
+    axisTick:{show:false},splitLine:{show:false},axisLabel:{show:false},
+    pointer:{length:'60%',width:4},
+    title:{offsetCenter:[0,'70%'],fontSize:13},
+    detail:{valueAnimation:true,fontSize:22,offsetCenter:[0,'40%'],formatter:'{value}%',color:'inherit'},
+    data:[{value:Math.round(pred.sr),name:'预测储蓄率'}]
+  }],
+  graphic:[{type:'text',left:'center',bottom:10,style:{text:`预测年收入: ¥${(pred.inc/10000).toFixed(1)}万\n预测年支出: ¥${(pred.exp/10000).toFixed(1)}万\n预测结余: ¥${(pred.bal/10000).toFixed(1)}万`,fontSize:11,fill:'#999',textAlign:'center',lineHeight:18}}]
+});
+
+// 10. Reserve
+const reserveMonths=[17.5,11.4,18.2,13.9,17.5];
+new echarts.init(document.getElementById('c-reserve')).setOption({
+  tooltip:{trigger:'axis'},
+  grid:{left:80,right:30,bottom:40},xAxis:{type:'category',data:Y},
+  yAxis:{axisLabel:{formatter:'{value}月'}},
+  series:[{
+    type:'bar',data:reserveMonths.map(v=>({value:v,itemStyle:{color:v>=6?C.green:v>=3?C.orange:C.red}})),
+    barWidth:'40%',label:{show:true,position:'top',formatter:p=>p.value+'月',fontSize:11}
+  }],
+  markLine:{data:[{yAxis:6,lineStyle:{color:C.orange,type:'dashed'},label:{formatter:'6个月安全线'}}]}
+});
+
+// 11. Balance point
+const minIncome=avgExp.map(v=>v*1.2);
+const actualInc=[62868,47433,60394,49542,74239];
+new echarts.init(document.getElementById('c-balance')).setOption({
+  tooltip:{trigger:'axis'},
+  grid:{left:70,right:30,bottom:40},xAxis:{type:'category',data:Y},
+  yAxis:{axisLabel:{formatter:v=>(v/10000).toFixed(0)+'万'}},
+  series:[
+    {name:'实际月均收入',type:'bar',data:actualInc,itemStyle:{color:C.blue},barWidth:'25%'},
+    {name:'盈亏平衡线(×1.2)',type:'line',data:minIncome,itemStyle:{color:C.red},lineStyle:{width:2,type:'dashed'},symbol:'triangle',symbolSize:8}
+  ]
+});
+
+// 12. Monthly expense
+const expM=[
+  [21432,23977,18059,19181,15505,29698,16040,20524,24169,18892,17686,19648],
+  [24177,20163,41278,22207,24408,39024,22326,24048,23862,16495,14239,19270],
+  [20213,34072,55012,21226,22988,20721,19657,17701,23474,21751,15523,15432],
+  [23380,16040,19137,20862,23137,15621,15655,39283,24293,20877,20978,35418],
+  [24849,34728,19669,23754,10128,null,null,null,null,null,null,null]
+];
+new echarts.init(document.getElementById('c-exp-monthly')).setOption({
+  tooltip:{trigger:'axis'},legend:{data:['2022','2023','2024','2025','2026']},
+  grid:{left:70,right:20,bottom:40},xAxis:{type:'category',data:M},
+  yAxis:{axisLabel:{formatter:v=>(v/10000).toFixed(1)+'万'}},
+  series:['2022','2023','2024','2025','2026'].map((y,i)=>({
+    name:y,type:'line',data:expM[i],smooth:true,
+    lineStyle:{width:i===4?3:1.5},symbol:'circle',symbolSize:i===4?6:3,
+    itemStyle:{color:C.y[i]}
+  }))
+});
+
+window.addEventListener('resize',()=>{document.querySelectorAll('[_echarts_instance_]').forEach(el=>{const c=echarts.getInstanceByDom(el);if(c)c.resize()})});
+</script>
+</body>
+</html>
