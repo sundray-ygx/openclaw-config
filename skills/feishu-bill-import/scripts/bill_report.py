@@ -10,6 +10,9 @@ INCOME_DB  = "2317772a4011815d9cb7f25986519f11"
 
 MONTH_NAMES = {f"{i:02d}": f"{i}月" for i in range(1, 13)}
 
+# 资产转移类别 - 不计入日常收支统计
+EXCLUDE_CATEGORIES = {"购买理财通", "转入零钱通-来自零钱", "零钱通转出"}
+
 def query_notion(db_id, year="2026"):
     url = f"https://api.notion.com/v1/databases/{db_id}/query"
     results = []
@@ -49,14 +52,21 @@ def generate_report(year="2026", top_n=3):
     by_from = defaultdict(float)
     by_category = defaultdict(float)
 
+    excluded_exp = defaultdict(float)
+    excluded_inc = defaultdict(float)
+
     for p in expense_pages:
         props = p.get("properties", {})
         price = extract(props, "Price", "number")
         date = extract(props, "Date", "date")
         cat = extract(props, "Category", "select")
         src = extract(props, "From", "select")
-        if date:
-            m = date[:7]
+        if not date:
+            continue
+        m = date[:7]
+        if cat in EXCLUDE_CATEGORIES:
+            excluded_exp[m] += price
+        else:
             months_exp[m][cat] += price
             by_from[src] += price
             by_category[cat] += price
@@ -65,8 +75,14 @@ def generate_report(year="2026", top_n=3):
         props = p.get("properties", {})
         price = extract(props, "Price", "number")
         date = extract(props, "Date", "date")
-        if date:
-            months_inc[date[:7]] += price
+        cat = extract(props, "Category", "select")
+        if not date:
+            continue
+        m = date[:7]
+        if cat in EXCLUDE_CATEGORIES:
+            excluded_inc[m] += price
+        else:
+            months_inc[m] += price
 
     # Output
     lines = []
@@ -91,6 +107,18 @@ def generate_report(year="2026", top_n=3):
     lines.append("-" * 65)
     lines.append(f"{'合计':<6} ¥{total_inc:>10,.2f} ¥{total_exp:>10,.2f} ¥{total_inc-total_exp:>10,.2f}")
     lines.append(f"\n储蓄率: {(total_inc-total_exp)/total_inc*100:.1f}%")
+
+    # Excluded items note
+    total_excluded = sum(excluded_exp.values()) + sum(excluded_inc.values())
+    if total_excluded > 0:
+        lines.append(f"\n* 已排除资产转移: ¥{sum(excluded_exp.values()):,.2f}(支出) + ¥{sum(excluded_inc.values()):,.2f}(收入)")
+        for m in sorted(set(list(excluded_exp.keys()) + list(excluded_inc.keys()))):
+            parts = []
+            if excluded_exp.get(m, 0) > 0:
+                parts.append(f"支出 ¥{excluded_exp[m]:,.0f}")
+            if excluded_inc.get(m, 0) > 0:
+                parts.append(f"收入 ¥{excluded_inc[m]:,.0f}")
+            lines.append(f"  {MONTH_NAMES.get(m[5:], m)}: {' / '.join(parts)}")
 
     # Platform breakdown
     lines.append(f"\n支出平台分布:")
