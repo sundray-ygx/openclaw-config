@@ -479,6 +479,33 @@
       "created_at": "2026-05-06",
       "source": "daily_reflection",
       "check_count": 1
+    },
+    {
+      "id": "2026-05-09-action-0",
+      "text": ". [⚙️配置] 修改 `openclaw.json` 的 `plugins.allow` 策略，添加 `\"ai\"` 权限以恢复反思脚本。",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-09",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-09-action-1",
+      "text": ". [🔧自动] 开发基于无头浏览器的 HTML/PNG 报表生成与截图验证脚本（包含 JS 错误捕获逻辑）。",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-09",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-09-action-2",
+      "text": ". [📋流程] 建立《全局配置变更前检查清单》，强制要求修改权限/网络配置后对核心定时任务进行 dry-run 联调。",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-09",
+      "source": "daily_reflection",
+      "check_count": 1
     }
   ]
 }

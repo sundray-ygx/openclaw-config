@@ -25,34 +25,66 @@ FEISHU_USER_ID = "ou_c2cde251e01a87fc09ba7561f76d8606"
 
 # AI 配置 - 使用 zai/glm-5
 import subprocess
-import tempfile
+import json as _json
 
-AI_MODEL = "zai/glm-5"
+AI_MODEL = "glm-5"
+ZAI_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4"
+
+# 从 auth-profiles 加载 zai API key
+def _load_zai_key():
+    try:
+        with open('/root/.openclaw/agents/main/agent/auth-profiles.json', 'r') as _f:
+            _profiles = _json.load(_f)
+        return _profiles['profiles']['zai:default']['key']
+    except Exception:
+        return ""
+
+ZAI_API_KEY = _load_zai_key()
 
 
 def get_ai_response(system_prompt, user_prompt, max_tokens=2000):
-    """通过 OpenClaw CLI 调用 zai/glm-5 生成反思"""
-    # 构建完整的 prompt
-    full_prompt = f"""{system_prompt}
-
-{user_prompt}"""
+    """通过 zai OpenAI 兼容接口调用 glm-5"""
+    import subprocess
+    
+    # 构建 OpenAI 兼容的请求
+    data = {
+        "model": AI_MODEL,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ],
+        "max_tokens": max_tokens,
+        "temperature": 0.7
+    }
     
     try:
-        # 使用 openclaw 命令行工具调用 AI
+        # 使用 curl 调用 zai OpenAI 兼容接口
         result = subprocess.run(
-            ["openclaw", "ai", "complete", "--model", AI_MODEL, "--max-tokens", str(max_tokens)],
-            input=full_prompt,
-            capture_output=True,
-            text=True,
-            timeout=120
+            [
+                "curl", "-s", "-X", "POST",
+                f"{ZAI_BASE_URL}/chat/completions",
+                "-H", f"Authorization: Bearer {ZAI_API_KEY}",
+                "-H", "Content-Type: application/json",
+                "-d", _json.dumps(data)
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            universal_newlines=True,
+            timeout=180
         )
         
         if result.returncode == 0:
-            # 清理输出，移除可能的前缀和后缀
-            output = result.stdout.strip()
-            return output
+            response = _json.loads(result.stdout)
+            # 调试：打印响应
+            # print(f"  API 响应: {result.stdout[:200]}...")
+            # glm-5 推理模型：优先使用 reasoning_content，如果为空再使用 content
+            message = response.get('choices', [{}])[0].get('message', {})
+            content = message.get('reasoning_content', '') or message.get('content', '')
+            return content.strip() if content else None
         else:
-            print(f"  AI 调用失败: {result.stderr}")
+            print(f"  AI 调用失败 (curl退出码{result.returncode}): {result.stderr}")
+            if result.stdout:
+                print(f"  API 响应: {result.stdout[:300]}...")
             return None
     except subprocess.TimeoutExpired:
         print(f"  AI 调用超时")
@@ -157,8 +189,8 @@ def generate_reflection(context, recent_reflections, existing_lessons):
     # 构建工作摘要（限制长度避免 token 爆炸）
     work_summary = ""
     if context["daily_log"]:
-        # 只取关键部分
-        work_summary = context["daily_log"][:3000]
+        # 只取关键部分，进一步压缩长度
+        work_summary = context["daily_log"][:1500]
 
     interaction_list = "\n".join([f"- {i}" for i in context["interactions"][:10]])
     error_list = "\n".join([f"- {e}" for e in context["errors"][:5]])

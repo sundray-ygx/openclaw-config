@@ -1,5 +1,52 @@
 # HEARTBEAT.md - 定时任务处理
 
+## 每日反思生成（每天一次，8:45 后执行）
+
+检查 `memory/heartbeat-state.json` 的 `lastDailyReflection` 字段。
+如果今天尚未执行：
+```bash
+python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py
+```
+执行后更新 `lastDailyReflection` 为今天日期。
+
+## 每周复盘（周五 18:30 后执行）
+
+检查当前是否为周五且 `lastWeeklyReview` 不是本周：
+```bash
+python3 /root/.openclaw/workspace/scripts/daily/weekly_review.py
+```
+执行后更新 `lastWeeklyReview` 为本周日期。
+
+## 每周磁盘清理（周一执行）
+
+检查当前是否为周一且 `lastDiskCleanup` 不是本周：
+```bash
+rm -rf /tmp/pip-* && find /root/.openclaw/workspace -name '__pycache__' -exec rm -rf {} + 2>/dev/null && df -h /
+```
+如果磁盘使用 > 85%，额外清理日志和临时文件。执行后更新 `lastDiskCleanup`。
+
+## Cron 健康检查（每天一次，9:00 后执行）
+
+检查 `lastCronHealthCheck` 是否为今天。如果不是：
+```bash
+python3 /root/.openclaw/workspace/scripts/utils/cron_health_monitor.py
+```
+如果有报错任务，分析原因并提醒用户。执行后更新 `lastCronHealthCheck`。
+
+## 租金提醒（每月 25 日/27 日执行）
+
+### 13B402 租金提醒
+如果今天是 25 号且 `lastRentReminder13B` 不是本月：
+发送 13B402 租金账单提醒消息给用户，内容包括水费/电费/燃气费账单收集。
+执行后更新 `lastRentReminder13B`。
+
+### 16A503 租金提醒
+如果今天是 27 号且 `lastRentReminder16A` 不是本月：
+```bash
+python3 /root/.openclaw/workspace/scripts/rent/rent_expense_remind.py
+```
+执行后更新 `lastRentReminder16A`。
+
 ## 记忆维护（每周一次）
 
 读取 `memory/heartbeat-state.json`，检查 `lastMemoryMaintenance` 字段。

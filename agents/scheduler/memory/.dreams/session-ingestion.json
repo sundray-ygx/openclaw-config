@@ -148,6 +148,13 @@
       "lineCount": 2,
       "lastContentLine": 2
     },
+    "scheduler:sessions/43be76a3-2a25-41e3-a019-057eb238377d.jsonl": {
+      "mtimeMs": 1777791578253,
+      "size": 59256,
+      "contentHash": "0f7cece8bb336790653bcac775e73b6955d95770168843c2c280c97bad7df98e",
+      "lineCount": 5,
+      "lastContentLine": 5
+    },
     "scheduler:sessions/4bcc888c-e6e3-4d14-83d0-7cab91e55953.jsonl": {
       "mtimeMs": 1773792392964,
       "size": 3334,
@@ -162,7 +169,7 @@
       "lineCount": 4,
       "lastContentLine": 4
     },
-    "scheduler:sessions/51c8c3de-ad4a-4b40-a186-19d4923fee14.jsonl": {
+    "scheduler:sessions/51c8c3de-ad4a-4b40-a186-19d4923fee14.jsonl.reset.2026-05-03T06-57-14.892Z": {
       "mtimeMs": 1777541603376,
       "size": 40498,
       "contentHash": "06caf08855d7e2483db8bcf4e24a7a5614986d7108835014626f4402d60c5fd1",
@@ -499,6 +506,6 @@
       "73b23df6f203f2b9dfbb9f4e56e982c4e5c6a086",
       "89233d2019153887b7a2e141ff347d95ce7c96a2"
     ],
-    "scheduler:c7f5df03-4101-4d27-9396-208cd37b9a9d": []
+    "scheduler:43be76a3-2a25-41e3-a019-057eb238377d": []
   }
 }

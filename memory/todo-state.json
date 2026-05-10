@@ -187,6 +187,36 @@
       "description": "📋流程 [📋流程] 为每个插件创建安装/卸载清单，确保步骤完整执行",
       "source": "daily_reflection",
       "ref_date": "2026-05-06"
+    },
+    {
+      "id": "2026-05-09-action-0",
+      "title": "[反思行动] . [⚙️配置] 修改 `openclaw.json` 的 `plugins.a",
+      "remind_time": "2026-05-11T11:01:56+08:00",
+      "status": "⏳ 待提醒",
+      "created_at": "2026-05-10T11:01:56+08:00",
+      "description": "⚙️配置 . [⚙️配置] 修改 `openclaw.json` 的 `plugins.allow` 策略，添加 `\"ai\"` 权限以恢复反思脚本。",
+      "source": "daily_reflection",
+      "ref_date": "2026-05-09"
+    },
+    {
+      "id": "2026-05-09-action-1",
+      "title": "[反思行动] . [🔧自动] 开发基于无头浏览器的 HTML/PNG 报表生成与截图验证脚本（",
+      "remind_time": "2026-05-11T11:01:56+08:00",
+      "status": "⏳ 待提醒",
+      "created_at": "2026-05-10T11:01:56+08:00",
+      "description": "📋流程 . [🔧自动] 开发基于无头浏览器的 HTML/PNG 报表生成与截图验证脚本（包含 JS 错误捕获逻辑）。",
+      "source": "daily_reflection",
+      "ref_date": "2026-05-09"
+    },
+    {
+      "id": "2026-05-09-action-2",
+      "title": "[反思行动] . [📋流程] 建立《全局配置变更前检查清单》，强制要求修改权限/网络配置后对核",
+      "remind_time": "2026-05-11T11:01:56+08:00",
+      "status": "⏳ 待提醒",
+      "created_at": "2026-05-10T11:01:56+08:00",
+      "description": "⚙️配置 . [📋流程] 建立《全局配置变更前检查清单》，强制要求修改权限/网络配置后对核心定时任务进行 dry-run 联调。",
+      "source": "daily_reflection",
+      "ref_date": "2026-05-09"
     }
   ]
 }
