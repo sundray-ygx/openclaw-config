@@ -1,0 +1,99 @@
+---
+{
+  "source": "memory",
+  "date": "2026-03-21",
+  "tags": [
+    "productivity",
+    "work",
+    "tech"
+  ],
+  "created_at": "2026-03-22T05:00:02.317249",
+  "status": "pending_review"
+}
+---
+
+# 记忆归档 - 2026-03-21
+
+**自动标签**: productivity, work, tech
+
+**建议归档位置**:
+- productivity
+- work
+- tech
+
+---
+
+## 原始内容
+
+# 2026-03-21 记忆
+
+## 日报摘要
+# 📋 工作日报 | 2026-03-20 周五
+
+生成时间：2026-03-21 11:22:52
+
+## ✅ 已完成事项
+
+1. **早间简报推送** (11:09)
+   - 20e165dc-64b3-47fd-9e12-eafe307b92df 早间简报: 请执行早间简报任务，生成天气、邮件和资讯汇总，并发送到当前会话\nCurr
+
+2. **OpenClaw资讯推送** (11:09)
+   - 1238df19-fe45-4b79-8c7a-d1e6e84f60ea OpenClaw每日资讯推送: 运行OpenClaw资讯脚本: python3 /ro
+
+3. **工作日报生成** (11:10)
+   - 94321584-c470-4ec1-b117-328caaa18605 每日工作日报: 运行日报脚本: python3 /root/scripts/daily
+
+4. **NAS自动备份** (11:10)
+   - 0172fa28-27b3-422f-ab09-fe1c548a0866 NAS备份通知: 读取NAS备份通知: cat /tmp/backup-notific
+
+5. **定时任务** (11:10)
+   - a9330871-a75f-4224-b28b-4e4e037ece3b 产线周会提醒-无线: 📅 提醒：今天（周五）无线产线内部周会\nCurrent tim
+
+6. **周报提醒** (11:10)
+   - 94cf8be6-2d5e-488a-ab1b-87ce943b89c5 周报提醒: 运行周报提醒脚本: python3 /root/.openclaw/wor
+
+7. **周复盘** (11:10)
+   - 5ded90d1-d758-42b6-be98-994a8aeb2b0b 周复盘: 运行周复盘脚本: python3 /root/.openclaw/works
+
+8. **工作日报生成** (00:30)
+   - 94321584-c470-4ec1-b117-328caaa18605 每日工作日报: 运行日报脚本: python3 /root/scripts/daily
+
+9. **每日归档** (15:00)
+   - bf02f53a-4087-4a46-a9f9-5d5d826d4306 每日归档: 执行每日归档: python3 /root/.openclaw/works
+
+10. **周复盘** (10:30)
+   - 5ded90d1-d758-42b6-be98-994a8aeb2b0b 周复盘: 运行周复盘脚本: python3 /root/.openclaw/works
+
+11. **NAS自动备份** (00:35)
+   - 0172fa28-27b3-422f-ab09-fe1c548a0866 NAS备份通知: 读取NAS备份通知: cat /tmp/backup-notific
+
+12. **周报提醒** (09:00)
+   - 94cf8be6-2d5e-488a-ab1b-87ce943b89c5 周报提醒: 运行周报提醒脚本: python3 /root/.openclaw/wor
+
+## 🔄 复盘与改进
+
+• 所有定时任务正常执行，无异常
+
+**做得好的：**
+• 系统稳定运行，任务按时完成
+
+
+## 待跟进事项
+- [ ] 
+
+## 明日计划
+- 
+
+---
+*自动归档于 23:00*
+
+
+---
+
+## 人工整理说明
+
+1. 阅读以上内容
+2. 确认标签是否准确
+3. 移动到对应目录: `knowledge/{category}/`
+4. 重命名为: `YYYY-MM-DD-title.md`
+5. 删除此 inbox 文件

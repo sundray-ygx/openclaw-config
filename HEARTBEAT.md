@@ -83,3 +83,23 @@ python3 /root/.openclaw/workspace/scripts/rent/rent_expense_remind.py
 - Cron 任务状态
 
 如果发现问题，在 heartbeat 中直接提醒。
+
+## 周反思报告（每周日 20:00 后执行）
+
+检查当前是否为周日且 `lastWeeklyReflection` 不是本周：
+```bash
+python3 /root/.openclaw/workspace/scripts/weekly/weekly_reflection.py
+```
+执行后更新 `lastWeeklyReflection` 为本周日期。
+
+## 安全配置巡检（每周一 09:00 后执行）
+
+检查当前是否为周一：
+```bash
+bash /root/.openclaw/workspace/scripts/weekly/security_check.sh
+```
+执行后发送飞书报告。
+
+## 租金账单提醒（每月 25 日/27 日执行）
+
+检查系统 crontab 任务是否正常运行（租金提醒已在系统 crontab 中配置，无需在此重复）。

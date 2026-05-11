@@ -1,0 +1,7 @@
+[main/sessions/325a9a12-4c8e-4ac9-b4f7-533758151f75.jsonl#L2478] User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do 
+[main/sessions/325a9a12-4c8e-4ac9-b4f7-533758151f75.jsonl#L2481] Assistant: HEARTBEAT_OK
+[main/sessions/325a9a12-4c8e-4ac9-b4f7-533758151f75.jsonl#L2482] User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do 
+[main/sessions/325a9a12-4c8e-4ac9-b4f7-533758151f75.jsonl#L2483] User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do 
+[main/sessions/325a9a12-4c8e-4ac9-b4f7-533758151f75.jsonl#L2486] Assistant: 今天是周一，检查磁盘清理：lastDiskCleanup=2026-05-05（上周一），应执行。
+[main/sessions/325a9a12-4c8e-4ac9-b4f7-533758151f75.jsonl#L2488] Assistant: 磁盘 78%，未超 85% 阈值，无需额外清理。
+[main/sessions/325a9a12-4c8e-4ac9-b4f7-533758151f75.jsonl#L2490] Assistant: HEARTBEAT_OK
