@@ -208,9 +208,9 @@ UPLOAD_RESULT=""
 UPLOAD_SUCCESS=false
 
 for i in $(seq 1 $MAX_RETRIES); do
-    UPLOAD_RESULT=$(curl -s -o /dev/null -w "%{http_code}" --max-time 120 -T "$LOCAL_BACKUP_DIR/../server-backup-$BACKUP_DATE.tar.gz" -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$REMOTE_DIR/server-backup-$BACKUP_DATE.tar.gz")
+    UPLOAD_RESULT=$(curl -s -o /dev/null -w "%{http_code}" --max-time 300 -H "Expect:" -T "$LOCAL_BACKUP_DIR/../server-backup-$BACKUP_DATE.tar.gz" -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$REMOTE_DIR/server-backup-$BACKUP_DATE.tar.gz")
     
-    if [ "$UPLOAD_RESULT" = "201" ] || [ "$UPLOAD_RESULT" = "200" ] || [ "$UPLOAD_RESULT" = "204" ]; then
+    if [ "$UPLOAD_RESULT" = "201" ] || [ "$UPLOAD_RESULT" = "200" ] || [ "$UPLOAD_RESULT" = "204" ] || [ "$UPLOAD_RESULT" = "301" ] || [ "$UPLOAD_RESULT" = "302" ]; then
         UPLOAD_SUCCESS=true
         break
     fi
