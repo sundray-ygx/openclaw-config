@@ -23,3 +23,14 @@
 [main/sessions/d61b9d06-c781-410b-88c9-db233e768aea.jsonl#L31] Assistant: 现在我来查找 GSD 主仓库：
 [main/sessions/d61b9d06-c781-410b-88c9-db233e768aea.jsonl#L35] Assistant: 数据收集完毕，现在输出完整文档：
 [main/sessions/d61b9d06-c781-410b-88c9-db233e768aea.jsonl#L39] Assistant: 文档已生成，输出完整内容： --- # AI Coding 领域 SDD 开源项目调研 ## 一、SDD 是什么 **Spec-Driven Development** — 以规格说明（Spec）为第一公民的开发方法论。先写 Spec，再让 AI Agent 根据 Spec 生成代码。替代"对话式" Vibe Coding，解决上下文丢失、产出不一致的问题。已被 **Thoughtworks 技术雷达**列为关注趋势。 ## 二、7 个核心项目 ### 1️⃣ GitHub Spec Kit — ⭐ 97.7k（最热） - **仓库
+[main/sessions/2d02fde8-4015-40ca-947a-6444998828c9.jsonl.reset.2026-05-14T06-20-45.691Z#L50] Assistant: **Step 5：签发 SSL 证书**
+[main/sessions/2d02fde8-4015-40ca-947a-6444998828c9.jsonl.reset.2026-05-14T06-20-45.691Z#L60] Assistant: ✅ SSL 证书签发成功！ 验证证书文件：
+[main/sessions/2d02fde8-4015-40ca-947a-6444998828c9.jsonl.reset.2026-05-14T06-20-45.691Z#L62] Assistant: 检查 Certbot 自动续期配置：
+[main/sessions/2d02fde8-4015-40ca-947a-6444998828c9.jsonl.reset.2026-05-14T06-20-45.691Z#L64] Assistant: **Step 6：创建完整 HTTPS 配置**
+[main/sessions/2d02fde8-4015-40ca-947a-6444998828c9.jsonl.reset.2026-05-14T06-20-45.691Z#L66] Assistant: 等等，发现配置冲突：nginx.conf 和 vaultwarden.conf 都有 80 端口 server block。需要调整 vaultwarden.conf 只保留 HTTPS：
+[main/sessions/2d02fde8-4015-40ca-947a-6444998828c9.jsonl.reset.2026-05-14T06-20-45.691Z#L68] Assistant: 验证并重载 Nginx：
+[main/sessions/2d02fde8-4015-40ca-947a-6444998828c9.jsonl.reset.2026-05-14T06-20-45.691Z#L70] Assistant: **Step 7：配置证书自动续期（安全追加）**
+[main/sessions/2d02fde8-4015-40ca-947a-6444998828c9.jsonl.reset.2026-05-14T06-20-45.691Z#L72] Assistant: 确认完整 crontab（原有任务保留）：
+[main/sessions/2d02fde8-4015-40ca-947a-6444998828c9.jsonl.reset.2026-05-14T06-20-45.691Z#L74] Assistant: **Step 8：最终验证**
+[main/sessions/2d02fde8-4015-40ca-947a-6444998828c9.jsonl.reset.2026-05-14T06-20-45.691Z#L78] Assistant: 验证 WebSocket 端点：
+[main/sessions/2d02fde8-4015-40ca-947a-6444998828c9.jsonl.reset.2026-05-14T06-20-45.691Z#L82] Assistant: --- ## ✅ 执行完成！ ### 完成情况 | 步骤 | 状态 | 结果 | |------|------|------| | 1. DNS 确认 | ✅ | `vw.ygxpro.online` → `47.119.177.194` | | 2. frp 隧道确认 | ✅ | 3011 端口连通 | | 3. 安装 Certbot | ✅ | 已安装 | | 4. 清理旧配置 + 创建新配置 | ✅ | 删除 ygxpro.xyz 配置，创建新 80 端口 serve
