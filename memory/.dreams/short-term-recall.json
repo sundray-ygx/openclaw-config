@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-15T19:00:26.773Z",
+  "updatedAt": "2026-05-16T19:00:02.339Z",
   "entries": {
     "memory:memory/2026-03-25.md:1:35": {
       "key": "memory:memory/2026-03-25.md:1:35",
@@ -216354,6 +216354,1251 @@
         "label",
         "openclaw",
         "tui"
+      ]
+    },
+    "memory:memory/2026-05-16.md:473:473": {
+      "key": "memory:memory/2026-05-16.md:473:473",
+      "path": "memory/2026-05-16.md",
+      "startLine": 473,
+      "endLine": 473,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ccfae0e39afd"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-05-16.md:476:478": {
+      "key": "memory:memory/2026-05-16.md:476:478",
+      "path": "memory/2026-05-16.md",
+      "startLine": 476,
+      "endLine": 478,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: - 体系级：团队名称、AI-Native人数、Token消耗总量、请求总次数、总费用、人均费用 - 个人级：姓名、日均Token、Token总量、请求次数、总费用、是否AI-Native 交互： - 行 hover 高亮，行可点击下钻 - 面包屑显示层级路径 - AI-Native 用户高亮标识 - ... - 💻 **14:17** 好问题。从技术角度系统评估一下。 --- ## 评估：考试方可能的技术限制 ### Selenium 能获取什么（考试方无法阻止） | 信息类型 | 获取方式 | 考试方",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ccfae0e39afd"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "ai-native人数",
+        "是否ai-native",
+        "ai-native",
+        "possible",
+        "lasting",
+        "truths",
+        "体系",
+        "团队"
+      ]
+    },
+    "memory:memory/2026-05-15.md:7:10": {
+      "key": "memory:memory/2026-05-15.md:7:10",
+      "path": "memory/2026-05-15.md",
+      "startLine": 7,
+      "endLine": 10,
+      "source": "memory",
+      "snippet": "📊 概览: **日期**: 2026-05-15; **本地会话**: 2 个文件, 141 条消息; **飞书消息**: 1 条; **定时任务**: 0 个",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "日期",
+        "本地",
+        "会话",
+        "文件",
+        "消息",
+        "任务"
+      ]
+    },
+    "memory:memory/2026-05-15.md:11:13": {
+      "key": "memory:memory/2026-05-15.md:11:13",
+      "path": "memory/2026-05-15.md",
+      "startLine": 11,
+      "endLine": 13,
+      "source": "memory",
+      "snippet": "📊 概览: **本地交互**: 1 次; **飞书交互**: 0 次; **错误/异常**: 4 条",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "错误/异常",
+        "本地",
+        "交互",
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-15.md:16:16": {
+      "key": "memory:memory/2026-05-15.md:16:16",
+      "path": "memory/2026-05-15.md",
+      "startLine": 16,
+      "endLine": 16,
+      "source": "memory",
+      "snippet": "⏰ 定时任务执行记录: _当日无定时任务记录_",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "任务",
+        "执行",
+        "记录",
+        "当日"
+      ]
+    },
+    "memory:memory/2026-05-15.md:19:19": {
+      "key": "memory:memory/2026-05-15.md:19:19",
+      "path": "memory/2026-05-15.md",
+      "startLine": 19,
+      "endLine": 19,
+      "source": "memory",
+      "snippet": "💬 本地交互概要: **01:57** [Fri 2026-05-15 09:57 GMT+8] 搜索 hermes webui 管理页面方案，结合使用频度、热度、社区活跃度等维度综合排序，并分别总结应用场景、特性说明、资源消耗、优劣势等，...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "本地",
+        "交互",
+        "概要",
+        "fri",
+        "gmt",
+        "搜索",
+        "hermes",
+        "webui"
+      ]
+    },
+    "memory:memory/2026-05-15.md:22:22": {
+      "key": "memory:memory/2026-05-15.md:22:22",
+      "path": "memory/2026-05-15.md",
+      "startLine": 22,
+      "endLine": 22,
+      "source": "memory",
+      "snippet": "📱 飞书交互概要: _当日无飞书交互记录_",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "交互",
+        "概要",
+        "当日",
+        "记录"
+      ]
+    },
+    "memory:memory/2026-05-15.md:26:26": {
+      "key": "memory:memory/2026-05-15.md:26:26",
+      "path": "memory/2026-05-15.md",
+      "startLine": 26,
+      "endLine": 26,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **15:33** │",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-15.md:27:29": {
+      "key": "memory:memory/2026-05-15.md:27:29",
+      "path": "memory/2026-05-15.md",
+      "startLine": 27,
+      "endLine": 29,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: ◇ Config warnings ──────────────────────────────────────────────────────╮ │ │ │ - plugins.entries.skillhub: plugin not found:...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "plugins.entries.skillhub",
+        "错误",
+        "异常",
+        "config",
+        "warnings",
+        "plugin",
+        "not",
+        "found"
+      ]
+    },
+    "memory:memory/2026-05-15.md:30:30": {
+      "key": "memory:memory/2026-05-15.md:30:30",
+      "path": "memory/2026-05-15.md",
+      "startLine": 30,
+      "endLine": 30,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **15:30** [feature-52273 8e0bb1d] Auto sync: 2026-05-02 23:30:09",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "feature-52273",
+        "错误",
+        "异常",
+        "feature",
+        "8e0bb1d",
+        "auto",
+        "sync"
+      ]
+    },
+    "memory:memory/2026-05-15.md:31:33": {
+      "key": "memory:memory/2026-05-15.md:31:33",
+      "path": "memory/2026-05-15.md",
+      "startLine": 31,
+      "endLine": 33,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 41 files changed, 7965 insertions(+), 593 deletions(-) create mode 100644 archive/daily/2026-05/daily-report-2026-05-01.md create mode 100644 ...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "changed",
+        "insertions",
+        "deletions",
+        "create",
+        "mode",
+        "archive"
+      ]
+    },
+    "memory:memory/2026-05-15.md:34:34": {
+      "key": "memory:memory/2026-05-15.md:34:34",
+      "path": "memory/2026-05-15.md",
+      "startLine": 34,
+      "endLine": 34,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **01:58** {",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-15.md:35:38": {
+      "key": "memory:memory/2026-05-15.md:35:38",
+      "path": "memory/2026-05-15.md",
+      "startLine": 35,
+      "endLine": 38,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: \"url\": \"https://www.bitdoze.com/best-hermes-dashboards/\", \"finalUrl\": \"https://www.bitdoze.com/best-hermes-dashboards/\", \"status\": 200, \"title\": \"\\n<<<EXTERNAL_UNTRUSTED_CONTENT id=\\\"10b9319...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "external-untrusted-content",
+        "错误",
+        "异常",
+        "url",
+        "https",
+        "www.bitdoze.com",
+        "best",
+        "hermes"
+      ]
+    },
+    "memory:memory/2026-05-15.md:39:39": {
+      "key": "memory:memory/2026-05-15.md:39:39",
+      "path": "memory/2026-05-15.md",
+      "startLine": 39,
+      "endLine": 39,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **01:58** {",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-15.md:40:43": {
+      "key": "memory:memory/2026-05-15.md:40:43",
+      "path": "memory/2026-05-15.md",
+      "startLine": 40,
+      "endLine": 43,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: \"url\": \"https://github.com/xaspx/hermes-control-interface\", \"finalUrl\": \"https://github.com/xaspx/hermes-control-interface\", \"status\": 200, \"contentType\": \"text/html\",",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "text/html",
+        "错误",
+        "异常",
+        "url",
+        "https",
+        "github.com",
+        "xaspx",
+        "hermes"
+      ]
+    },
+    "memory:memory/2026-05-15.md:44:44": {
+      "key": "memory:memory/2026-05-15.md:44:44",
+      "path": "memory/2026-05-15.md",
+      "startLine": 44,
+      "endLine": 44,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: \"title\": \"\\n<<<EXTER...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "title",
+        "exter"
+      ]
+    },
+    "memory:memory/2026-05-15.md:49:49": {
+      "key": "memory:memory/2026-05-15.md:49:49",
+      "path": "memory/2026-05-15.md",
+      "startLine": 49,
+      "endLine": 49,
+      "source": "memory",
+      "snippet": "🔄 复盘与改进: **做得好的：**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "改进",
+        "做得",
+        "好的"
+      ]
+    },
+    "memory:memory/2026-05-15.md:52:52": {
+      "key": "memory:memory/2026-05-15.md:52:52",
+      "path": "memory/2026-05-15.md",
+      "startLine": 52,
+      "endLine": 52,
+      "source": "memory",
+      "snippet": "🔄 复盘与改进: **需改进：**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "改进"
+      ]
+    },
+    "memory:memory/2026-05-15.md:62:62": {
+      "key": "memory:memory/2026-05-15.md:62:62",
+      "path": "memory/2026-05-15.md",
+      "startLine": 62,
+      "endLine": 62,
+      "source": "memory",
+      "snippet": "明日计划: *生成于 08:30*",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "7e5abc1a80b8"
+      ],
+      "recallDays": [
+        "2026-05-15"
+      ],
+      "conceptTags": [
+        "明日",
+        "计划",
+        "生成"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:52:52": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:52:52",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 52,
+      "endLine": 52,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:53:53": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:53:53",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 53,
+      "endLine": 53,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:54:54": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:54:54",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 54,
+      "endLine": 54,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:55:55": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:55:55",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 55,
+      "endLine": 55,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:56:56": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:56:56",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 56,
+      "endLine": 56,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:57:57": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:57:57",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 57,
+      "endLine": 57,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:58:58": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:58:58",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 58,
+      "endLine": 58,
+      "source": "memory",
+      "snippet": "User: System: [2026-05-14 05:00:00 GMT+8] 自动归档昨日记忆到knowledge inbox: python3 /root/.openclaw/workspace/scripts/utils/auto_archive_to_inbox.py A scheduled reminder has been triggered. The reminder content is: 自动归档昨日记忆到knowledge inbox: python3 /root/.openclaw/workspace/scripts/utils",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "openclaw/workspace/scripts/utils",
+        "user",
+        "system",
+        "gmt",
+        "自动",
+        "归档",
+        "昨日",
+        "记忆"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:59:59": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:59:59",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 59,
+      "endLine": 59,
+      "source": "memory",
+      "snippet": "Assistant: NO_REPLY",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "no-reply",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:60:60": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:60:60",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 60,
+      "endLine": 60,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:61:61": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:61:61",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 61,
+      "endLine": 61,
+      "source": "memory",
+      "snippet": "Assistant: 记忆维护距今 1 天，工作区检查距今 3 天，均不到 7 天。 HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant",
+        "记忆",
+        "维护",
+        "距今",
+        "工作",
+        "检查",
+        "不到"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:62:62": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:62:62",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 62,
+      "endLine": 62,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:63:63": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:63:63",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 63,
+      "endLine": 63,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:64:64": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:64:64",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 64,
+      "endLine": 64,
+      "source": "memory",
+      "snippet": "Assistant: webroot 验证 403 了。检查一下 nginx 配置中 `.well-known` 的处理：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "well-known",
+        "assistant",
+        "webroot",
+        "验证",
+        "检查",
+        "一下",
+        "nginx",
+        "配置"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:65:65": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:65:65",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 65,
+      "endLine": 65,
+      "source": "memory",
+      "snippet": "Assistant: 本地能访问。但从外部 403 — 这又回到了之前发现的问题：**从外部访问被拦截了**。 certbot 之前能成功是因为它是在本机执行的，HTTP challenge 请求可能走的是本地。让我换个方式：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "assistant",
+        "本地",
+        "访问",
+        "但从",
+        "外部",
+        "回到",
+        "之前",
+        "发现"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:66:66": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:66:66",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 66,
+      "endLine": 66,
+      "source": "memory",
+      "snippet": "Assistant: 等等，我之前的思路可能有问题。让我换个角度重新验证一下：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "assistant",
+        "等等",
+        "之前",
+        "思路",
+        "可能",
+        "问题",
+        "换个",
+        "角度"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:67:67": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:67:67",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 67,
+      "endLine": 67,
+      "source": "memory",
+      "snippet": "Assistant: SSL Labs 说 **\"Failed to communicate with the secure server\"**！这说明外部确实无法正常建立 TLS 连接。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "assistant",
+        "ssl",
+        "labs",
+        "failed",
+        "communicate",
+        "the",
+        "secure",
+        "server"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:68:68": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:68:68",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 68,
+      "endLine": 68,
+      "source": "memory",
+      "snippet": "Assistant: **SSL Labs 从外部完全无法建立 TLS 连接** — `certChains: []`, `protocols: []`, `certs: []`。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "assistant",
+        "ssl",
+        "labs",
+        "外部",
+        "完全",
+        "无法",
+        "建立",
+        "tls"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:69:69": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:69:69",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 69,
+      "endLine": 69,
+      "source": "memory",
+      "snippet": "Assistant: 从服务器本地通过公网 IP 访问没问题。但 SSL Labs（美国节点）连不上。这说明**可能存在网络层的区域性差异**。 让我直接问一个关键问题来确认：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "网络",
+        "assistant",
+        "服务",
+        "本地",
+        "通过",
+        "访问",
+        "问题",
+        "ssl"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:70:70": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:70:70",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 70,
+      "endLine": 70,
+      "source": "memory",
+      "snippet": "Assistant: **找到了！阿里云安骑士（AliYunDun）和 AliSecGuard 安全模块在运行。**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "assistant",
+        "找到",
+        "阿里",
+        "骑士",
+        "aliyundun",
+        "alisecguard",
+        "安全",
+        "运行"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:71:71": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:71:71",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 71,
+      "endLine": 71,
+      "source": "memory",
+      "snippet": "Assistant: 从服务器本地访问，无论通过什么IP，TLS 都正常。SSL Labs 失败可能是它的问题。 让我回到核心问题 — **Boss，我需要确认一个关键事实：** 你说\"电脑网页访问正常\"，这台电脑是： 1. **同一台阿里云服务器上**访问的？ 2. 还是**你本地电脑**（比如深圳办公室/家里的电脑）访问的？ 如果电脑也在本地网络（非服务器本机），那说明外部 HTTPS 确实可达，问题就纯粹在 iOS 设备端。 另外，iPhone 和电脑是否在**同一个 WiFi 网络**下？",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "网络",
+        "比如深圳办公室/家里的电脑",
+        "assistant",
+        "服务",
+        "本地",
+        "访问",
+        "无论",
+        "通过"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:72:72": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:72:72",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 72,
+      "endLine": 72,
+      "source": "memory",
+      "snippet": "User: System (untrusted): [2026-05-14 14:59:53 GMT+8] Exec completed (mellow-f, code 1) :: vw.ygxpro.online: Invalid status. Verification error details: 47.119.177.194: Invalid response from http://vw.ygxpro.online/.well-known/acme-challenge/BC2-mXGL0hqrBf1kPlTmVoMbALLZ… Sender (",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "mellow-f",
+        "vw.ygxpro.online",
+        "47.119.177.194",
+        "user",
+        "system",
+        "untrusted",
+        "gmt",
+        "exec"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:73:73": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:73:73",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 73,
+      "endLine": 73,
+      "source": "memory",
+      "snippet": "Assistant: 1.23 还不支持 `--profile`。需要更新的版本。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "1.23",
+        "assistant",
+        "支持",
+        "profile",
+        "需要",
+        "更新",
+        "版本"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:74:74": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:74:74",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 74,
+      "endLine": 74,
+      "source": "memory",
+      "snippet": "Assistant: Python 3.6 限制了 certbot 版本上限。`--profile` 是 certbot 3.x+ 的功能。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "3.6",
+        "3.x",
+        "assistant",
+        "python",
+        "限制",
+        "certbot",
+        "版本",
+        "上限"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-14.txt:75:75": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-14.txt:75:75",
+      "path": "memory/.dreams/session-corpus/2026-05-14.txt",
+      "startLine": 75,
+      "endLine": 75,
+      "source": "memory",
+      "snippet": "Assistant: HTTP 验证从外部一直 403 — 这证实了外部访问确实被拦截（安骑士）。但 certbot webroot 之前成功了，说明 certbot 的验证走了不同路径。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-16T19:00:02.339Z",
+      "lastRecalledAt": "2026-05-16T19:00:02.339Z",
+      "queryHashes": [
+        "ebfce2d015c5"
+      ],
+      "recallDays": [
+        "2026-05-14"
+      ],
+      "conceptTags": [
+        "assistant",
+        "http",
+        "验证",
+        "外部",
+        "一直",
+        "证实",
+        "访问",
+        "确实"
       ]
     }
   }

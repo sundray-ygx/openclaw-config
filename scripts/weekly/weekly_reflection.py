@@ -1,237 +1,383 @@
 #!/usr/bin/env python3
 """
-Weekly Reflection Report - 周反思报告生成器
-汇总本周每日反思，提取核心教训，生成周报
+Weekly Reflection V2 - 基于 AI 的深度周反思生成器
+
+核心改进：
+1. 不再依赖固定格式的反思文件（V2格式），直接从memory日志提取
+2. 兼容V3反思格式（深度反思内容）
+3. 用AI生成有实质内容的周度复盘
+4. 采用GRAI复盘法
 """
 
 import os
 import re
 import json
-import requests
+import subprocess
 from datetime import datetime, timedelta
 
-REFLECTION_DIR = "/root/.openclaw/workspace/reflection"
+MEMORY_DIR = "/root/.openclaw/workspace/memory"
+REFLECTION_FILE = "/root/.openclaw/workspace/reflection/reflections.md"
 ARCHIVE_DIR = "/root/.openclaw/workspace/archive/weekly"
-FEISHU_APP_ID = os.getenv("FEISHU_APP_ID", "cli_a93b96047e7a5bc3")
-FEISHU_APP_SECRET = os.getenv("FEISHU_APP_SECRET", "ir6uAf1L7O52AFgXrepgabIrYG1oOcbD")
-FEISHU_USER_ID = os.getenv("FEISHU_USER_ID", "ou_c2cde251e01a87fc09ba7561f76d8606")
+LESSONS_FILE = "/root/.openclaw/workspace/memory/lessons.md"
+
+FEISHU_APP_ID = "cli_a93b96047e7a5bc3"
+FEISHU_APP_SECRET = "ir6uAf1L7O52AFgXrepgabIrYG1oOcbD"
+FEISHU_USER_ID = "ou_c2cde251e01a87fc09ba7561f76d8606"
+
+AI_MODEL = "glm-5"
+ZAI_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4"
 
 
-def get_feishu_token():
-    url = "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal"
-    headers = {"Content-Type": "application/json"}
-    data = json.dumps({"app_id": FEISHU_APP_ID, "app_secret": FEISHU_APP_SECRET})
+def _load_zai_key():
     try:
-        response = requests.post(url, headers=headers, data=data, timeout=10)
-        return response.json().get("tenant_access_token")
-    except:
+        with open('/root/.openclaw/agents/main/agent/auth-profiles.json', 'r') as f:
+            profiles = json.load(f)
+        return profiles['profiles']['zai:default']['key']
+    except Exception:
+        return ""
+
+
+ZAI_API_KEY = _load_zai_key()
+
+
+def get_ai_response(system_prompt, user_prompt, max_tokens=3000):
+    """通过 zai OpenAI 兼容接口调用 glm-5"""
+    data = {
+        "model": AI_MODEL,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ],
+        "max_tokens": max_tokens,
+        "temperature": 0.7
+    }
+
+    try:
+        result = subprocess.run(
+            [
+                "curl", "-s", "-X", "POST",
+                f"{ZAI_BASE_URL}/chat/completions",
+                "-H", f"Authorization: Bearer {ZAI_API_KEY}",
+                "-H", "Content-Type: application/json",
+                "-d", json.dumps(data, ensure_ascii=False)
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            universal_newlines=True,
+            timeout=180
+        )
+
+        if result.returncode == 0:
+            response = json.loads(result.stdout)
+            message = response.get('choices', [{}])[0].get('message', {})
+            content = message.get('content', '') or message.get('reasoning_content', '')
+            return content.strip() if content else None
+        else:
+            print(f"  AI 调用失败: {result.stderr[:200]}")
+            return None
+    except subprocess.TimeoutExpired:
+        print(f"  AI 调用超时")
+        return None
+    except Exception as e:
+        print(f"  AI 调用失败: {e}")
         return None
 
 
-def send_feishu(week_num, start_date, end_date, stats, archive_path):
-    token = get_feishu_token()
-    if not token:
-        return False
-    
-    content = f"""📋 周反思报告 | 第{week_num}周 ({start_date} ~ {end_date})
+def collect_week_data(start_date, end_date):
+    """收集本周所有原始数据"""
+    week_data = {}
 
-**📊 本周统计**
-• 新增反思: {stats['total']} 条
-• 技术教训: {stats['tech']} 条
-• 工作教训: {stats['work']} 条
+    current = datetime.strptime(start_date, "%Y-%m-%d")
+    end = datetime.strptime(end_date, "%Y-%m-%d")
 
-**📁 详细报告**
-{archive_path}
+    while current <= end:
+        date_str = current.strftime("%Y-%m-%d")
+        day_info = {
+            "date": date_str,
+            "memory_log": "",
+            "daily_report_summary": "",
+            "reflection": "",
+            "key_interactions": [],
+            "errors_count": 0,
+            "local_interactions": 0,
+            "feishu_interactions": 0,
+        }
+
+        # 1. 读取 memory 日志
+        memory_file = os.path.join(MEMORY_DIR, f"{date_str}.md")
+        if os.path.exists(memory_file):
+            with open(memory_file, "r", encoding="utf-8") as f:
+                day_info["memory_log"] = f.read()
+
+            # 提取关键指标
+            log = day_info["memory_log"]
+            m = re.search(r"本地交互['\":：\s]*(\d+)", log)
+            if m:
+                day_info["local_interactions"] = int(m.group(1))
+            m = re.search(r"飞书交互['\":：\s]*(\d+)", log)
+            if m:
+                day_info["feishu_interactions"] = int(m.group(1))
+            m = re.search(r"错误/异常['\":：\s]*(\d+)", log)
+            if m:
+                day_info["errors_count"] = int(m.group(1))
+
+            # 提取关键交互（去掉系统噪音）
+            for line in log.split('\n'):
+                # 飞书交互
+                m = re.match(r'\d+\.\s*\*\*(\d{2}:\d{2})\*\*\s*(.+)', line)
+                if m and len(m.group(2)) > 15 and 'HEARTBEAT' not in m.group(2):
+                    day_info["key_interactions"].append(f"[飞书 {m.group(1)}] {m.group(2)[:150]}")
+
+                # 本地交互（有实际内容的）
+                m = re.match(r'\d+\.\s*\*\*\d{2}:\d{2}\*\*\s*\[.*?GMT\+8\]\s*(.+)', line)
+                if m and len(m.group(1)) > 15:
+                    content = m.group(1)[:150]
+                    if 'HEARTBEAT' not in content and 'Read HEARTBEAT' not in content:
+                        day_info["key_interactions"].append(f"[本地] {content}")
+
+        # 2. 提取该日的V3反思（兼容新格式）
+        if os.path.exists(REFLECTION_FILE):
+            with open(REFLECTION_FILE, "r", encoding="utf-8") as f:
+                ref_content = f.read()
+
+            # V3格式：## 2026-05-16\n\n## 反思报告\n...（直到下一个日期标题）
+            pattern = rf"## {date_str}\s*\n\n(.*?)(?=\n## 20|\Z)"
+            m = re.search(pattern, ref_content, re.DOTALL)
+            if m:
+                reflection_text = m.group(1).strip()
+                # 去掉AI的思考过程（加粗的分析内容），保留反思结果
+                if len(reflection_text) > 50:
+                    day_info["reflection"] = reflection_text[:3000]
+
+        if day_info["memory_log"] or day_info["reflection"]:
+            week_data[date_str] = day_info
+
+        current += timedelta(days=1)
+
+    return week_data
+
+
+def build_ai_prompt(week_data, week_num, start_date, end_date):
+    """构建AI生成周反思的prompt"""
+
+    # 汇总本周数据
+    total_local = sum(d["local_interactions"] for d in week_data.values())
+    total_feishu = sum(d["feishu_interactions"] for d in week_data.values())
+    total_errors = sum(d["errors_count"] for d in week_data.values())
+    active_days = len(week_data)
+
+    all_interactions = []
+    all_reflections = []
+
+    for date_str, day in sorted(week_data.items()):
+        if day["key_interactions"]:
+            all_interactions.append(f"\n### {date_str}")
+            for inter in day["key_interactions"][:8]:  # 每天最多8条
+                all_interactions.append(f"- {inter}")
+
+        if day["reflection"]:
+            all_reflections.append(f"\n### {date_str} 反思")
+            # 提取反思中的关键点（不要全部，太长）
+            ref = day["reflection"]
+            # 取反思报告的关键事件和反思点
+            key_events = re.search(r"### 今日关键事件\n(.*?)(?=\n###|\Z)", ref, re.DOTALL)
+            if key_events:
+                all_reflections.append(key_events.group(1)[:500])
+            reflection_points = re.findall(r"#### 反思点[^：：]*[：：]\s*(.+?)(?=\n####|\Z)", ref, re.DOTALL)
+            for rp in reflection_points[:3]:
+                all_reflections.append(f"- 反思: {rp[:200]}")
+
+    # 读取历史教训作为上下文
+    lessons_context = ""
+    if os.path.exists(LESSONS_FILE):
+        with open(LESSONS_FILE, "r", encoding="utf-8") as f:
+            lessons_context = f.read()[:1500]
+
+    system_prompt = """你是一名深度反思分析师，负责为一位数通网络企业的研发管理人员生成周度复盘报告。
+
+你的报告必须：
+1. 有实质内容——每句话都要对应具体事件，不要空话
+2. 采用GRAI复盘法（Goal-Result-Analysis-Insight）
+3. 从事件中提炼可复用的经验教训
+4. 指出做得好的和做得不好的，有理有据
+5. 给出下周的具体建议
+
+不要：
+- 说"本周系统稳定运行"这种废话
+- 用"需要改进"、"有待提升"这类模糊词汇
+- 编造不存在的事件
+
+输出格式：Markdown，包含标题、GRAI四个板块、下周建议。"""
+
+    user_prompt = f"""## 第{week_num}周数据 ({start_date} ~ {end_date})
+
+### 本周统计
+- 活跃天数: {active_days}
+- 本地交互: {total_local}次
+- 飞书交互: {total_feishu}次
+- 错误/异常: {total_errors}条
+
+### 本周关键交互
+{"".join(all_interactions)}
+
+### 本周每日反思摘要
+{"".join(all_reflections)}
+
+### 已知历史教训（避免重复）
+{lessons_context}
 
 ---
-💡 由 OpenClaw Weekly Reflection 自动生成"""
-    
-    url = "https://open.feishu.cn/open-apis/im/v1/messages"
-    params = {"receive_id_type": "open_id"}
+
+请基于以上数据，生成第{week_num}周的深度复盘报告。重点关注：
+1. 本周完成了什么实质性工作？
+2. 遇到了什么问题？根因是什么？
+3. 有什么值得沉淀的经验？
+4. 下周应该关注什么？"""
+
+    return system_prompt, user_prompt
+
+
+def send_feishu_card(week_num, start_date, end_date, report_content):
+    """发送飞书卡片"""
+    import urllib.request
+
+    # 获取token
+    token_url = "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal"
+    token_data = json.dumps({"app_id": FEISHU_APP_ID, "app_secret": FEISHU_APP_SECRET}).encode()
+    req = urllib.request.Request(token_url, data=token_data, headers={"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            token = json.loads(resp.read()).get("tenant_access_token")
+    except Exception as e:
+        print(f"  获取飞书token失败: {e}")
+        return False
+
+    # 截取摘要（飞书卡片不能太长）
+    # 提取关键统计和前几个板块
+    summary_lines = []
+    in_section = False
+    section_count = 0
+    for line in report_content.split('\n'):
+        if line.startswith('#'):
+            summary_lines.append(line)
+        elif line.startswith('## ') or line.startswith('### '):
+            section_count += 1
+            if section_count > 6:
+                break
+            summary_lines.append(line)
+            in_section = True
+        elif in_section and line.strip():
+            summary_lines.append(line[:200])
+
+    summary = '\n'.join(summary_lines[:80])
+
+    card_content = {
+        "config": {"wide_screen_mode": True},
+        "header": {
+            "title": {"tag": "plain_text", "content": f"📋 周反思报告 | 第{week_num}周 ({start_date} ~ {end_date})"},
+            "template": "blue"
+        },
+        "elements": [
+            {
+                "tag": "markdown",
+                "content": summary[:4000]
+            }
+        ]
+    }
+
+    send_url = "https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id"
     message = {
         "receive_id": FEISHU_USER_ID,
-        "msg_type": "text",
-        "content": json.dumps({"text": content})
+        "msg_type": "interactive",
+        "content": json.dumps(card_content, ensure_ascii=False)
     }
-    headers = {"Content-Type": "application/json", "Authorization": f"Bearer {token}"}
-    
+
+    req = urllib.request.Request(
+        send_url,
+        data=json.dumps(message, ensure_ascii=False).encode(),
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {token}"
+        }
+    )
     try:
-        response = requests.post(url, headers=headers, json=message, params=params, timeout=10)
-        return response.json().get("code") == 0
-    except:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            result = json.loads(resp.read())
+            return result.get("code") == 0
+    except Exception as e:
+        print(f"  发送飞书失败: {e}")
         return False
-
-
-def is_valid_reflection_entry(reflection):
-    """过滤无效的反思记录"""
-    miss = reflection.get("miss", "").strip()
-    # 过滤空内容
-    if not miss or len(miss) < 10:
-        return False
-    # 过滤代码片段
-    code_patterns = [r'^#!/', r'^import\s+', r'^def\s+', r'^class\s+']
-    if any(re.search(p, miss) for p in code_patterns):
-        return False
-    # 过滤CLI错误
-    if miss.startswith('error:') or miss.startswith('Error:'):
-        return False
-    # 过滤版本号
-    if re.match(r'^\S+\s+\d+\.\d+\.\d+', miss):
-        return False
-    return True
-
-
-def load_reflections():
-    reflections = []
-    filepath = os.path.join(REFLECTION_DIR, "reflections.md")
-    if not os.path.exists(filepath):
-        return reflections
-    
-    with open(filepath, "r", encoding="utf-8") as f:
-        content = f.read()
-    
-    entries = re.split(r"\n---\n", content)
-    total_loaded = 0
-    for entry in entries:
-        lines = entry.strip().split("\n")
-        if len(lines) < 3:
-            continue
-        
-        header = re.match(r"##\s*(\d{4}-\d{2}-\d{2})\s*\|\s*(.+)", lines[0])
-        if not header:
-            continue
-        
-        date = header.group(1)
-        category = header.group(2).strip()
-        miss = root = fix = ""
-        
-        for line in lines[1:]:
-            if line.startswith("**Miss:**"):
-                miss = line[9:].strip()
-            elif line.startswith("**Root:**"):
-                root = line[9:].strip()
-            elif line.startswith("**Fix:**"):
-                fix = line[8:].strip()
-        
-        reflections.append({"date": date, "category": category, "miss": miss, "root": root, "fix": fix})
-    
-    # 数据质量过滤
-    valid_refs = [r for r in reflections if is_valid_reflection_entry(r)]
-    filtered_count = len(reflections) - len(valid_refs)
-    if filtered_count > 0:
-        print(f"  ⚠️ 过滤 {filtered_count} 条无效记录")
-    
-    return valid_refs
-
-
-def categorize(week_refs):
-    tech = []
-    work = []
-    tech_kw = ["technical", "code", "script", "api", "error", "timeout", "配置", "安装", "部署", "环境"]
-    work_kw = ["communication", "process", "scope", "assumptions", "沟通", "流程", "计划", "对齐"]
-    
-    for r in week_refs:
-        cat = r.get("category", "").lower()
-        miss = r.get("miss", "")
-        if any(k in cat or k in miss.lower() for k in tech_kw):
-            tech.append(r)
-        elif any(k in cat or k in miss.lower() for k in work_kw):
-            work.append(r)
-        else:
-            work.append(r)
-    
-    return tech, work
-
-
-def generate_report(week_num, start_date, end_date, week_refs, tech, work):
-    content = f"""# 📋 周反思报告 | 第{week_num}周 ({start_date} ~ {end_date})
-
-> 生成时间: {datetime.now().strftime('%Y-%m-%d %H:%M')}
-> 数据来源: Self Reflection System
-> 数据质量: {len(week_refs)} 条有效记录
-
----
-
-## 📊 本周统计
-
-| 指标 | 数值 |
-|------|------|
-| 新增反思记录 | {len(week_refs)} 条 |
-| 技术教训 | {len(tech)} 条 |
-| 工作教训 | {len(work)} 条 |
-
----
-
-## 🔧 技术教训
-
-"""
-    
-    if tech:
-        for i, r in enumerate(tech, 1):
-            content += f"### {i}. {r['miss'][:50]}\n\n"
-            content += f"- **类别**: {r['category']}\n"
-            content += f"- **日期**: {r['date']}\n"
-            content += f"- **根因**: {r['root']}\n"
-            content += f"- **解决方案**: {r['fix']}\n\n"
-    else:
-        content += "本周无技术教训记录\n\n"
-    
-    content += """---
-
-## 💼 工作教训
-
-"""
-    
-    if work:
-        for i, r in enumerate(work, 1):
-            content += f"### {i}. {r['miss'][:50]}\n\n"
-            content += f"- **类别**: {r['category']}\n"
-            content += f"- **日期**: {r['date']}\n"
-            content += f"- **根因**: {r['root']}\n"
-            content += f"- **解决方案**: {r['fix']}\n\n"
-    else:
-        content += "本周无工作教训记录\n\n"
-    
-    content += "---\n\n*报告由 OpenClaw Weekly Reflection 自动生成*\n"
-    return content
 
 
 def main():
-    print("🚀 开始生成周反思报告...")
-    
+    print("🚀 开始生成周反思报告 V2...")
+
     now = datetime.now()
     monday = now - timedelta(days=now.weekday())
     sunday = monday + timedelta(days=6)
     start_date = monday.strftime("%Y-%m-%d")
     end_date = sunday.strftime("%Y-%m-%d")
     week_num = now.isocalendar()[1]
-    
+
     print(f"📅 本周: {start_date} ~ {end_date} (第{week_num}周)")
-    
-    all_refs = load_reflections()
-    print(f"✅ 加载 {len(all_refs)} 条反思记录")
-    
-    week_refs = [r for r in all_refs if start_date <= r['date'] <= end_date]
-    print(f"✅ 本周反思: {len(week_refs)} 条")
-    
-    tech, work = categorize(week_refs)
-    print(f"✅ 技术: {len(tech)} 条, 工作: {len(work)} 条")
-    
-    report = generate_report(week_num, start_date, end_date, week_refs, tech, work)
-    
+
+    # 1. 收集数据
+    print("📊 收集本周数据...")
+    week_data = collect_week_data(start_date, end_date)
+    print(f"  活跃天数: {len(week_data)}")
+
+    if not week_data:
+        print("⚠️ 本周无数据，跳过")
+        return
+
+    # 2. 构建AI prompt
+    print("🤖 构建AI分析...")
+    system_prompt, user_prompt = build_ai_prompt(week_data, week_num, start_date, end_date)
+
+    # 3. 调用AI生成报告
+    print("🤖 调用AI生成深度反思...")
+    report = get_ai_response(system_prompt, user_prompt, max_tokens=3000)
+
+    if not report:
+        print("⚠️ AI生成失败，使用模板报告")
+        report = f"# 周反思报告 | 第{week_num}周\n\nAI生成失败，请手动查看本周数据。\n\n"
+        report += f"活跃天数: {len(week_data)}\n"
+        for date_str, day in sorted(week_data.items()):
+            report += f"\n## {date_str}\n"
+            report += f"- 本地交互: {day['local_interactions']}, 飞书: {day['feishu_interactions']}, 错误: {day['errors_count']}\n"
+            for inter in day['key_interactions'][:5]:
+                report += f"- {inter}\n"
+
+    # 4. 添加元信息
+    full_report = f"""# 📋 周反思报告 | 第{week_num}周 ({start_date} ~ {end_date})
+
+> 生成时间: {now.strftime('%Y-%m-%d %H:%M')}
+> 数据来源: Memory日志 + V3深度反思
+> 方法论: GRAI复盘法
+
+---
+
+{report}
+
+---
+
+*报告由 OpenClaw Weekly Reflection V2 生成*
+"""
+
+    # 5. 保存
     os.makedirs(ARCHIVE_DIR, exist_ok=True)
     archive_path = os.path.join(ARCHIVE_DIR, f"weekly-reflection-{start_date}.md")
     with open(archive_path, "w", encoding="utf-8") as f:
-        f.write(report)
+        f.write(full_report)
     print(f"✅ 报告已保存: {archive_path}")
-    
-    print("📱 发送飞书通知...")
-    stats = {"total": len(week_refs), "tech": len(tech), "work": len(work)}
-    if send_feishu(week_num, start_date, end_date, stats, archive_path):
-        print("✅ 飞书通知发送成功")
+
+    # 6. 发送飞书
+    print("📱 发送飞书卡片...")
+    if send_feishu_card(week_num, start_date, end_date, report):
+        print("✅ 飞书卡片发送成功")
     else:
-        print("⚠️ 飞书通知发送失败")
-    
+        print("⚠️ 飞书卡片发送失败")
+
     print("🎉 完成!")
 
 

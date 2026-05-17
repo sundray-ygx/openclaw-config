@@ -542,6 +542,24 @@
       "created_at": "2026-05-12",
       "source": "daily_reflection",
       "check_count": 1
+    },
+    {
+      "id": "2026-05-16-action-0",
+      "text": ".  **行动项进展回顾**：",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-16",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-16-action-1",
+      "text": ".  **最终复查**：",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-16",
+      "source": "daily_reflection",
+      "check_count": 1
     }
   ]
 }

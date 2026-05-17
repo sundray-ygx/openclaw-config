@@ -77,9 +77,9 @@ def get_ai_response(system_prompt, user_prompt, max_tokens=2000):
             response = _json.loads(result.stdout)
             # 调试：打印响应
             # print(f"  API 响应: {result.stdout[:200]}...")
-            # glm-5 推理模型：优先使用 reasoning_content，如果为空再使用 content
             message = response.get('choices', [{}])[0].get('message', {})
-            content = message.get('reasoning_content', '') or message.get('content', '')
+            # 优先使用 content（最终输出），reasoning_content 是思维过程，不应用作结果
+            content = message.get('content', '') or message.get('reasoning_content', '')
             return content.strip() if content else None
         else:
             print(f"  AI 调用失败 (curl退出码{result.returncode}): {result.stderr}")

@@ -1,4 +1,0 @@
-[scheduler/sessions/6828e1d1-9b3b-429c-87ba-b281152de5df.jsonl#L5] User: System: [2026-04-16 08:02:17 GMT+8] Feishu[scheduler] DM | ou_d8ae71cd421f8954a9c97e973d4f03d1 [msg:om_x100b51363e4cd4a0b2b52b8c7ade820, @bot] Conversation info (untrusted metadata): ```json { "message_id": "om_x100b51363e4cd4a0b2b52b8c7ade820", "sender_id": "ou_d8ae71cd
-[scheduler/sessions/6828e1d1-9b3b-429c-87ba-b281152de5df.jsonl#L6] Assistant: 我来检查一下日报任务的情况。
-[scheduler/sessions/6828e1d1-9b3b-429c-87ba-b281152de5df.jsonl#L16] Assistant: 找到问题了。daily_report.py 实际在 `/root/scripts/daily/` 目录下，但 crontab 中的路径写错了。我来修复并手动运行一次：
-[scheduler/sessions/6828e1d1-9b3b-429c-87ba-b281152de5df.jsonl#L23] Assistant: 已修复！ **问题原因**：daily_report.py 的实际路径是 `/root/scripts/daily/daily_report.py`，但 crontab 中写成了 `/root/scripts/daily_report.py`，导致定时任务找不到文件。 **已完成**： 1. ✅ 修复 crontab 中的路径 2. ✅ 手动运行日报脚本，推送了昨天的日报（2026-04-15） 3. ✅ 验证新的 crontab 配置正确 今天 8:30 的日报应该会正常推送了。如果需要，我也可以把今天的日报（2026-0
