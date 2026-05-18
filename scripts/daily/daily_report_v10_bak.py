@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-工作日报生成脚本 V9 - 增强版
+工作日报生成脚本 V10 - 飞书卡片推送版
 - 时间范围：昨天00:00到昨天23:59（全天）
 - 数据源：
   1. 本地会话文件（scheduler + main）
   2. 飞书IM单聊消息
 - 包含内容：摘要信息（定时任务、用户交互概要、飞书交互、错误统计）
 - 执行时间：8:30
+- 输出：直接推送飞书卡片，不再询问
 """
 
 import os
@@ -17,99 +18,191 @@ import urllib.parse
 from datetime import datetime, timedelta
 
 # 配置
-DAILY_REPORT_DIR = "/home/openclaw/.openclaw/workspace/archive/daily"
+DAILY_REPORT_DIR = "/root/.openclaw/workspace/archive/daily"
+MEMORY_DIR = "/root/.openclaw/workspace/memory"
 SESSIONS_DIRS = [
-    "/home/openclaw/.openclaw/agents/scheduler/sessions",
-    "/home/openclaw/.openclaw/agents/main/sessions"
+    "/root/.openclaw/agents/scheduler/sessions",
+    "/root/.openclaw/agents/main/sessions"
 ]
 
 # 飞书配置
 FEISHU_APP_ID = "cli_a93b96047e7a5bc3"
 FEISHU_APP_SECRET = "ir6uAf1L7O52AFgXrepgabIrYG1oOcbD"
 FEISHU_USER_ID = "ou_c2cde251e01a87fc09ba7561f76d8606"  # Boss的open_id
-FEISHU_CHAT_ID = "oc_5e05a8f6e3e6e6c344a9c2e2b7b5a3a6"  # 与小助的单聊chat_id
+FEISHU_CHAT_CACHE = "/root/.openclaw/workspace/config/feishu-chat-cache.json"
 
 
-def search_feishu_messages(token, sender_id, start_time, end_time):
-    """搜索飞书消息（跨会话）"""
-    url = "https://open.feishu.cn/open-apis/im/v1/messages/search"
-    
-    # 转换时间为Unix时间戳（秒）
-    start_ts = int(start_time.timestamp())
-    end_ts = int(end_time.timestamp())
+def send_feishu_card(token, user_id, card_data):
+    """发送飞书卡片消息"""
+    url = "https://open.feishu.cn/open-apis/im/v1/messages"
     
     params = {
-        "sender_ids": sender_id,
-        "sender_type": "user",
-        "start_time": start_ts,
-        "end_time": end_ts,
-        "page_size": 50
+        "receive_id_type": "open_id"
+    }
+    full_url = f"{url}?{urllib.parse.urlencode(params)}"
+    
+    payload = {
+        "receive_id": user_id,
+        "msg_type": "interactive",
+        "content": json.dumps(card_data)
     }
     
-    full_url = f"{url}?{urllib.parse.urlencode(params)}"
     req = urllib.request.Request(
         full_url,
-        headers={"Authorization": f"Bearer {token}"},
-        method="GET"
+        data=json.dumps(payload).encode(),
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
+        },
+        method="POST"
     )
     
-    messages = []
     try:
         with urllib.request.urlopen(req, timeout=15) as response:
             result = json.loads(response.read().decode())
-            print(f"  飞书搜索API响应: code={result.get('code')}, msg={result.get('msg')}")
             if result.get("code") == 0:
-                items = result.get("data", {}).get("items", [])
-                print(f"  搜索到 {len(items)} 条消息")
-                for item in items:
-                    msg_type = item.get("msg_type", "")
-                    content = item.get("body", {}).get("content", "")
-                    create_time = item.get("create_time", "")
-                    sender = item.get("sender", {}).get("id", "")
-                    
-                    # 只处理文本消息
-                    if msg_type == "text" and content:
-                        # 解析content（它是JSON字符串）
-                        try:
-                            content_obj = json.loads(content)
-                            text = content_obj.get("text", "")
-                        except:
-                            text = content
-                        
-                        if text:
-                            messages.append({
-                                "role": "user" if sender == sender_id else "assistant",
-                                "content": text,
-                                "timestamp": create_time,
-                                "source": "feishu"
-                            })
+                print(f"  ✅ 飞书卡片发送成功")
+                return True
             else:
-                print(f"  飞书搜索API错误: {result.get('msg')}")
-    except urllib.error.HTTPError as e:
-        error_body = e.read().decode()
-        print(f"  HTTP错误 {e.code}: {error_body}")
+                print(f"  ❌ 飞书卡片发送失败: {result.get('msg')}")
+                return False
     except Exception as e:
-        print(f"  搜索飞书消息失败: {e}")
+        print(f"  ❌ 发送飞书卡片失败: {e}")
+        return False
+
+
+def build_daily_report_card(date_str, stats, cron_tasks, local_interactions, feishu_interactions, errors):
+    """构建日报飞书卡片"""
     
-    return messages
+    # 构建定时任务内容
+    cron_content = ""
+    if cron_tasks:
+        for task in cron_tasks[:5]:
+            time_str = task['timestamp'][11:16] if task['timestamp'] else '--:--'
+            desc = task['description'][:40] + '...' if len(task['description']) > 40 else task['description']
+            cron_content += f"• **{time_str}** {task['name']}: {desc}\n"
+        if len(cron_tasks) > 5:
+            cron_content += f"_... 及其他 {len(cron_tasks) - 5} 个任务_"
+    else:
+        cron_content = "_当日无定时任务记录_"
+    
+    # 构建本地交互内容
+    local_content = ""
+    if local_interactions:
+        for i, interaction in enumerate(local_interactions[:5], 1):
+            summary = interaction['summary'][:50] + '...' if len(interaction['summary']) > 50 else interaction['summary']
+            local_content += f"{i}. **{interaction['time']}** {summary}\n"
+        if len(local_interactions) > 5:
+            local_content += f"_... 及其他 {len(local_interactions) - 5} 条_"
+    else:
+        local_content = "_当日无本地交互记录_"
+    
+    # 构建飞书交互内容
+    feishu_content = ""
+    if feishu_interactions:
+        for i, interaction in enumerate(feishu_interactions[:5], 1):
+            summary = interaction['summary'][:50] + '...' if len(interaction['summary']) > 50 else interaction['summary']
+            feishu_content += f"{i}. **{interaction['time']}** {summary}\n"
+        if len(feishu_interactions) > 5:
+            feishu_content += f"_... 及其他 {len(feishu_interactions) - 5} 条_"
+    else:
+        feishu_content = "_当日无飞书交互记录_"
+    
+    # 构建错误内容
+    error_content = ""
+    if errors:
+        for error in errors[:3]:
+            source_icon = "📱" if error['source'] == 'feishu' else "💻"
+            text = error['text'][:60] + '...' if len(error['text']) > 60 else error['text']
+            error_content += f"- {source_icon} **{error['time']}** {text}\n"
+        if len(errors) > 3:
+            error_content += f"_... 及其他 {len(errors) - 3} 条_"
+    else:
+        error_content = "_当日无异常记录_ ✅_"
+    
+    card = {
+        "config": {
+            "wide_screen_mode": True
+        },
+        "header": {
+            "template": "blue",
+            "title": {
+                "content": f"📊 工作日报 - {date_str}",
+                "tag": "plain_text"
+            }
+        },
+        "elements": [
+            {
+                "tag": "div",
+                "text": {
+                    "tag": "lark_md",
+                    "content": f"**📈 数据概览**\n• 本地会话: {stats['local_files']} 文件, {stats['local_msgs']} 条消息\n• 飞书消息: {stats['feishu_msgs']} 条\n• 定时任务: {stats['cron_tasks']} 个\n• 本地交互: {stats['local_interactions']} 次\n• 飞书交互: {stats['feishu_interactions']} 次\n• 错误/异常: {stats['errors']} 条"
+                }
+            },
+            {"tag": "hr"},
+            {
+                "tag": "div",
+                "text": {
+                    "tag": "lark_md",
+                    "content": f"**⏰ 定时任务 ({stats['cron_tasks']})**\n{cron_content}"
+                }
+            },
+            {"tag": "hr"},
+            {
+                "tag": "div",
+                "text": {
+                    "tag": "lark_md",
+                    "content": f"**💬 本地交互 ({stats['local_interactions']})**\n{local_content}"
+                }
+            },
+            {"tag": "hr"},
+            {
+                "tag": "div",
+                "text": {
+                    "tag": "lark_md",
+                    "content": f"**📱 飞书交互 ({stats['feishu_interactions']})**\n{feishu_content}"
+                }
+            },
+            {"tag": "hr"},
+            {
+                "tag": "div",
+                "text": {
+                    "tag": "lark_md",
+                    "content": f"**⚠️ 错误与异常 ({stats['errors']})**\n{error_content}"
+                }
+            },
+            {"tag": "hr"},
+            {
+                "tag": "note",
+                "elements": [
+                    {
+                        "tag": "plain_text",
+                        "content": f"📄 详细报告已保存至 memory/{date_str}.md"
+                    }
+                ]
+            }
+        ]
+    }
+    
+    return card
 
 
-def get_feishu_token():
-    """获取飞书tenant_access_token"""
-    url = "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal"
-    data = json.dumps({"app_id": FEISHU_APP_ID, "app_secret": FEISHU_APP_SECRET}).encode()
-    req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
-    try:
-        with urllib.request.urlopen(req, timeout=10) as response:
-            result = json.loads(response.read().decode())
-            return result.get("tenant_access_token")
-    except Exception as e:
-        print(f"  获取飞书token失败: {e}")
-        return None
+def get_cached_chat_id(user_id):
+    """从缓存文件获取chat_id"""
+    if os.path.exists(FEISHU_CHAT_CACHE):
+        try:
+            with open(FEISHU_CHAT_CACHE, 'r', encoding='utf-8') as f:
+                cache = json.load(f)
+            user_cache = cache.get(user_id)
+            if user_cache:
+                return user_cache.get('chat_id')
+        except Exception as e:
+            print(f"  读取chat缓存失败: {e}")
+    return None
 
 
-def get_feishu_messages(token, user_id, start_time, end_time):
-    """获取飞书单聊消息"""
+def get_feishu_messages(token, chat_id, start_time, end_time):
+    """获取飞书消息"""
     url = "https://open.feishu.cn/open-apis/im/v1/messages"
     
     # 转换时间为Unix时间戳（秒）
@@ -118,7 +211,7 @@ def get_feishu_messages(token, user_id, start_time, end_time):
     
     params = {
         "container_id_type": "chat",
-        "container_id": user_id,
+        "container_id": chat_id,
         "start_time": start_ts,
         "end_time": end_ts,
         "page_size": 50
@@ -135,10 +228,8 @@ def get_feishu_messages(token, user_id, start_time, end_time):
     try:
         with urllib.request.urlopen(req, timeout=15) as response:
             result = json.loads(response.read().decode())
-            print(f"  飞书API响应: code={result.get('code')}, msg={result.get('msg')}")
             if result.get("code") == 0:
                 items = result.get("data", {}).get("items", [])
-                print(f"  获取到 {len(items)} 条消息")
                 for item in items:
                     msg_type = item.get("msg_type", "")
                     content = item.get("body", {}).get("content", "")
@@ -170,6 +261,20 @@ def get_feishu_messages(token, user_id, start_time, end_time):
         print(f"  获取飞书消息失败: {e}")
     
     return messages
+
+
+def get_feishu_token():
+    """获取飞书tenant_access_token"""
+    url = "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal"
+    data = json.dumps({"app_id": FEISHU_APP_ID, "app_secret": FEISHU_APP_SECRET}).encode()
+    req = urllib.request.Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=10) as response:
+            result = json.loads(response.read().decode())
+            return result.get("tenant_access_token")
+    except Exception as e:
+        print(f"  获取飞书token失败: {e}")
+        return None
 
 
 def get_report_time_range():
@@ -337,16 +442,17 @@ def extract_feishu_interactions(messages):
             if len(text) < 5:
                 continue
             
-            # 解析时间
+            # 解析时间 (飞书返回的是毫秒级时间戳)
             timestamp = msg.get('timestamp', '')
+            time_str = '--:--'
             if timestamp:
                 try:
-                    dt = datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
+                    # 飞书返回的是毫秒级时间戳，需要除以1000
+                    ts = int(timestamp) / 1000
+                    dt = datetime.fromtimestamp(ts)
                     time_str = dt.strftime('%H:%M')
                 except:
                     time_str = '--:--'
-            else:
-                time_str = '--:--'
             
             summary = text[:100] + '...' if len(text) > 100 else text
             interactions.append({
@@ -364,14 +470,18 @@ def extract_errors(messages):
         text = msg['content']
         if any(err in text.lower() for err in error_keywords):
             timestamp = msg.get('timestamp', '')
-            if timestamp and msg.get('source') == 'feishu':
+            time_str = '--:--'
+            if timestamp:
                 try:
-                    dt = datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
-                    time_str = dt.strftime('%H:%M')
+                    if msg.get('source') == 'feishu':
+                        # 飞书返回的是毫秒级时间戳，需要除以1000
+                        ts = int(timestamp) / 1000
+                        dt = datetime.fromtimestamp(ts)
+                        time_str = dt.strftime('%H:%M')
+                    else:
+                        time_str = timestamp[11:16]
                 except:
                     time_str = '--:--'
-            else:
-                time_str = timestamp[11:16] if timestamp else '--:--'
             
             errors.append({
                 'time': time_str,
@@ -381,9 +491,45 @@ def extract_errors(messages):
     return errors
 
 
-def generate_daily_report():
-    """生成工作日报"""
-    start_time, end_time, date_str = get_report_time_range()
+def extract_reflection_from_memory(date_str):
+    """从记忆文件提取复盘与改进内容"""
+    memory_file = os.path.join("/home/openclaw/.openclaw/workspace/memory", f"{date_str}.md")
+    
+    if not os.path.exists(memory_file):
+        return None
+    
+    try:
+        with open(memory_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # 提取复盘与改进部分
+        reflection_match = re.search(r'## 🔄 复盘与改进\s*\n(.*?)(?=\n## |\Z)', content, re.DOTALL)
+        if reflection_match:
+            reflection_text = reflection_match.group(1).strip()
+            # 清理空行和格式
+            lines = [line.strip() for line in reflection_text.split('\n') if line.strip()]
+            return '\n'.join(lines)
+    except Exception as e:
+        print(f"  读取记忆文件失败: {e}")
+    
+    return None
+
+
+def generate_daily_report(target_date_str=None):
+    """生成工作日报
+    Args:
+        target_date_str: 可选，指定日期格式 YYYY-MM-DD，默认为昨天
+    """
+    if target_date_str:
+        # 指定日期
+        target_date = datetime.strptime(target_date_str, '%Y-%m-%d')
+        start_time = target_date.replace(hour=0, minute=0, second=0, microsecond=0)
+        end_time = target_date.replace(hour=23, minute=59, second=59, microsecond=999999)
+        date_str = target_date_str
+    else:
+        # 默认昨天
+        start_time, end_time, date_str = get_report_time_range()
+    
     print(f"生成日报: {date_str}")
     print(f"时间范围: {start_time.strftime('%Y-%m-%d %H:%M')} - {end_time.strftime('%Y-%m-%d %H:%M')}")
     
@@ -403,9 +549,15 @@ def generate_daily_report():
     feishu_messages = []
     token = get_feishu_token()
     if token:
-        # 使用搜索API获取Boss发送的消息
-        feishu_messages = search_feishu_messages(token, FEISHU_USER_ID, start_time, end_time)
-        print(f"飞书消息: {len(feishu_messages)} 条")
+        # 从缓存获取chat_id
+        chat_id = get_cached_chat_id(FEISHU_USER_ID)
+        if chat_id:
+            print(f"  从缓存获取chat_id: {chat_id}")
+            feishu_messages = get_feishu_messages(token, chat_id, start_time, end_time)
+            print(f"飞书消息: {len(feishu_messages)} 条")
+        else:
+            print("  未找到缓存的chat_id，跳过飞书消息")
+            print("  提示: 需要在飞书中与机器人交互一次，以记录chat_id")
     else:
         print("  无法获取飞书token，跳过飞书消息")
     
@@ -418,7 +570,30 @@ def generate_daily_report():
     feishu_interactions = extract_feishu_interactions(all_messages)
     errors = extract_errors(all_messages)
     
-    # 6. 生成报告内容
+    # 6. 从记忆文件提取复盘与改进
+    reflection_content = extract_reflection_from_memory(date_str)
+    
+    # 7. 构建统计数据
+    stats = {
+        'local_files': len(session_files),
+        'local_msgs': len(local_messages),
+        'feishu_msgs': len(feishu_messages),
+        'cron_tasks': len(cron_tasks),
+        'local_interactions': len(local_interactions),
+        'feishu_interactions': len(feishu_interactions),
+        'errors': len(errors)
+    }
+    
+    # 8. 发送飞书卡片
+    print("\n推送飞书日报卡片...")
+    token = get_feishu_token()
+    if token:
+        card_data = build_daily_report_card(date_str, stats, cron_tasks, local_interactions, feishu_interactions, errors)
+        send_feishu_card(token, FEISHU_USER_ID, card_data)
+    else:
+        print("  ❌ 无法获取飞书token，跳过卡片推送")
+    
+    # 9. 生成报告内容
     report = f"""# 工作日报 - {date_str}
 
 ## 📊 概览
@@ -474,16 +649,81 @@ def generate_daily_report():
             source_icon = "📱" if error['source'] == 'feishu' else "💻"
             report += f"- {source_icon} **{error['time']}** {error['text']}\n"
     
-    # 保存报告
+    # 复盘与改进
+    if reflection_content:
+        report += """
+## 🔄 复盘与改进
+
+"""
+        report += reflection_content + "\n"
+    
+    # 生成 memory 格式内容
+    memory_content = f"""# {date_str} 记忆
+
+## 日报摘要
+{report}
+
+## 🔄 复盘与改进
+
+**做得好的：**
+• 
+
+**需改进：**
+• 
+
+## 待跟进事项
+- [ ] 
+
+## 明日计划
+- 
+
+---
+*生成于 {datetime.now().strftime("%H:%M")}*
+"""
+    
+    # 保存到 memory 目录（主输出）
+    memory_file = os.path.join(MEMORY_DIR, f"{date_str}.md")
+    os.makedirs(MEMORY_DIR, exist_ok=True)
+    with open(memory_file, 'w', encoding='utf-8') as f:
+        f.write(memory_content)
+    
+    # 生成简化版存入 archive/daily/（仅关键指标）
     year, month = date_str.split('-')[:2]
     month_dir = os.path.join(DAILY_REPORT_DIR, f"{year}-{month}")
     os.makedirs(month_dir, exist_ok=True)
-    report_file = os.path.join(month_dir, f"daily-report-{date_str}.md")
     
-    with open(report_file, 'w', encoding='utf-8') as f:
-        f.write(report)
+    summary_report = f"""# 工作日报摘要 - {date_str}
+
+## 📊 关键指标
+- **日期**: {date_str}
+- **本地会话**: {len(session_files)} 个文件, {len(local_messages)} 条消息
+- **飞书消息**: {len(feishu_messages)} 条
+- **定时任务**: {len(cron_tasks)} 个
+- **本地交互**: {len(local_interactions)} 次
+- **飞书交互**: {len(feishu_interactions)} 次
+- **错误/异常**: {len(errors)} 条
+
+## 💬 关键交互
+"""
+    if local_interactions:
+        summary_report += "### 本地\n"
+        for i, interaction in enumerate(local_interactions[:5], 1):
+            summary_report += f"{i}. **{interaction['time']}** {interaction['summary']}\n"
     
-    print(f"\n✅ 日报已生成: {report_file}")
+    if feishu_interactions:
+        summary_report += "\n### 飞书\n"
+        for i, interaction in enumerate(feishu_interactions[:5], 1):
+            summary_report += f"{i}. **{interaction['time']}** {interaction['summary']}\n"
+    
+    summary_report += f"\n---\n*详细内容见 memory/{date_str}.md*"
+    
+    archive_file = os.path.join(month_dir, f"daily-report-{date_str}.md")
+    with open(archive_file, 'w', encoding='utf-8') as f:
+        f.write(summary_report)
+    
+    print(f"\n✅ 记忆文件已生成: {memory_file}")
+    print(f"✅ 归档摘要已生成: {archive_file}")
+    print(f"✅ 飞书卡片已推送")
     print(f"  - 本地会话: {len(session_files)} 文件, {len(local_messages)} 消息")
     print(f"  - 飞书消息: {len(feishu_messages)} 条")
     print(f"  - 定时任务: {len(cron_tasks)} 个")
@@ -493,4 +733,9 @@ def generate_daily_report():
 
 
 if __name__ == "__main__":
-    generate_daily_report()
+    import sys
+    if len(sys.argv) > 1:
+        # 支持命令行参数指定日期: python3 daily_report.py 2026-03-21
+        generate_daily_report(sys.argv[1])
+    else:
+        generate_daily_report()
