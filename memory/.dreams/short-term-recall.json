@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-18T00:34:27.877Z",
+  "updatedAt": "2026-05-18T23:19:39.847Z",
   "entries": {
     "memory:memory/2026-03-25.md:1:35": {
       "key": "memory:memory/2026-03-25.md:1:35",
@@ -220563,6 +220563,4754 @@
         "摘要",
         "工作",
         "日期"
+      ]
+    },
+    "memory:memory/2026-05-17.md:5:5": {
+      "key": "memory:memory/2026-05-17.md:5:5",
+      "path": "memory/2026-05-17.md",
+      "startLine": 5,
+      "endLine": 5,
+      "source": "memory",
+      "snippet": "系统运行: 系统当前存在12个已知异常（主要集中在config和script类），已制定排查计划，磁盘与内存状态因监控数据缺失暂无法评估。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "系统",
+        "运行",
+        "当前",
+        "存在",
+        "已知",
+        "异常",
+        "主要",
+        "集中"
+      ]
+    },
+    "memory:memory/2026-05-17.md:8:11": {
+      "key": "memory:memory/2026-05-17.md:8:11",
+      "path": "memory/2026-05-17.md",
+      "startLine": 8,
+      "endLine": 11,
+      "source": "memory",
+      "snippet": "工作总结: • 推进本地知识库系统化重构：确定重组方案，基于MECE原则重新梳理了二三级目录，并落实了同步至NAS环境的文档规范要求。[本地]; • 优化日报与反思生成机制：针对之前内容空洞的问题，重新确立了“系统状况+工作总结”结合、且根据内容量提供简短版的报告生成新规则。[飞书]; • 制定系统异常排查计划：决定暂缓frps加固（方案A），全面启动其余系统异常的诊断与修复工作。[飞书]; • 规划历史复盘报告重写：针对近期月/季报质量不佳的问题，决定先对历史源数据按新标准进行清洗治理，再按复盘方法论重新生成总结报告。[飞书]",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "针对近期月/季报质量不佳的问题",
+        "工作",
+        "总结",
+        "推进",
+        "本地",
+        "知识",
+        "系统",
+        "确定"
+      ]
+    },
+    "memory:memory/2026-05-17.md:14:15": {
+      "key": "memory:memory/2026-05-17.md:14:15",
+      "path": "memory/2026-05-17.md",
+      "startLine": 14,
+      "endLine": 15,
+      "source": "memory",
+      "snippet": "问题与风险: 历史日报与反思数据源质量较差，可能影响近期月度和季度复盘报告的准确性（已启动数据治理流程对冲该风险）。; frps加固方案被暂缓，需确认是否会对现网环境产生安全隐患，建议持续跟进。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "问题",
+        "风险",
+        "历史",
+        "日报",
+        "数据",
+        "质量",
+        "可能",
+        "影响"
+      ]
+    },
+    "memory:memory/2026-05-17.md:18:18": {
+      "key": "memory:memory/2026-05-17.md:18:18",
+      "path": "memory/2026-05-17.md",
+      "startLine": 18,
+      "endLine": 18,
+      "source": "memory",
+      "snippet": "一句话日报: 周末集中处理了知识库目录重构与报告生成机制的优化定调，并明确了下阶段系统异常排查及历史数据治理的执行方案。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "一句",
+        "日报",
+        "周末",
+        "集中",
+        "处理",
+        "知识",
+        "目录",
+        "报告"
+      ]
+    },
+    "memory:memory/2026-05-17.md:20:23": {
+      "key": "memory:memory/2026-05-17.md:20:23",
+      "path": "memory/2026-05-17.md",
+      "startLine": 20,
+      "endLine": 23,
+      "source": "memory",
+      "snippet": "📊 概览: **日期**: 2026-05-17; **本地会话**: 3 个文件, 314 条消息; **飞书消息**: 15 条; **定时任务**: 0 个",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "日期",
+        "本地",
+        "会话",
+        "文件",
+        "消息",
+        "任务"
+      ]
+    },
+    "memory:memory/2026-05-17.md:24:26": {
+      "key": "memory:memory/2026-05-17.md:24:26",
+      "path": "memory/2026-05-17.md",
+      "startLine": 24,
+      "endLine": 26,
+      "source": "memory",
+      "snippet": "📊 概览: **本地交互**: 5 次; **飞书交互**: 10 次; **错误/异常**: 43 条",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误/异常",
+        "本地",
+        "交互",
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-17.md:29:29": {
+      "key": "memory:memory/2026-05-17.md:29:29",
+      "path": "memory/2026-05-17.md",
+      "startLine": 29,
+      "endLine": 29,
+      "source": "memory",
+      "snippet": "⏰ 定时任务执行记录: _当日无定时任务记录_",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "任务",
+        "执行",
+        "记录",
+        "当日"
+      ]
+    },
+    "memory:memory/2026-05-17.md:32:35": {
+      "key": "memory:memory/2026-05-17.md:32:35",
+      "path": "memory/2026-05-17.md",
+      "startLine": 32,
+      "endLine": 35,
+      "source": "memory",
+      "snippet": "💬 本地交互概要: **04:41** System (untrusted): [2026-05-17 12:39:27 GMT+8] Exec completed (ember-da, code 0) :: 成日报... ✅ AI 日报生...; **14:12** [Sun 2026-05-17 22:12 GMT+8] 当前的知识库归档仍然很混乱,请重新梳理整理,按照知识库的规则归档.先理解需求,做好规划，经我决策后,再执行.; **14:19** [Sun 2026-05-17 22:19 GMT+8] 1.方案A 2.不需要 3.保留,评估下",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "ember-da",
+        "按照知识库的规则归档.先理解需求",
+        "1.方案a",
+        "2.不需要",
+        "3.保留",
+        "本地",
+        "交互",
+        "概要"
+      ]
+    },
+    "memory:memory/2026-05-17.md:36:36": {
+      "key": "memory:memory/2026-05-17.md:36:36",
+      "path": "memory/2026-05-17.md",
+      "startLine": 36,
+      "endLine": 36,
+      "source": "memory",
+      "snippet": "💬 本地交互概要: **14:49** [Sun 2026-05-17 22:49 GMT+8] 可以按照这个来,另外还有一个诉求,这个目录会同步到NAS环境中,希望增加文档说明，确保同步到NAS中的hermes Agent仍然可以按照文档...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "本地",
+        "交互",
+        "概要",
+        "sun",
+        "gmt",
+        "可以",
+        "按照",
+        "这个"
+      ]
+    },
+    "memory:memory/2026-05-17.md:39:42": {
+      "key": "memory:memory/2026-05-17.md:39:42",
+      "path": "memory/2026-05-17.md",
+      "startLine": 39,
+      "endLine": 42,
+      "source": "memory",
+      "snippet": "📱 飞书交互概要: **12:31** 最近的工作日报和每日反思都不达预期，没有实质性内容，大部分是空白的，有生成的内容都是按结构化填充的，没有实力价值。先理解需求，做好规划，经我决策后，再执行。; **12:37** 1.综合两者，既要系统运行状况报告，又要小组的工作总结。 2.要生成简短版，至少有系统运行状况。 3.两个一起改。; **12:41** 针对异常的问题，进行系统性诊断，并给出优化建议，以及完整方案，经我决策后，再执行。; **12:47** 1.方案A（frps 加固）先不处理 2.除A外，全部处理 3.可以",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "1.综合两者",
+        "2.要生成简短版",
+        "3.两个一起改",
+        "1.方案a",
+        "2.除a外",
+        "3.可以",
+        "交互",
+        "概要"
+      ]
+    },
+    "memory:memory/2026-05-17.md:43:46": {
+      "key": "memory:memory/2026-05-17.md:43:46",
+      "path": "memory/2026-05-17.md",
+      "startLine": 43,
+      "endLine": 46,
+      "source": "memory",
+      "snippet": "📱 飞书交互概要: **12:49** 按照最近的日报和反思逻辑，整理近一个月和一个季度以来的日报和反思，整理内容汇总成报告发给我; **13:05** 有一个问题，由于之前的日报和反思内容都不达预期，导致当前当前生成的月度和季度总结可能有偏差。评估按照最新的日报和反思脚本针对源数据做治理，然后再生成最新的月度报告和季度报告。注意，需要有价值的内容输出...; **13:06** 先理解需求，做好规划，经我决策后，再执行; **13:08** 先按照这个来执行吧",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "交互",
+        "概要",
+        "按照",
+        "最近",
+        "日报",
+        "逻辑",
+        "整理",
+        "一个"
+      ]
+    },
+    "memory:memory/2026-05-17.md:47:48": {
+      "key": "memory:memory/2026-05-17.md:47:48",
+      "path": "memory/2026-05-17.md",
+      "startLine": 47,
+      "endLine": 48,
+      "source": "memory",
+      "snippet": "📱 飞书交互概要: **13:15** 反馈进展@_user_1; **13:16** 需要推送到飞书卡片",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "user-1",
+        "交互",
+        "概要",
+        "反馈",
+        "进展",
+        "需要",
+        "推送",
+        "卡片"
+      ]
+    },
+    "memory:memory/2026-05-17.md:52:52": {
+      "key": "memory:memory/2026-05-17.md:52:52",
+      "path": "memory/2026-05-17.md",
+      "startLine": 52,
+      "endLine": 52,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **15:33** │",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-17.md:53:55": {
+      "key": "memory:memory/2026-05-17.md:53:55",
+      "path": "memory/2026-05-17.md",
+      "startLine": 53,
+      "endLine": 55,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: ◇ Config warnings ──────────────────────────────────────────────────────╮ │ │ │ - plugins.entries.skillhub: plugin not found:...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "plugins.entries.skillhub",
+        "错误",
+        "异常",
+        "config",
+        "warnings",
+        "plugin",
+        "not",
+        "found"
+      ]
+    },
+    "memory:memory/2026-05-17.md:56:56": {
+      "key": "memory:memory/2026-05-17.md:56:56",
+      "path": "memory/2026-05-17.md",
+      "startLine": 56,
+      "endLine": 56,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **15:30** [feature-52273 8e0bb1d] Auto sync: 2026-05-02 23:30:09",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "feature-52273",
+        "错误",
+        "异常",
+        "feature",
+        "8e0bb1d",
+        "auto",
+        "sync"
+      ]
+    },
+    "memory:memory/2026-05-17.md:57:59": {
+      "key": "memory:memory/2026-05-17.md:57:59",
+      "path": "memory/2026-05-17.md",
+      "startLine": 57,
+      "endLine": 59,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 41 files changed, 7965 insertions(+), 593 deletions(-) create mode 100644 archive/daily/2026-05/daily-report-2026-05-01.md create mode 100644 ...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "changed",
+        "insertions",
+        "deletions",
+        "create",
+        "mode",
+        "archive"
+      ]
+    },
+    "memory:memory/2026-05-17.md:60:60": {
+      "key": "memory:memory/2026-05-17.md:60:60",
+      "path": "memory/2026-05-17.md",
+      "startLine": 60,
+      "endLine": 60,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **04:31** #!/usr/bin/env python3",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "usr/bin/env",
+        "错误",
+        "异常",
+        "usr",
+        "bin",
+        "env",
+        "python3"
+      ]
+    },
+    "memory:memory/2026-05-17.md:62:62": {
+      "key": "memory:memory/2026-05-17.md:62:62",
+      "path": "memory/2026-05-17.md",
+      "startLine": 62,
+      "endLine": 62,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: Daily Reflection V3 - 基于 AI 的深度反思生成器",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "reflection",
+        "基于",
+        "深度",
+        "生成"
+      ]
+    },
+    "memory:memory/2026-05-17.md:65:68": {
+      "key": "memory:memory/2026-05-17.md:65:68",
+      "path": "memory/2026-05-17.md",
+      "startLine": 65,
+      "endLine": 68,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 不再从固定格式提取\"教训\"，而是收集当日完整工作上下文; 交给 AI 做真正的反思（不是模板匹配）; 对比历史反思避免重复; 输出可执行的改进行动项",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "不再",
+        "固定",
+        "格式",
+        "提取",
+        "教训",
+        "而是"
+      ]
+    },
+    "memory:memory/2026-05-17.md:71:74": {
+      "key": "memory:memory/2026-05-17.md:71:74",
+      "path": "memory/2026-05-17.md",
+      "startLine": 71,
+      "endLine": 74,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: import os import re import json import u...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "import"
+      ]
+    },
+    "memory:memory/2026-05-17.md:75:75": {
+      "key": "memory:memory/2026-05-17.md:75:75",
+      "path": "memory/2026-05-17.md",
+      "startLine": 75,
+      "endLine": 75,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **04:31** {",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-17.md:76:78": {
+      "key": "memory:memory/2026-05-17.md:76:78",
+      "path": "memory/2026-05-17.md",
+      "startLine": 76,
+      "endLine": 78,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: \"status\": \"error\", \"tool\": \"read\", \"error\": \"ENOENT: no such file or directory, access '/root/.openclaw/workspace/scripts/daily/daily_briefing.py'\"",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "status",
+        "error",
+        "tool",
+        "read",
+        "enoent",
+        "such"
+      ]
+    },
+    "memory:memory/2026-05-17.md:80:80": {
+      "key": "memory:memory/2026-05-17.md:80:80",
+      "path": "memory/2026-05-17.md",
+      "startLine": 80,
+      "endLine": 80,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **04:31** # Reflections Log",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "reflections",
+        "log"
+      ]
+    },
+    "memory:memory/2026-05-17.md:87:89": {
+      "key": "memory:memory/2026-05-17.md:87:89",
+      "path": "memory/2026-05-17.md",
+      "startLine": 87,
+      "endLine": 89,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: **理解任务需求**：; 角色：深度反思教练。; 任务：分析提供的工作日志（2026-05-16），产出深度反思报告。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "理解",
+        "任务",
+        "需求",
+        "角色",
+        "深度",
+        "教练"
+      ]
+    },
+    "memory:memory/2026-05-17.md:91:93": {
+      "key": "memory:memory/2026-05-17.md:91:93",
+      "path": "memory/2026-05-17.md",
+      "startLine": 91,
+      "endLine": 93,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 不要泛泛而谈（对应具体事件/决策）。; 不要重复（对比历史反思 2026-05-14、2...; 💻 **04:32** daily_reflection.py",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "对应具体事件/决策",
+        "daily-reflection.py",
+        "错误",
+        "异常",
+        "不要",
+        "泛泛",
+        "对应",
+        "具体"
+      ]
+    },
+    "memory:memory/2026-05-17.md:94:97": {
+      "key": "memory:memory/2026-05-17.md:94:97",
+      "path": "memory/2026-05-17.md",
+      "startLine": 94,
+      "endLine": 97,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: daily_report_main.py daily_report.py daily_report.py.backup daily_report_v9.py",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "backup",
+        "daily-report-main.py",
+        "daily-report.py",
+        "daily-report.py.backup",
+        "daily-report-v9.py",
+        "错误",
+        "异常",
+        "daily-report-v9"
+      ]
+    },
+    "memory:memory/2026-05-17.md:98:101": {
+      "key": "memory:memory/2026-05-17.md:98:101",
+      "path": "memory/2026-05-17.md",
+      "startLine": 98,
+      "endLine": 101,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: debug_feishu_time.py error_classifier.py fix_24_memory.py regenerate_report.py",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "debug-feishu-time.py",
+        "error-classifier.py",
+        "fix-24-memory.py",
+        "regenerate-report.py",
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-17.md:102:102": {
+      "key": "memory:memory/2026-05-17.md:102:102",
+      "path": "memory/2026-05-17.md",
+      "startLine": 102,
+      "endLine": 102,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: test_feishu_api.py",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "test-feishu-api.py",
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-17.md:104:104": {
+      "key": "memory:memory/2026-05-17.md:104:104",
+      "path": "memory/2026-05-17.md",
+      "startLine": 104,
+      "endLine": 104,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **04:32** # Reflections Log",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "reflections",
+        "log"
+      ]
+    },
+    "memory:memory/2026-05-17.md:111:113": {
+      "key": "memory:memory/2026-05-17.md:111:113",
+      "path": "memory/2026-05-17.md",
+      "startLine": 111,
+      "endLine": 113,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: **理解任务需求**：; 角色：深度反思教练。; 任务：分析提供的工作日志（2026-05-16），产出深度反思报告。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "理解",
+        "任务",
+        "需求",
+        "角色",
+        "深度",
+        "教练"
+      ]
+    },
+    "memory:memory/2026-05-17.md:115:117": {
+      "key": "memory:memory/2026-05-17.md:115:117",
+      "path": "memory/2026-05-17.md",
+      "startLine": 115,
+      "endLine": 117,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 不要泛泛而谈（对应具体事件/决策）。; 不要重复（对比历史反思 2026-05-14、2...; 💻 **04:32** #!/usr/bin/env python3",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "对应具体事件/决策",
+        "usr/bin/env",
+        "错误",
+        "异常",
+        "不要",
+        "泛泛",
+        "对应",
+        "具体"
+      ]
+    },
+    "memory:memory/2026-05-17.md:119:119": {
+      "key": "memory:memory/2026-05-17.md:119:119",
+      "path": "memory/2026-05-17.md",
+      "startLine": 119,
+      "endLine": 119,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 工作日报生成脚本 V7 - 小助(main)专用版本",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "工作",
+        "日报",
+        "生成",
+        "脚本",
+        "专用",
+        "版本"
+      ]
+    },
+    "memory:memory/2026-05-17.md:120:120": {
+      "key": "memory:memory/2026-05-17.md:120:120",
+      "path": "memory/2026-05-17.md",
+      "startLine": 120,
+      "endLine": 120,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 时间范围：昨天00:00到23:59（全天）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "时间",
+        "范围",
+        "昨天",
+        "全天"
+      ]
+    },
+    "memory:memory/2026-05-17.md:123:126": {
+      "key": "memory:memory/2026-05-17.md:123:126",
+      "path": "memory/2026-05-17.md",
+      "startLine": 123,
+      "endLine": 126,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: import os import json import re from datetime import datetime, timedelta",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "import",
+        "datetime",
+        "timedelta"
+      ]
+    },
+    "memory:memory/2026-05-17.md:127:128": {
+      "key": "memory:memory/2026-05-17.md:127:128",
+      "path": "memory/2026-05-17.md",
+      "startLine": 127,
+      "endLine": 128,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: import urllib.request import urllib.parse",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "urllib.request",
+        "urllib.parse",
+        "错误",
+        "异常",
+        "import"
+      ]
+    },
+    "memory:memory/2026-05-17.md:131:131": {
+      "key": "memory:memory/2026-05-17.md:131:131",
+      "path": "memory/2026-05-17.md",
+      "startLine": 131,
+      "endLine": 131,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **04:32** except:",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "except"
+      ]
+    },
+    "memory:memory/2026-05-17.md:132:135": {
+      "key": "memory:memory/2026-05-17.md:132:135",
+      "path": "memory/2026-05-17.md",
+      "startLine": 132,
+      "endLine": 135,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: continue msg_type = data.get('type', '') msg = data.get('message', {}) role = msg.get('role', '')",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "msg-type",
+        "data.get",
+        "msg.get",
+        "错误",
+        "异常",
+        "continue",
+        "type",
+        "msg"
+      ]
+    },
+    "memory:memory/2026-05-17.md:137:137": {
+      "key": "memory:memory/2026-05-17.md:137:137",
+      "path": "memory/2026-05-17.md",
+      "startLine": 137,
+      "endLine": 137,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 💻 **04:32** [[reply_to_current]]",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "reply-to-current",
+        "错误",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-17.md:139:139": {
+      "key": "memory:memory/2026-05-17.md:139:139",
+      "path": "memory/2026-05-17.md",
+      "startLine": 139,
+      "endLine": 139,
+      "source": "memory",
+      "snippet": "⚠️ 错误与异常: 看完了两个脚本和最近的输出，问题很清楚：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "错误",
+        "异常",
+        "看完",
+        "脚本",
+        "最近",
+        "输出",
+        "问题",
+        "清楚"
+      ]
+    },
+    "memory:memory/2026-05-17.md:145:145": {
+      "key": "memory:memory/2026-05-17.md:145:145",
+      "path": "memory/2026-05-17.md",
+      "startLine": 145,
+      "endLine": 145,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: `daily_reflection.py` 的 `get_ai_response` 函数优先取 `reasoning_content`，但 glm-5 把思考链（理解任务→分析数据→提取反思点…）放在了 `reasoning_con...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "daily-reflection.py",
+        "get-ai-response",
+        "reasoning-content",
+        "glm-5",
+        "reasoning-con",
+        "每日",
+        "输出",
+        "思考"
+      ]
+    },
+    "memory:memory/2026-05-17.md:146:146": {
+      "key": "memory:memory/2026-05-17.md:146:146",
+      "path": "memory/2026-05-17.md",
+      "startLine": 146,
+      "endLine": 146,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: 💻 **04:37** System: [2026-05-17 12:37:28 GMT+8] Feishu[default] DM | ou_c2cde251e01a87fc09ba7561f76d8606 [msg:om_x100b6fa02eb114a0b3e86ba5163ed76, reply_to:om_x100b6fa0004f48a0c2e4e0c9e70c74e]",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "reply-to",
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果"
+      ]
+    },
+    "memory:memory/2026-05-17.md:148:148": {
+      "key": "memory:memory/2026-05-17.md:148:148",
+      "path": "memory/2026-05-17.md",
+      "startLine": 148,
+      "endLine": 148,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: Conversation info ...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果",
+        "conversation"
+      ]
+    },
+    "memory:memory/2026-05-17.md:149:149": {
+      "key": "memory:memory/2026-05-17.md:149:149",
+      "path": "memory/2026-05-17.md",
+      "startLine": 149,
+      "endLine": 149,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: 💻 **04:38** {",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果"
+      ]
+    },
+    "memory:memory/2026-05-17.md:150:152": {
+      "key": "memory:memory/2026-05-17.md:150:152",
+      "path": "memory/2026-05-17.md",
+      "startLine": 150,
+      "endLine": 152,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: \"status\": \"error\", \"tool\": \"exec\", \"error\": \"exec preflight: complex interpreter invocation detected; refusing to run without script preflight validation. Use a direct `python <file>.py` or `n...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果",
+        "status"
+      ]
+    },
+    "memory:memory/2026-05-17.md:153:153": {
+      "key": "memory:memory/2026-05-17.md:153:153",
+      "path": "memory/2026-05-17.md",
+      "startLine": 153,
+      "endLine": 153,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: 💻 **04:39** ========================================",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果"
+      ]
+    },
+    "memory:memory/2026-05-17.md:154:157": {
+      "key": "memory:memory/2026-05-17.md:154:157",
+      "path": "memory/2026-05-17.md",
+      "startLine": 154,
+      "endLine": 157,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: 📊 工作日报 V8 - AI 驱动版 ======================================== 📅 日报日期: 2026年05月16日 📂 收集数据...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果",
+        "工作"
+      ]
+    },
+    "memory:memory/2026-05-17.md:158:159": {
+      "key": "memory:memory/2026-05-17.md:158:159",
+      "path": "memory/2026-05-17.md",
+      "startLine": 158,
+      "endLine": 159,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: 定时任务: 0 项 用户交互: 0 条",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果",
+        "任务"
+      ]
+    },
+    "memory:memory/2026-05-17.md:161:162": {
+      "key": "memory:memory/2026-05-17.md:161:162",
+      "path": "memory/2026-05-17.md",
+      "startLine": 161,
+      "endLine": 162,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: 日志长度: 3150 字符 🤖 AI 生成日报...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果",
+        "日志"
+      ]
+    },
+    "memory:memory/2026-05-17.md:164:164": {
+      "key": "memory:memory/2026-05-17.md:164:164",
+      "path": "memory/2026-05-17.md",
+      "startLine": 164,
+      "endLine": 164,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: 💻 **04:40** 🪞 每日反思 V3 - AI 深度反思",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果",
+        "深度"
+      ]
+    },
+    "memory:memory/2026-05-17.md:165:168": {
+      "key": "memory:memory/2026-05-17.md:165:168",
+      "path": "memory/2026-05-17.md",
+      "startLine": 165,
+      "endLine": 168,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: ======================================== 📅 反思日期: 2026-05-16 📂 收集工作上下文... 交互记录: 9 条",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果",
+        "日期"
+      ]
+    },
+    "memory:memory/2026-05-17.md:169:172": {
+      "key": "memory:memory/2026-05-17.md:169:172",
+      "path": "memory/2026-05-17.md",
+      "startLine": 169,
+      "endLine": 172,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: 错误记录: 7 条 项目记录: 0 条 📋 加载历史反思... 🤖 AI 深度反思生成中...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果",
+        "错误"
+      ]
+    },
+    "memory:memory/2026-05-17.md:173:174": {
+      "key": "memory:memory/2026-05-17.md:173:174",
+      "path": "memory/2026-05-17.md",
+      "startLine": 173,
+      "endLine": 174,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: ✅ 反思生成完成，长度: 747 字 ✅ 反思已保存到 /root/.open...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果",
+        "生成"
+      ]
+    },
+    "memory:memory/2026-05-17.md:175:175": {
+      "key": "memory:memory/2026-05-17.md:175:175",
+      "path": "memory/2026-05-17.md",
+      "startLine": 175,
+      "endLine": 175,
+      "source": "memory",
+      "snippet": "每日反思 — AI 输出了思考过程，不是最终结果: 💻 **04:40** ## 2026-05-16",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "每日",
+        "输出",
+        "思考",
+        "过程",
+        "不是",
+        "最终",
+        "结果"
+      ]
+    },
+    "memory:memory/2026-05-17.md:180:183": {
+      "key": "memory:memory/2026-05-17.md:180:183",
+      "path": "memory/2026-05-17.md",
+      "startLine": 180,
+      "endLine": 183,
+      "source": "memory",
+      "snippet": "今日关键事件: 服务器磁盘空间排查（发现 `/root/.local` 等目录占用数百兆空间）。; 任务执行过程中发生系统级中断（`Exec failed... signal SIGTERM`）。; 针对 frp 业务修复进行了风险评估与人工卡点决策。; 监控到 Certbot 自动更新 HTTPS 证书失败（`authent...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "今日",
+        "关键",
+        "事件",
+        "服务",
+        "磁盘",
+        "空间",
+        "发现",
+        "root"
+      ]
+    },
+    "memory:memory/2026-05-17.md:184:185": {
+      "key": "memory:memory/2026-05-17.md:184:185",
+      "path": "memory/2026-05-17.md",
+      "startLine": 184,
+      "endLine": 185,
+      "source": "memory",
+      "snippet": "今日关键事件: 💻 **04:40** * **可执行改进**：建立《高危变更技术兜底检查单》。对于涉及网络、代理的核心服务变更，强制要求：1. 提前备份当前可用配置；2. 制定回滚命令（且确保回滚在1分钟内可执行）；3. 在测试端口/实例验证后再全量操作。; **预期效果**：将核心服务变更的风险从“依赖主观谨慎”转变为“依赖技术兜底机制”，避免误操作导致长时间断网。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "备份",
+        "网络",
+        "在测试端口/实例验证后再全量操作",
+        "今日",
+        "关键",
+        "事件",
+        "执行",
+        "改进"
+      ]
+    },
+    "memory:memory/2026-05-17.md:187:187": {
+      "key": "memory:memory/2026-05-17.md:187:187",
+      "path": "memory/2026-05-17.md",
+      "startLine": 187,
+      "endLine": 187,
+      "source": "memory",
+      "snippet": "今日关键事件: 💻 **04:41** 看起来新的 05-16 反思被截断了（\"反思点\"后面没内容），这是因为 API 返回的内容长度限制。不过这是当天生成时的内容量问题，不是 bug。结构对了。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "05-16",
+        "今日",
+        "关键",
+        "事件",
+        "看起来",
+        "新的",
+        "截断",
+        "后面"
+      ]
+    },
+    "memory:memory/2026-05-17.md:189:189": {
+      "key": "memory:memory/2026-05-17.md:189:189",
+      "path": "memory/2026-05-17.md",
+      "startLine": 189,
+      "endLine": 189,
+      "source": "memory",
+      "snippet": "今日关键事件: 现在确认文件从旧的 05-16 思考过程已清理干净，新的格式化报告在前面。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "05-16",
+        "今日",
+        "关键",
+        "事件",
+        "现在",
+        "确认",
+        "文件",
+        "思考"
+      ]
+    },
+    "memory:memory/2026-05-17.md:191:191": {
+      "key": "memory:memory/2026-05-17.md:191:191",
+      "path": "memory/2026-05-17.md",
+      "startLine": 191,
+      "endLine": 191,
+      "source": "memory",
+      "snippet": "今日关键事件: 总结一下完成的改动：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "今日",
+        "关键",
+        "事件",
+        "总结",
+        "一下",
+        "完成"
+      ]
+    },
+    "memory:memory/2026-05-17.md:195:195": {
+      "key": "memory:memory/2026-05-17.md:195:195",
+      "path": "memory/2026-05-17.md",
+      "startLine": 195,
+      "endLine": 195,
+      "source": "memory",
+      "snippet": "今日关键事件: **已完成：**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "今日",
+        "关键",
+        "事件",
+        "完成"
+      ]
+    },
+    "memory:memory/2026-05-17.md:197:199": {
+      "key": "memory:memory/2026-05-17.md:197:199",
+      "path": "memory/2026-05-17.md",
+      "startLine": 197,
+      "endLine": 199,
+      "source": "memory",
+      "snippet": "今日关键事件: **反思脚本 `daily_reflection.py`** — 修复了 `reasoning_con...; 💻 **04:41** System (untrusted): [2026-05-17 12:39:27 GMT+8] Exec completed (ember-da, code 0) :: 成日报... ✅ AI 日报生成完成 (323 字) 📊 小助工作日报 - 2026年05月16日 📊 小助工作日报 - 2026-05-16 系统运行 - 定时任务：0 项执行 - 磁盘/内存：未获取到具体状态 - 异常：共记录.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "daily-reflection.py",
+        "reasoning-con",
+        "ember-da",
+        "磁盘/内存",
+        "今日",
+        "关键",
+        "事件",
+        "脚本"
+      ]
+    },
+    "memory:memory/2026-05-17.md:202:203": {
+      "key": "memory:memory/2026-05-17.md:202:203",
+      "path": "memory/2026-05-17.md",
+      "startLine": 202,
+      "endLine": 203,
+      "source": "memory",
+      "snippet": "今日关键事件: Queued #1 System: [2026-05-17 12:41:51 GMT+8] Feishu[default] DM | ou_c2cde251e01a87fc09ba7561f76d8606 [msg:om_x100b6fa03eaefca0b39bc0065d3c52a, reply_to:om...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "reply-to",
+        "今日",
+        "关键",
+        "事件",
+        "queued",
+        "system",
+        "gmt",
+        "feishu"
+      ]
+    },
+    "memory:memory/2026-05-17.md:204:205": {
+      "key": "memory:memory/2026-05-17.md:204:205",
+      "path": "memory/2026-05-17.md",
+      "startLine": 204,
+      "endLine": 205,
+      "source": "memory",
+      "snippet": "今日关键事件: 💻 **04:42** 先收集当前系统的实际异常状态。; 💻 **04:43** 数据收集完了。以下是诊断报告：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "今日",
+        "关键",
+        "事件",
+        "收集",
+        "当前",
+        "系统",
+        "实际",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-17.md:213:216": {
+      "key": "memory:memory/2026-05-17.md:213:216",
+      "path": "memory/2026-05-17.md",
+      "startLine": 213,
+      "endLine": 216,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: | 项目 | 状态 | |------|------| | 证书域名 | vw.ygxpro.online | | 有效期 | 2026-05-14 ~ 2026-08-12（还有 87 天） |",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "vw.ygxpro.online",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "项目"
+      ]
+    },
+    "memory:memory/2026-05-17.md:217:218": {
+      "key": "memory:memory/2026-05-17.md:217:218",
+      "path": "memory/2026-05-17.md",
+      "startLine": 217,
+      "endLine": 218,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: | Nginx 配置 | 正确指向 live 目录 | | 续期方式...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "nginx",
+        "配置"
+      ]
+    },
+    "memory:memory/2026-05-17.md:219:220": {
+      "key": "memory:memory/2026-05-17.md:219:220",
+      "path": "memory/2026-05-17.md",
+      "startLine": 219,
+      "endLine": 220,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: 💻 **04:43** 先收集当前系统的实际异常状态。; 💻 **04:43** 数据收集完了。以下是诊断报告：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "收集",
+        "当前"
+      ]
+    },
+    "memory:memory/2026-05-17.md:228:231": {
+      "key": "memory:memory/2026-05-17.md:228:231",
+      "path": "memory/2026-05-17.md",
+      "startLine": 228,
+      "endLine": 231,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: | 项目 | 状态 | |------|------| | 证书域名 | vw.ygxpro.online | | 有效期 | 2026-05-14 ~ 2026-08-12（还有 87 天） |",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "vw.ygxpro.online",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "项目"
+      ]
+    },
+    "memory:memory/2026-05-17.md:232:233": {
+      "key": "memory:memory/2026-05-17.md:232:233",
+      "path": "memory/2026-05-17.md",
+      "startLine": 232,
+      "endLine": 233,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: | Nginx 配置 | 正确指向 live 目录 | | 续期方式...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "nginx",
+        "配置"
+      ]
+    },
+    "memory:memory/2026-05-17.md:234:234": {
+      "key": "memory:memory/2026-05-17.md:234:234",
+      "path": "memory/2026-05-17.md",
+      "startLine": 234,
+      "endLine": 234,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: 💻 **04:51** 反思条目: 29 天",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "条目"
+      ]
+    },
+    "memory:memory/2026-05-17.md:235:235": {
+      "key": "memory:memory/2026-05-17.md:235:235",
+      "path": "memory/2026-05-17.md",
+      "startLine": 235,
+      "endLine": 235,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: 日志条目: 30 天",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "日志",
+        "条目"
+      ]
+    },
+    "memory:memory/2026-05-17.md:239:242": {
+      "key": "memory:memory/2026-05-17.md:239:242",
+      "path": "memory/2026-05-17.md",
+      "startLine": 239,
+      "endLine": 242,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: 发现并解决了定时任务被注释掉导致工作日报和反思任务长期失效的问题; 重新优化校招新员工AI Coding入职培训方案文档，按需求精简课题内容; 处理了多个文件路径相关的系统错误; 发现并修复了工作日报和每日反思定时任务被注释掉的问题",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "发现",
+        "解决"
+      ]
+    },
+    "memory:memory/2026-05-17.md:244:245": {
+      "key": "memory:memory/2026-05-17.md:244:245",
+      "path": "memory/2026-05-17.md",
+      "startLine": 244,
+      "endLine": 245,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: 反思点 1：系统性监控缺失导致配置漂移无...; 💻 **04:51** Traceback (most recent call last):",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "系统",
+        "缺失"
+      ]
+    },
+    "memory:memory/2026-05-17.md:246:249": {
+      "key": "memory:memory/2026-05-17.md:246:249",
+      "path": "memory/2026-05-17.md",
+      "startLine": 246,
+      "endLine": 249,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: File \"<stdin>\", line 108, in <module> File \"/usr/lib64/python3.6/subprocess.py\", line 423, in run with Popen(*popenargs, **kwargs) as process: TypeError: __i...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "stdin",
+        "module"
+      ]
+    },
+    "memory:memory/2026-05-17.md:250:250": {
+      "key": "memory:memory/2026-05-17.md:250:250",
+      "path": "memory/2026-05-17.md",
+      "startLine": 250,
+      "endLine": 250,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: 💻 **04:53** 📋 **月度汇总报告（4/17-5/16）**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "4/17-5/16",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "报告"
+      ]
+    },
+    "memory:memory/2026-05-17.md:252:253": {
+      "key": "memory:memory/2026-05-17.md:252:253",
+      "path": "memory/2026-05-17.md",
+      "startLine": 252,
+      "endLine": 253,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: **一、总体概览** 本月是**“基建治理与技术债清理”**的核心月。在保障AI落地推进等业务主线的同时，投入了大量精力进行系统底层治理。整体呈现“高执行力、高试错率”的特征，行动项完成率极高（96.5%），但系统级报错频发（超1000次），反映出前期粗放发展积累的技术债务正在集中暴露并被清理。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "96.5",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "总体"
+      ]
+    },
+    "memory:memory/2026-05-17.md:255:255": {
+      "key": "memory:memory/2026-05-17.md:255:255",
+      "path": "memory/2026-05-17.md",
+      "startLine": 255,
+      "endLine": 255,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: **二、关键主题**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "关键",
+        "主题"
+      ]
+    },
+    "memory:memory/2026-05-17.md:256:257": {
+      "key": "memory:memory/2026-05-17.md:256:257",
+      "path": "memory/2026-05-17.md",
+      "startLine": 256,
+      "endLine": 257,
+      "source": "memory",
+      "snippet": "✅ Certbot/SSL — 实际正常，无需修复: **定时任务与底层治理...; 💻 **05:05** 你说得对，源数据（memory 日志）是真实的，但之前的反思和日报产出质量差，基于差的数据再汇总只会放大偏差。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "certbot/ssl",
+        "certbot",
+        "ssl",
+        "实际",
+        "正常",
+        "修复",
+        "任务",
+        "底层"
+      ]
+    },
+    "memory:memory/2026-05-17.md:261:261": {
+      "key": "memory:memory/2026-05-17.md:261:261",
+      "path": "memory/2026-05-17.md",
+      "startLine": 261,
+      "endLine": 261,
+      "source": "memory",
+      "snippet": "方案: **思路**：跳过逐日重生成（30天×2=60次API调用，浪费且慢），直接从原始 memory 日志出发，用 AI + 规范化的复盘方法论生成月度/季度报告。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "规范化的复盘方法论生成月度/季度报告",
+        "方案",
+        "思路",
+        "逐日",
+        "生成",
+        "api",
+        "浪费",
+        "且慢"
+      ]
+    },
+    "memory:memory/2026-05-17.md:263:263": {
+      "key": "memory:memory/2026-05-17.md:263:263",
+      "path": "memory/2026-05-17.md",
+      "startLine": 263,
+      "endLine": 263,
+      "source": "memory",
+      "snippet": "方案: **复盘方法论框架**（采用 GRAI 复盘法）：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "方案",
+        "方法",
+        "框架",
+        "采用",
+        "grai"
+      ]
+    },
+    "memory:memory/2026-05-17.md:265:266": {
+      "key": "memory:memory/2026-05-17.md:265:266",
+      "path": "memory/2026-05-17.md",
+      "startLine": 265,
+      "endLine": 266,
+      "source": "memory",
+      "snippet": "方案: **Goal（回顾目标）**— 这段时间本来要做...; 💻 **05:17** # 📊 月度复盘报告 | 2026年3月",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "方案",
+        "goal",
+        "回顾",
+        "目标",
+        "时间",
+        "本来",
+        "报告"
+      ]
+    },
+    "memory:memory/2026-05-17.md:268:270": {
+      "key": "memory:memory/2026-05-17.md:268:270",
+      "path": "memory/2026-05-17.md",
+      "startLine": 268,
+      "endLine": 270,
+      "source": "memory",
+      "snippet": "方案: > 生成时间: 2026-05-17 > 数据范围: 2026-03-15 ~ 2026-03-31（系统上线后半个月） > 方法论: GRAI 复盘法",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "方案",
+        "生成",
+        "时间",
+        "数据",
+        "范围",
+        "系统",
+        "上线",
+        "方法"
+      ]
+    },
+    "memory:memory/2026-05-17.md:276:276": {
+      "key": "memory:memory/2026-05-17.md:276:276",
+      "path": "memory/2026-05-17.md",
+      "startLine": 276,
+      "endLine": 276,
+      "source": "memory",
+      "snippet": "一、Goal — 回顾目标: 3月15日 OpenClaw AI 助手正式上线部署。本月核心目标：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "回顾",
+        "目标",
+        "openclaw",
+        "助手",
+        "正式",
+        "上线",
+        "部署"
+      ]
+    },
+    "memory:memory/2026-05-17.md:277:277": {
+      "key": "memory:memory/2026-05-17.md:277:277",
+      "path": "memory/2026-05-17.md",
+      "startLine": 277,
+      "endLine": 277,
+      "source": "memory",
+      "snippet": "一、Goal — 回顾目标: 完成 AI 助手的基础架构搭建（双 Agent 模式：小助+小秘）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "回顾",
+        "目标",
+        "完成",
+        "助手",
+        "基础",
+        "架构",
+        "搭建"
+      ]
+    },
+    "memory:memory/2026-05-17.md:279:279": {
+      "key": "memory:memory/2026-05-17.md:279:279",
+      "path": "memory/2026-05-17.md",
+      "startLine": 279,
+      "endLine": 279,
+      "source": "memory",
+      "snippet": "一、Goal — 回顾目标: 💻 **05:17** # 📊 月度复盘报告 | 2026年4月",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "回顾",
+        "目标",
+        "报告"
+      ]
+    },
+    "memory:memory/2026-05-17.md:281:283": {
+      "key": "memory:memory/2026-05-17.md:281:283",
+      "path": "memory/2026-05-17.md",
+      "startLine": 281,
+      "endLine": 283,
+      "source": "memory",
+      "snippet": "一、Goal — 回顾目标: > 生成时间: 2026-05-17 > 数据范围: 2026-04-01 ~ 2026-04-30 > 方法论: GRAI 复盘法",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "回顾",
+        "目标",
+        "生成",
+        "时间",
+        "数据",
+        "范围",
+        "方法"
+      ]
+    },
+    "memory:memory/2026-05-17.md:289:289": {
+      "key": "memory:memory/2026-05-17.md:289:289",
+      "path": "memory/2026-05-17.md",
+      "startLine": 289,
+      "endLine": 289,
+      "source": "memory",
+      "snippet": "一、Goal — 回顾目标: 4月是从\"系统搭建\"转向\"实际工作产出\"的关键月份：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "回顾",
+        "目标",
+        "系统",
+        "搭建",
+        "转向",
+        "实际",
+        "工作"
+      ]
+    },
+    "memory:memory/2026-05-17.md:290:293": {
+      "key": "memory:memory/2026-05-17.md:290:293",
+      "path": "memory/2026-05-17.md",
+      "startLine": 290,
+      "endLine": 293,
+      "source": "memory",
+      "snippet": "一、Goal — 回顾目标: 解决3月遗留的API配额问题; 推进AI-Native变革落地计划; 优化日报/反思质量; 完成新员工...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "推进ai-native变革落地计划",
+        "优化日报/反思质量",
+        "goal",
+        "回顾",
+        "目标",
+        "解决",
+        "遗留",
+        "api"
+      ]
+    },
+    "memory:memory/2026-05-17.md:294:294": {
+      "key": "memory:memory/2026-05-17.md:294:294",
+      "path": "memory/2026-05-17.md",
+      "startLine": 294,
+      "endLine": 294,
+      "source": "memory",
+      "snippet": "一、Goal — 回顾目标: 💻 **05:17** # 📊 季度复盘报告 | 2026年Q2（截至目前）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "回顾",
+        "目标",
+        "季度",
+        "报告",
+        "截至",
+        "目前"
+      ]
+    },
+    "memory:memory/2026-05-17.md:296:298": {
+      "key": "memory:memory/2026-05-17.md:296:298",
+      "path": "memory/2026-05-17.md",
+      "startLine": 296,
+      "endLine": 298,
+      "source": "memory",
+      "snippet": "一、Goal — 回顾目标: > 生成时间: 2026-05-17 > 数据范围: 2026-04-01 ~ 2026-05-16（Q2已过半） > 方法论: GRAI 复盘法 + PDCA",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "回顾",
+        "目标",
+        "生成",
+        "时间",
+        "数据",
+        "范围",
+        "方法"
+      ]
+    },
+    "memory:memory/2026-05-17.md:304:304": {
+      "key": "memory:memory/2026-05-17.md:304:304",
+      "path": "memory/2026-05-17.md",
+      "startLine": 304,
+      "endLine": 304,
+      "source": "memory",
+      "snippet": "一、Goal — 季度目标回顾: Q2是AI助手从\"能用\"到\"好用\"的关键季度：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "季度",
+        "目标",
+        "回顾",
+        "助手",
+        "好用",
+        "关键"
+      ]
+    },
+    "memory:memory/2026-05-17.md:305:307": {
+      "key": "memory:memory/2026-05-17.md:305:307",
+      "path": "memory/2026-05-17.md",
+      "startLine": 305,
+      "endLine": 307,
+      "source": "memory",
+      "snippet": "一、Goal — 季度目标回顾: 系统稳定性达到日常可用水平; 管理工作产出实质性成果（AI-Native...; 💻 **12:22** # 📋 周反思报告 | 第20周 (2026-05-11 ~ 2026-05-17)",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "ai-native",
+        "goal",
+        "季度",
+        "目标",
+        "回顾",
+        "系统",
+        "稳定",
+        "达到"
+      ]
+    },
+    "memory:memory/2026-05-17.md:309:311": {
+      "key": "memory:memory/2026-05-17.md:309:311",
+      "path": "memory/2026-05-17.md",
+      "startLine": 309,
+      "endLine": 311,
+      "source": "memory",
+      "snippet": "一、Goal — 季度目标回顾: > 生成时间: 2026-05-17 20:09 > 数据来源: Memory日志 + V3深度反思 > 方法论: GRAI复盘法",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "季度",
+        "目标",
+        "回顾",
+        "生成",
+        "时间",
+        "数据",
+        "来源"
+      ]
+    },
+    "memory:memory/2026-05-17.md:318:318": {
+      "key": "memory:memory/2026-05-17.md:318:318",
+      "path": "memory/2026-05-17.md",
+      "startLine": 318,
+      "endLine": 318,
+      "source": "memory",
+      "snippet": "Goal (目标回顾): 本周核心目标应聚焦于：推进AI...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "目标",
+        "回顾",
+        "本周",
+        "核心",
+        "聚焦",
+        "推进"
+      ]
+    },
+    "memory:memory/2026-05-17.md:319:319": {
+      "key": "memory:memory/2026-05-17.md:319:319",
+      "path": "memory/2026-05-17.md",
+      "startLine": 319,
+      "endLine": 319,
+      "source": "memory",
+      "snippet": "Goal (目标回顾): 💻 **14:12** /root/.openclaw/workspace/knowledge/inbox/2026-03-23-tech-work.md",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "目标",
+        "回顾",
+        "root",
+        "openclaw",
+        "knowledge",
+        "inbox",
+        "tech"
+      ]
+    },
+    "memory:memory/2026-05-17.md:320:321": {
+      "key": "memory:memory/2026-05-17.md:320:321",
+      "path": "memory/2026-05-17.md",
+      "startLine": 320,
+      "endLine": 321,
+      "source": "memory",
+      "snippet": "Goal (目标回顾): /root/.openclaw/workspace/knowledge/inbox/2026-05-08-tech-lessons.md /root/.openclaw/workspace/knowledge/inbox/2026-05-15-productivity...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "目标",
+        "回顾",
+        "root",
+        "openclaw",
+        "knowledge",
+        "inbox",
+        "tech"
+      ]
+    },
+    "memory:memory/2026-05-17.md:322:322": {
+      "key": "memory:memory/2026-05-17.md:322:322",
+      "path": "memory/2026-05-17.md",
+      "startLine": 322,
+      "endLine": 322,
+      "source": "memory",
+      "snippet": "Goal (目标回顾): 💻 **14:12** /root/.openclaw/workspace/scripts/send_feishu_report.py",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "目标",
+        "回顾",
+        "root",
+        "openclaw",
+        "scripts",
+        "send-feishu-report.py"
+      ]
+    },
+    "memory:memory/2026-05-17.md:323:325": {
+      "key": "memory:memory/2026-05-17.md:323:325",
+      "path": "memory/2026-05-17.md",
+      "startLine": 323,
+      "endLine": 325,
+      "source": "memory",
+      "snippet": "Goal (目标回顾): /root/.openclaw/workspace/scripts/backup/nas_backup.sh /root/.openclaw/workspace/scripts/rent/record_bill.py /root/.openclaw/workspace/scripts/r...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "backup",
+        "openclaw/workspace/scripts/r",
+        "goal",
+        "目标",
+        "回顾",
+        "root",
+        "openclaw",
+        "scripts"
+      ]
+    },
+    "memory:memory/2026-05-17.md:326:326": {
+      "key": "memory:memory/2026-05-17.md:326:326",
+      "path": "memory/2026-05-17.md",
+      "startLine": 326,
+      "endLine": 326,
+      "source": "memory",
+      "snippet": "Goal (目标回顾): 💻 **14:13** # Knowledge 知识库",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "目标",
+        "回顾",
+        "knowledge",
+        "知识"
+      ]
+    },
+    "memory:memory/2026-05-17.md:328:328": {
+      "key": "memory:memory/2026-05-17.md:328:328",
+      "path": "memory/2026-05-17.md",
+      "startLine": 328,
+      "endLine": 328,
+      "source": "memory",
+      "snippet": "Goal (目标回顾): OpenClaw 知识库 - 存储经验、教训、技术方案和工作记录。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "goal",
+        "目标",
+        "回顾",
+        "openclaw",
+        "知识",
+        "存储",
+        "经验",
+        "教训"
+      ]
+    },
+    "memory:memory/2026-05-17.md:333:336": {
+      "key": "memory:memory/2026-05-17.md:333:336",
+      "path": "memory/2026-05-17.md",
+      "startLine": 333,
+      "endLine": 336,
+      "source": "memory",
+      "snippet": "目录结构: knowledge/ ├── README.md # 本文件 ├── lessons/ # 经验教训 │ └── YYYY-MM-DD-title.md",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "readme.md",
+        "yyyy-mm-dd-title.md",
+        "目录",
+        "结构",
+        "knowledge",
+        "文件",
+        "lessons",
+        "经验"
+      ]
+    },
+    "memory:memory/2026-05-17.md:337:337": {
+      "key": "memory:memory/2026-05-17.md:337:337",
+      "path": "memory/2026-05-17.md",
+      "startLine": 337,
+      "endLine": 337,
+      "source": "memory",
+      "snippet": "目录结构: ├── people/ ...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "目录",
+        "结构",
+        "people"
+      ]
+    },
+    "memory:memory/2026-05-17.md:338:338": {
+      "key": "memory:memory/2026-05-17.md:338:338",
+      "path": "memory/2026-05-17.md",
+      "startLine": 338,
+      "endLine": 338,
+      "source": "memory",
+      "snippet": "目录结构: 💻 **14:19** # Reflections Log",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "目录",
+        "结构",
+        "reflections",
+        "log"
+      ]
+    },
+    "memory:memory/2026-05-17.md:348:351": {
+      "key": "memory:memory/2026-05-17.md:348:351",
+      "path": "memory/2026-05-17.md",
+      "startLine": 348,
+      "endLine": 351,
+      "source": "memory",
+      "snippet": "今日关键事件: 服务器磁盘空间排查（发现 `/root/.local` 等目录占用数百兆空间）。; 任务执行过程中发生系统级中断（`Exec failed... signal SIGTERM`）。; 针对 frp 业务修复进行了风险评估与人工卡点决策。; 监控到 Cert...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "今日",
+        "关键",
+        "事件",
+        "服务",
+        "磁盘",
+        "空间",
+        "发现",
+        "root"
+      ]
+    },
+    "memory:memory/2026-05-17.md:352:352": {
+      "key": "memory:memory/2026-05-17.md:352:352",
+      "path": "memory/2026-05-17.md",
+      "startLine": 352,
+      "endLine": 352,
+      "source": "memory",
+      "snippet": "今日关键事件: 💻 **14:19** # 每日反思机制改进说明",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "今日",
+        "关键",
+        "事件",
+        "每日",
+        "机制",
+        "改进",
+        "说明"
+      ]
+    },
+    "memory:memory/2026-05-17.md:356:356": {
+      "key": "memory:memory/2026-05-17.md:356:356",
+      "path": "memory/2026-05-17.md",
+      "startLine": 356,
+      "endLine": 356,
+      "source": "memory",
+      "snippet": "改进目标: 将每日反思报告从\"空洞套话\"改进为\"具体、有深度、可执行\"的反思记录。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "改进",
+        "目标",
+        "每日",
+        "报告",
+        "空洞",
+        "套话",
+        "具体",
+        "深度"
+      ]
+    },
+    "memory:memory/2026-05-17.md:362:362": {
+      "key": "memory:memory/2026-05-17.md:362:362",
+      "path": "memory/2026-05-17.md",
+      "startLine": 362,
+      "endLine": 362,
+      "source": "memory",
+      "snippet": "从空洞→具体: **Before:**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "空洞",
+        "具体"
+      ]
+    },
+    "memory:memory/2026-05-17.md:363:365": {
+      "key": "memory:memory/2026-05-17.md:363:365",
+      "path": "memory/2026-05-17.md",
+      "startLine": 363,
+      "endLine": 365,
+      "source": "memory",
+      "snippet": "从空洞→具体: ❌ \"未充分准备，考虑不周全\"; ❌ \"需要改进\"; ❌ \"可以更好\"",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "空洞",
+        "具体",
+        "充分",
+        "准备",
+        "考虑不周",
+        "需要",
+        "改进",
+        "可以"
+      ]
+    },
+    "memory:memory/2026-05-17.md:367:367": {
+      "key": "memory:memory/2026-05-17.md:367:367",
+      "path": "memory/2026-05-17.md",
+      "startLine": 367,
+      "endLine": 367,
+      "source": "memory",
+      "snippet": "从空洞→具体: **After:**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "空洞",
+        "具体"
+      ]
+    },
+    "memory:memory/2026-05-17.md:368:370": {
+      "key": "memory:memory/2026-05-17.md:368:370",
+      "path": "memory/2026-05-17.md",
+      "startLine": 368,
+      "endLine": 370,
+      "source": "memory",
+      "snippet": "从空洞→具体: ✅ \"工作目录不一致（/root vs /home/openclaw）导致路径混乱\"; ✅ \"定时任...; 💻 **14:19** # Reflections Log",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "home/openclaw",
+        "空洞",
+        "具体",
+        "工作",
+        "目录",
+        "不一致",
+        "root",
+        "home"
+      ]
+    },
+    "memory:memory/2026-05-17.md:372:372": {
+      "key": "memory:memory/2026-05-17.md:372:372",
+      "path": "memory/2026-05-17.md",
+      "startLine": 372,
+      "endLine": 372,
+      "source": "memory",
+      "snippet": "从空洞→具体: > Most recent first. Archive monthly to `archive/YYYY-MM.md`.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "archive/yyyy-mm.md",
+        "空洞",
+        "具体",
+        "recent",
+        "first",
+        "archive",
+        "monthly",
+        "yyyy"
+      ]
+    },
+    "memory:memory/2026-05-17.md:377:378": {
+      "key": "memory:memory/2026-05-17.md:377:378",
+      "path": "memory/2026-05-17.md",
+      "startLine": 377,
+      "endLine": 378,
+      "source": "memory",
+      "snippet": "2026-04-23 | technical: **Type:** improve | **Level:** P2一般 **Miss:** /root/.openclaw/workspace/knowledge/inbox...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "technical",
+        "type",
+        "improve",
+        "level",
+        "一般",
+        "miss",
+        "root",
+        "openclaw"
+      ]
+    },
+    "memory:memory/2026-05-17.md:379:379": {
+      "key": "memory:memory/2026-05-17.md:379:379",
+      "path": "memory/2026-05-17.md",
+      "startLine": 379,
+      "endLine": 379,
+      "source": "memory",
+      "snippet": "2026-04-23 | technical: 💻 **14:19** ---",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "technical"
+      ]
+    },
+    "memory:memory/2026-05-17.md:381:383": {
+      "key": "memory:memory/2026-05-17.md:381:383",
+      "path": "memory/2026-05-17.md",
+      "startLine": 381,
+      "endLine": 383,
+      "source": "memory",
+      "snippet": "2026-04-23 | technical: \"source\": \"memory\", \"date\": \"2026-03-20\", \"tags\": [",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "technical",
+        "source",
+        "date",
+        "tags"
+      ]
+    },
+    "memory:memory/2026-05-17.md:385:385": {
+      "key": "memory:memory/2026-05-17.md:385:385",
+      "path": "memory/2026-05-17.md",
+      "startLine": 385,
+      "endLine": 385,
+      "source": "memory",
+      "snippet": "2026-04-23 | technical: \"productivity\",",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "technical",
+        "productivity"
+      ]
+    },
+    "memory:memory/2026-05-17.md:388:389": {
+      "key": "memory:memory/2026-05-17.md:388:389",
+      "path": "memory/2026-05-17.md",
+      "startLine": 388,
+      "endLine": 389,
+      "source": "memory",
+      "snippet": "2026-04-23 | technical: \"created_at\": \"2026-03-21T12:07:05.585579\", \"status\": \"pending_review\"",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "created-at",
+        "2026-03-21t12",
+        "05.585579",
+        "pending-review",
+        "technical",
+        "21t12",
+        "status"
+      ]
+    },
+    "memory:memory/2026-05-17.md:394:394": {
+      "key": "memory:memory/2026-05-17.md:394:394",
+      "path": "memory/2026-05-17.md",
+      "startLine": 394,
+      "endLine": 394,
+      "source": "memory",
+      "snippet": "记忆归档...: 💻 **14:23** [feature-52273 b0864a1] chore: 知识库整理 - 清理僵尸数据、归档inbox、标准化目录结构",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "feature-52273",
+        "记忆",
+        "归档",
+        "feature",
+        "b0864a1",
+        "chore",
+        "知识",
+        "整理"
+      ]
+    },
+    "memory:memory/2026-05-17.md:395:397": {
+      "key": "memory:memory/2026-05-17.md:395:397",
+      "path": "memory/2026-05-17.md",
+      "startLine": 395,
+      "endLine": 397,
+      "source": "memory",
+      "snippet": "记忆归档...: 361 files changed, 2547 insertions(+), 71915 deletions(-) delete mode 100644 agents/scheduler/.openclaw/workspace-state.json delete mod...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "agents/scheduler",
+        "openclaw/workspace-state.json",
+        "记忆",
+        "归档",
+        "changed",
+        "insertions",
+        "deletions",
+        "delete"
+      ]
+    },
+    "memory:memory/2026-05-17.md:398:398": {
+      "key": "memory:memory/2026-05-17.md:398:398",
+      "path": "memory/2026-05-17.md",
+      "startLine": 398,
+      "endLine": 398,
+      "source": "memory",
+      "snippet": "记忆归档...: 💻 **14:33** 现在全貌清晰了。以下是我的分析和方案：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "记忆",
+        "归档",
+        "现在",
+        "全貌",
+        "清晰",
+        "以下",
+        "我的",
+        "分析"
+      ]
+    },
+    "memory:memory/2026-05-17.md:406:406": {
+      "key": "memory:memory/2026-05-17.md:406:406",
+      "path": "memory/2026-05-17.md",
+      "startLine": 406,
+      "endLine": 406,
+      "source": "memory",
+      "snippet": "核心问题：分类维度混乱，不 MECE: 当前知识库的一级目录混合了三种分类维度：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "核心",
+        "问题",
+        "分类",
+        "混乱",
+        "mece",
+        "当前",
+        "知识",
+        "目录"
+      ]
+    },
+    "memory:memory/2026-05-17.md:408:411": {
+      "key": "memory:memory/2026-05-17.md:408:411",
+      "path": "memory/2026-05-17.md",
+      "startLine": 408,
+      "endLine": 411,
+      "source": "memory",
+      "snippet": "核心问题：分类维度混乱，不 MECE: | 维度 | 目录 | 问题 | |------|------|------| | **按领域** | work, tech, finance | ✅ 这是正确的维度 | | **按性质** | lessons, security...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "核心",
+        "问题",
+        "分类",
+        "混乱",
+        "mece",
+        "目录",
+        "领域",
+        "tech"
+      ]
+    },
+    "memory:memory/2026-05-17.md:412:412": {
+      "key": "memory:memory/2026-05-17.md:412:412",
+      "path": "memory/2026-05-17.md",
+      "startLine": 412,
+      "endLine": 412,
+      "source": "memory",
+      "snippet": "核心问题：分类维度混乱，不 MECE: 📱 **12:39** 📊 小助工作日报 - 2026年05月16日",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "核心",
+        "问题",
+        "分类",
+        "混乱",
+        "mece",
+        "工作",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-05-17.md:414:414": {
+      "key": "memory:memory/2026-05-17.md:414:414",
+      "path": "memory/2026-05-17.md",
+      "startLine": 414,
+      "endLine": 414,
+      "source": "memory",
+      "snippet": "核心问题：分类维度混乱，不 MECE: 📊 小助工作日报 - 2026-05-16",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "核心",
+        "问题",
+        "分类",
+        "混乱",
+        "mece",
+        "工作",
+        "日报"
+      ]
+    },
+    "memory:memory/2026-05-17.md:417:419": {
+      "key": "memory:memory/2026-05-17.md:417:419",
+      "path": "memory/2026-05-17.md",
+      "startLine": 417,
+      "endLine": 419,
+      "source": "memory",
+      "snippet": "核心问题：分类维度混乱，不 MECE: 定时任务：0 项执行; 磁盘/内存：未获取到具体状态; 异常：共记录 10 条错误。主要包含进程被 SIGTERM 终止（Exec failed）、Certbot 域名证书验证失败，以及 skillhub 插件未找到告警。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "磁盘/内存",
+        "核心",
+        "问题",
+        "分类",
+        "混乱",
+        "mece",
+        "任务",
+        "执行"
+      ]
+    },
+    "memory:memory/2026-05-17.md:422:422": {
+      "key": "memory:memory/2026-05-17.md:422:422",
+      "path": "memory/2026-05-17.md",
+      "startLine": 422,
+      "endLine": 422,
+      "source": "memory",
+      "snippet": "核心问题：分类维度混乱，不 MECE: 当天主要围绕服务器环境排查与基础设施维护展开（涉及 ...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "核心",
+        "问题",
+        "分类",
+        "混乱",
+        "mece",
+        "当天",
+        "主要",
+        "围绕"
+      ]
+    },
+    "memory:memory/2026-05-17.md:423:424": {
+      "key": "memory:memory/2026-05-17.md:423:424",
+      "path": "memory/2026-05-17.md",
+      "startLine": 423,
+      "endLine": 424,
+      "source": "memory",
+      "snippet": "核心问题：分类维度混乱，不 MECE: 📱 **12:41** 针对异常的问题，进行系统性诊断，并给出优化建议，以及完整方案，经我决策后，再执行。; 📱 **12:53** 📋 月度汇总报告（4/17-5/16）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "4/17-5/16",
+        "核心",
+        "问题",
+        "分类",
+        "混乱",
+        "mece",
+        "针对",
+        "异常"
+      ]
+    },
+    "memory:memory/2026-05-17.md:427:427": {
+      "key": "memory:memory/2026-05-17.md:427:427",
+      "path": "memory/2026-05-17.md",
+      "startLine": 427,
+      "endLine": 427,
+      "source": "memory",
+      "snippet": "核心问题：分类维度混乱，不 MECE: 本月是\"基建治理与技术债清理\"的核心月。在保障AI落地推进等业务主线的同时，投入了大量精力进行系统底层治理。整体呈现\"高执行力、高试错率\"的特征，行动项完成率极高（96.5%），但系统级报错频发（超1000次），反映出前期粗放发展积累的技术债务正在集中暴露并被清理。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "96.5",
+        "核心",
+        "问题",
+        "分类",
+        "混乱",
+        "mece",
+        "基建",
+        "治理"
+      ]
+    },
+    "memory:memory/2026-05-17.md:431:431": {
+      "key": "memory:memory/2026-05-17.md:431:431",
+      "path": "memory/2026-05-17.md",
+      "startLine": 431,
+      "endLine": 431,
+      "source": "memory",
+      "snippet": "核心问题：分类维度混乱，不 MECE: 定时任务与底层治理（核心痛点）",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "核心",
+        "问题",
+        "分类",
+        "混乱",
+        "mece",
+        "任务",
+        "底层",
+        "治理"
+      ]
+    },
+    "memory:memory/2026-05-17.md:432:432": {
+      "key": "memory:memory/2026-05-17.md:432:432",
+      "path": "memory/2026-05-17.md",
+      "startLine": 432,
+      "endLine": 432,
+      "source": "memory",
+      "snippet": "核心问题：分类维度混乱，不 MECE: 从发现\"定时任务被注...",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "核心",
+        "问题",
+        "分类",
+        "混乱",
+        "mece",
+        "发现",
+        "任务"
+      ]
+    },
+    "memory:memory/2026-05-17.md:437:437": {
+      "key": "memory:memory/2026-05-17.md:437:437",
+      "path": "memory/2026-05-17.md",
+      "startLine": 437,
+      "endLine": 437,
+      "source": "memory",
+      "snippet": "🔄 复盘与改进: **做得好的：**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "改进",
+        "做得",
+        "好的"
+      ]
+    },
+    "memory:memory/2026-05-17.md:440:440": {
+      "key": "memory:memory/2026-05-17.md:440:440",
+      "path": "memory/2026-05-17.md",
+      "startLine": 440,
+      "endLine": 440,
+      "source": "memory",
+      "snippet": "🔄 复盘与改进: **需改进：**",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "改进"
+      ]
+    },
+    "memory:memory/2026-05-17.md:450:450": {
+      "key": "memory:memory/2026-05-17.md:450:450",
+      "path": "memory/2026-05-17.md",
+      "startLine": 450,
+      "endLine": 450,
+      "source": "memory",
+      "snippet": "明日计划: *生成于 08:30*",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "ca7d365d990f"
+      ],
+      "recallDays": [
+        "2026-05-17"
+      ],
+      "conceptTags": [
+        "明日",
+        "计划",
+        "生成"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:37:37": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:37:37",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 37,
+      "endLine": 37,
+      "source": "memory",
+      "snippet": "Assistant: 找到问题了。nginx.conf 中 vw.ygxpro.online 的 80 端口 server block 有 `location /.well-known/acme-challenge/` 配置，但返回 403。看看 nginx 是否有全局限制。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "nginx.conf",
+        "vw.ygxpro.online",
+        "well-known/acme-challenge",
+        "assistant",
+        "找到",
+        "问题",
+        "server",
+        "block"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:38:38": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:38:38",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 38,
+      "endLine": 38,
+      "source": "memory",
+      "snippet": "Assistant: 文件权限没问题。403 可能是因为有其他 nginx 配置或默认 server 在拦截。让我检查是否有默认 server block。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "assistant",
+        "文件",
+        "权限",
+        "问题",
+        "可能是",
+        "因为",
+        "其他",
+        "nginx"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:39:39": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:39:39",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 39,
+      "endLine": 39,
+      "source": "memory",
+      "snippet": "Assistant: 有意思 — 直接 curl 测试文件返回 200，但 certbot dry-run 时返回 403。可能是之前证书是用 acme.sh 申请的（从 crontab 看 acme.sh 每天在跑），certbot 的 renewal 配置是残留的。 让我确认实际情况：",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "dry-run",
+        "acme.sh",
+        "assistant",
+        "有意思",
+        "直接",
+        "curl",
+        "测试",
+        "文件"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:40:40": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:40:40",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 40,
+      "endLine": 40,
+      "source": "memory",
+      "snippet": "Assistant: 搞清楚了。**证书实际上是由 acme.sh 通过 DNS 验证管理的**，不是 certbot。certbot 的 renewal 配置是残留废物。 现在整理修复方案给你： --- ## 修复方案 ### 1. 🔴 FRP 安全加固 **现状**：管理后台 7500 暴露公网，弱密码，无 token。 **方案**： - frps.toml 绑定 `webServer.addr = \"127.0.0.1\"`，只本地访问 - 取消注释 token 并设置强 token - FRP 客户端（NAS 等）同步更新 token ###",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "acme.sh",
+        "frps.toml",
+        "webserver.addr",
+        "127.0.0.1",
+        "assistant",
+        "搞清楚",
+        "证书",
+        "实际"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:41:41": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:41:41",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 41,
+      "endLine": 41,
+      "source": "memory",
+      "snippet": "User: System (untrusted): [2026-05-16 22:14:56 GMT+8] Exec failed (marine-p, signal SIGTERM) Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEA",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "marine-p",
+        "heartbeat.md",
+        "heartbeat-ok",
+        "user",
+        "system",
+        "untrusted",
+        "gmt",
+        "exec"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:42:42": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:42:42",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 42,
+      "endLine": 42,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:43:43": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:43:43",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 43,
+      "endLine": 43,
+      "source": "memory",
+      "snippet": "User: Sender (untrusted metadata): ```json { \"label\": \"openclaw-tui\", \"id\": \"openclaw-tui\", \"name\": \"openclaw-tui\", \"username\": \"openclaw-tui\" } ``` [Sat 2026-05-16 22:25 GMT+8] 1.第一个方案是不是对当前的frp业务有影响? 不能影响当前进行正常的业务,如有业务,需要推迟执行.先确认,发我决策后,再执行. 2.可以执行 3.可以执行. 4.可以执行.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "openclaw-tui",
+        "1.第一个方案是不是对当前的frp业务有影响",
+        "需要推迟执行.先确认",
+        "2.可以执行",
+        "3.可以执行",
+        "4.可以执行",
+        "user",
+        "sender"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:44:44": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:44:44",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 44,
+      "endLine": 44,
+      "source": "memory",
+      "snippet": "Assistant: 先确认 FRP 影响再动。同时执行 2/3/4。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "2/3/4",
+        "assistant",
+        "确认",
+        "frp",
+        "影响",
+        "同时",
+        "执行"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:45:45": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:45:45",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 45,
+      "endLine": 45,
+      "source": "memory",
+      "snippet": "Assistant: ## FRP 影响评估 FRP 当前有 **7 个在线代理**，业务正在活跃使用： | 代理 | 端口 | 今日流量 | 当前连接 | 业务 | |------|------|---------|---------|------| | vaultwarden | 3011 | 20MB 入/出 | 持续有连接 | **密码管理器，高频使用** | | vaultwarden-ws | 3012 | - | - | WebSocket | | ssh2 | 7023 | 3.3MB 出 | **2 个活跃连接** | SSH 远程 |",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "入/出",
+        "vaultwarden-ws",
+        "3.3mb",
+        "assistant",
+        "frp",
+        "影响",
+        "评估",
+        "当前"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:46:46": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:46:46",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 46,
+      "endLine": 46,
+      "source": "memory",
+      "snippet": "Assistant: /home/ygx 下还有 ~1.1G 内容。clawdbot 是旧项目（200M），code 和 python 目录需要确认。",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "home/ygx",
+        "1.1g",
+        "assistant",
+        "home",
+        "ygx",
+        "还有",
+        "内容",
+        "clawdbot"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:47:47": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:47:47",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 47,
+      "endLine": 47,
+      "source": "memory",
+      "snippet": "Assistant: ## 执行结果汇总 ### ✅ 方案 2 — certbot 残留清理 - 删除了无效的 `/etc/letsencrypt/renewal/vw.ygxpro.online.conf` - 移除了 crontab 中的 `certbot renew` 行 - 证书续期完全由 acme.sh 负责（DNS 验证，下次续期 7月13日） ### ✅ 方案 3 — 磁盘清理 - 删除 4 个废弃 Docker 容器 - 清理无用 Docker 镜像，**释放 261MB** - 删除旧备份（3月），**释放 ~15MB** - **磁盘",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "备份",
+        "acme.sh",
+        "assistant",
+        "执行",
+        "结果",
+        "方案",
+        "certbot",
+        "残留"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:48:48": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:48:48",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 48,
+      "endLine": 48,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:49:49": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:49:49",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 49,
+      "endLine": 49,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:50:50": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:50:50",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 50,
+      "endLine": 50,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:51:51": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:51:51",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 51,
+      "endLine": 51,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:52:52": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:52:52",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 52,
+      "endLine": 52,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:53:53": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:53:53",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 53,
+      "endLine": 53,
+      "source": "memory",
+      "snippet": "Assistant: HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:54:54": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:54:54",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 54,
+      "endLine": 54,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:55:55": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:55:55",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 55,
+      "endLine": 55,
+      "source": "memory",
+      "snippet": "Assistant: 所有任务未到触发时间。 HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant",
+        "所有",
+        "任务",
+        "未到",
+        "触发",
+        "时间"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:56:56": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:56:56",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 56,
+      "endLine": 56,
+      "source": "memory",
+      "snippet": "User: System: [2026-05-16 05:00:00 GMT+8] 自动归档昨日记忆到knowledge inbox: python3 /root/.openclaw/workspace/scripts/utils/auto_archive_to_inbox.py A scheduled reminder has been triggered. The reminder content is: 自动归档昨日记忆到knowledge inbox: python3 /root/.openclaw/workspace/scripts/utils",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "openclaw/workspace/scripts/utils",
+        "user",
+        "system",
+        "gmt",
+        "自动",
+        "归档",
+        "昨日",
+        "记忆"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:57:57": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:57:57",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 57,
+      "endLine": 57,
+      "source": "memory",
+      "snippet": "Assistant: NO_REPLY",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "no-reply",
+        "assistant"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:58:58": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:58:58",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 58,
+      "endLine": 58,
+      "source": "memory",
+      "snippet": "User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do n",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "heartbeat.md",
+        "heartbeat-ok",
+        "openclaw/workspace/heartbeat.md",
+        "user",
+        "read",
+        "exists",
+        "context",
+        "follow"
+      ]
+    },
+    "memory:memory/.dreams/session-corpus/2026-05-16.txt:59:59": {
+      "key": "memory:memory/.dreams/session-corpus/2026-05-16.txt:59:59",
+      "path": "memory/.dreams/session-corpus/2026-05-16.txt",
+      "startLine": 59,
+      "endLine": 59,
+      "source": "memory",
+      "snippet": "Assistant: 所有任务未到触发时间。 HEARTBEAT_OK",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.58,
+      "maxScore": 0.58,
+      "firstRecalledAt": "2026-05-18T19:00:01.811Z",
+      "lastRecalledAt": "2026-05-18T19:00:01.811Z",
+      "queryHashes": [
+        "b43f3073c69a"
+      ],
+      "recallDays": [
+        "2026-05-16"
+      ],
+      "conceptTags": [
+        "heartbeat-ok",
+        "assistant",
+        "所有",
+        "任务",
+        "未到",
+        "触发",
+        "时间"
+      ]
+    },
+    "memory:memory/2026-04-06.md:29:37": {
+      "key": "memory:memory/2026-04-06.md:29:37",
+      "path": "memory/2026-04-06.md",
+      "startLine": 29,
+      "endLine": 37,
+      "source": "memory",
+      "snippet": "- **01:01** `bcf8f252-0549-4c74-977c-78e500bb254a weekly-security-config-check`: 执行每周安全配置巡检。 - **01:01** `bcf8f252-0549-4c74-977c-78e500bb254a weekly-security-config-check`: 执行每周安全配置巡检。 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7430160857551015,
+      "maxScore": 0.7430160857551015,
+      "firstRecalledAt": "2026-05-18T23:19:39.847Z",
+      "lastRecalledAt": "2026-05-18T23:19:39.847Z",
+      "queryHashes": [
+        "8ff784701ec1"
+      ],
+      "recallDays": [
+        "2026-05-19"
+      ],
+      "conceptTags": [
+        "weekly-security-config-check",
+        "openclaw/workspace",
+        "bcf8f252",
+        "4c74",
+        "977c",
+        "78e500bb254a",
+        "weekly",
+        "security"
+      ]
+    },
+    "memory:memory/2026-04-01.md:1:21": {
+      "key": "memory:memory/2026-04-01.md:1:21",
+      "path": "memory/2026-04-01.md",
+      "startLine": 1,
+      "endLine": 21,
+      "source": "memory",
+      "snippet": "# 2026-04-01 记忆 ## 日报摘要 # 工作日报 - 2026-04-01 ## 📊 概览 - **日期**: 2026-04-01 - **本地会话**: 5 个文件, 98 条消息 - **飞书消息**: 8 条 - **定时任务**: 8 个 - **本地交互**: 0 次 - **飞书交互**: 6 次 - **错误/异常**: 31 条 ## ⏰ 定时任务执行记录 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.opencl",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.739060214535706,
+      "maxScore": 0.739060214535706,
+      "firstRecalledAt": "2026-05-18T23:19:39.847Z",
+      "lastRecalledAt": "2026-05-18T23:19:39.847Z",
+      "queryHashes": [
+        "8ff784701ec1"
+      ],
+      "recallDays": [
+        "2026-05-19"
+      ],
+      "conceptTags": [
+        "错误/异常",
+        "记忆",
+        "日报",
+        "摘要",
+        "工作",
+        "日期",
+        "本地",
+        "会话"
+      ]
+    },
+    "memory:memory/2026-04-02.md:1:21": {
+      "key": "memory:memory/2026-04-02.md:1:21",
+      "path": "memory/2026-04-02.md",
+      "startLine": 1,
+      "endLine": 21,
+      "source": "memory",
+      "snippet": "# 2026-04-02 记忆 ## 日报摘要 # 工作日报 - 2026-04-02 ## 📊 概览 - **日期**: 2026-04-02 - **本地会话**: 2 个文件, 26 条消息 - **飞书消息**: 0 条 - **定时任务**: 8 个 - **本地交互**: 0 次 - **飞书交互**: 0 次 - **错误/异常**: 0 条 ## ⏰ 定时任务执行记录 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.opencla",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.739060214535706,
+      "maxScore": 0.739060214535706,
+      "firstRecalledAt": "2026-05-18T23:19:39.847Z",
+      "lastRecalledAt": "2026-05-18T23:19:39.847Z",
+      "queryHashes": [
+        "8ff784701ec1"
+      ],
+      "recallDays": [
+        "2026-05-19"
+      ],
+      "conceptTags": [
+        "错误/异常",
+        "记忆",
+        "日报",
+        "摘要",
+        "工作",
+        "日期",
+        "本地",
+        "会话"
+      ]
+    },
+    "memory:memory/2026-04-03.md:1:21": {
+      "key": "memory:memory/2026-04-03.md:1:21",
+      "path": "memory/2026-04-03.md",
+      "startLine": 1,
+      "endLine": 21,
+      "source": "memory",
+      "snippet": "# 2026-04-03 记忆 ## 日报摘要 # 工作日报 - 2026-04-03 ## 📊 概览 - **日期**: 2026-04-03 - **本地会话**: 4 个文件, 84 条消息 - **飞书消息**: 5 条 - **定时任务**: 8 个 - **本地交互**: 0 次 - **飞书交互**: 1 次 - **错误/异常**: 25 条 ## ⏰ 定时任务执行记录 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.opencl",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.739060214535706,
+      "maxScore": 0.739060214535706,
+      "firstRecalledAt": "2026-05-18T23:19:39.847Z",
+      "lastRecalledAt": "2026-05-18T23:19:39.847Z",
+      "queryHashes": [
+        "8ff784701ec1"
+      ],
+      "recallDays": [
+        "2026-05-19"
+      ],
+      "conceptTags": [
+        "错误/异常",
+        "记忆",
+        "日报",
+        "摘要",
+        "工作",
+        "日期",
+        "本地",
+        "会话"
+      ]
+    },
+    "memory:memory/2026-04-04.md:1:21": {
+      "key": "memory:memory/2026-04-04.md:1:21",
+      "path": "memory/2026-04-04.md",
+      "startLine": 1,
+      "endLine": 21,
+      "source": "memory",
+      "snippet": "# 2026-04-04 记忆 ## 日报摘要 # 工作日报 - 2026-04-04 ## 📊 概览 - **日期**: 2026-04-04 - **本地会话**: 2 个文件, 33 条消息 - **飞书消息**: 1 条 - **定时任务**: 8 个 - **本地交互**: 0 次 - **飞书交互**: 1 次 - **错误/异常**: 5 条 ## ⏰ 定时任务执行记录 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.opencla",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.739060214535706,
+      "maxScore": 0.739060214535706,
+      "firstRecalledAt": "2026-05-18T23:19:39.847Z",
+      "lastRecalledAt": "2026-05-18T23:19:39.847Z",
+      "queryHashes": [
+        "8ff784701ec1"
+      ],
+      "recallDays": [
+        "2026-05-19"
+      ],
+      "conceptTags": [
+        "错误/异常",
+        "记忆",
+        "日报",
+        "摘要",
+        "工作",
+        "日期",
+        "本地",
+        "会话"
+      ]
+    },
+    "memory:memory/2026-04-07.md:1:21": {
+      "key": "memory:memory/2026-04-07.md:1:21",
+      "path": "memory/2026-04-07.md",
+      "startLine": 1,
+      "endLine": 21,
+      "source": "memory",
+      "snippet": "# 2026-04-07 记忆 ## 日报摘要 # 工作日报 - 2026-04-07 ## 📊 概览 - **日期**: 2026-04-07 - **本地会话**: 3 个文件, 78 条消息 - **飞书消息**: 2 条 - **定时任务**: 8 个 - **本地交互**: 0 次 - **飞书交互**: 2 次 - **错误/异常**: 9 条 ## ⏰ 定时任务执行记录 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.opencla",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.739060214535706,
+      "maxScore": 0.739060214535706,
+      "firstRecalledAt": "2026-05-18T23:19:39.847Z",
+      "lastRecalledAt": "2026-05-18T23:19:39.847Z",
+      "queryHashes": [
+        "8ff784701ec1"
+      ],
+      "recallDays": [
+        "2026-05-19"
+      ],
+      "conceptTags": [
+        "错误/异常",
+        "记忆",
+        "日报",
+        "摘要",
+        "工作",
+        "日期",
+        "本地",
+        "会话"
       ]
     }
   }

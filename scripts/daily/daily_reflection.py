@@ -529,13 +529,9 @@ def extract_action_progress(reflection_text):
     return progress
 
 
-def generate_feishu_report(date_str, reflection_text, action_items):
-    """生成飞书推送报告（精简版）"""
-    lines = [
-        f"🪞 每日反思 - {date_str}",
-        "",
-        "━━━━━━━━━━━━━━━━━━━━━",
-    ]
+def generate_feishu_card_content(date_str, reflection_text, action_items):
+    """生成飞书卡片 Markdown 内容（展示反思核心内容）"""
+    md_parts = []
 
     # 提取关键事件
     in_section = False
@@ -552,41 +548,40 @@ def generate_feishu_report(date_str, reflection_text, action_items):
                 key_events.append(line.strip().lstrip('- '))
 
     if key_events:
-        lines.append("")
-        lines.append("📌 关键事件")
+        md_parts.append("**📌 今日关键事件**")
         for event in key_events[:4]:
-            lines.append(f"• {event}")
+            md_parts.append(f"- {event}")
+        md_parts.append("")
 
-    # 提取反思点标题
-    reflection_points = re.findall(r'#### 反思点 \d+：(.+)', reflection_text)
+    # 提取每个反思点：标题 + 根因摘要 + 改进动作
+    sections = re.split(r'#### 反思点 \d+[：：]', reflection_text)
+    for i, section in enumerate(sections[1:], 1):
+        title = section.split('\n')[0].strip()
+        md_parts.append(f"**🔮 反思{i}：{title}**")
 
-    if reflection_points:
-        lines.append("")
-        lines.append("🔮 反思要点")
-        for i, point in enumerate(reflection_points, 1):
-            lines.append(f"{i}. {point}")
+        # 提取根因（取“为什么”链的第一层）
+        root_matches = re.findall(r'为什么[^？?]*[？?]\s*(.{20,200})', section)
+        if root_matches:
+            root_text = root_matches[0].strip().rstrip('，。')
+            md_parts.append(f"  根因：{root_text}")
+
+        # 提取改进动作
+        fix_match = re.search(r'\*\*可执行改进\*\*[：：]?\s*(.{20,200})', section)
+        if fix_match:
+            fix_text = fix_match.group(1).strip().rstrip('，。')
+            md_parts.append(f"  改进：{fix_text}")
+
+        md_parts.append("")
 
     # 行动项
     if action_items:
-        lines.append("")
-        lines.append("✅ 行动项")
-        for i, item in enumerate(action_items, 1):
-            category = classify_action_item(item)
-            # 清理分类标签避免重复显示
+        md_parts.append("**✅ 行动项**")
+        for i, item in enumerate(action_items[:5], 1):
             display = re.sub(r'^\[.+?\]\s*', '', item)
-            lines.append(f"{i}. {category} {display}")
+            md_parts.append(f"{i}. {display}")
+        md_parts.append("")
 
-    # 关键洞察
-    insight_match = re.search(r'### 关键洞察\n+(.+)', reflection_text)
-    if insight_match:
-        lines.append("")
-        lines.append(f"💡 {insight_match.group(1).strip()}")
-
-    lines.append("")
-    lines.append("━━━━━━━━━━━━━━━━━━━━━")
-    lines.append(f"📁 完整反思：{REFLECTION_DIR}/reflections.md")
-
-    return "\n".join(lines)
+    return "\n".join(md_parts)[:3500]
 
 
 def get_feishu_token():
@@ -603,24 +598,32 @@ def get_feishu_token():
         return None
 
 
-def send_feishu_message(message_text):
-    """发送消息到飞书"""
+def send_feishu_card(date_str, md_content):
+    """发送飞书卡片消息"""
     token = get_feishu_token()
     if not token:
         print("⚠️ 无法获取飞书token，跳过推送")
         return False
 
-    url = "https://open.feishu.cn/open-apis/im/v1/messages"
-    params = {"receive_id_type": "open_id"}
-    full_url = f"{url}?{urllib.parse.urlencode(params)}"
+    card = {
+        "config": {"wide_screen_mode": True},
+        "header": {
+            "title": {"tag": "plain_text", "content": f"🪞 每日反思 - {date_str}"},
+            "template": "indigo"
+        },
+        "elements": [
+            {"tag": "markdown", "content": md_content}
+        ]
+    }
 
+    url = "https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id"
     message_data = json.dumps({
         "receive_id": FEISHU_USER_ID,
-        "msg_type": "text",
-        "content": json.dumps({"text": message_text})
-    }).encode()
+        "msg_type": "interactive",
+        "content": json.dumps(card, ensure_ascii=False)
+    }, ensure_ascii=False).encode()
 
-    req = urllib.request.Request(full_url, data=message_data, headers={
+    req = urllib.request.Request(url, data=message_data, headers={
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json"
     }, method="POST")
@@ -629,7 +632,7 @@ def send_feishu_message(message_text):
         with urllib.request.urlopen(req, timeout=10) as response:
             result = json.loads(response.read().decode())
             if result.get("code") == 0:
-                print(f"  ✅ 飞书报告发送成功")
+                print(f"  ✅ 飞书卡片发送成功")
                 return True
             else:
                 print(f"  ⚠️ 飞书发送失败: {result.get('msg')}")
@@ -699,10 +702,13 @@ def main():
     if progress or ai_progress:
         print(f"  📊 行动项进展检查: {len(progress)} 项待跟踪")
 
-    # 8. 生成并发送飞书报告
-    print("📱 生成飞书报告...")
-    report = generate_feishu_report(date_str, reflection_text, action_items)
-    send_feishu_message(report)
+    # 8. 生成并发送飞书卡片报告
+    print("📱 生成飞书卡片...")
+    md_content = generate_feishu_card_content(date_str, reflection_text, action_items)
+    if md_content:
+        send_feishu_card(date_str, md_content)
+    else:
+        send_feishu_card(date_str, "反思内容生成异常，请查看完整文件。")
 
     print("🎉 反思完成!")
 
