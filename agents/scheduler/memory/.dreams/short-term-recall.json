@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-19T20:00:37.318Z",
+  "entries": {
+    "memory:memory/2026-05-20.md:9:9": {
+      "key": "memory:memory/2026-05-20.md:9:9",
+      "path": "memory/2026-05-20.md",
+      "startLine": 9,
+      "endLine": 9,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-19T20:00:36.782Z",
+      "lastRecalledAt": "2026-05-19T20:00:36.782Z",
+      "queryHashes": [
+        "d633e8f17da8"
+      ],
+      "recallDays": [
+        "2026-05-20",
+        "2026-05-19"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-05-20.md:12:12": {
+      "key": "memory:memory/2026-05-20.md:12:12",
+      "path": "memory/2026-05-20.md",
+      "startLine": 12,
+      "endLine": 12,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: No strong candidate truths surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-19T20:00:36.782Z",
+      "lastRecalledAt": "2026-05-19T20:00:36.782Z",
+      "queryHashes": [
+        "d633e8f17da8"
+      ],
+      "recallDays": [
+        "2026-05-20",
+        "2026-05-19"
+      ],
+      "conceptTags": [
+        "possible",
+        "lasting",
+        "truths",
+        "strong",
+        "candidate",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-05-20.md:18:18": {
+      "key": "memory:memory/2026-05-20.md:18:18",
+      "path": "memory/2026-05-20.md",
+      "startLine": 18,
+      "endLine": 18,
+      "source": "memory",
+      "snippet": "Reflections: No strong patterns surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-19T20:00:36.782Z",
+      "lastRecalledAt": "2026-05-19T20:00:36.782Z",
+      "queryHashes": [
+        "d633e8f17da8"
+      ],
+      "recallDays": [
+        "2026-05-20",
+        "2026-05-19"
+      ],
+      "conceptTags": [
+        "reflections",
+        "strong",
+        "patterns",
+        "surfaced"
+      ]
+    },
+    "memory:memory/2026-05-20.md:21:21": {
+      "key": "memory:memory/2026-05-20.md:21:21",
+      "path": "memory/2026-05-20.md",
+      "startLine": 21,
+      "endLine": 21,
+      "source": "memory",
+      "snippet": "Possible Lasting Truths: No strong candidate truths surfaced.",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-19T20:00:36.782Z",
+      "lastRecalledAt": "2026-05-19T20:00:36.782Z",
+      "queryHashes": [
+        "d633e8f17da8"
+      ],
+      "recallDays": [
+        "2026-05-20",
+        "2026-05-19"
+      ],
+      "conceptTags": [
+        "possible",
+        "lasting",
+        "truths",
+        "strong",
+        "candidate",
+        "surfaced"
+      ]
+    }
+  }
+}
