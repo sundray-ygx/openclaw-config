@@ -32,3 +32,8 @@
 [main/sessions/cb59ed6d-614e-49f5-92b3-a93db226a7ac.jsonl#L236] Assistant: 现在改造飞书推送，从纯文本改为富文本卡片，展示更多实质内容：
 [main/sessions/cb59ed6d-614e-49f5-92b3-a93db226a7ac.jsonl#L244] Assistant: 让我换一种方式——直接读取整个文件并写回修改后的版本。
 [main/sessions/cb59ed6d-614e-49f5-92b3-a93db226a7ac.jsonl#L252] Assistant: 现在我有了完整的文件内容。直接写一个新的尾部来替换旧的飞书推送和主函数：
+[main/sessions/cb59ed6d-614e-49f5-92b3-a93db226a7ac.jsonl.reset.2026-05-20T00-08-43.313Z#L258] Assistant: 现在改 `send_feishu_message` 为卡片版，以及 main 中的调用：
+[main/sessions/cb59ed6d-614e-49f5-92b3-a93db226a7ac.jsonl.reset.2026-05-20T00-08-43.313Z#L260] Assistant: 现在用昨天的数据测试一下：
+[main/sessions/cb59ed6d-614e-49f5-92b3-a93db226a7ac.jsonl.reset.2026-05-20T00-08-43.313Z#L262] Assistant: ✅ 已修复并测试通过。改动总结： **问题诊断：** - V3反思脚本本身**已经在正确运行**，内容有深度（根因分析、可执行改进都有） - 问题出在**飞书推送**：旧版用纯文本推送，只显示"🔮 反思要点"的标题，看不到根因和改进 **修复内容：** 1. `generate_feishu_report` → 改为 `generate_feishu_card_content`，展示：关键事件 + 每个反思点的根因摘要 + 改进动作 + 行动项 2. `send_fei
+[main/sessions/325a9a12-4c8e-4ac9-b4f7-533758151f75.jsonl#L3098] User: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK. When reading HEARTBEAT.md, use workspace file /root/.openclaw/workspace/HEARTBEAT.md (exact case). Do 
+[main/sessions/325a9a12-4c8e-4ac9-b4f7-533758151f75.jsonl#L3099] Assistant: HEARTBEAT_OK
