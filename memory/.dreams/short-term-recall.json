@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-20T20:00:17.622Z",
+  "updatedAt": "2026-05-21T19:00:01.875Z",
   "entries": {
     "memory:memory/2026-03-25.md:1:35": {
       "key": "memory:memory/2026-03-25.md:1:35",
@@ -234018,14 +234018,14 @@
       "startLine": 348,
       "endLine": 351,
       "source": "memory",
-      "snippet": "Reflections: Theme: `assistant` kept surfacing across 338 memories.; confidence: 0.80; evidence: memory/.dreams/session-corpus/2026-05-11.txt:118-118, memory/.dreams/session-corpus/2026-05-11.txt:119-119, memory/.dreams/session-corpus/2026-05-11.txt:120-120; note: reflection",
+      "snippet": "Reflections: Theme: `assistant` kept surfacing across 352 memories.; confidence: 0.80; evidence: memory/.dreams/session-corpus/2026-05-11.txt:118-118, memory/.dreams/session-corpus/2026-05-11.txt:119-119, memory/.dreams/session-corpus/2026-05-11.txt:120-120; note: reflection",
       "recallCount": 0,
       "dailyCount": 1,
       "groundedCount": 0,
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-05-20T20:00:01.322Z",
-      "lastRecalledAt": "2026-05-20T20:00:01.322Z",
+      "lastRecalledAt": "2026-05-21T19:00:01.875Z",
       "queryHashes": [
         "f698e45e49cd"
       ],
@@ -234057,7 +234057,7 @@
       "totalScore": 0.62,
       "maxScore": 0.62,
       "firstRecalledAt": "2026-05-20T20:00:01.322Z",
-      "lastRecalledAt": "2026-05-20T20:00:01.322Z",
+      "lastRecalledAt": "2026-05-21T19:00:01.875Z",
       "queryHashes": [
         "f698e45e49cd"
       ],
@@ -234422,6 +234422,37 @@
       "conceptTags": [
         "heartbeat-ok",
         "assistant"
+      ]
+    },
+    "memory:memory/2026-05-21.md:360:362": {
+      "key": "memory:memory/2026-05-21.md:360:362",
+      "path": "memory/2026-05-21.md",
+      "startLine": 360,
+      "endLine": 362,
+      "source": "memory",
+      "snippet": "[INFRASTRUCTURE] Nginx 反代配置 - 4 个服务上线: **结论**: 新增 nas/bill/pan/webdav 4个子域名 HTTPS 反代，全部验证通过; **文件变更**: /etc/nginx/conf.d/{nas,bill,pan,webdav}.conf（新建）; **标签**: #nginx #infrastructure #https",
+      "recallCount": 0,
+      "dailyCount": 1,
+      "groundedCount": 0,
+      "totalScore": 0.62,
+      "maxScore": 0.62,
+      "firstRecalledAt": "2026-05-21T19:00:01.875Z",
+      "lastRecalledAt": "2026-05-21T19:00:01.875Z",
+      "queryHashes": [
+        "f698e45e49cd"
+      ],
+      "recallDays": [
+        "2026-05-21"
+      ],
+      "conceptTags": [
+        "nas/bill/pan/webdav",
+        "etc/nginx/conf.d",
+        "infrastructure",
+        "nginx",
+        "配置",
+        "服务",
+        "上线",
+        "结论"
       ]
     }
   }

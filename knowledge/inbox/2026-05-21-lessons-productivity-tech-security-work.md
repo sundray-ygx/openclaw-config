@@ -1,3 +1,34 @@
+---
+{
+  "source": "memory",
+  "date": "2026-05-21",
+  "tags": [
+    "lessons",
+    "productivity",
+    "tech",
+    "security",
+    "work"
+  ],
+  "created_at": "2026-05-22T05:00:12.240149",
+  "status": "pending_review"
+}
+---
+
+# 记忆归档 - 2026-05-21
+
+**自动标签**: lessons, productivity, tech, security, work
+
+**建议归档位置**:
+- lessons
+- productivity
+- tech
+- security
+- work
+
+---
+
+## 原始内容
+
 ## Light Sleep
 <!-- openclaw:dreaming:light:start -->
 - Candidate: Reflections: Theme: `assistant` kept surfacing across 338 memories.; confidence: 0.80; evidence: memory/.dreams/session-corpus/2026-05-11.txt:118-118, memory/.dreams/session-corpus/2026-05-11.txt:119-119, memory/.dreams/session-corpus/2026-05-11.txt:120-120; note: reflection
@@ -352,14 +383,22 @@
 
 ### Possible Lasting Truths
 - - **01:01** `bcf8f252-0549-4c74-977c-78e500bb254a weekly-security-config-check`: 执行每周安全配置巡检。 - **01:01** `bcf8f252-0549-4c74-977c-78e500bb254a weekly-security-config-check`: 执行每周安全配置巡检。 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/ [confidence=0.66 evidence=memory/2026-04-06.md:29-37]
-- # 2026-04-01 记忆 ## 日报摘要
-## 系统运行
-系统存在 6 项异常提示（含 3 个配置警告、1 个脚本及 2 个 API 类异常），均集中在 ECS 证书与 Nginx 配置环节；系统资源状态未知。
+- # 2026-04-01 记忆 ## 日报摘要 # 工作日报 - 2026-04-01 ## 📊 概览 - **日期**: 2026-04-01 - **本地会话**: 5 个文件, 98 条消息 - **飞书消息**: 8 条 - **定时任务**: 8 个 - **本地交互**: 0 次 - **飞书交互**: 6 次 - **错误/异常**: 31 条 ## ⏰ 定时任务执行记录 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.opencl [confidence=0.65 evidence=memory/2026-04-01.md:1-21]
+- # 2026-04-02 记忆 ## 日报摘要 # 工作日报 - 2026-04-02 ## 📊 概览 - **日期**: 2026-04-02 - **本地会话**: 2 个文件, 26 条消息 - **飞书消息**: 0 条 - **定时任务**: 8 个 - **本地交互**: 0 次 - **飞书交互**: 0 次 - **错误/异常**: 0 条 ## ⏰ 定时任务执行记录 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.opencla [confidence=0.65 evidence=memory/2026-04-02.md:1-21]
+<!-- openclaw:dreaming:rem:end -->
 
-## 工作总结
-- • 查阅并梳理了基础设施相关的技术文档 [本地]
-- • 推进 `*.ygxpro.online` 通配符 SSL 证书申请与 Console 域名配置工作 [本地]
-- • 为新增的 4 个服务编写并配置了 Nginx 反向代理 [本地]
+### [INFRASTRUCTURE] Nginx 反代配置 - 4 个服务上线
+- **结论**: 新增 nas/bill/pan/webdav 4个子域名 HTTPS 反代，全部验证通过
+- **文件变更**: /etc/nginx/conf.d/{nas,bill,pan,webdav}.conf（新建）
+- **标签**: #nginx #infrastructure #https
 
-## 问题与风险
-- • SSL 证书申请与 Nginx 反代配置过程中触发了 6
+
+---
+
+## 人工整理说明
+
+1. 阅读以上内容
+2. 确认标签是否准确
+3. 移动到对应目录: `knowledge/{category}/`
+4. 重命名为: `YYYY-MM-DD-title.md`
+5. 删除此 inbox 文件
