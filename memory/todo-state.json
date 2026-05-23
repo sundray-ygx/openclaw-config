@@ -337,6 +337,36 @@
       "description": "⚙️配置 .  每周安全配置巡检运行了（`bcf8f252-0549-4c74-977c-78e500bb254a weekly-security-config-check`）。",
       "source": "daily_reflection",
       "ref_date": "2026-05-20"
+    },
+    {
+      "id": "2026-05-22-action-0",
+      "title": "[反思行动] .  **分析具体事件（2026-05-22）：**",
+      "remind_time": "2026-05-24T08:45:42+08:00",
+      "status": "⏳ 待提醒",
+      "created_at": "2026-05-23T08:45:42+08:00",
+      "description": "📋流程 .  **分析具体事件（2026-05-22）：**",
+      "source": "daily_reflection",
+      "ref_date": "2026-05-22"
+    },
+    {
+      "id": "2026-05-22-action-1",
+      "title": "[反思行动] .  **起草反思（连问3个为什么）：**",
+      "remind_time": "2026-05-24T08:45:42+08:00",
+      "status": "⏳ 待提醒",
+      "created_at": "2026-05-23T08:45:42+08:00",
+      "description": "📋流程 .  **起草反思（连问3个为什么）：**",
+      "source": "daily_reflection",
+      "ref_date": "2026-05-22"
+    },
+    {
+      "id": "2026-05-22-action-2",
+      "title": "[反思行动] .  **格式化输出：**",
+      "remind_time": "2026-05-24T08:45:42+08:00",
+      "status": "⏳ 待提醒",
+      "created_at": "2026-05-23T08:45:42+08:00",
+      "description": "📋流程 .  **格式化输出：**",
+      "source": "daily_reflection",
+      "ref_date": "2026-05-22"
     }
   ]
 }

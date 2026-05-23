@@ -614,6 +614,33 @@
       "created_at": "2026-05-20",
       "source": "daily_reflection",
       "check_count": 1
+    },
+    {
+      "id": "2026-05-22-action-0",
+      "text": ".  **分析具体事件（2026-05-22）：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-22",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-22-action-1",
+      "text": ".  **起草反思（连问3个为什么）：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-22",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-22-action-2",
+      "text": ".  **格式化输出：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-22",
+      "source": "daily_reflection",
+      "check_count": 1
     }
   ]
 }
