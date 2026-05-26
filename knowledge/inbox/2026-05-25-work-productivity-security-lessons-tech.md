@@ -1,3 +1,34 @@
+---
+{
+  "source": "memory",
+  "date": "2026-05-25",
+  "tags": [
+    "work",
+    "productivity",
+    "security",
+    "lessons",
+    "tech"
+  ],
+  "created_at": "2026-05-26T05:00:23.333019",
+  "status": "pending_review"
+}
+---
+
+# 记忆归档 - 2026-05-25
+
+**自动标签**: work, productivity, security, lessons, tech
+
+**建议归档位置**:
+- work
+- productivity
+- security
+- lessons
+- tech
+
+---
+
+## 原始内容
+
 ## Light Sleep
 <!-- openclaw:dreaming:light:start -->
 - Candidate: Reflections: Theme: `assistant` kept surfacing across 321 memories.; confidence: 0.76; evidence: memory/.dreams/session-corpus/2026-05-13.txt:38-38, memory/.dreams/session-corpus/2026-05-13.txt:39-39, memory/.dreams/session-corpus/2026-05-13.txt:40-40; note: reflection
@@ -218,17 +249,12 @@
 <!-- openclaw:dreaming:light:end -->
 
 
-## 日报摘要 (V11)
-## 系统运行
-系统存在 5 处底层异常（4个配置类警告，1个脚本报错），磁盘与内存状态暂未获取。
+---
 
-## 工作总结
-- • 梳理并分析了“收租(13B402)”和“缴租(16A503)”两个账单定时任务的业务机制与运行逻辑。 [本地]
-- • 针对 NAS 每日备份连续多日无推送的问题，制定了系统级的排查方案，并统筹规划了全盘定时任务与系统状态的诊断优化流程，已提交决策待确认后执行。 [飞书]
+## 人工整理说明
 
-## 问题与风险
-- NAS 备份推送机制已失效，需尽快按规划方案介入修复以避免数据丢失风险。
-- 系统现有 4 个配置警告与 1 个脚本报错（涉及 16A503 缴租提醒脚本），需在后续系统性诊断中集中处理。
-
-## 一句话日报
-重点梳理了账单定时任务的运行逻辑，并针对 NAS 备份失效及系统多处异常制定了待执行的系统性诊断与修复方案。
+1. 阅读以上内容
+2. 确认标签是否准确
+3. 移动到对应目录: `knowledge/{category}/`
+4. 重命名为: `YYYY-MM-DD-title.md`
+5. 删除此 inbox 文件
