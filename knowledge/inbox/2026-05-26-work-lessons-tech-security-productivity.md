@@ -1,3 +1,34 @@
+---
+{
+  "source": "memory",
+  "date": "2026-05-26",
+  "tags": [
+    "work",
+    "lessons",
+    "tech",
+    "security",
+    "productivity"
+  ],
+  "created_at": "2026-05-27T05:00:24.487620",
+  "status": "pending_review"
+}
+---
+
+# 记忆归档 - 2026-05-26
+
+**自动标签**: work, lessons, tech, security, productivity
+
+**建议归档位置**:
+- work
+- lessons
+- tech
+- security
+- productivity
+
+---
+
+## 原始内容
+
 ## Light Sleep
 <!-- openclaw:dreaming:light:start -->
 - Candidate: Reflections: Theme: `assistant` kept surfacing across 258 memories.; confidence: 0.78; evidence: memory/.dreams/session-corpus/2026-05-16.txt:37-37, memory/.dreams/session-corpus/2026-05-16.txt:38-38, memory/.dreams/session-corpus/2026-05-16.txt:39-39; note: reflection
@@ -322,15 +353,17 @@
 
 ### Possible Lasting Truths
 - - **01:01** `bcf8f252-0549-4c74-977c-78e500bb254a weekly-security-config-check`: 执行每周安全配置巡检。 - **01:01** `bcf8f252-0549-4c74-977c-78e500bb254a weekly-security-config-check`: 执行每周安全配置巡检。 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/ [confidence=0.66 evidence=memory/2026-04-06.md:29-37]
-- # 2026-04-01 记忆 ## 日报摘要
-## 系统运行
-系统运行平稳，但后台捕获到 3 处 Config 配置警告，整体未见其他阻断性异常。
+- # 2026-04-01 记忆 ## 日报摘要 # 工作日报 - 2026-04-01 ## 📊 概览 - **日期**: 2026-04-01 - **本地会话**: 5 个文件, 98 条消息 - **飞书消息**: 8 条 - **定时任务**: 8 个 - **本地交互**: 0 次 - **飞书交互**: 6 次 - **错误/异常**: 31 条 ## ⏰ 定时任务执行记录 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.opencl [confidence=0.65 evidence=memory/2026-04-01.md:1-21]
+- # 2026-04-02 记忆 ## 日报摘要 # 工作日报 - 2026-04-02 ## 📊 概览 - **日期**: 2026-04-02 - **本地会话**: 2 个文件, 26 条消息 - **飞书消息**: 0 条 - **定时任务**: 8 个 - **本地交互**: 0 次 - **飞书交互**: 0 次 - **错误/异常**: 0 条 ## ⏰ 定时任务执行记录 - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py - **00:46** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.opencla [confidence=0.65 evidence=memory/2026-04-02.md:1-21]
+<!-- openclaw:dreaming:rem:end -->
 
-## 工作总结
-- • 全天无实际业务交互与工作推进记录 [本地/飞书]
 
-## 问题与风险
-- **后台配置警告**：系统产生 3 项 Config 类警告，可能存在参数缺失或配置不规范，建议后续排查以免影响功能调用。
+---
 
-## 一句话日报
-今日系统无实质业务操作，整体处于闲置状态，仅有少量后台配置警告需择日排查。
+## 人工整理说明
+
+1. 阅读以上内容
+2. 确认标签是否准确
+3. 移动到对应目录: `knowledge/{category}/`
+4. 重命名为: `YYYY-MM-DD-title.md`
+5. 删除此 inbox 文件

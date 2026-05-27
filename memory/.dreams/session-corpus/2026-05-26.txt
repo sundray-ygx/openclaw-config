@@ -1,0 +1,4 @@
+[main/sessions/39edbbb7-4189-4028-85d4-83a4e6f584a4.jsonl#L265] User: System: [2026-05-26 23:30:00 GMT+8] 执行GitHub同步: cd /root/.openclaw/workspace && ./scripts/sync-to-github.sh A scheduled reminder has been triggered. The reminder content is: 执行GitHub同步: cd /root/.openclaw/workspace && ./scripts/sync-to-github.sh Handle this reminder interna
+[main/sessions/39edbbb7-4189-4028-85d4-83a4e6f584a4.jsonl#L268] Assistant: NO_REPLY
+[main/sessions/eb9dcdba-2cbc-4f68-8a1c-c98e3b8dcec1.jsonl#L44] User: System: [2026-05-26 08:30:00 GMT+8] 运行日报脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_report.py A scheduled reminder has been triggered. The reminder content is: 运行日报脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_report.py Please relay this reminder t
+[main/sessions/eb9dcdba-2cbc-4f68-8a1c-c98e3b8dcec1.jsonl#L47] Assistant: NO_REPLY
