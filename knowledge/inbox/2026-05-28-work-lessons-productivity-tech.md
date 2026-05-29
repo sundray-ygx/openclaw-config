@@ -1,3 +1,32 @@
+---
+{
+  "source": "memory",
+  "date": "2026-05-28",
+  "tags": [
+    "work",
+    "lessons",
+    "productivity",
+    "tech"
+  ],
+  "created_at": "2026-05-29T05:01:11.933693",
+  "status": "pending_review"
+}
+---
+
+# 记忆归档 - 2026-05-28
+
+**自动标签**: work, lessons, productivity, tech
+
+**建议归档位置**:
+- work
+- lessons
+- productivity
+- tech
+
+---
+
+## 原始内容
+
 # 2026-05-28 记忆（已维护：维护）
 
 ## 记忆维护（5/28）
@@ -36,5 +65,12 @@
 - **问题**: Cron 健康检查脚本需优化（避免调用 `openclaw cron list` CLI）
 - **标签**: #migration #optimization
 
-## 日报摘要 (V11)
-（AI 生成失败，仅保存原始数据）
+---
+
+## 人工整理说明
+
+1. 阅读以上内容
+2. 确认标签是否准确
+3. 移动到对应目录: `knowledge/{category}/`
+4. 重命名为: `YYYY-MM-DD-title.md`
+5. 删除此 inbox 文件
