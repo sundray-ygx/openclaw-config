@@ -1,3 +1,34 @@
+---
+{
+  "source": "memory",
+  "date": "2026-05-29",
+  "tags": [
+    "tech",
+    "security",
+    "productivity",
+    "work",
+    "lessons"
+  ],
+  "created_at": "2026-05-30T05:00:12.250931",
+  "status": "pending_review"
+}
+---
+
+# 记忆归档 - 2026-05-29
+
+**自动标签**: tech, security, productivity, work, lessons
+
+**建议归档位置**:
+- tech
+- security
+- productivity
+- work
+- lessons
+
+---
+
+## 原始内容
+
 ## Light Sleep
 <!-- openclaw:dreaming:light:start -->
 - Candidate: Reflections: Theme: `user` kept surfacing across 179 memories.; confidence: 1.00; evidence: memory/.dreams/session-corpus/2026-05-21.txt:1-1, memory/.dreams/session-corpus/2026-05-21.txt:9-9, memory/.dreams/session-corpus/2026-05-20.txt:20-20; note: reflection
@@ -278,19 +309,12 @@
 <!-- openclaw:dreaming:rem:end -->
 
 
-## 日报摘要 (V11)
-## 系统运行
-系统整体运行存在较多拦截和报错（共20个异常），主要涉及配置文件校验（7个）、文件编辑冲突（9个）以及命令执行拦截；此外，出现了多次模型调用超时或失败的情况，且周复盘脚本因版本依赖问题执行失败。
+---
 
-## 工作总结
-- • 完成了 DeepSeek（v4-pro、v4-flash）及火山引擎（豆包）大模型的接入与网关配置，并验证了模型可用性 [本地]
-- • 对当前已接入的各类大模型进行了多维度评测，明确了各模型的特点与适用场景 [本地]
-- • 优化了多模型路由策略：将套餐计费模型（GLM、豆包）设为优先自动匹配，按量计费模型（DeepSeek）设为手动切换，以降低使用成本 [本地]
+## 人工整理说明
 
-## 问题与风险
-- **模型调用稳定性**：今日多次出现模型调用超时或失败（`attempt failed or timed out`），可能会影响日常对话与自动化任务的执行效率。
-- **系统报错较多**：配置类（7个）和编辑类（9个）报错较频繁，部分操作因指令复杂或文件匹配问题被拦截，建议后续留意指令格式。
-- **定时任务中断**：周复盘脚本因当前 OpenClaw 版本依赖问题执行失败，需择机排查修复。
-
-## 一句话日报
-完成了 DeepSeek 与火山引擎等新模型的接入与综合评测，并基于计费成本优化了模型自动匹配策略。
+1. 阅读以上内容
+2. 确认标签是否准确
+3. 移动到对应目录: `knowledge/{category}/`
+4. 重命名为: `YYYY-MM-DD-title.md`
+5. 删除此 inbox 文件

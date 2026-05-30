@@ -668,6 +668,33 @@
       "created_at": "2026-05-28",
       "source": "daily_reflection",
       "check_count": 1
+    },
+    {
+      "id": "2026-05-29-action-0",
+      "text": ".  **评估输入数据（2026-05-29）：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-29",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-29-action-1",
+      "text": ".  **起草反思：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-29",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-29-action-2",
+      "text": ".  在 Light Sleep 处理期间，提取了 4 个主题（`user`、`heartbeat-ok`、`heartbeat.md`、`context`），但全部被赋予 0.00 置信度并保持“staged”状态。",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-29",
+      "source": "daily_reflection",
+      "check_count": 1
     }
   ]
 }

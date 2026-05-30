@@ -397,6 +397,36 @@
       "description": "📋流程 . **起草“做得好的”（亮点）：**",
       "source": "daily_reflection",
       "ref_date": "2026-05-28"
+    },
+    {
+      "id": "2026-05-29-action-0",
+      "title": "[反思行动] .  **评估输入数据（2026-05-29）：**",
+      "remind_time": "2026-05-31T08:45:51+08:00",
+      "status": "⏳ 待提醒",
+      "created_at": "2026-05-30T08:45:51+08:00",
+      "description": "📋流程 .  **评估输入数据（2026-05-29）：**",
+      "source": "daily_reflection",
+      "ref_date": "2026-05-29"
+    },
+    {
+      "id": "2026-05-29-action-1",
+      "title": "[反思行动] .  **起草反思：**",
+      "remind_time": "2026-05-31T08:45:51+08:00",
+      "status": "⏳ 待提醒",
+      "created_at": "2026-05-30T08:45:51+08:00",
+      "description": "📋流程 .  **起草反思：**",
+      "source": "daily_reflection",
+      "ref_date": "2026-05-29"
+    },
+    {
+      "id": "2026-05-29-action-2",
+      "title": "[反思行动] .  在 Light Sleep 处理期间，提取了 4 个主题（`user`、`",
+      "remind_time": "2026-05-31T08:45:51+08:00",
+      "status": "⏳ 待提醒",
+      "created_at": "2026-05-30T08:45:51+08:00",
+      "description": "📋流程 .  在 Light Sleep 处理期间，提取了 4 个主题（`user`、`heartbeat-ok`、`heartbeat.md`、`context`），但全部被赋予 0.00 置信度并保持“staged”状态。",
+      "source": "daily_reflection",
+      "ref_date": "2026-05-29"
     }
   ]
 }
