@@ -48,3 +48,16 @@ build/
 *.bak
 *.old
 agents/coding/
+
+# ===== 密钥与敏感文件防护 (2026-07-31) =====
+*.env
+.env.*
+!*.env.example
+*secret*
+*credential*
+*page-token*
+*token-store*
+*.pem
+*.key
+id_rsa*
+*.bundle
