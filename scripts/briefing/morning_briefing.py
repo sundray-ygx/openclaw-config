@@ -39,8 +39,12 @@ RSS_FEEDS = [
     {"name": "人人都是产品经理", "url": "https://www.woshipm.com/feed", "category": "📱 产品", "limit": 3},
 ]
 
-# OpenClaw 相关关键词
-OPENCLAW_KEYWORDS = ["openclaw", "OpenClaw", "AI Agent", "AI代理", "智能体", "Multi-agent", "多智能体"]
+# AI Agent 相关关键词（OpenClaw + Hermes Agent）
+AGENT_KEYWORDS = {
+    "OpenClaw": ["openclaw", "OpenClaw", "openclaw.ai", "OpenClaw Agent"],
+    "Hermes Agent": ["hermes", "Hermes", "Hermes Agent", "hermes.ai", "HermesAI", "hermes agent"],
+    "AI Agent": ["AI Agent", "AI代理", "智能体", "Multi-agent", "多智能体", "AutoGPT", "BabyAGI", "MetaGPT", "LangChain", "Devin"]
+}
 
 # 关键词筛选（AI/产品/科技相关）
 KEYWORDS_PRIORITY = ["AI", "人工智能", "大模型", "ChatGPT", "OpenAI", "产品", "发布", "上线", "新品", "科技", "创新", "融资", "字节", "阿里", "腾讯", "百度", "华为", "小米", "理想", "蔚来", "小鹏", "特斯拉", "苹果", "谷歌", "微软"]
@@ -472,16 +476,90 @@ def get_github_openclaw_news():
 
     return news
 
-def score_openclaw_article(article):
-    """根据OpenClaw关键词匹配度给文章打分"""
+def get_github_hermes_news():
+    """获取Hermes Agent GitHub最新动态"""
+    news = []
+    try:
+        # 搜索Hermes相关仓库
+        cmd = 'curl -s "https://api.github.com/search/repositories?q=hermes+agent&sort=updated&per_page=3" 2>/dev/null'
+        result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=15)
+        if result.returncode == 0 and result.stdout:
+            try:
+                data = json.loads(result.stdout.decode('utf-8'))
+                if data and 'items' in data:
+                    for repo in data['items'][:3]:
+                        news.append({
+                            "title": f"[GitHub] {repo.get('name', '')[:50]}",
+                            "url": repo.get('html_url', ''),
+                            "summary": f"⭐ {repo.get('stargazers_count', 0)} stars · {repo.get('description', '')[:80]}",
+                            "source": "GitHub",
+                            "category": "🚀 Hermes",
+                            "agent_type": "Hermes Agent",
+                            "score": 150
+                        })
+            except Exception:
+                pass
+        
+        # 搜索OpenClaw相关仓库（额外）
+        cmd = 'curl -s "https://api.github.com/search/repositories?q=openclaw&sort=updated&per_page=3" 2>/dev/null'
+        result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=15)
+        if result.returncode == 0 and result.stdout:
+            try:
+                data = json.loads(result.stdout.decode('utf-8'))
+                if data and 'items' in data:
+                    for repo in data['items'][:2]:
+                        if repo.get('full_name', '') != 'openclaw/openclaw':  # 去重
+                            news.append({
+                                "title": f"[GitHub] {repo.get('name', '')[:50]}",
+                                "url": repo.get('html_url', ''),
+                                "summary": f"⭐ {repo.get('stargazers_count', 0)} stars · {repo.get('description', '')[:80]}",
+                                "source": "GitHub",
+                                "category": "🦞 OpenClaw生态",
+                                "agent_type": "OpenClaw",
+                                "score": 180
+                            })
+            except Exception:
+                pass
+
+        # 搜索AI Agent热门仓库
+        cmd = 'curl -s "https://api.github.com/search/repositories?q=AI+agent&sort=stars&order=desc&per_page=3" 2>/dev/null'
+        result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=15)
+        if result.returncode == 0 and result.stdout:
+            try:
+                data = json.loads(result.stdout.decode('utf-8'))
+                if data and 'items' in data:
+                    for repo in data['items'][:3]:
+                        news.append({
+                            "title": f"[GitHub] {repo.get('name', '')[:50]}",
+                            "url": repo.get('html_url', ''),
+                            "summary": f"⭐ {repo.get('stargazers_count', 0)} stars · {repo.get('description', '')[:80]}",
+                            "source": "GitHub",
+                            "category": "🔬 AI Agent",
+                            "agent_type": "AI Agent",
+                            "score": 120
+                        })
+            except Exception:
+                pass
+                
+    except Exception as e:
+        print(f"  获取Hermes/AI Agent GitHub数据错误: {e}")
+
+    return news
+
+def score_agent_article(article):
+    """根据AI Agent关键词匹配度给文章打分（支持OpenClaw、Hermes等）"""
     score = 0
-    title_lower = article['title'].lower()
+    title_lower = article.get('title', '').lower()
     summary_lower = article.get('summary', '').lower()
     text = title_lower + " " + summary_lower
 
     # OpenClaw直接匹配（最高优先级）
     if 'openclaw' in text:
         score += 100
+
+    # Hermes直接匹配
+    if 'hermes' in text:
+        score += 80
 
     # AI Agent相关
     if any(kw.lower() in text for kw in ['ai agent', 'ai代理', '智能体']):
@@ -491,8 +569,12 @@ def score_openclaw_article(article):
     if any(kw.lower() in text for kw in ['multi-agent', '多智能体', 'multi agent']):
         score += 40
 
+    # Agent框架相关
+    if any(kw.lower() in text for kw in ['agent', 'framework', 'langchain', 'autogpt', 'metagpt']):
+        score += 25
+
     # 大模型相关
-    if any(kw.lower() in text for kw in ['大模型', 'llm', 'gpt', 'claude', 'ai模型']):
+    if any(kw.lower() in text for kw in ['大模型', 'llm', 'gpt', 'claude', 'ai模型', 'gemini']):
         score += 20
 
     # 自动化/工作流相关
@@ -500,37 +582,49 @@ def score_openclaw_article(article):
         score += 15
 
     # 来源权重
-    if article.get('source', '') in ['量子位', '机器之心']:
+    if article.get('source', '') in ['量子位', '机器之心', '新智元']:
         score += 10
 
     return score
 
-def get_openclaw_news():
-    """从RSS源获取OpenClaw相关资讯"""
+def get_agent_news():
+    """从RSS源获取AI Agent相关资讯（OpenClaw + Hermes Agent + 其他AI Agent）"""
     all_articles = []
 
     for feed in RSS_FEEDS:
-        print(f"  获取 {feed['name']} (OpenClaw相关)...")
+        print(f"  获取 {feed['name']} (AI Agent相关)...")
         xml = fetch_rss(feed["url"], use_proxy=False)
         if xml:
             articles = parse_rss_simple(xml, feed["name"], 10, use_summarize=False)
             for article in articles:
-                # 计算OpenClaw相关分数
-                article["score"] = score_openclaw_article({
-                    "title": article.get("title", ""),
-                    "summary": article.get("summary", "")
-                })
+                # 计算AI Agent相关分数
+                article["score"] = score_agent_article(article)
                 article["source"] = feed["name"]
                 article["category"] = feed["category"]
+                
+                # 标记Agent类型
+                text = (article.get("title", "") + " " + article.get("summary", "")).lower()
+                if "openclaw" in text:
+                    article["agent_type"] = "OpenClaw"
+                elif "hermes" in text:
+                    article["agent_type"] = "Hermes Agent"
+                else:
+                    article["agent_type"] = "AI Agent"
             all_articles.extend(articles)
 
-    # 合并GitHub新闻
-    github_news = get_github_openclaw_news()
-    all_articles.extend(github_news)
+    # 合并OpenClaw GitHub新闻
+    openclaw_github = get_github_openclaw_news()
+    for item in openclaw_github:
+        item["agent_type"] = "OpenClaw"
+    all_articles.extend(openclaw_github)
 
-    # 按分数排序，取前8条
-    all_articles.sort(key=lambda x: x["score"], reverse=True)
-    return all_articles[:8]
+    # 合并Hermes/AI Agent GitHub新闻
+    hermes_github = get_github_hermes_news()
+    all_articles.extend(hermes_github)
+
+    # 按分数排序，取前12条
+    all_articles.sort(key=lambda x: x.get("score", 0), reverse=True)
+    return all_articles[:12]
 
 # ============ 资讯 ============
 def fetch_rss(feed_url, use_proxy=False):
@@ -861,53 +955,59 @@ def generate_briefing():
                     "text": {"tag": "lark_md", "content": f"*{article['source']} {article['category']}"}
                 })
     
-    # 5. OpenClaw 相关资讯
-    print("获取OpenClaw相关资讯...")
+    # 5. AI Agent 综合资讯（OpenClaw + Hermes Agent + 其他）
+    print("获取AI Agent相关资讯...")
     elements.append({"tag": "hr"})
-    openclaw_articles = get_openclaw_news()
+    agent_articles = get_agent_news()
     
-    if not openclaw_articles:
+    if not agent_articles:
         elements.append({
             "tag": "div",
-            "text": {"tag": "lark_md", "content": "**🦞 OpenClaw 资讯** 暂无更新"}
+            "text": {"tag": "lark_md", "content": "**🤖 AI Agent 资讯** 暂无更新"}
         })
     else:
         elements.append({
             "tag": "div",
-            "text": {"tag": "lark_md", "content": f"**🦞 OpenClaw 相关资讯** {len(openclaw_articles)} 条精选"}
+            "text": {"tag": "lark_md", "content": f"**🤖 AI Agent 综合资讯** {len(agent_articles)} 条精选"}
         })
         elements.append({
             "tag": "div",
-            "text": {"tag": "lark_md", "content": "*关键词：OpenClaw、AI Agent、智能体、Multi-agent*"}
+            "text": {"tag": "lark_md", "content": "*涵盖：OpenClaw、Hermes Agent、AI Agent 框架及生态*"}
         })
         
-        current_category = ""
-        for article in openclaw_articles:
-            # 按分类分组
-            if article.get('category') and article['category'] != current_category:
-                current_category = article['category']
-                elements.append({
-                    "tag": "div",
-                    "text": {"tag": "lark_md", "content": f"**{current_category}**"}
-                })
+        # 按 Agent 类型分组展示
+        agent_types_order = ["OpenClaw", "Hermes Agent", "AI Agent"]
+        for agent_type in agent_types_order:
+            type_articles = [a for a in agent_articles if a.get('agent_type') == agent_type]
+            if not type_articles:
+                continue
             
-            # 标题和链接
+            # 类型标题
+            type_icon = {"OpenClaw": "🦞", "Hermes Agent": "🚀", "AI Agent": "🔬"}
+            icon = type_icon.get(agent_type, "🤖")
             elements.append({
                 "tag": "div",
-                "text": {"tag": "lark_md", "content": f"• [{article.get('title', '')}]({article.get('url', '')})"}
+                "text": {"tag": "lark_md", "content": f"**{icon} {agent_type}** ({len(type_articles)} 条)"}
             })
-            # 摘要和来源
-            summary = article.get('summary', '')
-            if summary:
+            
+            for article in type_articles[:5]:
+                # 标题和链接
                 elements.append({
                     "tag": "div",
-                    "text": {"tag": "lark_md", "content": f"  *{summary}* ·{article.get('source', '')}"}
+                    "text": {"tag": "lark_md", "content": f"• [{article.get('title', '')}]({article.get('url', '')})"}
                 })
-            else:
-                elements.append({
-                    "tag": "div",
-                    "text": {"tag": "lark_md", "content": f"  *{article.get('source', '')}*"}
-                })
+                # 摘要和来源
+                summary = article.get('summary', '')
+                if summary:
+                    elements.append({
+                        "tag": "div",
+                        "text": {"tag": "lark_md", "content": f"  *{summary}* ·{article.get('source', '')}"}
+                    })
+                else:
+                    elements.append({
+                        "tag": "div",
+                        "text": {"tag": "lark_md", "content": f"  *{article.get('source', '')}*"}
+                    })
     
     elements.append({"tag": "hr"})
     elements.append({

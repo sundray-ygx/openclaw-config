@@ -1,30 +1,5 @@
 # HEARTBEAT.md - 定时任务处理
 
-## 每日反思生成（每天一次，8:45 后执行）
-
-检查 `memory/heartbeat-state.json` 的 `lastDailyReflection` 字段。
-如果今天尚未执行：
-```bash
-python3 /root/.openclaw/workspace/scripts/daily/daily_reflection.py
-```
-执行后更新 `lastDailyReflection` 为今天日期。
-
-## 每周复盘（周五 18:30 后执行）
-
-检查当前是否为周五且 `lastWeeklyReview` 不是本周：
-```bash
-python3 /root/.openclaw/workspace/scripts/daily/weekly_review.py
-```
-执行后更新 `lastWeeklyReview` 为本周日期。
-
-## 每周磁盘清理（周一执行）
-
-检查当前是否为周一且 `lastDiskCleanup` 不是本周：
-```bash
-rm -rf /tmp/pip-* && find /root/.openclaw/workspace -name '__pycache__' -exec rm -rf {} + 2>/dev/null && df -h /
-```
-如果磁盘使用 > 85%，额外清理日志和临时文件。执行后更新 `lastDiskCleanup`。
-
 ## Cron 健康检查（每天一次，9:00 后执行）
 
 检查 `lastCronHealthCheck` 是否为今天。如果不是：
@@ -32,20 +7,6 @@ rm -rf /tmp/pip-* && find /root/.openclaw/workspace -name '__pycache__' -exec rm
 python3 /root/.openclaw/workspace/scripts/utils/cron_health_monitor.py
 ```
 如果有报错任务，分析原因并提醒用户。执行后更新 `lastCronHealthCheck`。
-
-## 租金提醒（每月 25 日/27 日执行）
-
-### 13B402 租金提醒
-如果今天是 25 号且 `lastRentReminder13B` 不是本月：
-发送 13B402 租金账单提醒消息给用户，内容包括水费/电费/燃气费账单收集。
-执行后更新 `lastRentReminder13B`。
-
-### 16A503 租金提醒
-如果今天是 27 号且 `lastRentReminder16A` 不是本月：
-```bash
-python3 /root/.openclaw/workspace/scripts/rent/rent_expense_remind.py
-```
-执行后更新 `lastRentReminder16A`。
 
 ## 记忆维护（每周一次）
 
@@ -75,31 +36,17 @@ python3 /root/.openclaw/workspace/scripts/rent/rent_expense_remind.py
 
 ## 系统健康检查（每日一次）
 
-运行 `weekly_health_checklist.py` 脚本检查系统健康状态：
-- 磁盘空间
-- 内存使用
-- 僵尸进程
-- 过期文件
-- Cron 任务状态
+检查以下系统指标，如发现异常在 heartbeat 中直接提醒：
 
-如果发现问题，在 heartbeat 中直接提醒。
-
-## 周反思报告（每周日 20:00 后执行）
-
-检查当前是否为周日且 `lastWeeklyReflection` 不是本周：
+### 磁盘使用率告警（每日检查）
 ```bash
-python3 /root/.openclaw/workspace/scripts/weekly/weekly_reflection.py
+df -h / | grep vda3 | awk '{print $5}' | tr -d '%'
 ```
-执行后更新 `lastWeeklyReflection` 为本周日期。
+- **> 85%**: 立即告警，列出占用大户并建议清理
+- **> 75%**: 提醒关注，提供清理建议
+- **< 75%**: 正常，无需操作
 
-## 安全配置巡检（每周一 09:00 后执行）
-
-检查当前是否为周一：
-```bash
-bash /root/.openclaw/workspace/scripts/weekly/security_check.sh
-```
-执行后发送飞书报告。
-
-## 租金账单提醒（每月 25 日/27 日执行）
-
-检查系统 crontab 任务是否正常运行（租金提醒已在系统 crontab 中配置，无需在此重复）。
+### 其他检查项
+- 内存使用（> 90% 告警）
+- 僵尸进程（> 0 告警）
+- Cron 任务状态（是否有连续失败）

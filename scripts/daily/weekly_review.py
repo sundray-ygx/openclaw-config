@@ -32,38 +32,45 @@ FEISHU_APP_ID = "cli_a93b96047e7a5bc3"
 FEISHU_APP_SECRET = "ir6uAf1L7O52AFgXrepgabIrYG1oOcbD"
 FEISHU_USER_ID = "ou_c2cde251e01a87fc09ba7561f76d8606"
 
-# AI 配置 - 使用 zai/glm-5
-import subprocess
-
-AI_MODEL = "zai/glm-5"
+# AI 配置 - 使用豆包套餐中的 Deepseek 模型（不额外计费）
+VOLCENGINE_API_KEY = os.environ.get("VOLCENGINE_API_KEY", "")
+VOLCENGINE_API_URL = "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
+AI_MODEL = "deepseek-v4-flash-260425"
 
 
 def get_ai_response(system_prompt, user_prompt, max_tokens=4000):
-    """通过 OpenClaw CLI 调用 zai/glm-5"""
-    # 构建完整的 prompt
-    full_prompt = f"""{system_prompt}
+    """通过豆包套餐调用 Deepseek V4 Flash"""
+    if not VOLCENGINE_API_KEY:
+        print("  AI 调用失败: VOLCENGINE_API_KEY 未设置")
+        return None
 
-{user_prompt}"""
-    
+    payload = json.dumps({
+        "model": AI_MODEL,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ],
+        "max_tokens": max_tokens,
+        "temperature": 0.7
+    }).encode('utf-8')
+
+    req = urllib.request.Request(
+        VOLCENGINE_API_URL,
+        data=payload,
+        headers={
+            "Authorization": f"Bearer {VOLCENGINE_API_KEY}",
+            "Content-Type": "application/json"
+        },
+        method="POST"
+    )
+
     try:
-        # 使用 openclaw 命令行工具调用 AI
-        result = subprocess.run(
-            ["openclaw", "ai", "complete", "--model", AI_MODEL, "--max-tokens", str(max_tokens)],
-            input=full_prompt,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            universal_newlines=True,
-            timeout=180
-        )
-        
-        if result.returncode == 0:
-            output = result.stdout.strip()
-            return output
-        else:
-            print(f"  AI 调用失败: {result.stderr}")
-            return None
-    except subprocess.TimeoutExpired:
-        print(f"  AI 调用超时")
+        with urllib.request.urlopen(req, timeout=180) as resp:
+            data = json.loads(resp.read().decode('utf-8'))
+            return data["choices"][0]["message"]["content"].strip()
+    except urllib.error.HTTPError as e:
+        body = e.read().decode('utf-8', errors='replace')
+        print(f"  AI 调用失败 (HTTP {e.code}): {body[:200]}")
         return None
     except Exception as e:
         print(f"  AI 调用失败: {e}")
