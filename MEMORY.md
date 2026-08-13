@@ -3,9 +3,17 @@
 ## 系统状态
 
 ### 定时任务运行状况
-- **状态**: 🟢 正常（激进优化完成）
-- **任务数量**: crontab 5 个 + OpenClaw cron 2 个
-- **最后优化**: 2026-06-03（方案 B 激进优化）
+- **状态**: 🟢 正常（2026-08-13 升级后复检）
+- **任务数量**: crontab 5 个 + OpenClaw cron 1 个
+- **OpenClaw 版本**: 2026.7.1-2（2026-08-13 升级，含 openclaw-lark 2026.7.16）
+- **模型链**: primary=zai/glm-5，fallbacks=[deepseek, volcengine（欠费待充值）]
+- **最近巡检**: 2026-08-13 深度巡检，修复 2 个 P0 静默故障 + 升级 + systemd 管理修复
+
+### 2026-08-13 巡检修复要点
+- 🔴 GitHub 每日同步失效 12 天（systemEvent 假阳性）→ 改 isolated 模式 + 失败告警
+- 🔴 简报 AI 摘要失败 108 天（PATH + 火山引擎欠费）→ 绝对路径 + summarize 双 provider（volcengine→deepseek 自动切换）
+- 🟡 journald 3.0G → 限 200M + logrotate
+- ⚠️ 火山引擎账户欠费（影响所有 volcengine API，已由 deepseek 兑底）
 
 ### 自动化流程（优化后）
 | 任务 | 时间 | 状态 |
@@ -46,6 +54,7 @@
 - [ ] 观察反思 V3 效果（关注是否有重复反思点）
 
 ## 最近日志
+- `memory/2026-08-13.md` - 业务巡检 + 2 个 P0 故障修复（GitHub同步/AI摘要）
 - `memory/2026-05-08.md` - 系统性切换至 zai/glm-5
 - `memory/2026-04-14.md` - 定时任务优化方案 C 执行记录
 - `memory/2026-04-05.md` - 旧 API 配置问题分析（已解决）

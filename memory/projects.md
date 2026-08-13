@@ -106,8 +106,34 @@
 - 4/5: 排查NAS备份cron"重复触发"问题 → 确认为百炼API配额耗尽
 
 **待决策**:
-- NAS备份cron model是否切换到zai/glm-5
-- 百炼账户是否需要充值
+- ~~NAS备份cron model是否切换到zai/glm-5~~（已切换 zai/glm-5）
+- ~~百炼账户是否需要充值~~ → 2026-08-13 确认：火山引擎账户欠费（AccountOverdueError 403），summarize 已加 deepseek 自动切换，无需充值
+
+---
+
+## 业务系统巡检与修复
+**状态**: ✅ 修复完成（2 个 P0）
+**时间**: 2026-08-13
+**描述**: 深度巡检全部自动化业务，发现并修复 2 个静默故障
+
+**发现的问题**:
+- 🔴 GitHub 每日同步实际失效 12 天（8 月零提交），cron 显示 ok 但 systemEvent 只是投递、agent 未执行 → 改 isolated agentTurn + 失败告警
+- 🔴 早间简报 AI 摘要失败 108 天（cron PATH 不含 /usr/local/bin + 火山引擎欠费）→ 绝对路径 + summarize 双 provider 切换
+- 🟡 journald 日志 3.0G（磁盘 72%）→ 清理至 160M + SystemMaxUse=200M 限制 + logrotate
+- 🟡 heartbeat 维护停滞 13 天（state 停在 7/31）→ 已补跑，需观察是否恢复
+
+**文件变更**:
+- `/usr/local/bin/summarize`、`/root/scripts/briefing/morning_briefing.py`
+- `/root/.openclaw/workspace/scripts/sync-to-github.sh`
+- `/etc/systemd/journald.conf`、`/etc/logrotate.d/openclaw-tasks`
+- OpenClaw cron `5965cd2f`（isolated 模式）
+
+**报告**: `archive/reports/2026-08-13-业务巡检报告.md`
+
+**遗留**：
+- [ ] 观察 GitHub 同步今晚 23:30 自动执行
+- [ ] 观察 heartbeat 维护是否恢复
+- [ ] 早间简报明日 08:00 验证 AI 摘要恢复
 
 ---
 
