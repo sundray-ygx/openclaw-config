@@ -434,8 +434,6 @@ def summarize_article(url):
     """使用 summarize 生成 AI 摘要"""
     try:
         env = os.environ.copy()
-        env["ANTHROPIC_API_KEY"] = "33838b1cec6b454c824d87bfd2161b87.j7D7D7gtNgACDHVa"
-        env["ANTHROPIC_BASE_URL"] = "https://open.bigmodel.cn/api/anthropic"
         
         cmd = ["summarize", url, "--length", SUMMARY_LENGTH, "--model", "anthropic/claude-3-5-sonnet-20241022"]
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)

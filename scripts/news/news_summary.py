@@ -16,7 +16,7 @@ os.environ['PATH'] = '/usr/local/bin:' + os.environ.get('PATH', '')
 
 # 从环境变量读取 API Key（更安全）
 ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
-ANTHROPIC_BASE_URL = os.environ.get('ANTHROPIC_BASE_URL', 'https://open.bigmodel.cn/api/anthropic')
+ANTHROPIC_BASE_URL = os.environ.get('ANTHROPIC_BASE_URL', 'https://open.bigmodel.cn/api/coding/paas/v4')
 
 # ============ 配置 ============
 FEISHU_APP_ID = "cli_a93b96047e7a5bc3"

@@ -134,8 +134,6 @@ def summarize_article(url):
         # 设置环境变量
         env = os.environ.copy()
         env["PATH"] = "/usr/local/bin:" + env.get("PATH", "")
-        env["ANTHROPIC_API_KEY"] = "33838b1cec6b454c824d87bfd2161b87.j7D7D7gtNgACDHVa"
-        env["ANTHROPIC_BASE_URL"] = "https://open.bigmodel.cn/api/anthropic"
         
         # 调用 summarize
         cmd = ["summarize", url, "--length", SUMMARY_LENGTH, "--model", "anthropic/claude-3-5-sonnet-20241022"]

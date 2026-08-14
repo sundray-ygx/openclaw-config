@@ -31,22 +31,23 @@ EMAIL_ACCOUNTS = [
     {"name": "企业邮箱", "email": "ygx@sundray.com", "password": os.environ.get("EMAIL_QIYE_PASSWORD", ""), "imap_server": "imap.qiye.163.com", "imap_port": 993},
 ]
 
-# AI Agent 综合资讯源（使用可靠的现有RSS源）
+# AI Agent 综合资讯源（2026-08-14 巡检后更新，移除失效源）
+# 注意：36氪、机器之心 RSS 因反爬返回 HTML，已替换为其他可靠源
 RSS_FEEDS = [
-    # OpenClaw相关（使用现有的可靠源）
-    {"name": "量子位", "url": "https://www.qbitai.com/feed", "category": "🤖 OpenClaw", "limit": 3},
-    {"name": "36氪", "url": "https://36kr.com/feed", "category": "🤖 OpenClaw", "limit": 3},
+    # OpenClaw相关（可靠源）
+    {"name": "量子位", "url": "https://www.qbitai.com/feed", "category": "🤖 OpenClaw", "limit": 4},
     {"name": "钛媒体", "url": "https://www.tmtpost.com/rss.xml", "category": "🤖 OpenClaw", "limit": 3},
+    {"name": "雷锋网", "url": "https://www.leiphone.com/feed", "category": "🤖 OpenClaw", "limit": 2},
     
-    # Hermes Agent相关（使用实际存在的源）
-    {"name": "机器之心", "url": "https://www.jiqizhixin.com/rss", "category": "🚀 Hermes Agent", "limit": 3},
-    {"name": "新智元", "url": "https://www.jiqizhixin.com/feed", "category": "🚀 Hermes Agent", "limit": 2},
-    {"name": "钛媒体AI", "url": "https://www.tmtpost.com/rss.xml", "category": "🚀 Hermes Agent", "limit": 2},
+    # Hermes Agent相关（可靠源）
+    {"name": "InfoQ", "url": "https://www.infoq.cn/feed.xml", "category": "🚀 Hermes Agent", "limit": 3},
+    {"name": "极客公园", "url": "https://www.geekpark.net/rss", "category": "🚀 Hermes Agent", "limit": 3},
+    {"name": "爱范儿", "url": "https://www.ifanr.com/feed", "category": "🚀 Hermes Agent", "limit": 2},
     
     # 其他AI Agent（可靠源）
-    {"name": "DeepTech深科技", "url": "https://www.deep-tech.cn/feed", "category": "🔬 AI Agent", "limit": 3},
-    {"name": "机器学习中文社区", "url": "https://www.machinelearningcn.com/feed", "category": "🔬 AI Agent", "limit": 2},
-    {"name": "AI前线", "url": "https://www.aifrontier.cn/feed", "category": "🔬 AI Agent", "limit": 2},
+    {"name": "雷锋网AI", "url": "https://www.leiphone.com/feed", "category": "🔬 AI Agent", "limit": 3},
+    {"name": "少数派", "url": "https://sspai.com/feed", "category": "🔬 AI Agent", "limit": 3},
+    {"name": "量子位AI", "url": "https://www.qbitai.com/feed", "category": "🔬 AI Agent", "limit": 2},
 ]
 
 # AI Agent 关键词分类
@@ -182,6 +183,12 @@ def get_github_agent_news():
 def parse_rss_simple(xml_content, source, limit, use_summarize=False):
     """简单解析RSS内容，增强容错性"""
     try:
+        # 预处理：清理XML非法字符（如36氪RSS中的控制字符）
+        if isinstance(xml_content, bytes):
+            xml_content = xml_content.decode('utf-8', errors='replace')
+        # 移除XML非法控制字符（0x00-0x08, 0x0B, 0x0C, 0x0E-0x1F）
+        import re as _re
+        xml_content = _re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f]', '', xml_content)
         root = ET.fromstring(xml_content)
         articles = []
         
