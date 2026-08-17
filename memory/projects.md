@@ -424,3 +424,22 @@
 - [ ] 完成后端 API 开发
 - [ ] 完成前端页面开发
 - [ ] 测试验证
+
+---
+
+## 🖥️ OpenClaw 环境维护（2026-08-13 ~ 08-14）
+
+### GLM/智谱 provider 全链路切换（08-14 完成）
+- **新 key**: c2078ce9***（旧 key 33838b1c*** 已 401 失效），key 存于 main agent sqlite auth_profile_store（zai:default）
+- **主配置**: openclaw.json → models.providers.zai，**coding 套餐端点** `https://open.bigmodel.cn/api/coding/paas/v4`，精简为 4 模型：glm-5.2（旗舰）/ glm-4.7（主力）/ glm-4.7-flash（轻量）/ glm-4.6v（视觉），别名 GLM-5.2 等
+- **scheduler**: models.json zai provider 同 key 同端点
+- **脚本**: morning_briefing_v2.py / news_summary_v2.py 已删除 ANTHROPIC 死代码（summarize 不读这些变量，实际走 volcengine/deepseek）
+- **验证**: coding 端点 4 模型调用正常；GitHub 同步 cron 投递修复后连续正常
+- **备份**: /root/.openclaw/backup-key-switch-20260814_151824/、openclaw.json.bak-20260814_152817-pre-slim
+
+### 关键事实
+- 智谱三端点：`coding/paas/v4`（套餐✅）/ `paas/v4`（按量，余额不足 1113）/ `anthropic`（可用但无 coding 变体）
+- /root/scripts 与 workspace/scripts 部分文件为硬链接（inode 同），改一处即同步
+- gateway restart 会 drain 当前会话（SIGTERM 中断属正常，systemd 自动拉起）
+- 8-13 完成升级 2026.5.28→2026.7.1-2 + systemd 单一管理 + memorySearch 已禁用
+- 待处理：volcengine 欠费（有 deepseek fallback）、daily/weekly 反思脚本废弃（读不存在的 auth-profiles.json）

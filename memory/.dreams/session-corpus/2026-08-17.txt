@@ -1,0 +1,1 @@
+[main/sessions/main/440e7abd-9c87-4c04-964a-adfb3d2cb285.jsonl#L522] Assistant: 周一（%u=1）。周任务检查：lastMemoryMaintenance 和 lastWorkspaceCheck 都是 2026-08-13，距今 4 天 ≥ 7 天？不，8-13 到 8-17 是 4 天，还没到 7 天。无需执行。

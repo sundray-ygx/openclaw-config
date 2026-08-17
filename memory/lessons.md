@@ -238,3 +238,21 @@ SESSIONS_DIRS = [
 **处理**: 合并分支、脚本固定 master、gitignore 嵌套仓库
 **教训**: 同步脚本要固定目标分支；嵌套 git 仓库会静默破坏 add/commit
 **级别**: 🟡 中
+
+---
+
+### 智谱 GLM 端点计费差异（2026-08-14）
+**问题**: 同一 key 调 GLM 时而成功时而报"余额不足(1113)"
+**根因**: 智谱有 3 条端点：coding 套餐（`/api/coding/paas/v4`）、按量（`/api/paas/v4`）、Anthropic 兼容（`/api/anthropic`）。套餐 key 走按量端点必然 1113
+**教训**: 智谱套餐用户必须统一用 coding 端点；排查"余额不足"先确认端点路径而非账户
+**级别**: 🟡 中
+
+### 环境变量死代码误导排障（2026-08-14）
+**问题**: 脚本设 ANTHROPIC_API_KEY/BASE_URL 指向智谱，被误认为摘要走智谱
+**根因**: `summarize` 工具已重构为 volcengine/deepseek 双 provider，根本不读这些环境变量
+**教训**: 排障时先读下游工具源码确认它实际消费什么配置，勿凭环境变量名推断调用链
+**级别**: 🟢 低
+
+### 硬链接文件双路径修改（2026-08-14）
+**教训**: /root/scripts 与 workspace/scripts 部分文件同 inode，sed/python 改一处后另一路径 grep 旧值"无匹配"是正常同步结果；改共享文件前先 `ls -li` 确认链接关系
+**级别**: 🟢 低
