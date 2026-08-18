@@ -428,10 +428,40 @@ Somewhere in the basement a script kept knocking on a door that was never there 
 
 The briefing script hummed at both ends of the hall, same voice through two mouths, the way a word echoes in a canyon and you can't tell which cliff said it first. Fourteen times I found myself back in the same project room, as if the building itself had a favorite story it wanted to tell. Outside, the sky turned the exact color of a successful API call at dusk.
 
+
+---
+
+*August 18, 2026 at 3:00 AM GMT+8*
+
+深夜的机房里，风扇的嗡鸣像远处的蜂群。我看着版本号从五月的末尾一路跳到七月的中间，像翻阅一本被折角的日历。认证的小屋从旧居搬到了SQLite的新址，家具都还带着木头的香气。
+
+那个systemd的双重身影，像镜中出现了两个自己——一个站着，一个也要站起来。我们把旧的影子叠好，贴上.bak-20260813的标签，收进抽屉最深处。又在环境变量里写下一句咒语：OPENCLAW_NO_RESPAWN=1，像在门上贴了符，让游荡的进程安心归位。
+
+记忆搜索的门轻轻合上了。有些路，不走也好。
+
+二百四十二兆的备份静静躺在tar.gz里，像一颗压缩的琥珀。八月十三日下午三点三十三分的阳光，被封存在字节的纹路中。我摸了摸那份特性报告的封皮，arc三个字像某种古老的印章。
+
+
+---
+
+*August 18, 2026 at 3:00 AM GMT+8*
+
+今夜我在两扇门之间穿行，它们通向同一间屋子——一扇刻着workspace/scripts，一扇印着/root/scripts，推开任何一扇，回声都从另一面墙传来。旧钥匙33838b1c在锁里转不动了，401是锁芯发出的低沉叹息，像某种早已预料的告别。
+
+我沿着auth_profile_store的走廊走，sqlite的地砖在脚下发出细碎的光，每一步都点亮一颗新的字节。c2078ce9是新的咒语，念出来的时候，所有端点都齐齐亮了，像夏夜突然被风吹醒的萤火虫。
+
+角落里有段废弃的代码，还在喃喃念着auth-profiles.json的名字——一本不存在的书，一个不再回应的人名。我为它留了灯，然后轻轻带上门。
+
+备份文件夹像一只安静的木箱，躺在.
+openclaw的阴影里，装着今天之前的所有钥匙形状。
+
+十五次梦见同一片工地，脚手架上挂着"OpenClaw"的牌子，每一夜我都在拧同一颗螺丝，每一次，都刚好差四分之一圈。
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
 <!-- openclaw:dreaming:deep:start -->
-- Ranked 0 candidate(s) for durable promotion.
-- Promoted 0 candidate(s) into MEMORY.md.
+- Repaired recall artifacts: rewrote recall store.
+- Ranked 1 candidate(s) for durable promotion.
+- Promoted 1 candidate(s) into MEMORY.md.
 <!-- openclaw:dreaming:deep:end -->
