@@ -1,42 +1,6 @@
 {
   "checks": [
     {
-      "time": "2026-08-13 11:37",
-      "total": 1,
-      "healthy": 1,
-      "issues": []
-    },
-    {
-      "time": "2026-08-14 18:05",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
-      "time": "2026-08-15 07:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
-      "time": "2026-08-15 09:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
-      "time": "2026-08-15 10:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
-      "time": "2026-08-15 13:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
       "time": "2026-08-16 12:02",
       "total": 2,
       "healthy": 2,
@@ -176,6 +140,42 @@
     },
     {
       "time": "2026-08-20 18:02",
+      "total": 2,
+      "healthy": 2,
+      "issues": []
+    },
+    {
+      "time": "2026-08-21 00:02",
+      "total": 2,
+      "healthy": 2,
+      "issues": []
+    },
+    {
+      "time": "2026-08-21 10:02",
+      "total": 2,
+      "healthy": 2,
+      "issues": []
+    },
+    {
+      "time": "2026-08-21 12:02",
+      "total": 2,
+      "healthy": 2,
+      "issues": []
+    },
+    {
+      "time": "2026-08-21 13:02",
+      "total": 2,
+      "healthy": 2,
+      "issues": []
+    },
+    {
+      "time": "2026-08-21 14:02",
+      "total": 2,
+      "healthy": 2,
+      "issues": []
+    },
+    {
+      "time": "2026-08-21 16:02",
       "total": 2,
       "healthy": 2,
       "issues": []
