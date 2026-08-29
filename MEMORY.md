@@ -84,3 +84,26 @@
 - [巡检优化] P1 GitHub同步投递 + P3 RSS源修复: GitHub cron 投递目标改为正确 open_id（ou_c2cde2***）；ai_agent_news.py 替换 6 个失效 RSS 源为可靠源 [score=0.815 recalls=0 avg=0.620 source=memory/2026-08-14.md:4-4]
 <!-- openclaw-memory-promotion:memory:memory/2026-08-14.md:7:7 -->
 - [PROJECT:OpenClaw环境] GLM 全链路切换（详情见 projects.md）: key 切换（6 处，硬链接同步）+ openclaw.json 添加 zai provider + 模型精简 12→4（glm-5.2/4.7/4.7-flash/4.6v）+ coding 套餐端点统一 + ANTHROPIC 死代码清除，全端点验证通过 [score=0.815 recalls=0 avg=0.620 source=memory/2026-08-14.md:7-7]
+
+## Promoted From Short-Term Memory (2026-08-29)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-08-25.md:13:13 -->
+- [SECURITY] SSH 暴力破解防护加固（方案 A）: **标签**: #security #ssh #fail2ban [score=0.850 recalls=0 avg=0.620 source=memory/2026-08-25.md:13-13]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-25.md:5:8 -->
+- [SECURITY] SSH 暴力破解防护加固（方案 A）: **根因**: SSH 端口暴露在公网，持续遭受暴力破解攻击（7天133万次尝试）; **修复内容**:; fail2ban `maxretry: 3 → 2`（2次失败即封禁）; fail2ban `findtime: 600s → 3600s`（1小时窗口） [score=0.850 recalls=0 avg=0.620 source=memory/2026-08-25.md:5-8]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-25.md:9:12 -->
+- [SECURITY] SSH 暴力破解防护加固（方案 A）: 开启 `bantime.increment` 递增封禁，最多 7 天; SSH `MaxAuthTries: 6 → 3`; **备份文件**: /etc/fail2ban/jail.local.bak-20260825, /etc/ssh/sshd_config.bak-20260825; **验证**: 配置语法通过，fail2ban 正常运行，当前被封 5 IP [score=0.850 recalls=0 avg=0.620 source=memory/2026-08-25.md:9-12]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:19:19 -->
+- 📋 系统巡检报告 | 2026-08-24 14:07: **总体状态：🟢 正常运行（135 天）** [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:19-19]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:25:28 -->
+- 1️⃣ 系统运行状态: | 指标 | 状态 | 详情 | |------|------|------| | 磁盘 | ✅ 正常 | 25G / 40G（65%），剩余 14G | | 内存 | ⚠️ 偏紧 | 已用 1.0G / 1.8G，可用 819M | [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:25-28]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:29:32 -->
+- 1️⃣ 系统运行状态: | Swap | ⚠️ 已用 | 381M / 6G 已使用 | | CPU 负载 | ✅ 正常 | 0.48 / 0.34 / 0.15 | | 僵尸进程 | ✅ 正常 | 0 | | inode | ✅ 正常 | 13% | [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:29-32]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:33:33 -->
+- 1️⃣ 系统运行状态: | Docker | ✅ 正常 | sing-box 运行 4 个月 | [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:33-33]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:35:35 -->
+- 1️⃣ 系统运行状态: **Top 内存占用：** [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:35-35]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:36:38 -->
+- 1️⃣ 系统运行状态: OpenClaw Gateway — 359M（18.7%）; openclaw-tui — 256M（13.3%）; 阿里云盾 — 42M（2.1%） [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:36-38]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:44:47 -->
+- 2️⃣ OpenClaw 运行状态: | 项目 | 状态 | 详情 | |------|------|------| | 版本 | ✅ | 2026.7.1-2 (0790d9f) | | Gateway 服务 | ✅ | 运行 1 天 20 小时，内存 410M/450M | [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:44-47]
