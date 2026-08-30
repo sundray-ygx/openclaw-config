@@ -256,3 +256,9 @@ SESSIONS_DIRS = [
 ### 硬链接文件双路径修改（2026-08-14）
 **教训**: /root/scripts 与 workspace/scripts 部分文件同 inode，sed/python 改一处后另一路径 grep 旧值"无匹配"是正常同步结果；改共享文件前先 `ls -li` 确认链接关系
 **级别**: 🟢 低
+
+### 阿里云 AccessKey 风控封禁特征（2026-08-25）
+**问题**: DNS 写操作全部失败但读操作正常，导致 acme.sh 证书续期静默失败数月
+**根因**: AccessKey 被阿里云风控判定泄露风险封禁（"There is a risk of leakage"），只封写不封读
+**教训**: API"读正常写失败"优先怀疑 key 权限/风控而非代码；续期类任务必须有到期监控兜底，否则双故障（cron 缺失+key 失效）会静默叠加
+**级别**: 🟡 中

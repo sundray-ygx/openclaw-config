@@ -1,0 +1,2 @@
+[main/sessions/main/440e7abd-9c87-4c04-964a-adfb3d2cb285.jsonl#L1916] Assistant: 周维护到期（8-23 → 8-30 满 7 天），执行记忆维护和工作区检查。
+[main/sessions/main/440e7abd-9c87-4c04-964a-adfb3d2cb285.jsonl#L1924] Assistant: 信息收集完成。执行记忆维护：提炼到 projects/lessons，压缩一次性日志。

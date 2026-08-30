@@ -443,3 +443,17 @@
 - gateway restart 会 drain 当前会话（SIGTERM 中断属正常，systemd 自动拉起）
 - 8-13 完成升级 2026.5.28→2026.7.1-2 + systemd 单一管理 + memorySearch 已禁用
 - 待处理：volcengine 欠费（有 deepseek fallback）、daily/weekly 反思脚本废弃（读不存在的 auth-profiles.json）
+
+---
+
+## 🔒 安全事件处理（2026-08-25 完成）
+
+### SSL 证书续期（vw.ygxpro.online）
+- **状态**: ✅ 已修复。证书续至 2026-11-22（Let's Encrypt，ZeroSSL 当时 502 已切换）
+- **双根因**: ① crontab 缺 acme.sh 续期任务 ② 旧 AccessKey（LTAI5t…GBJV）被阿里云风控封禁
+- **修复**: 换新 AccessKey（LTAI5t…DjDT）+ 签发新证书 + cron 每天 22:06 自动续期 + acme.sh v3.1.4 自动升级
+- **待办**: 旧被封 AccessKey 需在阿里云 RAM 删除；NAS 侧 Hermes 需手动 load_secrets.sh + 重启 gateway（用户操作）；建议加证书到期监控（<14 天告警）
+
+### SSH 暴力破解防护加固（方案 A）
+- **状态**: ✅ 已完成。7天133万次攻击尝试后加固：fail2ban maxretry 3→2、findtime 600→3600、递增封禁最长7天、SSH MaxAuthTries 6→3
+- **备份**: /etc/fail2ban/jail.local.bak-20260825, /etc/ssh/sshd_config.bak-20260825
