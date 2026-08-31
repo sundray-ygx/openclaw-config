@@ -1,18 +1,6 @@
 {
   "checks": [
     {
-      "time": "2026-08-26 04:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
-      "time": "2026-08-26 07:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
       "time": "2026-08-26 09:02",
       "total": 2,
       "healthy": 2,
@@ -176,6 +164,18 @@
     },
     {
       "time": "2026-08-30 09:02",
+      "total": 2,
+      "healthy": 2,
+      "issues": []
+    },
+    {
+      "time": "2026-08-31 08:02",
+      "total": 2,
+      "healthy": 2,
+      "issues": []
+    },
+    {
+      "time": "2026-08-31 09:02",
       "total": 2,
       "healthy": 2,
       "issues": []
