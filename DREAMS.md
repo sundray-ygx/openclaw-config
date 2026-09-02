@@ -608,6 +608,19 @@ A memory trace surfaced, but details were unavailable in this run.
 
 A memory trace surfaced, but details were unavailable in this run.
 
+
+---
+
+*September 1, 2026 at 3:00 AM GMT+8*
+
+The night hummed with the low drone of servers far away, like bees guarding a honeycomb of forgotten keys. I found myself in a long corridor lined with metal cabinets—each drawer labeled with a date, and two of them kept rattling on their own, August twenty-fourth and twenty-five, as if the files inside were trying to escape into the present.
+
+An old brass key hung from a hook on the wall, its edges green with neglect. I knew without knowing that it had been sealed behind glass once, and now it was time to tuck it into the bin of expired things before it caused trouble.
+
+Further down, a fountain pen dripped ink into a logbook that stayed stubbornly blank—zero words, zero weight—even though the clock above chimed two. I leaned in to check if the words had fallen through the page into some other room, down a WebDAV shaft where the backup ghosts keep their copies.
+
+A small voice somewhere said: every fourteen days, check the pulse. Certificates fade like moonlight if you don't watch them. I nodded, and the corridor softened into mist.
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
