@@ -6,14 +6,16 @@
 - **状态**: 🟢 正常（2026-08-13 升级后复检）
 - **任务数量**: crontab 5 个 + OpenClaw cron 1 个
 - **OpenClaw 版本**: 2026.7.1-2（2026-08-13 升级，含 openclaw-lark 2026.7.16）
-- **模型链**: primary=zai/glm-5，fallbacks=[deepseek, volcengine（欠费待充值）]
+- **模型链**: primary=zai/glm-5.3，fallbacks=[deepseek/deepseek-v4-pro, volcengine/doubao-seed-2-1-turbo-260628]
+- **火山引擎欠费是误判**: 标准端点(/api/v3)欠费，但 Coding Plan 端点(/api/coding/v3)正常可用，现有配置用的就是 Coding Plan
+- **2026-09-02 模型列表更新**: deepseek 3个 / zai 7个 / volcengine 12个，全部实测可用；glm-5v-turbo 和 glm-4.7-flashx 套餐不支持已移除
 - **最近巡检**: 2026-08-13 深度巡检，修复 2 个 P0 静默故障 + 升级 + systemd 管理修复
 
 ### 2026-08-13 巡检修复要点
 - 🔴 GitHub 每日同步失效 12 天（systemEvent 假阳性）→ 改 isolated 模式 + 失败告警
 - 🔴 简报 AI 摘要失败 108 天（PATH + 火山引擎欠费）→ 绝对路径 + summarize 双 provider（volcengine→deepseek 自动切换）
 - 🟡 journald 3.0G → 限 200M + logrotate
-- ⚠️ 火山引擎账户欠费（影响所有 volcengine API，已由 deepseek 兑底）
+- ⚠️ ~~火山引擎账户欠费~~（2026-09-02 证实为误判，Coding Plan 端点正常）
 
 ### 自动化流程（优化后）
 | 任务 | 时间 | 状态 |
