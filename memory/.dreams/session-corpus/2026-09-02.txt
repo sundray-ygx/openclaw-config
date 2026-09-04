@@ -31,3 +31,27 @@
 [main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L42] Assistant: 先诊断火山引擎的问题。我直接用当前配置的参数实际调用一下，看返回什么错误：
 [main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L44] Assistant: 发现第一个问题：**volcengine 的 apiKey 为空**。让我看看是不是配置在环境变量或其他地方：
 [main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L46] Assistant: 好，三个 provider 的 key 都在 env 环境变量里。那 deepseek 和 zai 能用，说明环境变量读取没问题。让我直接实际调用火山引擎 API，看具体报什么错：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L48] Assistant: 认证格式有问题，不是欠费。这个 `/api/coding/v3` 是 Coding Plan 专用端点，鉴权方式可能不一样。让我试试标准方舟端点：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L50] Assistant: 两个端点都报 AuthHeader 错误，不是欠费。让我看看 key 的格式：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L52] Assistant: key 格式是对的（`ark-` 开头，46 位），但报 AuthHeader 错误。让我排查鉴权方式：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L54] Assistant: AuthHeader 一直报错，可能是 Authorization header 格式问题。让我用 python 直接发请求确认：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L56] Assistant: 找到根因了。之前 curl 报 AuthHeader 是因为 shell 里环境变量没传过去，Python 直接读环境变量证实了： **根因：AccountOverdueError — 账户确实欠费** 但你说套餐没欠费，可能是 Coding Plan 有单独的额度。让我试试 Coding Plan 端点的正确调用方式：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L58] Assistant: 找到根因了！ **诊断结论：** - ✅ **Coding Plan 端点正常可用** (`/api/coding/v3`) — 200 OK，能正常返回 - ❌ **标准方舟端点欠费** (`/api/v3`) — AccountOverdueError - 🐛 之前的"欠费"结论是**误判** — 之前的巡检脚本可能测的是标准端点，但实际配置使用的 Coding Plan 端点完全正常 **当前配置是对的**，火山引擎没坏，MEMORY 里的"欠费"记录需要修正。继续往下走。 现在让我查一下火山引擎 Coding Pl
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L60] Assistant: 好，火山引擎有 130 个模型，当前配置了 8 个。我筛一下值得加的新模型： **火山引擎值得新增的模型（高质量的）：** | 模型 | 定位 | |------|------| | `doubao-seed-evolving` | 最新进化模型（文档里单独列的"最新模型"） | | `doubao-seed-2-1-pro-260628` | Seed 2.1 Pro（比 2.0 新） | | `doubao-seed-2-1-turbo-260628` | Seed 2.1 Turbo | | `glm-5-2-2606
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L62] Assistant: DeepSeek 三个模型全部确认可用：v4-pro、v4-flash、v4-flash-vision-exp。 ## 第 3 步：智谱新模型验证 先确认 Coding Plan 端点下这些新模型能不能调通：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L64] Assistant: 智谱 key 没找到。让我在 env 和配置里仔细找一下：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L66] Assistant: 奇怪，智谱 zai 的 key 不在 env 里，但之前配置里 zai provider 是能用的。让我看看 zai 的完整配置：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L68] Assistant: zai provider 也没配置 apiKey，但当前默认模型就是 glm-5.2 还能正常用？让我查系统环境变量和 OpenClaw 是怎么鉴权的：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L70] Assistant: 系统环境变量里没有。那 OpenClaw 进程的环境变量呢？看看 OpenClaw 怎么获取 key 的：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L74] Assistant: 进程环境里也没有。那 OpenClaw 怎么调用 zai 的？让我看看默认模型配置和 agents 配置：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L76] Assistant: 等一下，我发现一个重要问题： **当前默认模型是 `volcengine/doubao-seed-2-0-pro-260215`（火山引擎），不是 zai 的 glm-5.2！** MEMORY.md 里写的"系统性切换至 zai/glm-5"是过时信息。实际一直在用火山引擎。 那 zai 的 key 到底在哪？让我搜一下：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L84] Assistant: workspace/config 那个不是有效的主配置。回到正题 — zai 的 api key 到底在哪里？让我看看 OpenClaw 的环境变量加载方式：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L86] Assistant: 奇怪，zai 的 key 找不到但 zai 的模型配置是存在的。让我直接用 OpenClaw 的方式测试一下 zai/glm-5.2 到底能不能用：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L88] Assistant: 需要 key，但 key 不在 env 里也不在 provider 配置里。让我搜整个 openclaw.json：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L90] Assistant: openclaw.json 里完全没有 apiKey 字段。那 key 是怎么加载的？让我查 OpenClaw 文档看 provider key 的加载机制：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L94] Assistant: 让我直接看 OpenClaw 实际运行状态里的模型配置：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L98] Assistant: 这个会话的模型就是 `zai/glm-5.2`，说明 zai 是能用的。key 肯定在某个地方。让我用 `openclaw status --deep` 看看：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L102] Assistant: 让我换个思路，直接看 openclaw.json 里有没有 env 段给 zai 配置 key，或者有没有其他地方配置：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L104] Assistant: 确实没有 zai / zhipu / glm 的 API key。但当前会话说模型是 zai/glm-5.2... 让我直接验证一下，发个请求看 zai/glm-5.2 是不是真的能返回：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L106] Assistant: 好了，明确了：**当前主模型是 `volcengine/doubao-seed-2-0-pro-260215`**，不是 zai 的。MEMORY.md 里的信息过时了。 那 zai 的 API key 到底在哪里？让我想想——OpenClaw 可能有内置的密钥管理（secrets）。让我看看：
+[main/sessions/main/d43042ff-775d-41a9-a1c1-2e4c4e3cc197.jsonl#L108] Assistant: 不管 key 在哪了，zai provider 配置存在且之前应该是能用的。关键是新增模型，我直接加进配置里，然后测试能不能调通。调不通的就去掉。 现在先做**完整的更新规划**，确认后再改配置。 --- ## 📋 最终执行计划确认 ### 诊断结论（已验证） | 问题 | 结论 | |------|------| | 火山引擎"欠费" | ❌ 误判。Coding Plan 端点 (`/api/coding/v3`) **完全正常可用**，130个模型可调用。之前测的是标准端点欠费 | | zai/智谱 key | 配置
