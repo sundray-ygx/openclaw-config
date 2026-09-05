@@ -1,0 +1,19 @@
+# 官方技能保护清单：本机与 NAS 重叠且为官方版本漂移，永不覆盖本机版本（2026-09-05 核定）
+autonomous-ai-agents/computer-use
+autonomous-ai-agents/hermes-agent
+creative/baoyu-infographic
+creative/humanizer
+devops/sdlc-review
+email/email-inbox-triage
+productivity/box
+productivity/document-to-action-items
+productivity/docx
+productivity/meeting-action-items
+productivity/pdf
+productivity/product-price-monitor
+productivity/weekly-review-planning
+productivity/xlsx
+research/competitor-news-monitor
+research/grounded-citations
+software-development/inspecting-hermes-desktop-dom
+software-development/simplify-code
