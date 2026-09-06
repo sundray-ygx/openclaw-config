@@ -109,3 +109,12 @@
 - 1️⃣ 系统运行状态: OpenClaw Gateway — 359M（18.7%）; openclaw-tui — 256M（13.3%）; 阿里云盾 — 42M（2.1%） [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:36-38]
 <!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:44:47 -->
 - 2️⃣ OpenClaw 运行状态: | 项目 | 状态 | 详情 | |------|------|------| | 版本 | ✅ | 2026.7.1-2 (0790d9f) | | Gateway 服务 | ✅ | 运行 1 天 20 小时，内存 410M/450M | [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:44-47]
+
+## Promoted From Short-Term Memory (2026-09-06)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-09-02.md:13:16 -->
+- [PROJECT:OpenClaw系统] 模型列表全面更新 + 火山引擎"欠费"根因诊断: GLM-5.3/5.3-flash/5.1 强制思考模式（thinking.type 仅支持 enabled），OpenClaw 调用正常; 旧 MEMORY 里"系统性切换至 zai/glm-5"记录有误，实际此前默认是 volcengine/doubao-seed-2-0-pro; **教训**: 诊断 API 可用性必须区分端点（Coding Plan vs 标准端点），curl 测试时 shell 环境变量传参有坑（AuthHeader 假错误），用 python 直读环境变量才拿到真实错误; **标签**: #models #provider #volcengine #zai #deepseek [score=0.816 recalls=0 avg=0.620 source=memory/2026-09-02.md:13-16]
+<!-- openclaw-memory-promotion:memory:memory/2026-09-02.md:5:8 -->
+- [PROJECT:OpenClaw系统] 模型列表全面更新 + 火山引擎"欠费"根因诊断: 火山引擎"欠费"是误判：标准端点 `/api/v3` 欠费（AccountOverdueError），但 Coding Plan 端点 `/api/coding/v3` 完全正常，现有配置走的就是 Coding Plan，无需修复; 模型列表已更新：deepseek 3 个 / zai 7 个 / volcengine 12 个，共 22 个，全部实测可用; 默认模型切换：zai/glm-5.3（1M ctx），fallbacks=[deepseek/deepseek-v4-pro, volcengine/doubao-seed-2-1-turbo]; scheduler agent → zai/glm-4.7-flash；coding agent → zai/glm-5.3 [score=0.816 recalls=0 avg=0.620 source=memory/2026-09-02.md:5-8]
+<!-- openclaw-memory-promotion:memory:memory/2026-09-02.md:9:12 -->
+- [PROJECT:OpenClaw系统] 模型列表全面更新 + 火山引擎"欠费"根因诊断: **实测不可用已移除**: glm-5v-turbo（套餐未开放 1311）、glm-4.7-flashx（需单独计费 1113）、doubao-seed-2-1-pro-260628（不支持 coding plan 404）; **文件变更**: /root/.openclaw/openclaw.json（备份 openclaw.json.bak-20260902）、MEMORY.md; **关键发现**:; zai 的 apiKey 不在 openclaw.json/env，存在 auth_profile_store（SQLite: agents/main/agent/openclaw-agent.sqlite），profile 名 `zai:default` [score=0.816 recalls=0 avg=0.620 source=memory/2026-09-02.md:9-12]

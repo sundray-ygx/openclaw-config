@@ -262,3 +262,15 @@ SESSIONS_DIRS = [
 **根因**: AccessKey 被阿里云风控判定泄露风险封禁（"There is a risk of leakage"），只封写不封读
 **教训**: API"读正常写失败"优先怀疑 key 权限/风控而非代码；续期类任务必须有到期监控兜底，否则双故障（cron 缺失+key 失效）会静默叠加
 **级别**: 🟡 中
+
+### 套餐端点 vs 标准端点测可用性（2026-09-03）
+**问题**: 误判火山引擎欠费数周，实际配置走的 Coding Plan 端点完全正常
+**根因**: 火山引擎标准端点 `/api/v3` 按量欠费，Coding Plan 端点 `/api/coding/v3` 套餐正常；测试时用了错误端点
+**教训**: 测 API 可用性必须用配置中实际的 baseUrl，而非官方文档默认端点；智谱/火山均存在双端点模式（见 8-14 智谱教训，同一模式）
+**级别**: 🟡 中
+
+### OpenClaw 模型 allowlist 机制（2026-09-02）
+**问题**: providers 里加了新模型但 TUI /model 列表看不到
+**根因**: `agents.defaults.models` 是 allowlist+目录，只加 providers 定义不加 allowlist 则模型"存在但不可选"
+**教训**: 加模型必须同时改两处——providers 定义 + agents.defaults.models allowlist（含 alias）
+**级别**: 🟢 低

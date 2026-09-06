@@ -457,3 +457,19 @@
 ### SSH 暴力破解防护加固（方案 A）
 - **状态**: ✅ 已完成。7天133万次攻击尝试后加固：fail2ban maxretry 3→2、findtime 600→3600、递增封禁最长7天、SSH MaxAuthTries 6→3
 - **备份**: /etc/fail2ban/jail.local.bak-20260825, /etc/ssh/sshd_config.bak-20260825
+
+---
+
+## 🤖 模型体系大更新（2026-09-02 ~ 09-03 完成）
+
+- **状态**: ✅ 完成。模型列表 22 个（zai 7 / volcengine 12 / deepseek 3），全部实测可用
+- **默认模型**: main → `zai/glm-5.3`（旗舰，1M ctx），fallback deepseek-v4-pro → doubao-seed-2-1-turbo；scheduler → glm-4.7-flash；coding → glm-5.3
+- **移除（不可用）**: glm-5v-turbo（套餐未开放）、glm-4.7-flashx（需单独计费）、doubao-seed-2-1-pro（不支持 coding plan）
+- **火山引擎"欠费"破案**: 系误判——标准端点 `/api/v3` 确实欠费，但配置走 Coding Plan 端点 `/api/coding/v3` 完全正常（130 模型可用）。MEMORY.md 误判已修正
+
+## 🔧 Hermes 部署（2026-08-31 ~ 09-05 进行中）
+
+- **hermes-config 仓库**（8-31/9-01 完成）: GitHub 私有仓库已初始化（knowledge/memory/skills/scripts/config 结构），ECS 侧 clone 到 `/root/hermes-config/`，含同步脚本
+- **nginx 反代**（9-05 完成）: `/etc/nginx/conf.d/hermes-studio.conf` 已配置，复用泛域名证书 `*.ygxpro.online`（WebSocket/SSE/3600s 超时），nginx 已 reload
+- **待办（用户侧）**: ① DNS 加 `hermes.ygxpro.online` A 记录 → 47.119.177.194 ② NAS frpc 加 tcp 代理 remotePort=8648
+- **磁盘注记**: /root 下备份堆积 ~1.4G（8-13 双份 tar、9-01 解压目录），清理方案已报备用户待确认
