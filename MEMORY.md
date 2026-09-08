@@ -56,6 +56,7 @@
 - [ ] 观察反思 V3 效果（关注是否有重复反思点）
 
 ## 最近日志
+- `memory/2026-09-08.md` - new-api 网关部署+ECS 三平台灰度切换完成（Claude Code/Hermes/OpenClaw→api.ygxpro.online），OpenClaw 接线三处对齐要点见 deployment 文档
 - `memory/2026-08-13.md` - 业务巡检 + 2 个 P0 故障修复（GitHub同步/AI摘要）
 - `memory/2026-05-08.md` - 系统性切换至 zai/glm-5
 - `memory/2026-04-14.md` - 定时任务优化方案 C 执行记录
@@ -123,3 +124,14 @@
 
 <!-- openclaw-memory-promotion:memory:memory/2026-09-02.md:19:21 -->
 - [补记] TUI /model 看不到新增模型的根因: **根因**: `agents.defaults.models` 是 allowlist+目录，TUI /model 列表只展示其中条目。只加 providers 模型定义不加 allowlist，模型"存在但不可选"; **修复**: 8 个新模型全部加入 allowlist 并配别名（DS-Vision / GLM-5.3 / GLM-5.3-Flash / GLM-5.1 / Doubao-Evolving / Doubao-2.1-Turbo / Volc-DS-Pro-GA / Volc-DS-Flash-GA），已验证 configured+alias 标签齐全; **教训**: 加模型要同时改两处 — providers 定义 + agents.defaults.models allowlist [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-02.md:19-21]
+
+## Promoted From Short-Term Memory (2026-09-08)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-09-03-1620.md:15:15 -->
+- 第 5 步：更新记忆文件: assistant: 全部完成。汇报： [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-03-1620.md:15-15]
+<!-- openclaw-memory-promotion:memory:memory/2026-09-03-1620.md:22:23 -->
+- 火山引擎"欠费"诊断（已破案）: **根因：误判**。之前测的是标准端点 `/api/v3`（该端点确实账户欠费），但你的配置走的是 **Coding Plan 端点 `/api/coding/v3`，完全正常可用**（实测 130 个模型可调）; 配置无需修复，直接拉取了最新模型列表 [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-03-1620.md:22-23]
+<!-- openclaw-memory-promotion:memory:memory/2026-09-03-1620.md:27:30 -->
+- 模型列表更新（共 22 个，全部实测验证）: | Provider | 数量 | 新增 | 移除（不可用） | |----------|------|------|--------------| | **zai 智谱** | 7 | 🆕 glm-5.3（旗舰）、glm-5.3-flash（多模态，1M ctx）、glm-5.1 | glm-5v-turbo（套餐未开放）、glm-4.7-flashx（需单独计费） | | **volcengine** | 12 | 🆕 doubao-seed-evolving、seed-2-1-turbo、deepseek-v4-pro-ga、deepseek-v4-flash-ga | seed-2-1-pro（不支持 coding plan） | [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-03-1620.md:27-30]
+<!-- openclaw-memory-promotion:memory:memory/2026-09-03-1620.md:31:31 -->
+- 模型列表更新（共 22 个，全部实测验证）: | **deepseek** | 3 | 🆕 v4-flash-vision-exp（视觉）；V4 系列上下文已更新为 1M | 无 | [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-03-1620.md:31-31]

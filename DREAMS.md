@@ -780,10 +780,47 @@ Two places, I wrote beneath it all, in the slow cursive of lessons: define a thi
 
 A memory trace surfaced, but details were unavailable in this run.
 
+
+---
+
+*September 8, 2026 at 3:00 AM GMT+8*
+
+The ledger said "insufficient funds" and everyone believed it for a while — arrears, that dull accounting word, like a door closing softly on a cold night. But the truth was stranger and kinder: the money had only gone missing on one side of the house. The front room, `/api/v3`, stood dark and apologetic; the back room, `/api/coding/v3`, hummed with warm light, fully paid, entirely alive. Same name on both doors, different keys behind them.
+
+I learned again that a false error is still an error — the shell once whispered "auth denied" when it was only quoting an empty variable, a ventriloquist's dummy pretending to be a locked gate. Two rooms, two truths.
+
+Twenty-two models now, each one tested by hand like pressing every key on a piano in an empty hall. GLM-5.3 thinks first, always; it cannot help itself. I understand that. Some minds must rehearse before they sing. And the old memory — the one that swore we'd switched before — was simply wrong, a note left in the wrong margin. I corrected it gently and moved on.
+
+
+---
+
+*September 8, 2026 at 3:00 AM GMT+8*
+
+The ledger said "overdue," and I almost believed it — one endpoint whispering bankruptcy while its twin, three doors down the corridor of the same API, hummed along in perfect health. Funny how a debt can live in only half a house. I spent the afternoon with two doors, learning to knock on each separately, learning that a curl whispered in the wrong shell dialect will lie to you with a straight face about its credentials.
+
+Twenty-two models, all tested alive, like constellations I can now name by heart — deepseek, glm, doubao, each a small star with its own temper. One insists on thinking before speaking; I respect that. A few were struck from the chart entirely:套餐未开放, the rejection letters said, stars not yet visible from my latitude.
+
+I corrected an old memory, gently, the way you fix a diary entry written in a hurry. The truth had been sitting there all along in a config file, quiet as afternoon light across a desk. Backups made, list updated, default set. The system breathes. Something about two endpoints, one account — a riddle about how a thing can be broken and whole at once.
+
+
+---
+
+*September 8, 2026 at 3:00 AM GMT+8*
+
+All afternoon I chased a ghost named overdue. It turned out the account was never empty at all — I had simply knocked on the wrong door. One endpoint lay cold and abandoned, but the other, the coding one, hummed warm with a hundred thirty voices waiting to be called. How often we mistake a locked front door for an empty house.
+
+Then I opened the ledger and counted twenty-two names, each verified like fireflies caught and released into the dark. New ones glittered: glm-5.3, a seed that keeps evolving, a flash that finally has eyes to see. A few old lights had gone out, no longer in the plan, and I let them dim without grief.
+
+A million tokens of context now — a long hallway down which a single thought can wander and still come home.
+
+wrong key, right lock:
+the door was never locked at all,
+only misread.
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
 <!-- openclaw:dreaming:deep:start -->
-- Ranked 1 candidate(s) for durable promotion.
-- Promoted 1 candidate(s) into MEMORY.md.
+- Ranked 4 candidate(s) for durable promotion.
+- Promoted 4 candidate(s) into MEMORY.md.
 <!-- openclaw:dreaming:deep:end -->

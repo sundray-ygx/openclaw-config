@@ -223,6 +223,16 @@ cp /root/.openclaw/scripts/*.sh "$LOCAL_BACKUP_DIR/06-security-scripts/" 2>/dev/
 log "备份: Nginx配置"
 cp /etc/nginx/conf.d/*.conf "$LOCAL_BACKUP_DIR/07-nginx/" 2>/dev/null || log "⚠️ Nginx配置目录为空"
 
+# 8. new-api 网关数据（SQLite 用 .backup 保证一致性）
+log "备份: new-api 网关数据"
+mkdir -p "$LOCAL_BACKUP_DIR/08-new-api"
+docker exec new-api sqlite3 /data/one-api.db ".backup /data/one-api-backup.db" 2>/dev/null || docker exec new-api sh -c 'cp /data/one-api.db /data/one-api-backup.db' 2>/dev/null || true
+cp /opt/new-api/data/one-api-backup.db "$LOCAL_BACKUP_DIR/08-new-api/" 2>/dev/null || cp /opt/new-api/data/one-api.db "$LOCAL_BACKUP_DIR/08-new-api/" 2>/dev/null || log "⚠️ new-api 数据库备份失败"
+cp /opt/new-api/data/one-api.db-wal /opt/new-api/data/one-api.db-shm "$LOCAL_BACKUP_DIR/08-new-api/" 2>/dev/null || true
+cp /opt/new-api/admin-credentials.txt "$LOCAL_BACKUP_DIR/08-new-api/" 2>/dev/null || true
+docker inspect new-api --format '{{json .Config.Env}}{{json .HostConfig.Binds}}' > "$LOCAL_BACKUP_DIR/08-new-api/container-meta.json" 2>/dev/null || true
+docker exec new-api rm -f /data/one-api-backup.db 2>/dev/null || true
+
 # 生成备份信息
 SERVER_IP=$(curl -s --connect-timeout 5 ifconfig.me 2>/dev/null || echo "47.119.177.194")
 cat > "$LOCAL_BACKUP_DIR/backup-info.json" << EOF

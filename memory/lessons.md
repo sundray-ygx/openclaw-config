@@ -274,3 +274,10 @@ SESSIONS_DIRS = [
 **根因**: `agents.defaults.models` 是 allowlist+目录，只加 providers 定义不加 allowlist 则模型"存在但不可选"
 **教训**: 加模型必须同时改两处——providers 定义 + agents.defaults.models allowlist（含 alias）
 **级别**: 🟢 低
+
+## [2026-09-08] OpenClaw/Hermes 接 OpenAI 兼容网关必须带 /v1
+- **严重度**: P0（agent 全挂，fallback 链同 URL 一起死）
+- **现象**: baseUrl 写 https://api.ygxpro.online → 实际请求 /chat/completions → 404 报 "Connection error"，极具迷惑性（像网络问题）
+- **根因**: OpenClaw/Hermes 的 openai-completions API 直接拼 baseUrl + /chat/completions，不加 /v1
+- **规则**: OpenAI 兼容网关 baseUrl 一律写到版本路径：`https://<host>/v1`（Claude Code 除外，ANTHROPIC_BASE_URL 写裸域名）
+- **续**: 第二层根因（401）：OpenClaw 忽略 provider 的 apiKey 字段，真实取 key 路径 = ①env 变量（<PROVIDER>_API_KEY 命名约定）②auth_profile_store 的 profile（zai:default / volcengine:default），两处都要改成网关令牌；原上游 key 备份于 /opt/new-api/original-upstream-keys.json

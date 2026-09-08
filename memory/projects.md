@@ -473,3 +473,8 @@
 - **nginx 反代**（9-05 完成）: `/etc/nginx/conf.d/hermes-studio.conf` 已配置，复用泛域名证书 `*.ygxpro.online`（WebSocket/SSE/3600s 超时），nginx 已 reload
 - **待办（用户侧）**: ① DNS 加 `hermes.ygxpro.online` A 记录 → 47.119.177.194 ② NAS frpc 加 tcp 代理 remotePort=8648
 - **磁盘注记**: /root 下备份堆积 ~1.4G（8-13 双份 tar、9-01 解压目录），清理方案已报备用户待确认
+
+## new-api 模型网关（2026-09-08 上线）
+- **状态**: 🟢 运行中，ECS 三平台已全量切换
+- **入口**: api.ygxpro.online；渠道 GLM-Coding(主)→Volc-Coding(备)→DeepSeek-Paygo(兜底)
+- **待办**: [ ] 观察 24-48h（cron 任务走网关情况）；[ ] NAS 侧灰度切换（文档已备）；[ ] Hermes fallback 缺失评估
