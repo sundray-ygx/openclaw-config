@@ -74,11 +74,6 @@
 - 项目追踪：`memory/projects.md`
 - 经验教训：`memory/lessons.md`
 
-## Promoted From Short-Term Memory (2026-08-18)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-08-13.md:8:11 -->
-- [PROJECT:OpenClaw系统] 升级 2026.5.28 → 2026.7.1-2 + systemd 修复: 升级成功（含 openclaw-lark 2026.7.16、auth 迁 SQLite）；修复 systemd 双重管理冲突（user service 归档 .bak-20260813，加 OPENCLAW_NO_RESPAWN=1）; memorySearch 已按用户决策禁用；备份 /root/openclaw-backups/openclaw-20260813_153304.tar.gz (242M); 升级特性报告: archive/reports/2026-08-13-OpenClaw升级特性报告.md; 详情见 projects.md「OpenClaw 环境维护」 [score=0.830 recalls=0 avg=0.620 source=memory/2026-08-13.md:8-11]
-
 ## Promoted From Short-Term Memory (2026-08-21)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-08-13.md:4:5 -->
@@ -135,3 +130,10 @@
 - 模型列表更新（共 22 个，全部实测验证）: | Provider | 数量 | 新增 | 移除（不可用） | |----------|------|------|--------------| | **zai 智谱** | 7 | 🆕 glm-5.3（旗舰）、glm-5.3-flash（多模态，1M ctx）、glm-5.1 | glm-5v-turbo（套餐未开放）、glm-4.7-flashx（需单独计费） | | **volcengine** | 12 | 🆕 doubao-seed-evolving、seed-2-1-turbo、deepseek-v4-pro-ga、deepseek-v4-flash-ga | seed-2-1-pro（不支持 coding plan） | [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-03-1620.md:27-30]
 <!-- openclaw-memory-promotion:memory:memory/2026-09-03-1620.md:31:31 -->
 - 模型列表更新（共 22 个，全部实测验证）: | **deepseek** | 3 | 🆕 v4-flash-vision-exp（视觉）；V4 系列上下文已更新为 1M | 无 | [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-03-1620.md:31-31]
+
+## Promoted From Short-Term Memory (2026-09-09)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-09-01-0917.md:2:2 -->
+- Session: 2026-09-01 hermes-config 同步脚本（已压缩）: 一次性任务，已提炼至 projects.md「Hermes 部署」。核心：Hermes 侧同步脚本完成并 push，路径2配置完成。 [score=0.815 recalls=0 avg=0.620 source=memory/2026-09-01-0917.md:2-2]
+<!-- openclaw-memory-promotion:memory:memory/2026-09-01-0957.md:2:2 -->
+- Session: 2026-09-01 SSH/git 排障（已压缩）: 一次性任务：客户端 git SSH 认证排障（PowerShell config 检查 / -F /dev/null 绕过）。无遗留。 [score=0.815 recalls=0 avg=0.620 source=memory/2026-09-01-0957.md:2-2]
