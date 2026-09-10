@@ -8,7 +8,7 @@ exec 200>"$LOCK_FILE"
 flock -n 200 || { echo "[$(date '+%Y-%m-%d %H:%M:%S')] 备份跳过：另一个实例正在运行"; exit 0; }
 
 # ==================== 配置 ====================
-WEBDAV_URL="http://127.0.0.1:5005"
+WEBDAV_URL="http://47.119.177.194:5005"
 WEBDAV_USER="aliyun-ygx"
 WEBDAV_PASS='%dOr91[#'
 WEBDAV_BASE="/aliyun_backup/server-backup"

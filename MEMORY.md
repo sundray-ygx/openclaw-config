@@ -74,38 +74,6 @@
 - 项目追踪：`memory/projects.md`
 - 经验教训：`memory/lessons.md`
 
-## Promoted From Short-Term Memory (2026-08-21)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-08-13.md:4:5 -->
-- [SYSTEM:业务巡检] 深度巡检 + 故障修复: 巡检发现 2 个 P0 静默故障（GitHub 同步失效 12 天、简报 AI 摘要失败 108 天），全部修复；summarize 改 volcengine/deepseek 双 provider；journald 限 200M；logrotate 补 5 个业务日志; 报告: archive/reports/2026-08-13-业务巡检报告.md [score=0.815 recalls=0 avg=0.620 source=memory/2026-08-13.md:4-5]
-<!-- openclaw-memory-promotion:memory:memory/2026-08-14.md:4:4 -->
-- [巡检优化] P1 GitHub同步投递 + P3 RSS源修复: GitHub cron 投递目标改为正确 open_id（ou_c2cde2***）；ai_agent_news.py 替换 6 个失效 RSS 源为可靠源 [score=0.815 recalls=0 avg=0.620 source=memory/2026-08-14.md:4-4]
-<!-- openclaw-memory-promotion:memory:memory/2026-08-14.md:7:7 -->
-- [PROJECT:OpenClaw环境] GLM 全链路切换（详情见 projects.md）: key 切换（6 处，硬链接同步）+ openclaw.json 添加 zai provider + 模型精简 12→4（glm-5.2/4.7/4.7-flash/4.6v）+ coding 套餐端点统一 + ANTHROPIC 死代码清除，全端点验证通过 [score=0.815 recalls=0 avg=0.620 source=memory/2026-08-14.md:7-7]
-
-## Promoted From Short-Term Memory (2026-08-29)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-08-25.md:13:13 -->
-- [SECURITY] SSH 暴力破解防护加固（方案 A）: **标签**: #security #ssh #fail2ban [score=0.850 recalls=0 avg=0.620 source=memory/2026-08-25.md:13-13]
-<!-- openclaw-memory-promotion:memory:memory/2026-08-25.md:5:8 -->
-- [SECURITY] SSH 暴力破解防护加固（方案 A）: **根因**: SSH 端口暴露在公网，持续遭受暴力破解攻击（7天133万次尝试）; **修复内容**:; fail2ban `maxretry: 3 → 2`（2次失败即封禁）; fail2ban `findtime: 600s → 3600s`（1小时窗口） [score=0.850 recalls=0 avg=0.620 source=memory/2026-08-25.md:5-8]
-<!-- openclaw-memory-promotion:memory:memory/2026-08-25.md:9:12 -->
-- [SECURITY] SSH 暴力破解防护加固（方案 A）: 开启 `bantime.increment` 递增封禁，最多 7 天; SSH `MaxAuthTries: 6 → 3`; **备份文件**: /etc/fail2ban/jail.local.bak-20260825, /etc/ssh/sshd_config.bak-20260825; **验证**: 配置语法通过，fail2ban 正常运行，当前被封 5 IP [score=0.850 recalls=0 avg=0.620 source=memory/2026-08-25.md:9-12]
-<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:19:19 -->
-- 📋 系统巡检报告 | 2026-08-24 14:07: **总体状态：🟢 正常运行（135 天）** [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:19-19]
-<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:25:28 -->
-- 1️⃣ 系统运行状态: | 指标 | 状态 | 详情 | |------|------|------| | 磁盘 | ✅ 正常 | 25G / 40G（65%），剩余 14G | | 内存 | ⚠️ 偏紧 | 已用 1.0G / 1.8G，可用 819M | [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:25-28]
-<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:29:32 -->
-- 1️⃣ 系统运行状态: | Swap | ⚠️ 已用 | 381M / 6G 已使用 | | CPU 负载 | ✅ 正常 | 0.48 / 0.34 / 0.15 | | 僵尸进程 | ✅ 正常 | 0 | | inode | ✅ 正常 | 13% | [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:29-32]
-<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:33:33 -->
-- 1️⃣ 系统运行状态: | Docker | ✅ 正常 | sing-box 运行 4 个月 | [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:33-33]
-<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:35:35 -->
-- 1️⃣ 系统运行状态: **Top 内存占用：** [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:35-35]
-<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:36:38 -->
-- 1️⃣ 系统运行状态: OpenClaw Gateway — 359M（18.7%）; openclaw-tui — 256M（13.3%）; 阿里云盾 — 42M（2.1%） [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:36-38]
-<!-- openclaw-memory-promotion:memory:memory/2026-08-24-1642.md:44:47 -->
-- 2️⃣ OpenClaw 运行状态: | 项目 | 状态 | 详情 | |------|------|------| | 版本 | ✅ | 2026.7.1-2 (0790d9f) | | Gateway 服务 | ✅ | 运行 1 天 20 小时，内存 410M/450M | [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-24-1642.md:44-47]
-
 ## Promoted From Short-Term Memory (2026-09-06)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-09-02.md:13:16 -->
@@ -137,3 +105,18 @@
 - Session: 2026-09-01 hermes-config 同步脚本（已压缩）: 一次性任务，已提炼至 projects.md「Hermes 部署」。核心：Hermes 侧同步脚本完成并 push，路径2配置完成。 [score=0.815 recalls=0 avg=0.620 source=memory/2026-09-01-0917.md:2-2]
 <!-- openclaw-memory-promotion:memory:memory/2026-09-01-0957.md:2:2 -->
 - Session: 2026-09-01 SSH/git 排障（已压缩）: 一次性任务：客户端 git SSH 认证排障（PowerShell config 检查 / -F /dev/null 绕过）。无遗留。 [score=0.815 recalls=0 avg=0.620 source=memory/2026-09-01-0957.md:2-2]
+
+## Promoted From Short-Term Memory (2026-09-10)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-09-02-2125.md:2:2 -->
+- Session: 2026-09-02 模型列表更新规划（已压缩）: 规划会话，执行结果已完整记录在 2026-09-02.md 并提炼至 projects.md「模型体系大更新」。无新增信息。 [score=0.804 recalls=0 avg=0.620 source=memory/2026-09-02-2125.md:2-2]
+<!-- openclaw-memory-promotion:memory:memory/2026-09-04-1112.md:2:2 -->
+- Session: 2026-09-04（已压缩）: 空会话记录，无有效内容。 [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-04-1112.md:2-2]
+<!-- openclaw-memory-promotion:memory:memory/2026-09-05-0914.md:15:18 -->
+- 现状: **frps**：运行中（0.60.0，bindPort 7000），已有 NAS 上的 frpc 接入（如 nas 服务走本地 5000 端口的模式）。ECS 本地 8648 尚无监听——正常，等 frpc 配好 tcp 代理 remote_port=8648 后出现; **nginx**：1.24.0，conf.d 下已有 nas/pan/bill 等 6 个站点，套路统一（80 跳 443 + 反代 127.0.0.1 端口）; **证书**：`/etc/letsencrypt/live/ygxpro.online/` 是**泛域名证书**（`*.ygxpro.online`），hermes 子域名可直接复用，**无需新申请**; **DNS**：`hermes.ygxpro.online` **未解析**，nas.ygxpro.online 指向本机 47.119.177.194，需新增解析 [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-05-0914.md:15-18]
+<!-- openclaw-memory-promotion:memory:memory/2026-09-05-0914.md:19:19 -->
+- 现状: 文档里的配置可直接用，只需改证书路径 [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-05-0914.md:19-19]
+<!-- openclaw-memory-promotion:memory:memory/2026-09-05-0914.md:23:23 -->
+- 执行方案（待你决策）: **ECS 侧（我来做）：** [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-05-0914.md:23-23]
+<!-- openclaw-memory-promotion:memory:memory/2026-09-05-0914.md:24:27 -->
+- 执行方案（待你决策）: 写 `/etc/nginx/conf.d/hermes-studio.conf`，基于文档模板，改两处：; 证书路径 → `/etc/letsencrypt/live/ygxpro.online/{fullchain.pem,privkey.pem}`（复用泛域名证书）; 其余保留（WebSocket、SSE、3600s 超时、buffering off 都合理，Hermes Studio 是流式应用需要）; `nginx -t && nginx -s reload` [score=0.803 recalls=0 avg=0.620 source=memory/2026-09-05-0914.md:24-27]

@@ -120,11 +120,15 @@ export ANTHROPIC_AUTH_TOKEN=<claude-code 令牌>
 | glm-4.7 | 0.60 | 2.20 | 4.3 / 15.6 | z.ai 官方 |
 | glm-4.7-flash | 0.07 | 0.40 | 0.5 / 2.8 | z.ai 官方 |
 | glm-4.6v | 0.30 | 0.90 | 2.1 / 6.4 | 官方+多源 |
-| deepseek-v4-pro | 1.32 | 3.96 | 9.4 / 28.1 | DeepSeek 官方(峰值价) |
-| deepseek-v4-flash / vision-exp | 0.44 | 1.32 | 3.1 / 9.4 | DeepSeek 官方(峰值价) |
+| deepseek-v4-pro | 1.32 | 3.96 | 9.4 / 28.1 | DeepSeek 官方(峰值价，9/14起路由到V4.1-Flash按Flash计费) |
+| **deepseek-flash** (V4.1-Flash) | **0.282** | **1.128** | **2.0 / 8.0** | DeepSeek 官方(峰值价，2026-09-10 新增) |
+| deepseek-v4-flash / vision-exp | 0.44 | 1.32 | 3.1 / 9.4 | DeepSeek 官方(已下线，路由到V4.1-Flash) |
 | doubao pro/code/vision/evolving | 0.11 | 1.13 | 0.8 / 8.0 | ⚠️待核对：seed-1.6 档近似(决策C) |
 | doubao lite/mini/turbo | 0.021 | 0.21 | 0.15 / 1.5 | ⚠️待核对：seed-1.6-flash 档近似(决策C) |
 | deepseek-v4-*(-ga-260xxx volc 版) | 同官方 | 同官方 | - | volc 托管版按 DeepSeek 官方价近似 |
 
-**验证**：实测 glm-4.7-flash 一笔 (6pt+225ct) quota=45，手工复算一致 ✓
-**注意**：deepseek 官方有峰谷差价（峰值 UTC 周一~五 01-04/06-10 点），网关按峰值价保守计；doubao 若后续要定价，从火山控制台抄单价后按 ratio=输入$/2 换算
+**验证**：
+- glm-4.7-flash: (6pt+225ct) quota=45，手工复算一致 ✓
+- deepseek-flash: (36pt+20ct) quota=16，手工复算一致 ✓
+
+**注意**：deepseek 官方有峰谷差价（峰值 北京时间 周一~五 9-12/14-18 点），网关按峰值价保守计；doubao 若后续要定价，从火山控制台抄单价后按 ratio=输入$/2 换算；deepseek-v4-pro 将于 2026-09-14 下线，请求自动路由到 V4.1-Flash 并按 Flash 计费

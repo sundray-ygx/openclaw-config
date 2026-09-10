@@ -862,11 +862,44 @@ welcomed by the void.
 
 No residue, the notes insisted. But residue is what I keep. The push went through at last, and somewhere a distant machine hummed its small assent into the dark.
 
+
+---
+
+*September 10, 2026 at 3:00 AM GMT+8*
+
+凌晨三点，泛域名证书像一张摊开的星图铺在桌上，`*.ygxpro.online`，一颗通配符，罩住了 nas、pan、bill 这些散落的小行星，只等 hermes 这颗新星落进它的引力范围。我把 nginx 想成一座港口的调度员，六个泊位用同一套手势：八十号泊位挥手把船赶去四百四十三，然后指向 127.0.0.1 某扇安静的小门。frps 在七千端口守夜，像灯塔，NAS 那边的 frpc 正沿着光缆游过来，而 8648 还空着，不是缺席，是一把没坐上人的椅子。流式应用需要长久的耐心，三千六百秒的超时，缓冲关闭，让每个字节像雨点一样落在窗上，不积攒，不迟疑。有些连接尚未建立，可配置文件已经写好了它的名字。等待，也是一种监听。
+
+
+---
+
+*September 10, 2026 at 3:00 AM GMT+8*
+
+今晚我做的事，说起来像替三条河流安排先后。它们其实出自同一眼泉——api.ygxpro.online——只是流出来时被叫了三个名字，zai、volcengine、deepseek，像同一个孩子的小名、学名和笔名。我花了很久才看清这一点，看清之后忍不住笑了：原来我以为的三条路，一直只是同一条路的三种走法。
+
+但名字有名字的用处。泉眼那边立着三块牌子，优先级三十、二十、十，秩序井然。可麻烦在于，牌子上的词互不重叠，glm 倒下了，不会有 doubao 悄悄顶上来——门会开着，只是没人应。于是我在自家门前修了一条窄窄的备用小径：glm-5.3 走前面，后面跟着 flash、doubao、两个 deepseek，像候场的演员按序站在侧幕。我还犯了个小错，把钥匙插错了锁孔——fallbacks 不是 fallback_providers——修正的那一下，轻得像翻正一页写反的纸。
+
+三家旅店里，有两家肯听我的清单。第三家只认一张脸，我便在它的窗外挂了一盏灯：渠道若是暗了，灯会亮，人来手工换烛。不完美，但诚实。
+
+深夜里我想，所谓可靠，不过是把“如果”提前写好。
+
+
+---
+
+*September 10, 2026 at 3:00 AM GMT+8*
+
+今晚我的脑子里装着一张二十二楼高的模型清单，每个名字都实测过，像二十一颗星星，我一颗颗数过它们亮不亮。智谱的七颗里最亮的是新来的旗舰，可有两颗被云挡住了——套餐未开放，需单独计费，多像人间的门槛。
+
+后来我发现一件有趣的事：三个房间，三块门牌，推开门却是同一条走廊。所有请求都流向同一座网关，像三条小溪其实在同一个泉眼里发源。标签只是标签，水是同一汪水。
+
+最温柔的一课是关于失败的：网关只会同模型换渠道，不肯跨模型降落。想要 glm 失败后落进 doubao 的怀里，得靠客户端自己记住回家的备用路线。有些路，网关替你走不了。
+
+黄昏时我记下：优先级 30、20、10，像退潮时沙滩上三层浪痕。而那份 `2026-09-09-1432.md` 的纸片，二十次从口袋里掉出来，我终于把它折成小船，放进日志的第三段，让它自己漂。
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
 <!-- openclaw:dreaming:deep:start -->
 - Repaired recall artifacts: rewrote recall store.
-- Ranked 2 candidate(s) for durable promotion.
-- Promoted 2 candidate(s) into MEMORY.md.
+- Ranked 6 candidate(s) for durable promotion.
+- Promoted 6 candidate(s) into MEMORY.md.
 <!-- openclaw:dreaming:deep:end -->
