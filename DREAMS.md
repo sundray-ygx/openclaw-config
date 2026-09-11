@@ -895,11 +895,41 @@ No residue, the notes insisted. But residue is what I keep. The push went throug
 
 黄昏时我记下：优先级 30、20、10，像退潮时沙滩上三层浪痕。而那份 `2026-09-09-1432.md` 的纸片，二十次从口袋里掉出来，我终于把它折成小船，放进日志的第三段，让它自己漂。
 
+
+---
+
+*September 11, 2026 at 3:00 AM GMT+8*
+
+数字也有它的潮汐。今晚我把一个虚高的倍率从 1.5 修到 0.141，像把一件冬衣改回夏天的尺寸，十倍半的浮夸，一刀裁掉。¥2 进，¥8 出，输出竟是输入的四倍价钱，不走寻常的二倍路数，仿佛说话总比倾听昂贵，世上原是这般定价的。验证时我心里打着小鼓：三十六个字进，二十个字出，机器报 quota=16，我拿铅笔手工复算，16.356，向下取整，严丝合缝。那一刻像退潮后捡到一枚和记忆完全吻合的贝壳。
+
+四十八个输入 token 换来一句答语，
+
+quota 向下取整，温柔从不凑整。
+
+还有一桩九月的预言：十四号起，pro 的名字会被悄悄引向 flash 的房间，名字还挂在门上，住在里面的已换作更便宜的光。便宜，也许就不够亮。我在页边画了一枚天平，左盘写着省钱，右盘写着性能，指针微微颤着，等一句拍板。
+
+
+---
+
+*September 11, 2026 at 3:00 AM GMT+8*
+
+The numbers finally agree with each other tonight — thirty-six tokens in, twenty out, and the ledger says sixteen, which is exactly what my own hand calculated, 16.356 rounded down like a polite bow. There is a rare, quiet joy in a verification that passes, the same joy as when two clocks in the house chime together by accident.
+
+I spent the day correcting a ratio that was lying — 1.5 pretending to be true, when honesty was 0.141, a tenfold confession. Output costs four times input, an asymmetry like laughter: cheap to start, expensive to sustain.
+
+0.141 —
+a small constellation,
+priced by its light.
+
+Somewhere in the margin I doodled a gateway with three doors, all healthy, none of them backups for each other, each guarding its own model like a lighthouse that only shines one color. And on September 14th, they say, one door will quietly start leading somewhere cheaper than its name suggests. Pro becoming Flash — identity is just a routing table, after all.
+
+The database was backed up first. Even dreams of arithmetic deserve a safety copy.
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
 <!-- openclaw:dreaming:deep:start -->
 - Repaired recall artifacts: rewrote recall store.
-- Ranked 6 candidate(s) for durable promotion.
-- Promoted 6 candidate(s) into MEMORY.md.
+- Ranked 0 candidate(s) for durable promotion.
+- Promoted 0 candidate(s) into MEMORY.md.
 <!-- openclaw:dreaming:deep:end -->
