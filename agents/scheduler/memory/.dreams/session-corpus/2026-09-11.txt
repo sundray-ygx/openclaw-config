@@ -1,0 +1,4 @@
+[scheduler/sessions/scheduler/54c4867c-a992-4c11-be70-fbc1b17978ed#L26] User: 测试飞书通道是否正常
+[scheduler/sessions/scheduler/54c4867c-a992-4c11-be70-fbc1b17978ed#L30] Assistant: 飞书通道正常 ✅ 这条消息已经收到并成功回复，说明消息接收与发送链路都通畅。 要不要我顺手跑个更完整的自检？比如： - 用 `feishu_get_user` 验证 API 授权状态 - 发一条测试卡片确认卡片渲染正常 需要的话说一声。
+[scheduler/sessions/scheduler/54c4867c-a992-4c11-be70-fbc1b17978ed#L31] User: 测试飞书通道是否正常
+[scheduler/sessions/scheduler/54c4867c-a992-4c11-be70-fbc1b17978ed#L34] Assistant: 飞书通道正常 ✅（第二次测试） 今天两次测试（16:45、17:59）都收到并即时回复了，收发链路稳定。如果你在排查什么具体的异常（比如消息延迟、卡片没收到），告诉我症状，我可以进一步查。

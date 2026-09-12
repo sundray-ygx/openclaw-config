@@ -66,3 +66,7 @@
 [main/sessions/main/c87daca1-8f5e-4594-9922-aa42630f833c.jsonl#L71] Assistant: 用 ecs-openclaw 令牌调用一次 deepseek-flash 来验证：
 [main/sessions/main/c87daca1-8f5e-4594-9922-aa42630f833c.jsonl#L73] Assistant: key 是脱敏的，直接从数据库取：
 [main/sessions/main/c87daca1-8f5e-4594-9922-aa42630f833c.jsonl#L77] Assistant: 调用成功。现在查最新日志看计费是否正确：
+[main/sessions/main/c87daca1-8f5e-4594-9922-aa42630f833c#L79] Assistant: 找到了！**第二条**就是刚才的测试调用： - 输入 36 tokens · 输出 20 tokens - quota = **16** 手工复算验证：
+[main/sessions/main/c87daca1-8f5e-4594-9922-aa42630f833c#L81] Assistant: 公式验证通过：**quota = prompt_tokens × ratio + completion_tokens × ratio × cr**（向下取整） 现在验证 deepseek-flash 的新定价：
+[main/sessions/main/c87daca1-8f5e-4594-9922-aa42630f833c#L83] Assistant: ✅ 定价验证通过！quota 计算完全吻合。现在更新文档和日志：
+[main/sessions/main/c87daca1-8f5e-4594-9922-aa42630f833c#L97] Assistant: --- ## ✅ 完成 **deepseek-flash 定价已设置并验证通过。** | 项目 | 值 | |------|-----| | 模型 | deepseek-flash (DeepSeek V4.1-Flash) | | 输入价格 | ¥2.00 / 1M tokens（≈$0.282/M） | | 输出价格 | ¥8.01 / 1M tokens（≈$1.128/M） | | ModelRatio | 0.141（从默认 1.5 修正，降了 10.6 倍） | | CompletionRatio | 4.0（输出是输入
