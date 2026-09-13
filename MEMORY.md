@@ -25,6 +25,7 @@
 | 安全配置巡检 | 每周一 09:00 | ✅ 正常 |
 | 租金账单提醒 | 每月 25/27 日 | ✅ 正常 |
 | 磁盘清理 | 每周一 10:00 | ✅ 正常 |
+| GLM 渠道健康检查 | 每日 09:30 | ✅ 纯脚本零LLM，正常静默、异常才推送（09-13 静默模式） |
 | Memory Dreaming | 每日 03:00 | ✅ 内置 |
 
 ### 已删除的定时任务（2026-06-03）
@@ -56,6 +57,7 @@
 - [ ] 观察反思 V3 效果（关注是否有重复反思点）
 
 ## 最近日志
+- `memory/2026-09-13.md` - 定时任务 LLM 消耗优化（方案B：GLM 检查 agentTurn→command 零LLM，GitHub 保留 agent）
 - `memory/2026-09-08.md` - new-api 网关部署+ECS 三平台灰度切换完成（Claude Code/Hermes/OpenClaw→api.ygxpro.online），OpenClaw 接线三处对齐要点见 deployment 文档
 - `memory/2026-08-13.md` - 业务巡检 + 2 个 P0 故障修复（GitHub同步/AI摘要）
 - `memory/2026-05-08.md` - 系统性切换至 zai/glm-5

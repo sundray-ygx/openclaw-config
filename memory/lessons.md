@@ -30,6 +30,12 @@
 **Fix**: 记录：systemEvent+main=可能有400错误，使用isolated隔离执行
 **级别**: 🟢 低
 
+### 工具调用文本被传输层清洗（secret 模式静默替换为 ***）
+**问题**: 2026-09-13 写脚本时 `$(grep` 和 `"$KEY`" 插值被替换成字面 `***`，先致语法错误、后致 401（Bearer ***），两轮排障
+**根因**: 传输层对 secret 相关模式做内容清洗，静默替换无告警；同一构造偶尔能通过，不稳定
+**Fix**: 脚本写入用 exec heredoc；脚本设计零命令替换（curl -w 落文件 + read 回读）；secret 不经 shell 文本（sed 把 .env 行转 curl -K 头配置文件）；写入后必跑 bash -n + 成败双路径运行时测试
+**级别**: 🔴 高（静默破坏，难排查）
+
 ---
 
 ## 📈 流程改进
@@ -281,3 +287,40 @@ SESSIONS_DIRS = [
 - **根因**: OpenClaw/Hermes 的 openai-completions API 直接拼 baseUrl + /chat/completions，不加 /v1
 - **规则**: OpenAI 兼容网关 baseUrl 一律写到版本路径：`https://<host>/v1`（Claude Code 除外，ANTHROPIC_BASE_URL 写裸域名）
 - **续**: 第二层根因（401）：OpenClaw 忽略 provider 的 apiKey 字段，真实取 key 路径 = ①env 变量（<PROVIDER>_API_KEY 命名约定）②auth_profile_store 的 profile（zai:default / volcengine:default），两处都要改成网关令牌；原上游 key 备份于 /opt/new-api/original-upstream-keys.json
+
+---
+
+## 🚀 OpenClaw 升级与 systemd（2026-09-11/12）
+
+### busctl --json 需 systemd ≥243，老系统上 gateway install 必失败
+**问题**: `openclaw gateway install` 报 SERVICE_DEFINITION_UNKNOWN，user 级迁移不可行
+**根因**: 9.3 install 用 `busctl --user --json=short` 查 D-Bus，Alibaba Linux 8 的 systemd 239 不支持 --json（243+ 才有），且 CLI 靠精确匹配错误串判定 unit 缺失
+**Fix**: 老系统保留系统级 systemd unit，doctor 用 `OPENCLAW_SERVICE_REPAIR_POLICY=external openclaw doctor --fix --yes`
+**级别**: 🔴 高
+
+### 跨停机操作必须脱离网关 cgroup 且带自愈兜底
+**问题**: 停机脚本导致 28 分钟失联，Boss 手工救援；exec 会话随网关死亡
+**根因**: exec 子进程在网关 cgroup 内，KillMode=control-group 全杀
+**Fix**: 停机类操作用 `systemd-run --collect bash <script>`（独立 transient unit），脚本无论成败最后必须拉回服务
+**级别**: 🔴 高
+
+### 升级前必须释放内存（2GB 机器）
+**问题**: 升级 2026.9.3 时 npm install 触发系统级 OOM 连杀 4 次，之后 78/CONFIG 退出两次
+**Fix**: 升级前 free 检查，必要时先停网关/清缓存再升；swap 6G 只是缓冲不是解法
+**级别**: 🟡 中
+
+### 插件"加载成功"≠"消息处理正常"
+**问题**: 网关升级后飞书插件正常加载收消息，但每条消息处理时 TypeError 崩，表现为"发消息没响应"
+**根因**: 9.3 把 runtime.config 从 API 对象改为纯配置对象，插件调 loadConfig() 崩
+**Fix**: 排障关键路径 `journalctl | grep 'error handling message'`；给插件调用点做三级降级 shim
+**级别**: 🔴 高
+
+### new-api 渠道配置以 SQL 直改最可靠（补充 9-08 条目）
+**问题**: glm-4.7-flash 在网关"No available channel"（分组/渠道缺失），OpenClaw 同模型重试 8 次+退避 → 每条消息慢 86s
+**Fix**: 上游模型渠道缺失时先在 OpenClaw 侧换可用主模型止血，网关侧渠道后补
+**级别**: 🟡 中
+
+### cron announce 投递目标必须显式
+**问题**: 每日健康检查任务 delivery=last 无路由，连续 3 天 fail-closed（检查本身正常）
+**Fix**: `openclaw cron edit <id> --announce --channel feishu --to feishu:<openId>`
+**级别**: 🟢 低

@@ -475,6 +475,16 @@
 - **磁盘注记**: /root 下备份堆积 ~1.4G（8-13 双份 tar、9-01 解压目录），清理方案已报备用户待确认
 
 ## new-api 模型网关（2026-09-08 上线）
-- **状态**: 🟢 运行中，ECS 三平台已全量切换
+- **状态**: 🟢 运行中，ECS 三平台已全量切换；9-12 起每日 09:30 渠道健康检查 cron 正常投递
 - **入口**: api.ygxpro.online；渠道 GLM-Coding(主)→Volc-Coding(备)→DeepSeek-Paygo(兜底)
-- **待办**: [ ] 观察 24-48h（cron 任务走网关情况）；[ ] NAS 侧灰度切换（文档已备）；[ ] Hermes fallback 缺失评估
+- **9-11/12 变更**: fallback 链按 Boss 预期修正（glm→火山→deepseek）；scheduler 主模型 glm-4.7-flash→glm-5.3-flash（4.7-flash 在网关无渠道致 503+重试8次，每条消息慢 86s）；定价/费用重算/渠道事故恢复见 2026-09-08.md
+- **待办**: [ ] glm-4.7-flash 渠道在 new-api 后台补配（Boss 手动）；[ ] NAS 侧灰度切换（文档已备）；[ ] Hermes fallback 缺失评估
+
+## OpenClaw 2026.9.3 升级攻坚（2026-09-11，已闭环）
+- **状态**: ✅ 完成。三起连锁故障全部修复：①飞书插件不兼容 9.3 新插件 API（runtime.config 变纯对象），3 处兼容补丁；②doctor/tui ownership——user 级迁移在本机不可行（busctl --json 需 systemd≥243，Al8 只有 239），最终方案=保留系统级 unit + OPENCLAW_SERVICE_REPAIR_POLICY=external + systemd-run 自愈脚本跑 doctor --fix；③fallback 链与 scheduler 模型修正（上条）
+- **配置备份**: openclaw.json.bak-fallback-20260911、/etc/systemd/system/openclaw-gateway.service.bak-userscope-migration-20260911
+- **教训**: 见 lessons.md「OpenClaw 升级与 systemd」节
+
+## ECS SSH 安全加固（2026-09-12 诊断，待 Boss 决策）
+- **状态**: ⏳ 确认未入侵（2129 次失败爆破全为互联网背景噪音，攻击 IP 零成功），但 PasswordAuthentication=yes 攻击面全开
+- **待办**: [ ] Boss 先完成密钥登录验证 → 再改 sshd 关闭密码认证（PasswordAuthentication no + PermitRootLogin prohibit-password）；备选 Tailscale/安全组白名单
