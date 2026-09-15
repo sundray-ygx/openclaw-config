@@ -37,3 +37,11 @@
 [main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L78] Assistant: ## 需求理解与推理 **新要求**：GLM 渠道检查——正常时静默（不推送），异常时才推飞书。当前行为是无论成败都 announce 推送。 **一步步推理**： **第 1 步：实现机制选哪个？** - ❌ 方案一：保留 announce，成功时输出空文本指望不推送——依赖未定义行为，不可靠 - ✅ 方案二（标准做法）：job 的 `delivery` 改为 `none`（成功完全静默），失败路径靠 `failureAlert`（连续 1 次错误即告警，推飞书）——这正是 OpenClaw 为「静默监视、异常才报」设计的机制，G
 [main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L81] Assistant: 脚本已改。现在验证两条路径（失败路径用假 URL 模拟，不碰真实服务）：
 [main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L84] Assistant: 脚本有语法错误（line 14 附近的命令替换被破坏）。先看文件真实字节，定位问题再修，不瞎猜：
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L87] Assistant: 根因确认：**write 通道把 `$(grep` 清洗成了 `***`**（文件字节级证据），v2 写入即坏。对策：改用 exec heredoc 重写（该通道已验证不清洗），且脚本设计成**零命令替换**（`read`/参数展开/`-w` 文件输出），彻底免疫此类清洗：
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L90] Assistant: 脚本重写完成，语法通过、无清洗残留。现在验证两条路径：
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L93] Assistant: 上下文确认无活动会话，继续。成功路径返回 401 暴露了新问题：**传输层把命令文本里的 `"$KEY"` 插值也清洗成了字面 `***`**（脚本里 Authorization 头变成了 `Bearer ***`，new-api 当然拒绝）。KEY 读取本身是好的（没走 nokey 分支）。 对策升级：**key 完全不经过 shell 文本**——用 `sed` 把 .env 那行原地转换成 curl 配置文件（`header = "Authorization: Bearer ***"`），curl 用 `-K` 读取。命令文本
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L96] Assistant: 继续验证两条路径：
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L99] Assistant: 两条路径全部通过 ✅（成功静默 exit=0 + 日志留痕；失败 exit=1 + 告警文案）。现在改 job：delivery 关闭 + failureAlert 接管异常推送：
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L102] Assistant: `delivery.mode=none` 已生效。force run 验证静默（这次你**不应该**收到飞书推送——没消息就是好消息）：
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L108] Assistant: 验证通过：`deliveryStatus: not-requested`、脚本零输出 exit 0——**成功路径已完全静默**。收尾记忆：
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L120] Assistant: 改造完成 ✅ 新行为：**正常静默，异常才推飞书**。 **验证结果**： | 路径 | 测试方式 | 结果 | |------|----------|------| | 正常 | force run 真实链路 | exit 0、零输出、`deliveryStatus=not-requested`（无推送）✅ | | 异常 | 假 URL 模拟故障 | exit 1 + 完整告警文案（触发 failureAlert 推送，含 HTTP 码/耗时/响应详情）✅ | **机制**：job 的 delivery 改为 `none`，异常靠

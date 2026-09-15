@@ -1,18 +1,6 @@
 {
   "checks": [
     {
-      "time": "2026-08-27 01:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
-      "time": "2026-08-27 04:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
       "time": "2026-08-27 05:02",
       "total": 2,
       "healthy": 2,
@@ -176,6 +164,21 @@
     },
     {
       "time": "2026-09-13 10:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-09-15 00:02",
+      "total": 9,
+      "healthy": 7,
+      "issues": [
+        "⚠️ skill-collection-review-coding: 上次更新 2026-09-11 14:49 (> 48h)",
+        "⚠️ skill-collection-review-main: 上次更新 2026-09-12 23:03 (> 48h)"
+      ]
+    },
+    {
+      "time": "2026-09-15 00:04",
       "total": 9,
       "healthy": 9,
       "issues": []

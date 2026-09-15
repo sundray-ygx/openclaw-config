@@ -58,20 +58,27 @@ def check_openclaw_crons(max_gap_hours=48):
     issues = []
     healthy = 0
     now_ms = datetime.now().timestamp() * 1000
-    gap_ms = max_gap_hours * 3600 * 1000
+    # 调度过期容忍窗口：nextRunAtMs 已过期超过该值才报警（避免轮询间隙误报）
+    overdue_ms = max_gap_hours * 3600 * 1000
     for c in crons:
         if not isinstance(c, dict):
             continue
-        name = c.get('name', c.get('id', '?'))
+        name = c.get('name', c.get('displayName', c.get('id', '?')))
         enabled = c.get('enabled', True)
         if not enabled:
             continue  # skip disabled jobs
-        updated_ms = c.get('updatedAtMs', 0)
-        if updated_ms and (now_ms - updated_ms) > gap_ms:
-            last_time = datetime.fromtimestamp(updated_ms / 1000).strftime('%Y-%m-%d %H:%M')
-            issues.append(f"⚠️ {name}: 上次更新 {last_time} (> {max_gap_hours}h)")
-        else:
-            healthy += 1
+        run_status = (c.get('lastRunStatus') or c.get('lastStatus') or c.get('status') or '').lower()
+        # 1) 运行失败告警
+        if 'error' in run_status:
+            issues.append(f"⚠️ {name}: 上次运行失败 (status={run_status})")
+            continue
+        # 2) 调度过期告警：one-shot 或周期任务的 nextRunAtMs 已过期超窗
+        next_ms = c.get('nextRunAtMs') or 0
+        if next_ms and (now_ms - next_ms) > overdue_ms:
+            next_time = datetime.fromtimestamp(next_ms / 1000).strftime('%Y-%m-%d %H:%M')
+            issues.append(f"⚠️ {name}: 调度过期 next={next_time} 未触发")
+            continue
+        healthy += 1
     
     return {
         'total': len(crons),
