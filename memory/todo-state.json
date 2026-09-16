@@ -432,7 +432,7 @@
       "id": "2026-09-13-ssh-key-hardening",
       "title": "ECS SSH 关闭密码认证 - 待 Boss 完成密钥登录验证",
       "remind_time": "2026-09-15T09:30:00+08:00",
-      "status": "⏳ 待提醒",
+      "status": "📋 已提醒",
       "created_at": "2026-09-13T00:30:00+08:00",
       "description": "SSH 加固第二步：Boss 用 ygx@sundray.com 私钥实际登录成功一次后，改 sshd（PasswordAuthentication no + PermitRootLogin prohibit-password，改前备份）。背景：9-12 诊断确认未入侵但密码认证攻击面全开，详见 projects.md SSH 条目。若 Boss 已用 Tailscale/安全组替代方案则关闭此项。"
     }
