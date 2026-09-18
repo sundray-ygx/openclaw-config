@@ -474,11 +474,12 @@
 - **待办（用户侧）**: ① DNS 加 `hermes.ygxpro.online` A 记录 → 47.119.177.194 ② NAS frpc 加 tcp 代理 remotePort=8648
 - **磁盘注记**: /root 下备份堆积 ~1.4G（8-13 双份 tar、9-01 解压目录），清理方案已报备用户待确认
 
-## new-api 模型网关（2026-09-08 上线）
-- **状态**: 🟢 运行中，ECS 三平台已全量切换；9-12 起每日 09:30 渠道健康检查 cron 正常投递
-- **入口**: api.ygxpro.online；渠道 GLM-Coding(主)→Volc-Coding(备)→DeepSeek-Paygo(兜底)
+## new-api 模型网关（2026-09-08 上线，2026-09-17 迁至 NAS）
+- **状态**: 🟢 运行中，容器位于 NAS Docker（域名不变）；入口仍为 ECS nginx(443 TLS)→frp 隧道(ECS:3100)→NAS:3000；桥接容器 newapi-bridge(NAS, 172.17.0.1:8081)；版本 2026-09-11 构建（迁移时 latest 已更新，Boss 批准接受）；每日 09:30 渠道健康检查 cron 正常投递
+- **入口**: api.ygxpro.online；渠道 GLM-Coding(主)→Volc-Coding(备)→DeepSeek-Paygo(兜底)；三渠道数据在 NAS /volume1/docker/newapi/data
+- **迁移记录**: 2026-09-17 完成；评估与双侧 runbook 见 knowledge/tech/infrastructure/newapi-nas-migration-*.md；首次编排切流因 hermes 模型配置问题超时自动回滚，hermes 修复后改零停机直接切流成功；ECS 旧容器/数据保留热备待观察期后清理
 - **9-11/12 变更**: fallback 链按 Boss 预期修正（glm→火山→deepseek）；scheduler 主模型 glm-4.7-flash→glm-5.3-flash（4.7-flash 在网关无渠道致 503+重试8次，每条消息慢 86s）；定价/费用重算/渠道事故恢复见 2026-09-08.md
-- **待办**: [ ] glm-4.7-flash 渠道在 new-api 后台补配（Boss 手动）；[ ] NAS 侧灰度切换（文档已备）；[ ] Hermes fallback 缺失评估
+- **待办**: [ ] glm-4.7-flash 渠道在 new-api 后台补配（Boss 手动）；[ ] 观察期 1-2 周后 Phase4 收尾（ECS 清理、备份脚本 08-new-api 段改造、3100 连通性入巡检）；[ ] Hermes fallback 缺失评估
 
 ## OpenClaw 2026.9.3 升级攻坚（2026-09-11，已闭环）
 - **状态**: ✅ 完成。三起连锁故障全部修复：①飞书插件不兼容 9.3 新插件 API（runtime.config 变纯对象），3 处兼容补丁；②doctor/tui ownership——user 级迁移在本机不可行（busctl --json 需 systemd≥243，Al8 只有 239），最终方案=保留系统级 unit + OPENCLAW_SERVICE_REPAIR_POLICY=external + systemd-run 自愈脚本跑 doctor --fix；③fallback 链与 scheduler 模型修正（上条）

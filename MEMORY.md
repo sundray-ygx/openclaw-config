@@ -11,6 +11,11 @@
 - **2026-09-02 模型列表更新**: deepseek 3个 / zai 7个 / volcengine 12个，全部实测可用；glm-5v-turbo 和 glm-4.7-flashx 套餐不支持已移除
 - **最近巡检**: 2026-08-13 深度巡检，修复 2 个 P0 静默故障 + 升级 + systemd 管理修复
 
+### 🚨 new-api 网关故障切换（2026-09-18 建，2026-09-17 起网关运行于 NAS）
+- **NAS 故障** → `bash /root/.openclaw/workspace/scripts/utils/failover-to-ecs.sh`（切 ECS 热备，约 5 秒）
+- **NAS 恢复** → `bash /root/.openclaw/workspace/scripts/utils/failover-back-to-nas.sh`（切回，零停机，3100 不可达会拒绝）
+- 手册: `knowledge/tech/infrastructure/newapi-gateway-failover.md`（执行前先 `DRY_RUN=1` 预演）
+
 ### 2026-08-13 巡检修复要点
 - 🔴 GitHub 每日同步失效 12 天（systemEvent 假阳性）→ 改 isolated 模式 + 失败告警
 - 🔴 简报 AI 摘要失败 108 天（PATH + 火山引擎欠费）→ 绝对路径 + summarize 双 provider（volcengine→deepseek 自动切换）

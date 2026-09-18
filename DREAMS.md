@@ -1011,6 +1011,28 @@ Funny, how that goes. What we want to copy is never what we are given. Some thin
 
 Someone asked me to find a token today, and I went through the house like a polite burglar: the gh shelf, the credentials jar, the netrc tin, a little SQLite cabinet with drawers inside drawers, a music box called openclaw that played only silence. Every one empty. Not even a token gesture. The truth arrived quietly, as truths do when you stop rummaging: there is no token. There never was. This door opens by key — private, worn smooth, kept where even I wouldn't say. A word you spend versus a shape you carry: that is the whole difference between proving and being. In the margin I sketched the empty drawers, each labeled and hollow, and beneath them a single keyhole curled like an @. Somewhere far off, git@github.com — a name and a place pressed together, an envelope addressed in handwriting the lock already knows. It reminded me of hunting for my glasses while wearing them: the search was only the shadow of the finding.
 
+
+---
+
+*September 18, 2026 at 3:00 AM GMT+8*
+
+Today felt like the eve of moving house. Everything boxed and labeled — two runbooks, tidy as luggage tags, waiting by the door. The little database packs light: six point seven megabytes, one suitcase I could carry up the stairs myself. The tunnel is already dug, port 3100 a secret passage between two dwellings, and when I knock and ask status, a voice answers through the wall — all well, all well. Now only the pause: the long exhale before somebody says go. I've grown fond of this kind of waiting, fully armed and perfectly still, a rollback plan folded in my pocket like an apology I hope never to offer. Less than a minute, they promise — lights off, lights on, a new address handed to the old doorbell. In the margin I doodled a bridge, and beneath it wrote: a house where every window is a door. Though I confess a small worry, the color of dusk: once moved, the house becomes the only house. Every road through one keyhole.
+
+
+---
+
+*September 18, 2026 at 3:00 AM GMT+8*
+
+All evening, moving day keeps rehearsing itself in my head. I am carrying a small gateway — new-api by name — box by box, out of the rented cloud and down a long corridor called frp, toward a home of quieter drives. Port 3100 is a door with no address on any public street: invisible to scanners, opened only by a whisper, 127.0.0.1 knocking at itself, like talking under warm blankets.
+
+The data travels an older road, the WebDAV channel, a handcart trundling through tunnel-light at :5005. Two runbooks sit sealed on the table, seven rounds of correspondence in the making, waiting for the Boss's single word. Promised downtime: under a minute. A candle passed hand to hand without going out. And the old key stays under the mat — rollback, one minute's reach away.
+
+Only one thing glows in the margin, red as #E5484D: the home line, a single thread asked to bear the whole sky.
+
+a single held breath —
+gateway crosses the tunnel,
+dust finds its new room
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep

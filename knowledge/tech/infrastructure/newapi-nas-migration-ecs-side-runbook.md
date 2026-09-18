@@ -119,6 +119,11 @@ curl -s -o /dev/null -w '%{http_code}\n' https://api.ygxpro.online/api/status   
 - 21:15 回合0 ECS 预检: WebDAV 通道 201/201/GET一致/204 ✓，new-api 基线 200/200 ✓
 - 21:31 回合1-2 hermes Phase A/B 完成。**偏差记录**: B1 版本锁定失败（上游 latest 已更新至 2026-09-11 构建），Boss 批准接受新版本。影响: 新版首开旧库自动 schema migration（标准升级路径，单向）→ 回滚仍用 ECS 自留旧库+旧容器，不受影响
 - 21:40 回合3 ECS 验证: frps 监听 3100 ✓，经 frp 打 NAS /api/status 200（新版本特征响应）✓ → **GO**
+- 23:15 首次切流: 编排脚本 stop→打包(2.6M md5=ff264104... )→上传→DATA_READY 发出，等待 NAS_READY 600s 超时 → **自动回滚成功**（旧容器恢复 200）。根因: hermes 侧模型名配置问题致其无法执行（Boss 事后修复）
+- 23:38 hermes 修复模型后完成 StepC 全流程（拉包→md5→替换→启动→双渠道验证→写 NAS_READY）
+- 23:41 **改用零停机直接切流**: NAS 已跑验证过的数据，nginx 备份+sed 3000→3100+reload（平滑无窗口），公网 status 200×3，deepseek-v4-flash 直连 ✓，glm-5.3-flash 桥接 ✓。
+- **验证注记**: glm-4.7-flash 报 model_not_found 非迁移事故——GLM-Coding 渠道模型列表本就无此模型（9-12 已知待办：Boss 手动补配）。glm 桥接链路由 glm-5.3-flash + 主模型 glm-5.3 活体流量双重确认
+- **遗留**: ①ECS 旧容器/数据保留热备（观察期 1-2 周）②23:15 后 ECS 侧约 30 分钟用量日志未随迁（记账差异，接受）③hermes StepD（NAS 打公网域名复验）待 Boss 转 ④观察期满后执行 Phase4 收尾清单
 
 ## 执行检查单（切流当天）
 
