@@ -324,3 +324,22 @@ SESSIONS_DIRS = [
 **问题**: 每日健康检查任务 delivery=last 无路由，连续 3 天 fail-closed（检查本身正常）
 **Fix**: `openclaw cron edit <id> --announce --channel feishu --to feishu:<openId>`
 **级别**: 🟢 低
+
+---
+
+## 🤖 定时任务与自动化成本（2026-09-13/18）
+
+### 机械型 cron 任务用 command 而非 agentTurn
+**问题**: 每日 GLM 渠道健康检查用 agentTurn 单次消耗 70,386 tokens（runs usage 实测），纯 shell 就能干的事天天烧 LLM
+**Fix**: payload 改 command 型零 LLM；有价值变更摘要的任务（如 GitHub 同步）保留 agentTurn；正常静默、异常才 failureAlert 推送
+**级别**: 🟡 中（省钱效果显著）
+
+### 传输层 secret 清洗会破坏脚本文本（scrubber 坑）
+**问题**: 工具调用文本里 `$(grep` 和 `"$KEY` 插值被替换成字面 `***`，两轮排障（先语法错误后 401）
+**Fix**: exec heredoc 写脚本 + 全脚本零命令替换（read/-w 文件回读）+ key 不经 shell 文本（sed 把 .env 行转 curl -K 配置文件）
+**级别**: 🔴 高（写含密脚本必踩）
+
+### 多 agent 停机窗口内所有依赖方（含 LLM 自身）都会失联
+**问题**: new-api 迁 NAS 切流窗口，依赖网关的 agent 协作全断；首次编排因 hermes 配置问题 600s 超时
+**Fix**: 原子化脚本+信号握手+自动回滚是唯一可靠模式（回滚机制本次实战兑现价值）；窗口内验证必须打本机 172.17.0.1 而非域名
+**级别**: 🔴 高

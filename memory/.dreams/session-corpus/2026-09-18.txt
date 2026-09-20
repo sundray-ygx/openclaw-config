@@ -1,1 +1,3 @@
 [main/sessions/main/63ff9daf-8d53-4e64-b4b7-70d917457f2e#L9] Assistant: ✅ GitHub 同步完成（2026-09-18 23:30） - 提交：`773eb88`，16 个文件变更（+491/-4），含今日记忆、newapi 网关故障切换方案、failover 脚本等 - 推送：`master` 已推送至 github.com:sundray-ygx/openclaw-config.git（3cd4c83 → 773eb88）
+[main/sessions/main/91350dbd-6968-4ccc-beb4-52110946d691#L166] User: 还遗留一个事项，万一当前NAS的new-api 网关故障，如何快速切换成之前的方案（其实就是上面的热备），请提供脚本及说明，方便后续快速切换。（或者做成skill） 先理解需求，做好规划，经我决策后，再执行，请一步步思考并展示推理。
+[main/sessions/main/91350dbd-6968-4ccc-beb4-52110946d691#L167] Assistant: 我先确认一个关键现场事实，再给规划：

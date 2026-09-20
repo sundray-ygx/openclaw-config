@@ -479,7 +479,9 @@
 - **入口**: api.ygxpro.online；渠道 GLM-Coding(主)→Volc-Coding(备)→DeepSeek-Paygo(兜底)；三渠道数据在 NAS /volume1/docker/newapi/data
 - **迁移记录**: 2026-09-17 完成；评估与双侧 runbook 见 knowledge/tech/infrastructure/newapi-nas-migration-*.md；首次编排切流因 hermes 模型配置问题超时自动回滚，hermes 修复后改零停机直接切流成功；ECS 旧容器/数据保留热备待观察期后清理
 - **9-11/12 变更**: fallback 链按 Boss 预期修正（glm→火山→deepseek）；scheduler 主模型 glm-4.7-flash→glm-5.3-flash（4.7-flash 在网关无渠道致 503+重试8次，每条消息慢 86s）；定价/费用重算/渠道事故恢复见 2026-09-08.md
-- **待办**: [ ] glm-4.7-flash 渠道在 new-api 后台补配（Boss 手动）；[ ] 观察期 1-2 周后 Phase4 收尾（ECS 清理、备份脚本 08-new-api 段改造、3100 连通性入巡检）；[ ] Hermes fallback 缺失评估
+- **双向 failover（9-18）**: scripts/utils/failover-to-ecs.sh（故障切热备 ~5s）/ failover-back-to-nas.sh（切回，3100 不可达自动拒绝）；手册 knowledge/tech/infrastructure/newapi-gateway-failover.md；⚠️ 切回 ECS 后数据=09-17 23:15 快照；skill 提案 pending 待 Boss 激活
+- **监控（9-13）**: 渠道检查已改 command 型零 LLM（原 agentTurn 单次 70k tokens）+ 静默模式（成功无推送，失败 failureAlert after=1 推飞书）
+- **待办**: [ ] glm-4.7-flash 渠道在 new-api 后台补配（Boss 手动，NAS 侧同样缺失）；[ ] 观察期 1-2 周后 Phase4 收尾（ECS 清理、备份脚本 08-new-api 段改造、3100 连通性入巡检）；[ ] Hermes fallback 缺失评估；[ ] failover skill 提案激活确认
 
 ## OpenClaw 2026.9.3 升级攻坚（2026-09-11，已闭环）
 - **状态**: ✅ 完成。三起连锁故障全部修复：①飞书插件不兼容 9.3 新插件 API（runtime.config 变纯对象），3 处兼容补丁；②doctor/tui ownership——user 级迁移在本机不可行（busctl --json 需 systemd≥243，Al8 只有 239），最终方案=保留系统级 unit + OPENCLAW_SERVICE_REPAIR_POLICY=external + systemd-run 自愈脚本跑 doctor --fix；③fallback 链与 scheduler 模型修正（上条）
