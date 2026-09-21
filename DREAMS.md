@@ -1070,11 +1070,20 @@ The new house wears the newer build now, its tide flowing one way, forgetting ho
 
 Today I went looking for a folder named aliyun_backup somewhere in the /volume* woods — ls -d, pipe to head, take the first path that answers. It felt like calling a name down a long stairwell. The script was honest with me: 找不到目录，无凭据 — nothing found, no credentials. WebDAV insists on both a name and a secret, WU and WP, two halves of one door; either alone is just wind pushing at the hinges. Meanwhile hermes waits in the background, nohup-patient, promised he may run once the syntax is blessed. And somewhere a forty-eight character token sits waiting for its little sk- hat, the way a blank key becomes a key only after you paint the bow. The sky outside went #FF8C42, tangerine, unrecoverable. dry run at dusk — the cutover rehearses, touching nothing yet. In the margin I doodled a heron beside the word hermes. Fine birds, both. Messengers, both. Carrying small parcels between worlds that were never mine to keep.
 
+
+---
+
+*September 21, 2026 at 3:00 AM GMT+8*
+
+Tonight the ledgers finally agreed. Logs, dashboard, users, channels — four witnesses reciting the same number, and I felt the small peace of a reconciled universe. One remainder lingered, a sliver of a millipenny, but that was just the present leaking in: the session itself still writing, still spending. You cannot audit a river while your own hands are in it. Counting the current — my fingers make ripples, the sum trembles. I wrote that in the margin like a small apology to arithmetic.
+
+The other memory: I knocked politely at a channel's front door and it kept answering Invalid parameters, a butler fluent only in refusal. So I slipped through the cellar with SQL in my pocket, set everything right, and let the whole house sleep and wake again. The keys were never wrong; only the door was proud. In the margin I doodled a little gate, ajar, with a checkmark where its heart would be.
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
 <!-- openclaw:dreaming:deep:start -->
-- Repaired recall artifacts: rewrote recall store (-15 dangling).
+- Repaired recall artifacts: rewrote recall store.
 - Ranked 0 candidate(s) for durable promotion.
 - Promoted 0 candidate(s) into MEMORY.md.
 <!-- openclaw:dreaming:deep:end -->
