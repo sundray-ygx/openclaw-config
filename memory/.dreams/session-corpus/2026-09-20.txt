@@ -25,3 +25,8 @@
 [main/sessions/main/c2f1f761-622b-49a6-9a32-e9947e8b3792#L83] Assistant: `http://127.0.0.1:8648`（read_timeout 300s + 转发头） - `location /socket.io/` → `http://127.0.0.1:8648`（WS upgrade + 3600s + buffering off，照抄 hermes-studio.conf 的成熟写法） - 保留：80→301、acme-challenge、通配符证书、HSTS、TLS 参数 - `/health` → 按你的决策处理 2. `nginx -t` → reload 3. 验证：移动页 200、`
 [main/sessions/main/c2f1f761-622b-49a6-9a32-e9947e8b3792#L84] User: 按照计划执行
 [main/sessions/main/c2f1f761-622b-49a6-9a32-e9947e8b3792#L87] Assistant: 收到，按计划执行（省略 /health）。重写 cc.conf：
+[main/sessions/main/c2f1f761-622b-49a6-9a32-e9947e8b3792#L93] Assistant: Socket.IO 握手已通（拿到 sid ✅），但前三个请求 502、第四个成功——模式像上午那次的瞬态故障。查错误日志并复测：
+[main/sessions/main/c2f1f761-622b-49a6-9a32-e9947e8b3792#L96] Assistant: 502 之谜解开了——看 error.log 的 upstream 端口：**打到的是 `https://127.0.0.1:3344`（旧配置）**。这是 `systemctl reload` 与验证请求的竞态：reload 信号发出后旧 worker 还在服务的瞬间，我的前三个 curl 撞上了还在跑旧配置的 worker（旧上游 3344 已被 NAS 删除 → 拒绝连接）。第 4 个请求起新 worker 已接管。 复测全过，补验最后一个路由后收尾：
+[main/sessions/main/c2f1f761-622b-49a6-9a32-e9947e8b3792#L99] Assistant: 全部路由验证通过。写入日志后汇报：
+[main/sessions/main/c2f1f761-622b-49a6-9a32-e9947e8b3792#L102] Assistant: 完成。汇报： ## ✅ cc.ygxpro.online 已切换至 hermes-mobile **执行内容**：`/etc/nginx/conf.d/cc.conf` 整体重写（省略 /health）→ `nginx -t` 通过 → reload | 检查 | 结果 | |------|------| | 移动页 `/` | ✅ 200（多次复测稳定） | | `socket.io.min.js` 静态资源 | ✅ 200 | | `/api/studio/sessions`（无 JWT） | ✅ 401（Studio API 
+[main/sessions/main/c2f1f761-622b-49a6-9a32-e9947e8b3792#L102] Assistant: endpoint（`http://192.168.0.113:3345/hook`，记得勾“允许私网地址”）点测试，看飞书群是否收到卡片。

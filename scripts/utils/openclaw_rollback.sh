@@ -69,7 +69,7 @@ validate_backup() {
 # 停止 Gateway
 stop_gateway() {
     log_info "停止 Gateway 服务..."
-    if systemctl --user stop openclaw-gateway 2>/dev/null; then
+    if systemctl stop openclaw-gateway 2>/dev/null; then
         sleep 3
         log_info "Gateway 已停止"
     else
@@ -82,10 +82,10 @@ stop_gateway() {
 # 启动 Gateway
 start_gateway() {
     log_info "启动 Gateway 服务..."
-    systemctl --user start openclaw-gateway
+    systemctl start openclaw-gateway
     sleep 5
 
-    if systemctl --user is-active --quiet openclaw-gateway; then
+    if systemctl is-active --quiet openclaw-gateway; then
         log_info "Gateway 启动成功"
     else
         log_error "Gateway 启动失败！"
@@ -98,7 +98,7 @@ verify_service() {
     log_info "验证服务状态..."
 
     # 检查进程
-    if ! systemctl --user is-active --quiet openclaw-gateway; then
+    if ! systemctl is-active --quiet openclaw-gateway; then
         log_error "Gateway 服务未运行"
         return 1
     fi
@@ -134,8 +134,12 @@ rollback() {
     echo "========================================="
     echo ""
 
-    # 确认
-    read -p "确认执行回滚？此操作不可逆 (y/N): " confirm
+    # 确认（-y 直通，供自动化场景）
+    if [ "${2:-}" = "-y" ]; then
+        confirm=y
+    else
+        read -p "确认执行回滚？此操作不可逆 (y/N): " confirm
+    fi
     if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
         log_warn "已取消"
         exit 0
@@ -156,8 +160,8 @@ rollback() {
     stop_gateway
 
     # 4. 回滚二进制
-    log_info "回滚二进制版本（npm install -g openclaw@$OLD_VERSION）..."
-    if npm install -g "openclaw@$OLD_VERSION" 2>&1; then
+    log_info "回滚二进制版本（pnpm add -g openclaw@$OLD_VERSION）..."
+    if pnpm add -g "openclaw@$OLD_VERSION" --dangerously-allow-all-builds 2>&1; then
         log_info "二进制回滚完成"
     else
         log_error "二进制回滚失败！尝试启动当前版本..."
@@ -182,6 +186,25 @@ rollback() {
         rm -rf "$OPENCLAW_DIR/plugins" 2>/dev/null || true
         cp -r "$backup_dir/plugins" "$OPENCLAW_DIR/plugins"
         log_info "插件数据已回滚"
+    fi
+
+    # 7.5 恢复 systemd unit 与 CLI wrapper（版本路径必须一致，9-11 坑：漏改致起不来/CLI 全挂）
+    if [ -f "$backup_dir/openclaw-gateway.service" ]; then
+        cp "$backup_dir/openclaw-gateway.service" /etc/systemd/system/openclaw-gateway.service
+        systemctl daemon-reload
+        log_info "systemd unit 已恢复"
+    fi
+    if [ -f "$backup_dir/openclaw-wrapper.bak" ]; then
+        cp "$backup_dir/openclaw-wrapper.bak" /usr/bin/openclaw
+        chmod +x /usr/bin/openclaw
+        log_info "CLI wrapper 已恢复"
+    fi
+
+    # 7.6 恢复 state DB（schema 迁移单向，回滚必须一起回；9-11 漏备盲区已补）
+    if [ -d "$backup_dir/state" ]; then
+        rm -f "$OPENCLAW_DIR/state/openclaw.sqlite"*
+        cp "$backup_dir/state/"openclaw.sqlite* "$OPENCLAW_DIR/state/" 2>/dev/null || true
+        log_info "state DB 已回滚"
     fi
 
     # 8. 启动服务

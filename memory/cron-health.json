@@ -1,18 +1,6 @@
 {
   "checks": [
     {
-      "time": "2026-08-27 09:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
-      "time": "2026-08-27 10:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
       "time": "2026-08-27 11:02",
       "total": 2,
       "healthy": 2,
@@ -182,6 +170,22 @@
       "total": 9,
       "healthy": 9,
       "issues": []
+    },
+    {
+      "time": "2026-09-22 17:52",
+      "total": 9,
+      "healthy": 8,
+      "issues": [
+        "⚠️ heartbeat-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-09-22 17:53",
+      "total": 9,
+      "healthy": 8,
+      "issues": [
+        "⚠️ heartbeat-scheduler: 上次运行失败 (status=error)"
+      ]
     }
   ]
 }

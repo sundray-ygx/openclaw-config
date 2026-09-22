@@ -467,12 +467,17 @@
 - **移除（不可用）**: glm-5v-turbo（套餐未开放）、glm-4.7-flashx（需单独计费）、doubao-seed-2-1-pro（不支持 coding plan）
 - **火山引擎"欠费"破案**: 系误判——标准端点 `/api/v3` 确实欠费，但配置走 Coding Plan 端点 `/api/coding/v3` 完全正常（130 模型可用）。MEMORY.md 误判已修正
 
-## 🔧 Hermes 部署（2026-08-31 ~ 09-05 进行中）
+## 🔧 Hermes 部署（9-05 建成，2026-09-22 升级 v0.21.4）
 
-- **hermes-config 仓库**（8-31/9-01 完成）: GitHub 私有仓库已初始化（knowledge/memory/skills/scripts/config 结构），ECS 侧 clone 到 `/root/hermes-config/`，含同步脚本
-- **nginx 反代**（9-05 完成）: `/etc/nginx/conf.d/hermes-studio.conf` 已配置，复用泛域名证书 `*.ygxpro.online`（WebSocket/SSE/3600s 超时），nginx 已 reload
-- **待办（用户侧）**: ① DNS 加 `hermes.ygxpro.online` A 记录 → 47.119.177.194 ② NAS frpc 加 tcp 代理 remotePort=8648
-- **磁盘注记**: /root 下备份堆积 ~1.4G（8-13 双份 tar、9-01 解压目录），清理方案已报备用户待确认
+- **ECS 当前版本**: v0.21.4 (v2026.9.21)，HEAD d337b736，detached at tag；2026-09-22 从 v0.21.1 升级，CLI/模型链路冒烟通过
+- **升级流程（下次参考）**: `cd /usr/lib/node_modules/hermes-agent/runtime/hermes-agent && git fetch origin --tags && git checkout <tag>` → `sed -i 's|https://pypi.org/simple|https://pypi.tuna.tsinghua.edu.cn/simple|g; s|https://files.pythonhosted.org/packages|https://pypi.tuna.tsinghua.edu.cn/packages|g' uv.lock`（tuna 镜像必做：pypi CDN 本机仅 28KB/s，tuna ~12.7MB/s）→ `venv/bin/pip install -q uv` → `UV_PROJECT_ENVIRONMENT=$PWD/venv venv/bin/uv sync --frozen --no-dev --all-extras` → `hermes --version` 验证
+- **git 通道**: origin=**git@github.com**（SSH）；ECS HTTPS git 协议被卡（ls-remote 25s 超时）、api.github.com 正常；ghproxy.net 缓存滞后 11 天已弃用
+- **ECS gateway 决策（9-22 Boss 定）**: hermes-gateway.service 保持 disabled，NAS 为主力
+- **hermes-config 同步**: NAS(hub) 03:00 push → ECS 05:00 pull；9-05~9-22 曾断 17 天（ECS 本地 19 分叉提交 vs 远端 39，ff-only 失败无告警），9-22 已 bundle 备份后强制对齐 deb655d 并恢复（传播 63 新技能）；pull.sh 已加飞书告警（alert_fail 函数）
+- **升级备份**: /root/openclaw-backups/hermes-preupgrade-20260922/（397M：.hermes tar 30M + 双 bundle），稳定 1-2 周后可删
+- **待验证**: Boss 9-20 提的思考流不实时刷新问题，新版含大量 TUI 修复，待实际使用确认
+- **范围注记**: 本次仅 ECS；NAS 侧 hermes-studio 如需同步升级另议
+- **基建**: nginx `/etc/nginx/conf.d/hermes-studio.conf`（泛域名证书，WebSocket/SSE/3600s）→ frps:8648 → NAS
 
 ## new-api 模型网关（2026-09-08 上线，2026-09-17 迁至 NAS）
 - **状态**: 🟢 运行中，容器位于 NAS Docker（域名不变）；入口仍为 ECS nginx(443 TLS)→frp 隧道(ECS:3100)→NAS:3000；桥接容器 newapi-bridge(NAS, 172.17.0.1:8081)；版本 2026-09-11 构建（迁移时 latest 已更新，Boss 批准接受）；每日 09:30 渠道健康检查 cron 正常投递

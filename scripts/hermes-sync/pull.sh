@@ -12,6 +12,14 @@ LOCAL_SKILLS=/root/.hermes/skills
 PROTECTED=/root/scripts/hermes-sync/protected-skills.txt
 LOCK=/var/lock/hermes-config-pull.lock
 
+# 失败告警：推送到飞书（2026-09-22 补，防 17 天断同步无人发现重演）
+alert_fail() {
+  local title="[ECS] hermes-config 同步失败"
+  local body="$(date '+%F %T')\n主机: $(hostname)\n原因: $1\n日志: /var/log/hermes-config-pull.log"
+  printf '%b' "$body" > /tmp/hermes-sync-alert.txt
+  python3 /root/scripts/send_feishu_report.py "$title" /tmp/hermes-sync-alert.txt >/dev/null 2>&1 || true
+}
+
 exec 9>"$LOCK"
 flock -n 9 || { echo "[$(date '+%F %T')] 上一次同步仍在运行，跳过"; exit 0; }
 
@@ -19,10 +27,10 @@ cd "$REPO" || { echo "[$(date '+%F %T')] 🔴 仓库目录不存在: $REPO"; exi
 echo "===== $(date '+%F %T') 同步开始 ====="
 
 if ! git fetch origin main 2>&1; then
-  echo "🔴 git fetch 失败（网络/SSH）"; exit 1
+  echo "🔴 git fetch 失败（网络/SSH）"; alert_fail "git fetch 失败（网络/SSH）"; exit 1
 fi
 if ! git pull --ff-only origin main 2>&1; then
-  echo "🔴 git pull 失败（本地与远端分叉？ECS 侧不应有本地提交）"; exit 1
+  echo "🔴 git pull 失败（本地与远端分叉？ECS 侧不应有本地提交）"; alert_fail "git pull 失败（本地与远端分叉）"; exit 1
 fi
 
 added=0; updated=0; skipped=0
