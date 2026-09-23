@@ -1,3 +1,8 @@
+---
+name: weekly-review
+description: 从 Notion 日复盘自动生成周复盘并推送飞书通知，每周五 18:30 自动执行，也可手动指定周运行
+---
+
 # Weekly Review Skill
 
 自动从 Notion 日复盘生成周复盘并推送飞书通知。

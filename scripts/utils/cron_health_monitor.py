@@ -28,7 +28,7 @@ def check_openclaw_crons(max_gap_hours=48):
     
     result = subprocess.run(
         ['openclaw', 'cron', 'list', '--json'],
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, timeout=30
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, timeout=60
     )
     
     if result.returncode != 0:
