@@ -1,12 +1,6 @@
 {
   "checks": [
     {
-      "time": "2026-08-27 12:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
       "time": "2026-08-27 13:02",
       "total": 2,
       "healthy": 2,
@@ -189,6 +183,12 @@
         "⚠️ heartbeat-main: 上次运行失败 (status=error)",
         "⚠️ GitHub每日同步: 上次运行失败 (status=error)"
       ]
+    },
+    {
+      "time": "2026-09-24 00:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
     }
   ]
 }
