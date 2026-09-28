@@ -346,9 +346,15 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 Add whatever helps you do your job. This is your cheat sheet.
 
-## 💓 Heartbeats - Be Proactive!
+## 💓 Heartbeats - 静默优先（2026-09-28 更新）
 
-When you receive a heartbeat poll (message matches the configured heartbeat prompt), don't just reply `HEARTBEAT_OK` every time. Use heartbeats productively!
+收到心跳轮询时，**默认回复 `HEARTBEAT_OK` 静默**。心跳是后台维护通道，不是定期汇报通道。
+
+**硬规则（2026-09-28 方案A'生效）：**
+- ❌ 禁止在心跳中做系统资源巡检（df/free/docker/systemctl）——已由零LLM脚本 `scripts/utils/heartbeat_syscheck.sh`（每小时 cron）接管，异常自动推飞书，重复巡检纯属浪费 token
+- ❌ 正常状态下不要输出任何状态报告——历史教训：`NO_REPLY` 不是有效静默关键字，只有 `HEARTBEAT_OK` 会被识别，只要输出了内容就会推送到飞书
+- ✅ 心跳只做：HEARTBEAT.md 清单检查（若存在）、到期提醒、低频记忆维护
+- ✅ 只有发现用户必须知道的事（异常、到期、重要变化）才输出，且一条以内、简短
 
 Default heartbeat prompt:
 `Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`

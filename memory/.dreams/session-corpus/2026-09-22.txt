@@ -94,3 +94,31 @@
 [main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L187] Assistant: 收到后台会话的完成通报，其中有一条需要认真对待：**uv 依赖同步会话（quick-ke）是被 SIGTERM 终止的**（18:15 网关重启打断的那次）。虽然随后的版本/CLI/模型链路冒烟都通过了，但那只证明核心链路完好——如有依赖装到一半，懒加载的功能可能仍缺包。 `uv sync` 是声明式幂等操作，重跑安全。验证 venv 是否完整：
 [main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L196] Assistant: 会话日志被截断拿不到 sync 输出。换个方式拿实据：输出落文件再读，venv 完整的话几秒内审完：
 [main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L202] Assistant: 连续两个后台 sync 会话输出异常/被终止，需要拿确定性结论。换 `--dry-run`（不下载、秒级）直接看 venv 与 lock 的真实差集：
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1226] Assistant: 嵌套包是 9.5 且 exports 已含 `./plugin-sdk`——嫌疑落在**嵌套副本的 dist 完整性**（exports 指向的 core.js 可能缺失）。验证：
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1232] Assistant: 内部上下文确认无残留会话。继续修复——根因已锁定：**Node realpath 解析**。lark 包的真实路径在 pnpm store 虚拟目录里，从那里向上找不到 `openclaw`（store 的 node_modules 只含 lark 自己的依赖，无 openclaw）；而嵌套 symlink 在 realpath 后失效。我手动测试成功是因为 cwd 在 symlink 路径上。修复：在 store 虚拟目录补 openclaw 链接：
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1235] Assistant: realpath 解析已通（`resolve from realpath: function`）。重启网关加载：
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1255] User: 针对当前openclaw做一次全身巡检，当前执行任务耗时较长，需要针对存在异常的地方，提出优化建议，经我决策后，执行优化操作。请一步步思考并展示推理。
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1260] User: 对当前openclaw做一次全身巡检，当前执行任务耗时较长，需要针对存在异常的地方，提出优化建议，经我决策后，执行优化操作。请一步步思考并展示推理。
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1264] Assistant: 收到。现在是 23:49，先按步骤做全身巡检（只读操作），汇总异常后给你优化方案再决策。上次中断点是：lark 插件符号链接修复后我触发了网关重启，结果未知——先从这里验证。 **第 1 步：上次重启结果验证（飞书通道是否恢复）**
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1270] Assistant: 飞书三通道全部恢复（running + connected），插件零加载错误——升级 9.5 至此**真正完成**。 注意到网关 **23:43:23 刚重启过**（就在你发消息前 6 分钟），需要查原因。 **第 2 步：查 23:43 重启原因 + 系统资源盘点**
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1273] Assistant: 上个重启原因和资源数据拿到了，两个重要发现先记下： 1. **23:35 重启是 SIGKILL**：有东西请求停止网关，30 秒超时后被 systemd 强杀——不是崩溃，是有人/某个流程在重启它；且 **23:43 又重启了一次**（8 分钟内两次） 2. **性能问题初步定位**：日志里有 `[trace:embedded-run] prep stages: totalMs=61726`——**一次任务光"启动准备"就 62 秒**，其中 `core-plugin-tools` 一项占 37.5 秒。这就是你说的"耗时较长"的
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1276] Assistant: 资源全貌到手，关键数据：**2 核 CPU / 1.87G 内存**，网关 RSS 419M（cgroup 实际用量 665M，超了旧 unit 的 520M 限制——升级后 unit 可能变了），TUI 还开着占 242M，另有一个 `--expose-gc` node 进程占 265M。load 2.8-4.5 对 2 核来说过载。 **第 4 步：unit 现状 + 准备耗时全天历史对比 + 异常进程身份 + cron 错误详情**
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1279] Assistant: 数据很说明问题。先解读第 4 步结果，再补最后两项检查： **解读：** - **性能问题实锤**：今天 09:00 的任务准备耗时 9-16 秒（正常），但 **23:30 之后的两次任务暴增到 61-62 秒**（`core-plugin-tools` 从 6-12 秒涨到 37-42 秒）。原因高度指向：**今晚两次重启（SIGKILL 强杀）导致 6700 个文件全量冷读 + 936M swap 内存压力**——不是 9.5 本身变慢 - **内存账**：物理内存 1.87G，网关 419M + TUI 242M + 另一个
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1288] Assistant: `openclaw doctor` 这次没出结果（会话结束前未完成，150 秒超时被吞，**结果未知**）。cron store 已确认迁移进 sqlite（`jobs.json` 只剩 3 月/8 月的备份文件，9.5 走 `cron-store-runtime`）。monitor 用的是 CLI，所以我直接用 CLI 查 heartbeat-scheduler 详情；doctor 换后台模式重试一次：
+[main/sessions/main/29a67731-996d-424e-8373-3043a46ce3a9#L1292] Assistant: cron 列表拿到了，真相进一步收敛：**今晚真正 error 的是「GitHub每日同步」**（23:31 启动，23:35 被网关 SIGKILL 连带杀死——时间线完全吻合）。三个 heartbeat 显示 skipped 是正常静默，monitor 报的 heartbeat-scheduler 异常是它 30 秒子进程超时太紧 + 重启窗口期抓到的瞬时态，属于**误报**。 查 doctor 后台结果 + 谁在 23:34/23:43 发的 stop（audit 日志）：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L208] Assistant: `DRY_EXIT=0` 不可信（管道里取的是 tail 的退出码），且这个网关重启后后台会话的输出捕获一直不稳。改用完全脱离会话的方式（setsid + 落盘到文件），轮询文件拿实据：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L214] Assistant: dry-run 还在跑（环境大，审计需要时间），进程已脱离会话不受影响。继续等文件产出：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L217] Assistant: dry-run 95 秒零输出，不正常。怀疑此前被 SIGTERM 的 sync 会话留下了僵尸 uv 进程或环境锁，新进程在排队等锁。诊断：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L220] Assistant: 诊断清楚了，虚惊一场但需要等待： - **真 sync（3552806）还活着且健康**——已跑 6 分 14 秒，状态 `Sl` 睡眠中、仅 1 秒 CPU：它在**等网络**（下载新版的大体积依赖，`--all-extras` 含 litert 这类 100MB+ 的包），不是死锁 - **我的 dry-run（3552848）在排队**：uv 用 venv/.lock 文件锁互斥，等真 sync 完成才能跑 - 机器是小规格 2GB 内存，也解释了整体慢 正确动作：**不打断，等它跑完**。 dry-run 随后自动获得锁，正
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L229] Assistant: 实锤了：**sync 活着但下载速度只有 ~28KB/s**（ESTABLISHED 到 pypi 的 Fastly CDN，5 秒仅 139KB）。大体积 extras 按这速度要跑几个小时——这就是 9-11 管理员当年打 tuna 镜像补丁的原因，同一坑。 沿用本机已验证的方案：停掉慢速下载，sed 替换 uv.lock 源到清华镜像（Aliyun 到 tuna 通常满速），重跑：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L232] Assistant: 命令被 SIGTERM 中断，状态未知。逐步核实（不盲目重跑）：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L235] Assistant: 状态核实完毕：旧进程已全停，sed 未执行（0 处替换），tuna sync 未启动。干净状态，重做——先替换源：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L238] Assistant: 替换完成（2356 处，pypi.org 清零）。启动镜像版同步并监控：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L244] Assistant: 速度验证成功：**5 秒收包 62MB（≈12.7MB/s），比 pypi CDN 快约 450 倍**。tuna 镜像方案正确。等待同步完成（下载+安装预计几分钟）：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L247] Assistant: 安装清单已打印到 w 结尾的包（接近完成）。查最终状态：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L250] Assistant: 安装已完成（**Installed 137 / Uninstalled 16**），进程在做收尾（字节码编译）。跑最终验收套件：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L256] Assistant: 版本/CLI 验收通过（v0.21.4，upstream 836b5f82 ✅），模型链路那步输出被截断，单独补跑确认：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L263] Assistant: 模型链路冒烟通过（回复 "ok"）——全部验收完成。收尾归档：把 tuna 镜像补丁这个重要事项写进 MANIFEST 和记忆（否则下次升级又会踩 uv.lock 本地修改的坑）：
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L270] Assistant: 依赖同步收尾完成，最终汇报： ## ✅ Hermes 升级全部完成 **v0.21.1 → v0.21.4 (v2026.9.21)**，四项验收全通过： | 验收项 | 结果 | |---|---| | 版本 | v0.21.4 (2026.9.21) · upstream 836b5f82 ✅ | | CLI 冒烟 | `--help` / `--version` 正常 ✅ | | 模型链路 | 真实调用回复 "ok"（走 new-api → GLM）✅ | | 依赖完整性 | uv sync 完成（Installed 137 
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L270] Assistant: `/root/openclaw-backups/hermes-preupgrade-20260922/`（397M）稳定 1-2 周后可删 待你下次用 hermes 时确认：**思考流实时刷新**是否改善（9-20 提的问题，新版含大量 TUI 修复）。
+[main/sessions/main/aaf9c2c4-8149-4c49-957d-3d8581f7bfda#L271] User: [OpenClaw exec completion] Disable automatic completion turns with tools.exec.notifyOnExit=false; check per-agent overrides. Background exec and process poll remain available.

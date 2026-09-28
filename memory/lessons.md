@@ -343,3 +343,19 @@ SESSIONS_DIRS = [
 **问题**: new-api 迁 NAS 切流窗口，依赖网关的 agent 协作全断；首次编排因 hermes 配置问题 600s 超时
 **Fix**: 原子化脚本+信号握手+自动回滚是唯一可靠模式（回滚机制本次实战兑现价值）；窗口内验证必须打本机 172.17.0.1 而非域名
 **级别**: 🔴 高
+
+---
+
+## 🌐 网关与部署（2026-09-27）
+
+### new-api 渠道 base_url 必须走 bridge，不能直连上游
+**问题**: 部署文档要求把渠道 1/2 的 base_url 从 NAS bridge 改为上游公网直连（z.ai / ark），照做后两个渠道全部 404
+**根因**: new-api(type=1) 固定拼接 `/v1/chat/completions`。直连 `https://api.z.ai/api/coding/paas/v4` 会拼成 `.../paas/v4/v1/chat/completions` → 上游 404。只有 deepseek（base_url 无版本后缀）幸免
+**Fix**: 渠道 base_url 指向 ECS 本地 bridge `http://172.17.0.1:8081/zai|volc`；bridge 配置 `/etc/nginx/conf.d/newapi-upstream.conf` 必须在位（监听 docker0，仅容器可达）
+**教训**: 迁移前先确认"目标环境缺少某组件"的假设是否成立——文档说 ECS 无 bridge，实际 ECS 一直有。直连测试通过 ≠ 经网关通过（网关会改写路径）
+**级别**: 🔴 高（照文档执行会直接打断两个主力渠道）
+
+### SQLite 保留字 group + 容器无 sqlite3
+**问题**: 种子 SQL 用 `group` 作列名 → `near "group": syntax error`；容器内既无 sqlite3 也 apk 装不上
+**Fix**: 宿主机 Python `sqlite3.executescript()` 导入（列名双引号或交给 Python 处理）；容器数据卷在宿主机可直接访问，无需进容器
+**级别**: 🟡 中

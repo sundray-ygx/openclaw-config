@@ -479,8 +479,10 @@
 - **范围注记**: 本次仅 ECS；NAS 侧 hermes-studio 如需同步升级另议
 - **基建**: nginx `/etc/nginx/conf.d/hermes-studio.conf`（泛域名证书，WebSocket/SSE/3600s）→ frps:8648 → NAS
 
-## new-api 模型网关（2026-09-08 上线，2026-09-17 迁至 NAS）
-- **状态**: 🟢 运行中，容器位于 NAS Docker（域名不变）；入口仍为 ECS nginx(443 TLS)→frp 隧道(ECS:3100)→NAS:3000；桥接容器 newapi-bridge(NAS, 172.17.0.1:8081)；版本 2026-09-11 构建（迁移时 latest 已更新，Boss 批准接受）；每日 09:30 渠道健康检查 cron 正常投递
+## new-api 模型网关（2026-09-08 上线 → 9-17 迁 NAS → 9-27 迁回 ECS 主）
+- **状态**: 🟢 运行中，**ECS 为主网关**（9-27 切换）；入口 ECS nginx(443 TLS)→127.0.0.1:3000(ECS 容器)；NAS:3000 为热备（经 frp ECS:3100 可达）；ECS 桥接 `/etc/nginx/conf.d/newapi-upstream.conf`（172.17.0.1:8081，必须保留，渠道 1/2 走它）；版本 rc.35；每日 08:20 巡检 + 每 5 分钟 failover 探测
+- **9-27 切换要点**: 容器重建（300M→1G + json-file 20m×3）；种子数据用宿主机 Python 导入（SQLite 保留字 `group` + 容器无 sqlite3）；⚠️ 文档步骤 2 的“base_url 改上游直连”是错的，必须走 bridge（否则 404），已回写修正 ecs-newapi-deploy.md/ecs_seed.sql
+- **9-27 failover**: `/root/scripts/utils/ecs-failover-probe.sh`（crontab */5），连续 2 次探活失败→sed 3000→3100 + reload + 飞书红卡；恢复→绿卡提示人工切回（`bash <脚本> switchback`，不自动切回）；飞书告警复用 nas_backup.sh 同套应用凭证；演练已通过
 - **入口**: api.ygxpro.online；渠道 GLM-Coding(主)→Volc-Coding(备)→DeepSeek-Paygo(兜底)；三渠道数据在 NAS /volume1/docker/newapi/data
 - **迁移记录**: 2026-09-17 完成；评估与双侧 runbook 见 knowledge/tech/infrastructure/newapi-nas-migration-*.md；首次编排切流因 hermes 模型配置问题超时自动回滚，hermes 修复后改零停机直接切流成功；ECS 旧容器/数据保留热备待观察期后清理
 - **9-11/12 变更**: fallback 链按 Boss 预期修正（glm→火山→deepseek）；scheduler 主模型 glm-4.7-flash→glm-5.3-flash（4.7-flash 在网关无渠道致 503+重试8次，每条消息慢 86s）；定价/费用重算/渠道事故恢复见 2026-09-08.md
