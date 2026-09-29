@@ -34,3 +34,27 @@
 [main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L104] Assistant: 好的，先找到备份文件名。
 [main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L107] Assistant: 继续第 2 步，用 Python 导入种子数据（更稳妥，避免 SQLite 保留字问题）。
 [main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L110] Assistant: 继续推进。验证种子数据注入结果，然后进入第 3 步 nginx 切换。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L114] Assistant: 第 2 步完成。3 条渠道 + 8 个令牌全部就绪，渠道已改为公网直连（无 NAS bridge）。 进入第 3 步：nginx 切换（核心变更，回滚 5 秒内完成）。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L118] Assistant: 继续第 3 步：切换 nginx upstream。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L124] Assistant: 继续验证切换结果。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L134] Assistant: 第 3 步完成 ✅ 公网已切到 ECS（start_time 完全一致，NAS 侧已确认不同）。 进入第 4 步。先看 NAS 备份脚本里的飞书推送实现，复用它。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L137] Assistant: 飞书推送用现有应用机器人，复用这套凭证。现在写 failover 探测脚本。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L140] Assistant: 继续第 4 步：赋权、测试飞书推送、加 crontab。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L144] Assistant: 飞书推送通了。现在加入 crontab（保留现有任务，只追加）。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L147] Assistant: 飞书链路 ✅、crontab ✅。现在做手动演练（文档要求的验证项）。 演练：停掉 ECS new-api → 探测连续 2 次失败 → 应自动切回 NAS + 红卡。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L151] Assistant: 自动切换生效 ✅（mode:backup，nginx 已回落 3100）。继续演练：验证域名仍 200 → 恢复 new-api → 切回。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L154] Assistant: 演练符合预期：故障期间公网 200（走 NAS），恢复后绿卡已发、未自动切回。现在执行人工切回。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L157] Assistant: 演练全部通过。做最后的端到端验证。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L161] Assistant: GLM 调用返回 404，需要查清原因。先看具体错误内容。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L164] Assistant: GLM 404 是上游返回的（`bad_response_status_code`），说明 new-api 转发出去了但 z.ai 回了 404。直接测上游隔离问题。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L167] Assistant: 直连 z.ai 正常（200），但经网关 404；deepseek 经网关却正常。说明问题在 new-api 的转发层。查容器日志看真实上游 URL。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L171] Assistant: 渠道 key 正常（35/49/46 位，是完整 key，之前读文件时被脱敏显示了）。 真正的问题找到了：**new-api 会在 base_url 后追加 `/v1/chat/completions`**： - `api.deepseek.com` + `/v1/...` → ✅ 200 - `api.z.ai/api/coding/paas/v4` + `/v1/...` → ❌ 404 - `ark.../api/coding/v3` + `/v1/...` → ❌ 404 而且 ECS 上 **8081 端口的 bridge
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L177] Assistant: **根因确认**（文档有误）： ECS 上存在 bridge `newapi-upstream.conf`（监听 docker0 172.17.0.1:8081），它把 new-api 固定拼接的 `/v1/*` 映射到各家真实路径： - `/zai/v1/` → `https://api.z.ai/api/coding/paas/v4/` - `/volc/v1/` → `https://ark.cn-beijing.volces.com/api/coding/v3/` 所以正确的 base_url 是走 bridge，文档里"改
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L180] Assistant: 修正完成。验证 GLM 和 Volc 渠道。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L183] Assistant: 三条渠道全部 200 ✅。现在校验探测脚本里的飞书密钥是否真的写对（写入时可能被脱敏），并做收尾。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L186] Assistant: 密钥校验通过（与备份脚本一致）。验证脚本自身的推送路径。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L189] Assistant: 脚本推送路径正常。现在修正知识库文档（文档里的错误要回写，避免下次再踩），然后写记忆。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L195] Assistant: 那行是正确的 bridge 映射说明注释，保留。 修正部署文档中错误的地方。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L198] Assistant: 文档已修正。写记忆文件。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L204] Assistant: 工作区就是 `openclaw-config` 仓库，记忆条目按规范加 project 标记。写日志和教训。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L207] Assistant: 继续收尾：写入教训文件 + 更新项目追踪。
