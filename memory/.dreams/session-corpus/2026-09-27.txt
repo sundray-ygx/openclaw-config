@@ -58,3 +58,12 @@
 [main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L198] Assistant: 文档已修正。写记忆文件。
 [main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L204] Assistant: 工作区就是 `openclaw-config` 仓库，记忆条目按规范加 project 标记。写日志和教训。
 [main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L207] Assistant: 继续收尾：写入教训文件 + 更新项目追踪。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L227] Assistant: 部署完成。汇报： ## ✅ ECS new-api 主网关已上线 | 项 | 结果 | |---|---| | **容器** | 重建：300M→**1G 内存** + json-file 日志 20m×3（NAS 僵死事故教训配置已落实） | | **渠道** | 3 条全启用，端到端实测：GLM 200 / Volc 200 / DeepSeek 200 | | **令牌** | 8 条 | | **nginx** | `3100→3000`，公网 start_time 与本地一致 → **已确认切到 ECS** | | **f
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L227] Assistant: bridge"的假设不成立 - **修正**：渠道 1/2 → `http://172.17.0.1:8081/{zai,volc}`，bridge 必须保留 - 已回写修正 `ecs-newapi-deploy.md` + `ecs_seed.sql`，并记入 `lessons.md` ## 其他执行偏差 - 种子 SQL 里 `group` 是 SQLite 保留字报错 → 改用宿主机 Python 导入 - 无自定义机器人 webhook → 复用现有飞书应用凭证（与 NAS 备份脚本同一套），实测推送成功 ## 文件变更 -
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L228] User: 1.收到了 2.是
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L230] User: [System] Your previous turn was interrupted by a gateway restart while OpenClaw was waiting on tool/model work. The restart did not cancel the user's task. Continue from the existing transcript: check the current state, recover interrupted work, and finish the task without 
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L231] Assistant: 收到。网关重启了一次，我快速复核一下部署状态是否还在位。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L232] User: 1.收到了 2.是
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L234] Assistant: 上一条命令我写错了（嵌套引号乱了），重跑一次干净的复核。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L237] Assistant: 状态完整。补一个端到端验证。
+[main/sessions/main/e7893414-9217-4eda-b815-d1e7c36a3779#L246] Assistant: 网关重启已恢复，全部状态复核通过。 ## ✅ 最终确认（重启后复检） | 项 | 状态 | |---|---| | 容器 | `new-api` 运行中 | | nginx upstream | `127.0.0.1:3000`（ECS 主）✅ | | 渠道 1/2/3 | GLM/Volc 走 bridge + DeepSeek 直连，全 status=1 ✅ | | 令牌 | 8 条 ✅ | | crontab 探测 | `*/5` 在位 ✅ | | 探测状态 | `mode:main fails:0`（干净）✅ | | 端到端
