@@ -1,18 +1,6 @@
 {
   "checks": [
     {
-      "time": "2026-09-04 09:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
-      "time": "2026-09-05 09:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
       "time": "2026-09-06 09:02",
       "total": 2,
       "healthy": 2,
@@ -220,6 +208,22 @@
       "healthy": 7,
       "issues": [
         "⚠️ skill-collection-review-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-10-04 05:02",
+      "total": 9,
+      "healthy": 8,
+      "issues": [
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-10-04 05:03",
+      "total": 9,
+      "healthy": 8,
+      "issues": [
         "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
       ]
     }
