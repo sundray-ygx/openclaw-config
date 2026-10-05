@@ -1,18 +1,6 @@
 {
   "checks": [
     {
-      "time": "2026-09-06 09:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
-      "time": "2026-09-07 09:02",
-      "total": 2,
-      "healthy": 2,
-      "issues": []
-    },
-    {
       "time": "2026-09-08 08:02",
       "total": 2,
       "healthy": 2,
@@ -226,6 +214,18 @@
       "issues": [
         "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
       ]
+    },
+    {
+      "time": "2026-10-05 05:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-10-05 05:03",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
     }
   ]
 }
