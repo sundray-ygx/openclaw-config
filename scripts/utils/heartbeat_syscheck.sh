@@ -87,6 +87,14 @@ else
   fi
 fi
 
+# 4b. gateway 进程 RSS (>=750M 告警)
+#     口径=进程RSS; 勿用 cgroup MemoryCurrent(含可回收page cache, 68%真实占用会报成94%假警报) 2026-10-06 诊断结论
+if [ "$GW_STATUS" = "active" ]; then
+  GW_PID=$(pgrep -f openclaw-gateway | head -1)
+  GW_RSS_MB=$(ps -o rss= -p "$GW_PID" 2>/dev/null | awk '{printf "%.0f", $1/1024}')
+  [ -n "$GW_RSS_MB" ] && [ "$GW_RSS_MB" -ge 750 ] && ALERTS+=("gateway 进程 RSS ${GW_RSS_MB}M (阈值750M)")
+fi
+
 # 5. 关键容器 (new-api)
 for C in new-api; do
   CS=$(docker inspect "$C" --format '{{.State.Status}}' 2>/dev/null)
@@ -98,7 +106,7 @@ ZOMBIES=$(ps aux | awk '$8=="Z"' | wc -l)
 [ "$ZOMBIES" -ge 10 ] && ALERTS+=("僵尸进程 ${ZOMBIES} 个 (阈值10)")
 
 # --- 结果处理 ---
-echo "$LOG_TAG $(date '+%F %T') disk=${DISK}% mem_avail=${MEM_AVAIL}M swap=${SWAP_PCT}% gw=$GW_STATUS zombies=$ZOMBIES alerts=${#ALERTS[@]}"
+echo "$LOG_TAG $(date '+%F %T') disk=${DISK}% mem_avail=${MEM_AVAIL}M swap=${SWAP_PCT}% gw=$GW_STATUS gw_rss=${GW_RSS_MB:-NA}M zombies=$ZOMBIES alerts=${#ALERTS[@]}"
 
 if [ ${#ALERTS[@]} -eq 0 ]; then
   # 全部正常: 清除告警去抖状态, 保持静默

@@ -5,7 +5,7 @@
 ### 定时任务运行状况
 - **状态**: 🟢 正常（2026-08-13 升级后复检）
 - **任务数量**: crontab 5 个 + OpenClaw cron 1 个
-- **OpenClaw 版本**: 2026.7.1-2（2026-08-13 升级，含 openclaw-lark 2026.7.16）
+- **OpenClaw 版本**: 2026.9.5（2026-09-23 升级）
 - **模型链**: primary=zai/glm-5.3，fallbacks=[deepseek/deepseek-v4-pro, volcengine/doubao-seed-2-1-turbo-260628]
 - **火山引擎欠费是误判**: 标准端点(/api/v3)欠费，但 Coding Plan 端点(/api/coding/v3)正常可用，现有配置用的就是 Coding Plan
 - **2026-09-02 模型列表更新**: deepseek 3个 / zai 7个 / volcengine 12个，全部实测可用；glm-5v-turbo 和 glm-4.7-flashx 套餐不支持已移除
@@ -22,6 +22,13 @@
 - 🟡 journald 3.0G → 限 200M + logrotate
 - ⚠️ ~~火山引擎账户欠费~~（2026-09-02 证实为误判，Coding Plan 端点正常）
 
+### 2026-10-06 网关内存诊断（无泄漏）
+- **结论**: 网关无泄漏，全天 RSS 稳态 548-600M 平台；心跳"94%"是假警报（cgroup MemoryCurrent 含可回收缓存，真实 597M=68%）
+- **真风险**: 每日 04:30 重启启动潮 802M（离 MemoryMax 880M 仅 9%）——重启本身是峰值制造者
+- **已落地（方案一）**: ① syscheck 改 RSS 口径(≥750M) ② 重启降频 Mon/Thu ③ 09-24 止血三件套落地（notifyOnExit=false / provider 60s / agent 300s，配置热生效）④ 会话清理（44 活跃全保留，仅回收 ~3M artifacts）
+- **观察项**: Thu 10-08 04:30 首次新节奏重启 + 72h 无重启稳定性；启动潮仍 >750M 则叠加方案二（heap 576M / MemoryMax 960M，拒绝 1G 防 09-24 重演）
+- 详见 `memory/2026-10-06.md`
+
 ### 自动化流程（优化后）
 | 任务 | 时间 | 状态 |
 |------|------|------|
@@ -32,7 +39,8 @@
 | 磁盘清理 | 每周一 10:00 | ✅ 正常 |
 | GLM 渠道健康检查 | 每日 09:30 | ✅ 纯脚本零LLM，正常静默、异常才推送（09-13 静默模式） |
 | Memory Dreaming | 每日 03:00 | ✅ 内置 |
-| 系统健康巡检(零LLM) | 每小时 | ✅ 09-28新建：脚本静默巡检、异常才推飞书（心跳报告已终结） |
+| 系统健康巡检(零LLM) | 每小时 | ✅ 09-28新建：脚本静默巡检、异常才推飞书（10-06 起含网关 RSS≥750M 检查，口径=进程RSS非cgroup） |
+| gateway 定期重启 | Mon/Thu 04:30 | ✅ 10-06 降频（原每日；诊断确认无泄漏） |
 
 ### 已删除的定时任务（2026-06-03）
 | 任务 | 原因 |
@@ -63,6 +71,8 @@
 - [ ] 观察反思 V3 效果（关注是否有重复反思点）
 
 ## 最近日志
+- `memory/2026-10-06.md` - 网关内存诊断（无泄漏）+ 方案一落地（告警口径/重启降频/止血三件套/清理）
+- `memory/2026-09-24.md` - 模型超时+gateway OOM 诊断（ECS 资源不足实锤；止血三件套 10-06 补落地）
 - `memory/2026-09-13.md` - 定时任务 LLM 消耗优化（方案B：GLM 检查 agentTurn→command 零LLM，GitHub 保留 agent）
 - `memory/2026-09-08.md` - new-api 网关部署+ECS 三平台灰度切换完成（Claude Code/Hermes/OpenClaw→api.ygxpro.online），OpenClaw 接线三处对齐要点见 deployment 文档
 - `memory/2026-08-13.md` - 业务巡检 + 2 个 P0 故障修复（GitHub同步/AI摘要）
