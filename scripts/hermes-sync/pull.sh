@@ -12,12 +12,32 @@ LOCAL_SKILLS=/root/.hermes/skills
 PROTECTED=/root/scripts/hermes-sync/protected-skills.txt
 LOCK=/var/lock/hermes-config-pull.lock
 
-# 失败告警：推送到飞书（2026-09-22 补，防 17 天断同步无人发现重演）
+# 失败告警：飞书直连 API(2026-10-08 修复:原 feishu_mcp_create_doc 是 openclaw 时代 MCP 工具,
+# 网关切换后二进制不存在,且内容还是硬编码的——告警链路从未真正可用。改用 heartbeat_syscheck
+# 已验证的直连模式,同 app cli_a93c6b1e)
 alert_fail() {
   local title="[ECS] hermes-config 同步失败"
-  local body="$(date '+%F %T')\n主机: $(hostname)\n原因: $1\n日志: /var/log/hermes-config-pull.log"
-  printf '%b' "$body" > /tmp/hermes-sync-alert.txt
-  python3 /root/scripts/send_feishu_report.py "$title" /tmp/hermes-sync-alert.txt >/dev/null 2>&1 || true
+  local body="$(date '+%F %T') 主机: $(hostname) 原因: $1 日志: /var/log/hermes-config-pull.log"
+  python3 - "$title" "$body" << 'PYEOF' >/dev/null 2>&1 || true
+import sys, json, urllib.request, urllib.parse
+title, body = sys.argv[1:3]
+req = urllib.request.Request(
+    "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal",
+    data=json.dumps({"app_id": "cli_a93c6b1e1ff89bd4", "app_secret": "gK0tXRdPTOHq3kZVKsP2PgZrUBoGSAsl"}).encode(),
+    headers={"Content-Type": "application/json"}, method="POST")
+with urllib.request.urlopen(req, timeout=10) as resp:
+    token = json.loads(resp.read().decode()).get("tenant_access_token")
+card = {"config": {"wide_screen_mode": True},
+        "header": {"title": {"tag": "plain_text", "content": title}, "template": "red"},
+        "elements": [{"tag": "div", "text": {"tag": "lark_md", "content": body}}]}
+msg = {"receive_id": "ou_d8ae71cd421f8954a9c97e973d4f03d1", "msg_type": "interactive",
+       "content": json.dumps(card, ensure_ascii=False)}
+url = "https://open.feishu.cn/open-apis/im/v1/messages?" + urllib.parse.urlencode({"receive_id_type": "open_id"})
+r = urllib.request.Request(url, data=json.dumps(msg, ensure_ascii=False).encode(),
+    headers={"Content-Type": "application/json", "Authorization": f"Bearer {token}"}, method="POST")
+with urllib.request.urlopen(r, timeout=10) as resp:
+    json.loads(resp.read().decode())
+PYEOF
 }
 
 exec 9>"$LOCK"
@@ -29,8 +49,10 @@ echo "===== $(date '+%F %T') 同步开始 ====="
 if ! git fetch origin main 2>&1; then
   echo "🔴 git fetch 失败（网络/SSH）"; alert_fail "git fetch 失败（网络/SSH）"; exit 1
 fi
-if ! git pull --ff-only origin main 2>&1; then
-  echo "🔴 git pull 失败（本地与远端分叉？ECS 侧不应有本地提交）"; alert_fail "git pull 失败（本地与远端分叉）"; exit 1
+# 2026-10-08 修复:ECS 是纯消费者,不应有本地提交。原 --ff-only 在 NAS force-push 重写历史后
+# 永久分叉(9/29 起 10 天同步失败)。改为 fetch + reset --hard,彻底根治。
+if ! git reset --hard origin/main 2>&1; then
+  echo "🔴 git reset --hard origin/main 失败"; alert_fail "git reset 失败"; exit 1
 fi
 
 added=0; updated=0; skipped=0

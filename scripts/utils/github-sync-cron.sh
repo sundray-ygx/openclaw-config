@@ -16,11 +16,11 @@ else
     RC=$?
     echo "$OUT"
     echo "[$TS] 🔴 同步失败(exit=$RC)，推送飞书告警"
-    python3 /root/scripts/utils/notify_feishu.py \
+    python3 /root/scripts/utils/notify_feishu.py --card \
         "🔴 [ECS] GitHub每日同步失败" \
         "时间: $TS
 退出码: $RC
 输出:
-$OUT" || echo "[告警也失败，检查 notify_feishu.py]"
+$OUT" red || echo "[告警也失败，检查 notify_feishu.py]"
     exit $RC
 fi

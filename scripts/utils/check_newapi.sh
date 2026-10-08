@@ -48,8 +48,8 @@ else
     echo "🔴 模型调用异常 HTTP $RCODE"; FAIL=1
 fi
 
-# 6. nginx 桥接端口
-ss -tln | grep -q '172.17.0.1:8081' && echo "nginx 桥接: ✅" || { echo "🔴 nginx 桥接 8081 未监听"; FAIL=1; }
+# 6. nginx 桥接端口(2026-10-08 修复: cron 环境 PATH 不含 /usr/sbin 导致 ss 找不到,误报 10 天+)
+/usr/sbin/ss -tln | grep -q '172.17.0.1:8081' && echo "nginx 桥接: ✅" || { echo "🔴 nginx 桥接 8081 未监听"; FAIL=1; }
 
 if [ $FAIL -eq 1 ]; then
     echo "🔴🔴 new-api 巡检有失败项，需人工介入 🔴🔴"
