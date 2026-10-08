@@ -73,26 +73,33 @@ MEM_AVAIL=$(free -m | awk '/Mem:/{print $7}')
 SWAP_PCT=$(free | awk '/Swap:/{if($2>0) printf "%.0f", $3/$2*100; else print 0}')
 [ -n "$SWAP_PCT" ] && [ "$SWAP_PCT" -ge 50 ] && ALERTS+=("swap 使用 ${SWAP_PCT}% (阈值50%)")
 
-# 4. openclaw-gateway 服务
-GW_STATUS=$(systemctl is-active openclaw-gateway 2>/dev/null || echo "unknown")
+# 4. hermes-gateway 服务 (2026-10-08 网关切换 openclaw→hermes,检查对象同步更新)
+GW_STATUS=$(systemctl is-active hermes-gateway 2>/dev/null || echo "unknown")
 if [ "$GW_STATUS" != "active" ]; then
-  ALERTS+=("openclaw-gateway 服务状态: $GW_STATUS")
+  ALERTS+=("hermes-gateway 服务状态: $GW_STATUS")
 else
-  RESTARTS=$(systemctl show openclaw-gateway --property=NRestarts --value 2>/dev/null)
+  RESTARTS=$(systemctl show hermes-gateway --property=NRestarts --value 2>/dev/null)
   TODAY_MARK="$STATE_DIR/gw-restarts.baseline"
   if [ -n "$RESTARTS" ] && [ -f "$TODAY_MARK" ]; then
     BASE=$(cat "$TODAY_MARK")
     DELTA=$((RESTARTS - BASE))
-    [ "$DELTA" -ge 3 ] && [ "$DELTA" -le 20 ] && ALERTS+=("openclaw-gateway 今日异常重启 ${DELTA} 次 (累计$RESTARTS)")
+    [ "$DELTA" -ge 3 ] && [ "$DELTA" -le 20 ] && ALERTS+=("hermes-gateway 今日异常重启 ${DELTA} 次 (累计$RESTARTS)")
   fi
 fi
 
 # 4b. gateway 进程 RSS (>=750M 告警)
 #     口径=进程RSS; 勿用 cgroup MemoryCurrent(含可回收page cache, 68%真实占用会报成94%假警报) 2026-10-06 诊断结论
+#     注意: 实际进程 cmdline 为 "python -m hermes_cli.main gateway run",
+#     且 systemd MainPID 是 1.5M 的 shim,真实内存在其子进程 —— 按 cmdline 匹配后求和进程树
+#     (2026-10-08 修正: 旧模式 'hermes gateway' 匹配不到实际 cmdline,导致 RSS 检查空转)
 if [ "$GW_STATUS" = "active" ]; then
-  GW_PID=$(pgrep -f openclaw-gateway | head -1)
-  GW_RSS_MB=$(ps -o rss= -p "$GW_PID" 2>/dev/null | awk '{printf "%.0f", $1/1024}')
-  [ -n "$GW_RSS_MB" ] && [ "$GW_RSS_MB" -ge 750 ] && ALERTS+=("gateway 进程 RSS ${GW_RSS_MB}M (阈值750M)")
+  GW_RSS_KB=0
+  for P in $(pgrep -f 'hermes_cli.main gateway' 2>/dev/null); do
+    R=$(ps -o rss= -p "$P" 2>/dev/null)
+    [ -n "$R" ] && GW_RSS_KB=$((GW_RSS_KB + R))
+  done
+  [ "$GW_RSS_KB" -gt 0 ] && GW_RSS_MB=$((GW_RSS_KB / 1024))
+  [ -n "${GW_RSS_MB:-}" ] && [ "$GW_RSS_MB" -ge 750 ] && ALERTS+=("hermes-gateway 进程 RSS ${GW_RSS_MB}M (阈值750M)")
 fi
 
 # 5. 关键容器 (new-api)

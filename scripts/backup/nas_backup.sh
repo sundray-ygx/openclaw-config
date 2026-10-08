@@ -233,6 +233,20 @@ cp /opt/new-api/admin-credentials.txt "$LOCAL_BACKUP_DIR/08-new-api/" 2>/dev/nul
 docker inspect new-api --format '{{json .Config.Env}}{{json .HostConfig.Binds}}' > "$LOCAL_BACKUP_DIR/08-new-api/container-meta.json" 2>/dev/null || true
 docker exec new-api rm -f /data/one-api-backup.db 2>/dev/null || true
 
+# 9. Hermes Gateway 配置（2026-10-08 补：ECS hermes 主力网关，此前无任何备份）
+# 范围：小而关键的配置（config/cron/memory/技能清单），排除 cache 等大目录；.env 密钥仅入包（WebDAV 私有通道），权限 600
+log "备份: Hermes Gateway 配置"
+mkdir -p "$LOCAL_BACKUP_DIR/09-hermes-config"
+tar -czf "$LOCAL_BACKUP_DIR/09-hermes-config/hermes-config.tar.gz" \
+    -C /root/.hermes \
+    --exclude='cache' \
+    --exclude='audio_cache' \
+    --exclude='desktop' \
+    --exclude='*.lock' \
+    --exclude='feishu_seen_message_ids.json' \
+    config.yaml auth.json .env cron/ skills/ 2>/dev/null \
+    || log "⚠️ Hermes配置备份失败(部分文件缺失不致命)"
+
 # 生成备份信息
 SERVER_IP=$(curl -s --connect-timeout 5 ifconfig.me 2>/dev/null || echo "47.119.177.194")
 cat > "$LOCAL_BACKUP_DIR/backup-info.json" << EOF
