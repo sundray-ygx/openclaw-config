@@ -498,3 +498,100 @@
 ## ECS SSH 安全加固（2026-09-12 诊断，待 Boss 决策）
 - **状态**: ⏳ 确认未入侵（2129 次失败爆破全为互联网背景噪音，攻击 IP 零成功），但 PasswordAuthentication=yes 攻击面全开
 - **待办**: [ ] Boss 先完成密钥登录验证 → 再改 sshd 关闭密码认证（PasswordAuthentication no + PermitRootLogin prohibit-password）；备选 Tailscale/安全组白名单
+
+---
+
+## cc.ygxpro.online 公网部署（2026-09-20，完成）
+- **状态**: ✅ 完成。hermes-mobile + hermes-studio 公网入口，同域无 CORS
+- **架构**: ECS nginx(443/TLS) → frps → frpc → NAS；`/`→3346(hermes-mobile)，`/api/`+`/socket.io/`→8648(hermes-studio)
+- **文件**: `/etc/nginx/conf.d/cc.conf`
+- **验证**: 移动页 200、socket.io 握手拿 sid、API 401 鉴权生效、80→301
+- **教训**: 上游协议别信文档，直连实测（cc-manager 是 HTTPS 自签，文档写 http 导致 502）
+
+---
+
+## ECS Hermes 升级 + hermes-config 同步修复（2026-09-22，完成）
+- **状态**: ✅ 完成。v0.21.1 → v0.21.4 (v2026.9.21)，tag d337b736
+- **同步修复**: 断同步 17 天（ECS 本地 19 分叉 vs 远端 39）→ bundle 备份后强制对齐 deb655d，传播 63 新技能；pull.sh 加飞书告警
+- **git 通道**: origin 切 SSH（HTTPS git 被卡但 SSH/api 正常）；ghproxy.net 缓存可滞后 11 天
+- **升级流程**: checkout tag → uv.lock sed tuna 镜像（pypi CDN 本机仅 28KB/s，tuna ~12.7MB/s）→ uv sync → 验证
+- **ECS gateway 决策**: hermes-gateway.service 保持 disabled，NAS 为主力
+
+---
+
+## OpenClaw 2026.9.5 升级（2026-09-22，完成）
+- **状态**: ✅ 完成。首跑因 PNPM_HOME 缺失失败→自动回滚兜底，修复后二跑成功
+- **飞书插件修复（2 处 9.5 兼容）**: ① `openclaw/plugin-sdk` 裸入口被移除→package.json 补 exports；② pnpm realpath 嵌套 symlink 失效→lark store 补 openclaw symlink
+- **巡检发现**: ① TimeoutStopSec=30 < 网关退出预算 55s → 每次重启必 SIGKILL，连带杀 GitHub 同步 ② 冷启动 62s vs 正常 9-16s（6700 dist 文件+内存压力） ③ TUI 常驻 242M + hermes-tui 265M
+
+---
+
+## 磁盘暴涨处置（2026-09-23，完成）
+- **状态**: ✅ 完成。磁盘 80% → **69%**（回收 ~4.4G）
+- **清理项**: /root/.cache/uv 1.5G + /tmp plugin staging 174 个目录 3.5G + node-compile-cache 238M + npm/pnpm 缓存
+- **根因**: plugins update/install 每次产生 /tmp/openclaw-plugin-build-* staging 目录，升级中断+重启竞态累积
+- **验证**: 23:30 GitHub 同步复跑成功（c9d4542），TimeoutStopSec 修复经真实负载验证
+
+---
+
+## 网关 4 连崩排障 + heap 调优（2026-09-24，完成）
+- **状态**: ✅ 完成。08:02/10:00/11:41/12:18 四次 V8 堆 OOM 全部修复
+- **根因**: V8 堆上限 384M 打满（`FATAL ERROR: Reached heap limit`），驱动=主会话大上下文+心跳任务
+- **修复**: ① NODE_OPTIONS 384→512M ② MemoryMax 对齐 880M（主 unit 死配置被 system.control drop-in 覆盖）③ 重启验证
+- **教训**: `systemctl show` 的 MemoryMax 才是真值，unit 文本可能被 drop-in 静默覆盖
+
+---
+
+## jellyfin.ygxpro.online 反代上线（2026-09-24，完成）
+- **状态**: ✅ 完成。方案 A：ECS nginx → frp → NAS Jellyfin
+- **证书**: 复用泛域名证书（省去 certbot 单签），2026-11-22 到期
+- **文件**: `/etc/nginx/conf.d/jellyfin.conf`
+- **验证**: system/info 返回 Jellyfin-NAS 12.1.0，HTTP/2 200，80→443 正常
+
+---
+
+## ECS new-api 主网关部署 + failover（2026-09-27，完成）
+- **状态**: ✅ 完成。ECS 为主网关，NAS(3100) 降热备
+- **架构**: 公网 api.ygxpro.online → ECS nginx → 127.0.0.1:3000(new-api 容器)；bridge 172.17.0.1:8081 必保
+- **容器配置**: 1G 内存 + json-file 日志 20m×3（NAS 僵死事故教训）
+- **种子数据**: 宿主机 Python executescript 导入（SQLite `group` 保留字 + 容器无 sqlite3）
+- **failover**: `/root/scripts/utils/ecs-failover-probe.sh`（crontab */5），连续 2 次失败→切 3100+飞书红卡；恢复需人工 switchback
+- **教训**: 渠道 base_url 必须走 bridge 不能直连上游（见 lessons.md 高优条目）
+
+---
+
+## zai bridge IPv6 修复（2026-09-28，完成）
+- **状态**: ✅ 完成。zai 渠道当日失败 12+ 次
+- **根因**: nginx proxy_pass 写死域名=启动时静态解析，api.z.ai 优先 AAAA 记录，ECS 无 IPv6 出口 → Network is unreachable
+- **修复**: `set $zai_target` + `resolver 100.100.2.136 ipv6=off valid=300s` + rewrite 拼路径
+- **文件**: `/etc/nginx/conf.d/newapi-upstream.conf`
+
+---
+
+## ECS 系统巡检 + 三项优化（2026-09-28，完成）
+- **状态**: ✅ 完成。Boss 批准三项
+- **1. 每日自动重启**: `/etc/systemd/system/openclaw-gateway-daily-restart.{service,timer}`，04:30，已 enable
+- **2. 停用 sing-box**: 5 个月总流量仅 70MB + 1080 无鉴权绑定 0.0.0.0 公网暴露风险；镜像配置保留
+- **3. 磁盘清理**: npm/pnpm 缓存 + 旧备份 tar.gz，回收 ~1.5G，72%→68%
+- **发现**: 09-22 23:15 曾全局 OOM 杀网关（内核 48 处 OOM 记录）；hermes ECS 已停用 23 天
+
+---
+
+## 心跳机制治理（2026-09-28，完成）
+- **状态**: ✅ 完成。token 省 ~83%
+- **措施**: ① heartbeat 60m→6h ② AGENTS.md 改静默优先（禁巡检/禁正常输出/仅 HEARTBEAT_OK）③ `scripts/utils/heartbeat_syscheck.sh` 零LLM巡检（磁盘85%/内存300M/swap50%/gateway/容器/僵尸），同类异常1h去抖，异常推飞书 ④ crontab 每小时执行
+- **附带发现**: 9/26-9/27 心跳连续失败 20+ 小时（deepseek 超时），无失败告警
+
+---
+
+## 网关内存诊断 + 方案一执行（2026-10-06，观察中）
+- **状态**: 🔄 观察期（72h 无重启验证，至 10-08 04:30）
+- **诊断结论**: 无泄漏。心跳"94% 临界"是 cgroup 口径假警报（含 ~190M 可回收 page cache，真实 RSS ~600M）
+- **真风险**: 每日 04:30 重启的启动潮 802M（离 880M 仅 9% 余量）——重启本身就是峰值制造者
+- **方案一已执行**:
+  1. syscheck 改 RSS≥750M 口径 + HEARTBEAT.md 硬规则
+  2. 重启降频：每日 → Mon/Thu 04:30
+  3. 止血三件套：notifyOnExit=false / timeout 300s / maxRetries 3（配置热生效）
+  4. 会话清理：44 活跃全保留，回收 222 个无引用 artifacts ~3M
+- **方案二（备选）**: heap 576M / MemoryMax 960M（拒绝 1G 建议，防 09-24 堆 OOM 重演）
+- **教训**: 心跳告警必须区分 anon/file cache，cgroup current 不能直接当"内存临界"用

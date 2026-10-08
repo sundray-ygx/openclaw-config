@@ -359,3 +359,51 @@ SESSIONS_DIRS = [
 **问题**: 种子 SQL 用 `group` 作列名 → `near "group": syntax error`；容器内既无 sqlite3 也 apk 装不上
 **Fix**: 宿主机 Python `sqlite3.executescript()` 导入（列名双引号或交给 Python 处理）；容器数据卷在宿主机可直接访问，无需进容器
 **级别**: 🟡 中
+
+---
+
+### 上游协议别信文档，直连实测
+**问题**: cc-manager 部署文档写 `proxy_pass http://`，实际监听 HTTPS（自签），导致 502 Empty reply
+**根因**: 文档可能过时/抄错/漏写；探活数据里有 `"https":true` 但被忽略
+**Fix**: 判断上游协议永远直连实测（curl -v 看 TLS 握手/响应头），不信文档；纯 HTTP 打 TLS 端口的症状是 TCP 通但 Empty reply
+**级别**: 🟡 中
+
+### nginx reload 后旧 worker 仍短暂服务旧配置
+**问题**: reload 后立即 curl 撞上旧 worker 的 502（error.log 显示打到已下线的端口）
+**Fix**: reload 后隔 1-2 秒再验证，或看 error.log 的 upstream 端口判断新旧配置
+**级别**: 🟢 低
+
+### nginx 静态 DNS 解析与 IPv6 坑
+**问题**: zai bridge 当日失败 12+ 次，nginx proxy_pass 写死域名=启动时一次性解析，api.z.ai 优先 AAAA，ECS 无 IPv6 → Network is unreachable
+**Fix**: 对无 IPv6 出口的主机，上游带 AAAA 时用 `resolver + set变量 + ipv6=off` 强制 IPv4 运行时解析；volc 无 AAAA 不动（避免引入运行时 DNS 依赖）
+**级别**: 🔴 高
+
+### systemd 定时重启是小内存机跑 Node 长进程的务实方案
+**场景**: 1-2G 机器跑 Node 网关，大上下文持续累积，GC 回收不彻底
+**Fix**: 每日（或按需 Mon/Thu）systemd timer 重启，配合 TimeoutStopSec ≥ 进程退出预算（55s+）；Persistent=true 确保错过也补跑
+**级别**: 🟡 中
+
+### 心跳告警必须区分 anon 内存和 file cache
+**问题**: 心跳告警用 cgroup MemoryCurrent 当"内存临界"，实际含 ~190M 可回收 page cache，真实 RSS 仅 600M，制造假警报
+**Fix**: 内存告警统一用 RSS 口径（/proc 或 ps），阈值 750M（距 880M 留 130M）；cgroup current 仅作参考
+**级别**: 🟡 中
+
+### 重启本身是内存峰值制造者
+**问题**: 以为每日重启是"释放内存"，实际冷启动潮（292 会话恢复 + prep）冲到 802M，离 880M 仅 9% 余量，比运行期还危险
+**Fix**: 重启降频（每日 → Mon/Thu），观察运行期内存是否真的涨；启动潮才是最危险的时刻，需要余量最足
+**级别**: 🟡 中
+
+### 配置热生效 vs 需重启
+**发现**: openclaw.json 部分字段（heartbeat.every、agents.defaults 模型列表）支持热重载，改完无需重启网关；但堆内存/环境变量类的还是要重启
+**Fix**: 改配置后先 `openclaw gateway status` 看是否已生效，避免不必要的重启（重启=启动潮=峰值）
+**级别**: 🟢 低
+
+### 闲置+暴露型风险（sing-box 教训）
+**问题**: sing-box 5 个月仅 70MB 流量，但 1080 端口无鉴权绑定 0.0.0.0，若安全组放行就是公网开放代理
+**教训**: 巡检 Docker 容器不能只看资源占用，要结合端口暴露面+流量计数判断"闲置+暴露"型风险；低流量+公网端口=优先审查对象
+**级别**: 🟡 中
+
+### plugin staging 目录累积会暴涨磁盘
+**问题**: plugins update/install 每次产生 /tmp/openclaw-plugin-build-* staging 目录，升级中断+重启竞态两天累积 174 个/3.5G
+**Fix**: 升级/安装后检查 /tmp 残留；磁盘清理清单加入 staging 目录项
+**级别**: 🟡 中

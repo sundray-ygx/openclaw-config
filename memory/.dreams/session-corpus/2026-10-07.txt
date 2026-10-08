@@ -1,0 +1,3 @@
+[main/sessions/main/6d5f5267-89fc-4162-a87a-875d0a2378ad#L9] Assistant: ✅ GitHub 同步完成：提交 0a260ff（8 个文件，+207/-13），已推送 master → github.com:sundray-ygx/openclaw-config.git
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L355] User: [OpenClaw exec completion] Disable automatic completion turns with tools.exec.notifyOnExit=false; check per-agent overrides. Background exec and process poll remain available.
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L358] Assistant: ✅ GitHub 同步完成：提交 0a260ff（8 个文件，+207/-13），已推送 master → github.com:sundray-ygx/openclaw-config.git

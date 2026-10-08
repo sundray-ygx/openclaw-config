@@ -23,3 +23,5 @@
 [main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L340] Assistant: 全部落地动作完成，且有个好消息：**配置热生效（"Change will apply without restarting the gateway"），无需手动重启**——观察窗自然衔接（当前进程 04:30 起，Thu 04:30 重启=正好 72h 无重启稳定性验证）。跳过原计划的第 5 步重启，收尾记忆维护：
 [main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L343] Assistant: 继续记忆维护。先看 MEMORY.md 剩余部分（最近日志索引区）：
 [main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L346] Assistant: 收尾记忆维护：MEMORY.md 四处更新 + 今日日志补执行结果：
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L353] Assistant: 方案一执行完毕 ✅（23:16） | 项 | 结果 | |---|---| | 1-① 告警口径 | syscheck 内建 RSS≥750M 检查（实跑验证：`gw_rss=608M alerts=0` 静默）+ HEARTBEAT.md 写死规则，假警报根治 | | 1-② 重启降频 | Mon/Thu 04:30（下次 **Thu 10-08**） | | 1-③ 止血三件套 | ✅ 已写入并实测验证（notifyOnExit=false / provider 60s / agent 300s）——**配置热生效，无需重启**
+[main/sessions/main/8cc4811b-802d-4daf-9c8a-7529a3dd2fe6#L354] Assistant: ✅ GitHub 同步完成 - 提交：dfc6ebc「Auto sync: 2026-10-06 23:30:08」，11 个文件变更（+92/−16），含 HEARTBEAT.md、memory/2026-10-06.md 等 - 推送：master → github.com:sundray-ygx/openclaw-config.git 成功（d5840a0..dfc6ebc）
