@@ -8,9 +8,16 @@ exec 200>"$LOCK_FILE"
 flock -n 200 || { echo "[$(date '+%Y-%m-%d %H:%M:%S')] 备份跳过：另一个实例正在运行"; exit 0; }
 
 # ==================== 配置 ====================
+# 凭证外置（2026-10-13 v5.0）：从 /root/.backup-creds.env 读取，脚本内不再硬编码密钥
+# （该文件 chmod 600，位于 workspace 外不入 git；脚本本身随 workspace 每日推送 GitHub）
+CREDS_FILE="/root/.backup-creds.env"
+if [ -r "$CREDS_FILE" ]; then
+    source "$CREDS_FILE"
+else
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] ❌ 凭证文件 $CREDS_FILE 不可读，备份终止" >> /var/log/nas-backup.log
+    exit 1
+fi
 WEBDAV_URL="http://127.0.0.1:5005"
-WEBDAV_USER="aliyun-ygx"
-WEBDAV_PASS='%dOr91[#'
 WEBDAV_BASE="/aliyun_backup/server-backup"
 
 BACKUP_DATE=$(date +%Y%m%d)
@@ -18,11 +25,6 @@ BACKUP_TIME=$(date '+%Y-%m-%d %H:%M:%S')
 LOCAL_BACKUP_DIR="/tmp/backup-$BACKUP_DATE"
 ARCHIVE_FILE="/tmp/server-backup-$BACKUP_DATE.tar.gz"
 LOG_FILE="/var/log/nas-backup.log"
-
-# 飞书通知配置
-FEISHU_APP_ID="cli_a93c6b1e1ff89bd4"
-FEISHU_APP_SECRET="gK0tXRdPTOHq3kZVKsP2PgZrUBoGSAsl"
-FEISHU_USER_ID="ou_d8ae71cd421f8954a9c97e973d4f03d1"
 
 # 网络配置
 NETWORK_TIMEOUT=10
@@ -43,14 +45,13 @@ send_feishu_card() {
     local verify=$4      # 验证状态
     local fail_reason=$5 # 失败原因（可选）
 
-    python3 - "$status" "$size" "$duration" "$verify" "$fail_reason" "$BACKUP_TIME" "$REMOTE_DIR" "$BACKUP_DATE" << 'PYEOF'
+    python3 - "$status" "$size" "$duration" "$verify" "$fail_reason" "$BACKUP_TIME" "$REMOTE_DIR" "$BACKUP_DATE" \
+        "$FEISHU_APP_ID" "$FEISHU_APP_SECRET" "$FEISHU_USER_ID" << 'PYEOF' >/dev/null 2>&1
 import sys, json, urllib.request, urllib.parse
 
 status, size, duration, verify, fail_reason, backup_time, remote_dir, backup_date = sys.argv[1:9]
-
-APP_ID = "cli_a93c6b1e1ff89bd4"
-APP_SECRET = "gK0tXRdPTOHq3kZVKsP2PgZrUBoGSAsl"
-USER_ID = "ou_d8ae71cd421f8954a9c97e973d4f03d1"
+# 凭证经 argv 传入（外置于 /root/.backup-creds.env，2026-10-13 v5.0）
+APP_ID, APP_SECRET, USER_ID = sys.argv[9:12]
 
 # 获取 token
 try:
@@ -77,7 +78,7 @@ if is_success:
             {"is_short": True, "text": {"tag": "lark_md", "content": f"📦 备份大小\n**{size}**"}},
             {"is_short": True, "text": {"tag": "lark_md", "content": f"⏱ 耗时\n**{duration}**"}},
             {"is_short": True, "text": {"tag": "lark_md", "content": f"🔒 远程验证\n**{verify}**"}},
-            {"is_short": True, "text": {"tag": "lark_md", "content": f"📂 备份版本\n**v4.1**"}},
+            {"is_short": True, "text": {"tag": "lark_md", "content": f"📂 备份版本\n**v5.0**"}},
         ]
     })
 else:
@@ -99,7 +100,7 @@ elements.append({"tag": "hr"})
 if is_success:
     elements.append({
         "tag": "div",
-        "text": {"tag": "lark_md", "content": "**备份内容**\n🔹 sing-box 代理配置 ｜ FRP 内网穿透配置\n🔹 自动化脚本 ｜ OpenClaw 核心文档\n🔹 OpenClaw 完整配置 ｜ 安全基线脚本\n🔹 Nginx 配置 ｜ 备份元数据"}
+        "text": {"tag": "lark_md", "content": "**备份内容（v5.0）**\n🔹 sing-box 代理配置 ｜ FRP 内网穿透配置\n🔹 crontab+脚本快照 ｜ OpenClaw workspace 完整包\n🔹 安全基线脚本 ｜ Nginx 配置 ｜ new-api 网关数据\n🔹 Hermes 网关配置 ｜ Hermes scheduler profile（新增）\n🔹 systemd 服务单元（新增） ｜ 备份元数据"}
     })
 
 elements.append({"tag": "hr"})
@@ -191,12 +192,12 @@ cp /root/frp_0.60.0_linux_amd64/frpc.toml "$LOCAL_BACKUP_DIR/02-frp/"
 cp /root/frp_0.60.0_linux_amd64/frps "$LOCAL_BACKUP_DIR/02-frp/"
 cp /root/frp_0.60.0_linux_amd64/frpc "$LOCAL_BACKUP_DIR/02-frp/"
 
-# 3. 脚本
-log "备份: 脚本"
-cp /root/.openclaw/workspace/scripts/briefing/morning_briefing.py "$LOCAL_BACKUP_DIR/03-scripts/"
-cp /root/.openclaw/workspace/scripts/daily/daily_report.py "$LOCAL_BACKUP_DIR/03-scripts/" 2>/dev/null || log "⚠️ daily_report.py不存在"
+# 3. 脚本（v5.0 简化：/root/scripts 为 workspace/scripts 软链，完整内容已由第 5 项 tar 覆盖，
+#    此处仅留本脚本自身快照 + crontab 快照以便重建定时任务）
+log "备份: 脚本(本脚本+crontab快照)"
+mkdir -p "$LOCAL_BACKUP_DIR/03-scripts"
 cp /root/.openclaw/workspace/scripts/backup/nas_backup.sh "$LOCAL_BACKUP_DIR/03-scripts/"
-cp /root/.openclaw/workspace/scripts/news/rss_news_fetch.py "$LOCAL_BACKUP_DIR/03-scripts/" 2>/dev/null || log "⚠️ rss_news_fetch.py不存在"
+crontab -l > "$LOCAL_BACKUP_DIR/03-scripts/crontab.bak" 2>/dev/null || log "⚠️ crontab 导出失败"
 
 # 4. OpenClaw工作区核心文档
 log "备份: OpenClaw工作区核心文档"
@@ -233,7 +234,7 @@ cp /opt/new-api/admin-credentials.txt "$LOCAL_BACKUP_DIR/08-new-api/" 2>/dev/nul
 docker inspect new-api --format '{{json .Config.Env}}{{json .HostConfig.Binds}}' > "$LOCAL_BACKUP_DIR/08-new-api/container-meta.json" 2>/dev/null || true
 docker exec new-api rm -f /data/one-api-backup.db 2>/dev/null || true
 
-# 9. Hermes Gateway 配置（2026-10-08 补：ECS hermes 主力网关，此前无任何备份）
+# 9. Hermes Gateway 配置（2026-10-08 补：ECS hermes 主力网关）
 # 范围：小而关键的配置（config/cron/memory/技能清单），排除 cache 等大目录；.env 密钥仅入包（WebDAV 私有通道），权限 600
 log "备份: Hermes Gateway 配置"
 mkdir -p "$LOCAL_BACKUP_DIR/09-hermes-config"
@@ -247,6 +248,36 @@ tar -czf "$LOCAL_BACKUP_DIR/09-hermes-config/hermes-config.tar.gz" \
     config.yaml auth.json .env cron/ skills/ 2>/dev/null \
     || log "⚠️ Hermes配置备份失败(部分文件缺失不致命)"
 
+# 10. Hermes 活跃 profile（v5.0 2026-10-13 新增：scheduler 为当前主力网关 profile，此前零备份）
+#     含会话 state.db / cron 任务 / skills / plans / memories —— ECS 挂掉后 hermes 侧唯一可恢复来源
+#     state.db 用 sqlite3 .backup 保证一致性（排除 -wal/-shm 由快照文件自带）
+log "备份: Hermes scheduler profile"
+mkdir -p "$LOCAL_BACKUP_DIR/10-hermes-profile"
+HP_SRC="/root/.hermes/profiles/scheduler"
+HP_TMP="$LOCAL_BACKUP_DIR/10-hermes-profile"
+sqlite3 "$HP_SRC/state.db" ".backup '$HP_TMP/state.db'" 2>/dev/null || cp "$HP_SRC/state.db" "$HP_TMP/state.db" 2>/dev/null || log "⚠️ state.db 备份失败"
+tar -czf "$HP_TMP/hermes-profile.tar.gz" \
+    -C "$HP_SRC" \
+    --exclude='state.db*' \
+    --exclude='lsp' \
+    --exclude='cache' \
+    --exclude='audio_cache' \
+    --exclude='image_cache' \
+    --exclude='runtime' \
+    --exclude='*.lock' \
+    --exclude='backups' \
+    cron/ skills/ plans/ memories/ sessions/ workspace/ home/ hooks/ platforms/ SOUL.md config.yaml 2>/dev/null \
+    || log "⚠️ Hermes profile 备份失败(部分目录缺失不致命)"
+[ -f "$HP_TMP/state.db" ] || log "⚠️ profile state.db 缺失"
+tar -tzf "$HP_TMP/hermes-profile.tar.gz" >/dev/null 2>&1 || { rm -f "$HP_TMP/hermes-profile.tar.gz"; log "⚠️ profile tar 损坏已移除"; }
+
+# 11. systemd 服务单元快照（v5.0：网关切换后 hermes-gateway 单元文件是恢复关键）
+log "备份: systemd 服务单元"
+mkdir -p "$LOCAL_BACKUP_DIR/11-systemd"
+for U in hermes-gateway openclaw-gateway; do
+    cp "/etc/systemd/system/$U.service" "$LOCAL_BACKUP_DIR/11-systemd/" 2>/dev/null || true
+done
+
 # 生成备份信息
 SERVER_IP=$(curl -s --connect-timeout 5 ifconfig.me 2>/dev/null || echo "47.119.177.194")
 cat > "$LOCAL_BACKUP_DIR/backup-info.json" << EOF
@@ -255,7 +286,7 @@ cat > "$LOCAL_BACKUP_DIR/backup-info.json" << EOF
   "backup_time": "$BACKUP_TIME",
   "server_hostname": "$(hostname)",
   "server_ip": "$SERVER_IP",
-  "backup_version": "4.1",
+  "backup_version": "5.0",
   "upload_method": "webdav",
   "structure": "workspace-organized"
 }
