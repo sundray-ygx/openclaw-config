@@ -1,5 +1,12 @@
 # new-api 网关故障切换手册（NAS ↔ ECS 热备）
 
+> ⚠️ **已过时（2026-10-14 标记）**
+> 本文档为 2026-09-18 "NAS 为主、ECS 热备"时代编写。2026-09-27 架构反转后，
+> **ECS 为主、NAS 为热备**，主备表述与本文相反。
+> 当前权威文档：`knowledge/tech/infrastructure/newapi-gateway-switch-mechanism.md`
+> 当前统一入口脚本：`/root/scripts/utils/newapi-switch.sh`
+> 本文保留作历史档案与参考。
+
 - **建立**: 2026-09-18 | **背景**: 2026-09-17 new-api 已迁 NAS（见 newapi-nas-migration-*.md），ECS 保留热备
 - **用途**: NAS 侧网关故障时一键切回 ECS；NAS 恢复后一键切回。两个脚本均幂等、可重复执行
 
