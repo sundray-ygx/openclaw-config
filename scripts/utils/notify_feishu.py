@@ -3,6 +3,9 @@
 用法:
   notify_feishu.py <标题> <内容>              # 纯文本（向后兼容）
   notify_feishu.py --card <标题> <内容> [颜色]  # 卡片，颜色: red/green/blue/grey，默认 red
+  notify_feishu.py --card-json <card.json>     # 富结构卡片（2026-10-22 新增）:
+                                              # JSON 文件含完整 card 结构(config/header/elements)，
+                                              # 支持 column_set/hr/note 等分区排版
 卡片结构复用 heartbeat_syscheck.sh 已验证格式（2026-10-08）
 """
 import json
@@ -65,6 +68,25 @@ def send_card(token, title, body, color="red"):
 
 def main():
     args = sys.argv[1:]
+    if args and args[0] == "--card-json":
+        if len(args) < 2:
+            print("Usage: notify_feishu.py --card-json <card.json>", file=sys.stderr)
+            sys.exit(1)
+        with open(args[1]) as f:
+            card = json.load(f)
+        try:
+            token = get_token()
+            msg = {
+                "receive_id": FEISHU_USER_ID,
+                "msg_type": "interactive",
+                "content": json.dumps(card, ensure_ascii=False),
+            }
+            ok = _post_message(token, msg)
+            print("sent" if ok else "send failed")
+            sys.exit(0 if ok else 1)
+        except Exception as e:
+            print(f"notify error: {e}", file=sys.stderr)
+            sys.exit(1)
     use_card = False
     color = "red"
     if args and args[0] == "--card":
