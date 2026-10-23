@@ -63,8 +63,8 @@ cmd_verify(){
   echo "NAS 热备 3100: $NAS_CODE   $([ "$NAS_CODE" = "200" ] && echo ✅ || echo ❌)"
   echo "公网域名    : $PUB_CODE   $([ "$PUB_CODE" = "200" ] && echo ✅ || echo ❌)"
   echo
-  # LLM 双渠道验证（用 ecs-openclaw 令牌）
-  KEY=sk-$(python3 -c "import sqlite3;db=sqlite3.connect('/opt/new-api/data/one-api.db');r=db.execute(\"SELECT key FROM tokens WHERE name='ecs-openclaw' AND status=1\").fetchone();print(r[0] if r else '')" 2>/dev/null)
+  # LLM 双渠道验证（用 ecs-hermes 令牌，2026-10-23 自 ecs-openclaw 切换）
+  KEY=$(sed -n 's/^NEWAPI_API_KEY=//p' /root/.hermes/.env | tr -d '"\r')
   if [ -n "${KEY#sk-}" ] && [ ${#KEY} -gt 3 ]; then
     echo "[LLM 双渠道验证]"
     for M in deepseek-v4-flash glm-5.3-flash; do

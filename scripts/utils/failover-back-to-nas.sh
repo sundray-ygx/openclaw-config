@@ -50,7 +50,7 @@ done
 [ "$CODE" = "200" ] || { log "FATAL: 公网 status=$CODE，如持续失败执行 failover-to-ecs.sh 应急"; exit 1; }
 log "step2 公网 status=$CODE ✓"
 
-KEY=sk-$(python3 -c "import sqlite3;db=sqlite3.connect('/opt/new-api/data/one-api.db');print(db.execute(\"SELECT key FROM tokens WHERE name='ecs-openclaw' AND status=1\").fetchone()[0])" 2>/dev/null)
+KEY=$(sed -n 's/^NEWAPI_API_KEY=//p' /root/.hermes/.env | tr -d '"\r')
 if [ -n "${KEY#sk-}" ] && [ ${#KEY} -gt 3 ]; then
   for M in deepseek-v4-flash glm-5.3-flash; do
     R=$(curl -s --max-time 90 -X POST https://api.ygxpro.online/v1/chat/completions \

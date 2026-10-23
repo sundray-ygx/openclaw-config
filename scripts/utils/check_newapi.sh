@@ -33,12 +33,8 @@ else
     echo "🔴 API 入口异常 HTTP $CODE"; FAIL=1
 fi
 
-# 5. 实际模型调用（deepseek 便宜渠道）
-KEY=$(python3 -c "
-import sqlite3
-db=sqlite3.connect('/opt/new-api/data/one-api.db')
-k=dict((n,x) for n,x in db.execute('SELECT name,key FROM tokens')).get('ecs-openclaw','')
-print('sk-'+k)" 2>/dev/null)
+# 5. 实际模型调用（deepseek 便宜渠道，用 ecs-hermes 令牌，2026-10-23 自 ecs-openclaw 切换）
+KEY=$(sed -n 's/^NEWAPI_API_KEY=//p' /root/.hermes/.env | tr -d '"\r')
 RCODE=$(curl -s -o /dev/null -w '%{http_code}' -m 30 -X POST https://api.ygxpro.online/v1/chat/completions \
     -H "Authorization: Bearer $KEY" -H 'Content-Type: application/json' \
     -d '{"model":"deepseek-v4-flash","messages":[{"role":"user","content":"ping"}],"max_tokens":300}')

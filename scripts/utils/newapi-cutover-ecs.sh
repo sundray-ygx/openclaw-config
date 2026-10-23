@@ -34,9 +34,9 @@ trap 'if [ -f "$INFLIGHT" ]; then rollback "脚本异常中断(trap)"; fi' EXIT
 
 verify_llm(){
   local KEY R M FAILV=0
-  KEY=sk-$(python3 -c "import sqlite3;db=sqlite3.connect('/opt/new-api/data/one-api.db');print(db.execute(\"SELECT key FROM tokens WHERE name='ecs-openclaw' AND status=1\").fetchone()[0])" 2>/dev/null)
+  KEY=$(sed -n 's/^NEWAPI_API_KEY=//p' /root/.hermes/.env | tr -d '"\r')
   if [ -z "${KEY#sk-}" ] || [ ${#KEY} -le 3 ]; then
-    log "WARN: openclaw key 提取失败，跳过 ECS 侧 LLM 双重验证（hermes NAS_READY 已含真实验证）"
+    log "WARN: hermes key 提取失败，跳过 ECS 侧 LLM 双重验证（hermes NAS_READY 已含真实验证）"
     return 0
   fi
   for M in deepseek-v4-flash glm-4.7-flash; do
@@ -57,7 +57,7 @@ if [ "${DRY_RUN:-0}" = "1" ]; then
   sed -i 's|proxy_pass http://127.0.0.1:3000;|proxy_pass http://127.0.0.1:3100;|' "$T"
   grep -q 'proxy_pass http://127.0.0.1:3100;' "$T" && ! grep -q 'proxy_pass http://127.0.0.1:3000;' "$T" \
     && log "dry1 sed 表达式: OK" || { log "dry1 sed 表达式: FAIL"; exit 1; }
-  K=sk-$(python3 -c "import sqlite3;db=sqlite3.connect('/opt/new-api/data/one-api.db');print(db.execute(\"SELECT key FROM tokens WHERE name='ecs-openclaw' AND status=1\").fetchone()[0])" 2>/dev/null)
+  K=$(sed -n 's/^NEWAPI_API_KEY=//p' /root/.hermes/.env | tr -d '"\r')
   [ ${#K} -gt 3 ] && log "dry2 key 提取: OK(len=${#K})" || log "dry2 key 提取: EMPTY(运行时将跳过LLM双重验证,依赖hermes验证)"
   echo "dryrun-$(date +%s)" > /tmp/dry-mig.txt
   C=$(curl -s -u "$WU:$WP" -T /tmp/dry-mig.txt "$SIGURL/dry-run-test.txt" -w '%{http_code}' -o /dev/null)
