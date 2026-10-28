@@ -17,6 +17,7 @@ import ssl
 import email
 from email.header import decode_header
 import imaplib
+import html as html_mod
 
 # ============ 配置 ============
 # 使用scheduler账号的配置
@@ -31,12 +32,13 @@ EMAIL_ACCOUNTS = [
     {"name": "企业邮箱", "email": "ygx@sundray.com", "password": "2hh2dPEMmGEx#m8d", "imap_server": "imap.qiye.163.com", "imap_port": 993},
 ]
 
-# RSS 订阅源 - 国内资讯（AI/科技/产品相关）
+# AI 大模型/产品经理/创业/AI趋势/海外新闻 RSS 源
 RSS_FEEDS = [
-    {"name": "量子位", "url": "https://www.qbitai.com/feed", "category": "🤖 AI", "limit": 3},
-    {"name": "36氪", "url": "https://36kr.com/feed", "category": "📱 产品", "limit": 3},
-    {"name": "钛媒体", "url": "https://www.tmtpost.com/rss.xml", "category": "📱 产品", "limit": 3},
-    {"name": "人人都是产品经理", "url": "https://www.woshipm.com/feed", "category": "📱 产品", "limit": 3},
+    {"name": "量子位", "url": "https://www.qbitai.com/feed", "category": "AI趋势", "limit": 4},
+    {"name": "爱范儿", "url": "https://www.ifanr.com/feed", "category": "创业", "limit": 3},
+    {"name": "极客公园", "url": "https://www.geekpark.net/rss", "category": "创业", "limit": 3},
+    {"name": "钛媒体", "url": "https://www.tmtpost.com/rss.xml", "category": "产品经理", "limit": 3},
+    {"name": "人人都是产品经理", "url": "https://www.woshipm.com/feed", "category": "产品经理", "limit": 3},
 ]
 
 # AI Agent 相关关键词（OpenClaw + Hermes Agent）
@@ -46,16 +48,199 @@ AGENT_KEYWORDS = {
     "AI Agent": ["AI Agent", "AI代理", "智能体", "Multi-agent", "多智能体", "AutoGPT", "BabyAGI", "MetaGPT", "LangChain", "Devin"]
 }
 
-# 关键词筛选（AI/产品/科技相关）
-KEYWORDS_PRIORITY = ["AI", "人工智能", "大模型", "ChatGPT", "OpenAI", "产品", "发布", "上线", "新品", "科技", "创新", "融资", "字节", "阿里", "腾讯", "百度", "华为", "小米", "理想", "蔚来", "小鹏", "特斯拉", "苹果", "谷歌", "微软"]
+# 四大重点维度（关键词按区分度加权：专有词权重高，"AI"这种万能词权重低）
+FOCUS_DIMENSIONS = {
+    "AI趋势": {
+        "strong": ["大模型", "人工智能", "ChatGPT", "OpenAI", "AGI", "深度学习", "机器学习", "算力", "智能体", "Agent"],
+        "weak": ["AI", "模型", "推理", "算法"],
+    },
+    "创业": {
+        "strong": ["创业", "融资", "估值", "独角兽", "孵化器", "种子轮", "A轮", "B轮", "创始人", "IPO", "上市", "并购", "投资人", "VC"],
+        "weak": ["创业公司", "商业模式"],
+    },
+    "产品经理": {
+        "strong": ["产品经理", "需求", "交互", "用户体验", "产品设计", "功能", "内测", "迭代", "留存", "转化", "用户增长", "PM"],
+        "weak": ["产品", "用户", "设计"],
+    },
+    "海外新闻": {"strong": [], "weak": []},  # 来源匹配
+}
+# 弱词权重（强词=1.0，弱词=0.35）——避免"AI"这种万能词吃掉所有文章
+DIM_WEAK_WEIGHT = 0.35
+OVERSEAS_SOURCES = {"TechCrunch", "The Verge", "Ars Technica"}
+
+
+def _tag_dimension(article):
+    """给文章打维度标签：AI趋势 / 创业 / 产品经理 / 海外新闻 / 其他
+    加权评分：强词 1.0，弱词 0.35，按分数最高者归类。"""
+    src = article.get("source", "")
+    if src in OVERSEAS_SOURCES:
+        return "海外新闻"
+    agent_type = article.get("agent_type", "")
+    if agent_type in ("OpenClaw", "Hermes Agent"):
+        return "AI趋势"
+    title = article.get("title", "") + " " + (article.get("summary", "") or "")[:80]
+    scores = {}
+    for dim, kws in FOCUS_DIMENSIONS.items():
+        if dim == "海外新闻":
+            continue
+        s = 0.0
+        for k in kws.get("strong", []):
+            if k in title:
+                s += 1.0
+        for k in kws.get("weak", []):
+            if k in title:
+                s += DIM_WEAK_WEIGHT
+        if s > 0:
+            scores[dim] = s
+    if scores:
+        best = max(scores.items(), key=lambda x: x[1])
+        # 分数太低（只有弱词单命中）时按源兜底
+        if best[1] >= 0.6:
+            return best[0]
+    # 按源归类
+    if src in ("爱范儿", "极客公园"):
+        return "创业"
+    if src in ("人人都是产品经理", "钛媒体"):
+        return "产品经理"
+    if src == "量子位":
+        return "AI趋势"
+    return "其他"
+
+# 关键词筛选（AI/产品/创业相关，用于打分）
+KEYWORDS_PRIORITY = ["AI", "大模型", "ChatGPT", "OpenAI", "产品", "发布", "上线", "新品", "科技", "创新", "融资", "创业", "字节", "阿里", "腾讯", "百度", "华为", "小米", "理想", "蔚来", "小鹏", "特斯拉", "苹果", "谷歌", "微软"]
 KEYWORDS_EXCLUDE = ["广告", "推广", "招聘", "活动", "会议", "论坛", "峰会"]
 
-# 海外中文RSS源（通过代理访问）
+# 焦点聚类停用词
+CLUSTER_STOPWORDS = {"ai", "大模型", "科技", "互联网", "公司", "平台", "服务", "产品", "用户", "技术", "推出", "发布", "上线", "新的", "首个", "全新", "最新", "重磅", "深度"}
+
+
+def select_by_dimension(pool, dim_quota=None):
+    """D5: 按维度配额精选，每维度 2-3 条。
+    配额填不满时，从剩余最高分文章补位，保证总条数达标。"""
+    if dim_quota is None:
+        dim_quota = {"AI趋势": 3, "创业": 2, "产品经理": 2, "海外新闻": 2}
+    for a in pool:
+        a["_dim"] = _tag_dimension(a)
+    dim_groups = {}
+    for a in sorted(pool, key=lambda x: x.get("_final", 0), reverse=True):
+        d = a.get("_dim", "其他")
+        dim_groups.setdefault(d, []).append(a)
+
+    result = []
+    used_ids = set()
+    order = ["AI趋势", "创业", "产品经理", "海外新闻"]
+    for d in order:
+        for a in dim_groups.get(d, [])[:dim_quota.get(d, 2)]:
+            result.append(a)
+            used_ids.add(id(a))
+
+    # 补位：优先补未达标的维度（创业/产品经理），再按分数兜底
+    total = sum(dim_quota.values())
+    if len(result) < total:
+        deficit_dims = [d for d in order if len(dim_groups.get(d, [])) < dim_quota.get(d, 2)]
+        for d in deficit_dims:
+            for a in dim_groups.get(d, []):
+                if len(result) >= total:
+                    break
+                if id(a) not in used_ids:
+                    result.append(a)
+                    used_ids.add(id(a))
+        # 还不够就按分数兜底
+        if len(result) < total:
+            remain = [a for a in sorted(pool, key=lambda x: x.get("_final", 0), reverse=True)
+                      if id(a) not in used_ids]
+            for a in remain:
+                if len(result) >= total:
+                    break
+                result.append(a)
+                used_ids.add(id(a))
+    return result
+
+# 海外 RSS 源（科技/创业，通过代理访问）——对齐「产品/创业/AI」定位
 OVERSEAS_RSS_FEEDS = [
-    {"name": "BBC中文", "url": "https://feeds.bbci.co.uk/zhongwen/simp/rss.xml", "limit": 3},
-    {"name": "大纪元", "url": "https://www.epochtimes.com/gb/xml/nsc413.rss", "limit": 3},
-    {"name": "阿波罗网", "url": "https://www.aboluowang.com/news/china/rss.xml", "limit": 3},
+    {"name": "TechCrunch", "url": "https://techcrunch.com/feed/", "limit": 4},
+    {"name": "The Verge", "url": "https://www.theverge.com/rss/index.xml", "limit": 3},
+    {"name": "Ars Technica", "url": "https://feeds.arstechnica.com/arstechnica/technology-lab", "limit": 3},
 ]
+
+# ============ Agent Reach 集成（2026-10-28 P0-P2 增强，Boss 批准） ============
+REACH_BIN = "/root/.local/bin/agent-reach"
+REACH_ENV = {**os.environ, "ALL_PROXY": "socks5h://127.0.0.1:1080",
+             "HTTPS_PROXY": "socks5h://127.0.0.1:1080", "HTTP_PROXY": "socks5h://127.0.0.1:1080"}
+
+def reach(args, timeout=45):
+    """调用 agent-reach CLI；失败返回 None（静默降级，绝不影响早报其余板块）"""
+    try:
+        r = subprocess.run([REACH_BIN] + args, capture_output=True, text=True,
+                           timeout=timeout, env=REACH_ENV)
+        out = (r.stdout or "").strip()
+        if r.returncode == 0 and out.startswith("{"):
+            d = json.loads(out)
+            if d.get("ok"):
+                return d
+    except Exception:
+        pass
+    return None
+
+def reach_search_repos(query, limit=3):
+    """agent-reach github search → [{full_name,url,stars,desc}]"""
+    d = reach(["github", "search", query, "--limit", str(limit)])
+    out = []
+    for it in (d or {}).get("items") or []:
+        raw = it.get("raw") or {}
+        out.append({"full_name": raw.get("full_name") or it.get("title", ""),
+                    "url": it.get("url", ""),
+                    "stars": raw.get("stargazers_count", 0),
+                    "desc": (it.get("text") or raw.get("description") or "")[:80]})
+    return out
+
+def reach_read_issue(issue_url):
+    """agent-reach github read：取 issue/PR 正文首段+作者（比标题列表更有信息量）"""
+    d = reach(["github", "read", issue_url], timeout=40)
+    items = (d or {}).get("items") or []
+    if items:
+        it = items[0]
+        body = re.sub(r"\s+", " ", (it.get("text") or "")).strip()
+        return {"author": it.get("author", ""), "body": body[:100]}
+    return None
+
+def reach_bilibili(query="AI 大模型", limit=4):
+    """agent-reach bilibili search → B站 AI 资讯（过滤课程营销类标题）"""
+    d = reach(["bilibili", "search", query, "--limit", str(limit + 3)])
+    spam_words = ("教程", "全集", "全套", "零基础", "网课", "课程", "集训营", "培训", "上岸", "大促", "双11", "促销", "补档", "踩坑")
+    out = []
+    for it in (d or {}).get("items") or []:
+        title = (it.get("title") or "").strip()
+        if not title or any(w in title for w in spam_words):
+            continue
+        out.append({"title": title[:50], "url": it.get("url", ""),
+                    "author": it.get("author") or "", "desc": (it.get("text") or "")[:60]})
+        if len(out) >= limit:
+            break
+    return out
+
+def reach_read_body(url, max_chars=150):
+    """agent-reach read：RSS 摘要缺失/过短时补正文首段"""
+    d = reach(["read", url], timeout=35)
+    for it in (d or {}).get("items") or []:
+        t = re.sub(r"\s+", " ", (it.get("text") or "")).strip()
+        if len(t) > 80:
+            return t[:max_chars] + "..."
+    return None
+
+def enrich_short_summaries(articles, threshold=200, max_enrich=2):
+    """P1 兜底：对摘要过短条目补正文（每批限 max_enrich 条控制总时长）"""
+    enriched = 0
+    for a in articles:
+        if enriched >= max_enrich:
+            break
+        if len(a.get("summary", "")) < threshold and a.get("url", "").startswith("http"):
+            body = reach_read_body(a["url"])
+            if body:
+                a["summary"] = body
+                enriched += 1
+                print(f"      ↳ Reach 补正文: {a.get('title', '')[:30]}")
+    return articles
 
 # 状态文件
 MAIL_STATE_FILE = "/root/mail-reports/mail_state.json"
@@ -448,10 +633,15 @@ def get_github_openclaw_news():
         if result.returncode == 0 and result.stdout:
             issues = json.loads(result.stdout.decode('utf-8'))
             for issue in issues:
+                summary = f"{'Issue' if 'pull_request' not in issue else 'PR'} by {issue.get('user', {}).get('login', 'unknown')}"
+                # P0 增强：agent-reach 读取 issue 正文首段，比纯标题信息量高（失败静默降级）
+                detail = reach_read_issue(issue.get('html_url', ''))
+                if detail and detail.get('body'):
+                    summary += f" | {detail['body'][:80]}"
                 news.append({
                     "title": f"[GitHub] {issue.get('title', '')[:50]}",
                     "url": issue.get('html_url', ''),
-                    "summary": f"{'Issue' if 'pull_request' not in issue else 'PR'} by {issue.get('user', {}).get('login', 'unknown')}",
+                    "summary": summary,
                     "source": "OpenClaw官方",
                     "category": "🦞 官方",
                     "score": 200
@@ -477,70 +667,46 @@ def get_github_openclaw_news():
     return news
 
 def get_github_hermes_news():
-    """获取Hermes Agent GitHub最新动态"""
+    """获取Hermes Agent GitHub最新动态（2026-10-28 P0：改走 agent-reach，免速率限制+结构化输出）"""
     news = []
     try:
-        # 搜索Hermes相关仓库
-        cmd = 'curl -s "https://api.github.com/search/repositories?q=hermes+agent&sort=updated&per_page=3" 2>/dev/null'
-        result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=15)
-        if result.returncode == 0 and result.stdout:
-            try:
-                data = json.loads(result.stdout.decode('utf-8'))
-                if data and 'items' in data:
-                    for repo in data['items'][:3]:
-                        news.append({
-                            "title": f"[GitHub] {repo.get('name', '')[:50]}",
-                            "url": repo.get('html_url', ''),
-                            "summary": f"⭐ {repo.get('stargazers_count', 0)} stars · {repo.get('description', '')[:80]}",
-                            "source": "GitHub",
-                            "category": "🚀 Hermes",
-                            "agent_type": "Hermes Agent",
-                            "score": 150
-                        })
-            except Exception:
-                pass
-        
+        # 搜索Hermes相关仓库（agent-reach github search）
+        for repo in reach_search_repos("hermes agent", 3):
+            news.append({
+                "title": f"[GitHub] {repo['full_name'][:50]}",
+                "url": repo["url"],
+                "summary": f"⭐ {repo['stars']} stars · {repo['desc'][:80]}",
+                "source": "GitHub",
+                "category": "🚀 Hermes",
+                "agent_type": "Hermes Agent",
+                "score": 150
+            })
+
         # 搜索OpenClaw相关仓库（额外）
-        cmd = 'curl -s "https://api.github.com/search/repositories?q=openclaw&sort=updated&per_page=3" 2>/dev/null'
-        result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=15)
-        if result.returncode == 0 and result.stdout:
-            try:
-                data = json.loads(result.stdout.decode('utf-8'))
-                if data and 'items' in data:
-                    for repo in data['items'][:2]:
-                        if repo.get('full_name', '') != 'openclaw/openclaw':  # 去重
-                            news.append({
-                                "title": f"[GitHub] {repo.get('name', '')[:50]}",
-                                "url": repo.get('html_url', ''),
-                                "summary": f"⭐ {repo.get('stargazers_count', 0)} stars · {repo.get('description', '')[:80]}",
-                                "source": "GitHub",
-                                "category": "🦞 OpenClaw生态",
-                                "agent_type": "OpenClaw",
-                                "score": 180
-                            })
-            except Exception:
-                pass
+        for repo in reach_search_repos("openclaw", 3):
+            if repo["full_name"] != "openclaw/openclaw":  # 去重
+                news.append({
+                    "title": f"[GitHub] {repo['full_name'][:50]}",
+                    "url": repo["url"],
+                    "summary": f"⭐ {repo['stars']} stars · {repo['desc'][:80]}",
+                    "source": "GitHub",
+                    "category": "🦞 OpenClaw生态",
+                    "agent_type": "OpenClaw",
+                    "score": 180
+                })
 
         # 搜索AI Agent热门仓库
-        cmd = 'curl -s "https://api.github.com/search/repositories?q=AI+agent&sort=stars&order=desc&per_page=3" 2>/dev/null'
-        result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=15)
-        if result.returncode == 0 and result.stdout:
-            try:
-                data = json.loads(result.stdout.decode('utf-8'))
-                if data and 'items' in data:
-                    for repo in data['items'][:3]:
-                        news.append({
-                            "title": f"[GitHub] {repo.get('name', '')[:50]}",
-                            "url": repo.get('html_url', ''),
-                            "summary": f"⭐ {repo.get('stargazers_count', 0)} stars · {repo.get('description', '')[:80]}",
-                            "source": "GitHub",
-                            "category": "🔬 AI Agent",
-                            "agent_type": "AI Agent",
-                            "score": 120
-                        })
-            except Exception:
-                pass
-                
+        for repo in reach_search_repos("AI agent", 3):
+            news.append({
+                "title": f"[GitHub] {repo['full_name'][:50]}",
+                "url": repo["url"],
+                "summary": f"⭐ {repo['stars']} stars · {repo['desc'][:80]}",
+                "source": "GitHub",
+                "category": "🔬 AI Agent",
+                "agent_type": "AI Agent",
+                "score": 120
+            })
+
     except Exception as e:
         print(f"  获取Hermes/AI Agent GitHub数据错误: {e}")
 
@@ -631,8 +797,8 @@ def fetch_rss(feed_url, use_proxy=False):
     """获取RSS内容，海外源使用代理"""
     try:
         if use_proxy:
-            # 使用curl通过SOCKS5代理
-            cmd = 'curl -sL --max-time 15 --socks5 127.0.0.1:1080 -H "User-Agent: Mozilla/5.0" "%s" 2>/dev/null' % feed_url
+            # 使用curl通过SOCKS5代理（socks5-host=远端解析DNS，避免本地DNS污染海外域名）
+            cmd = 'curl -sL --max-time 15 --socks5-hostname 127.0.0.1:1080 -H "User-Agent: Mozilla/5.0" "%s" 2>/dev/null' % feed_url
             result = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             stdout, stderr = result.communicate(timeout=20)
             if result.returncode == 0:
@@ -824,6 +990,11 @@ def get_news():
                 print(f"      ⚠ 摘要生成失败，使用RSS摘要")
     
     print(f"  AI摘要生成完成: {success_count}/{len(selected)} 篇成功")
+
+    # P1 兜底（2026-10-28）：AI 摘要失败或 RSS 摘要过短的条目，用 agent-reach 补正文
+    print("  Reach 正文兜底...")
+    enrich_short_summaries(selected, threshold=200, max_enrich=3)
+
     return selected
 
 def get_overseas_news():
@@ -835,190 +1006,651 @@ def get_overseas_news():
         if xml:
             items = parse_overseas_rss(xml, feed["name"], feed.get("limit", 3))
             articles.extend(items)
+    # P1 兜底（2026-10-28）：海外源 RSS 常只给标题，agent-reach 补正文
+    enrich_short_summaries(articles, threshold=200, max_enrich=2)
     return articles
 
 # ============ 主函数 ============
+# ============ LLM 精炼（热榜/Release 摘要，2026-10-28 集成） ============
+LLM_ENDPOINT = "https://api.ygxpro.online/v1/chat/completions"
+LLM_MODEL = "deepseek-v4-flash"
+
+
+def _get_llm_key():
+    """优先用 new-api key（更稳），fallback 到火山。"""
+    k = os.environ.get("NEWAPI_API_KEY", "") or os.environ.get("OPENAI_API_KEY", "")
+    if k:
+        return k
+    try:
+        with open(os.path.expanduser("~/.hermes/.env")) as f:
+            for line in f:
+                if line.startswith("NEWAPI_API_KEY=") or line.startswith("OPENAI_API_KEY="):
+                    return line.split("=", 1)[1].strip()
+    except Exception:
+        pass
+    return os.environ.get("VOLCENGINE_API_KEY", "")
+
+
+def _llm_summarize(prompt, max_len=80, timeout=12):
+    """轻量 LLM 调用（new-api 网关 deepseek-v4-flash），失败返回 None。
+    注意：网关可能路由到推理模型，reasoning_content 会吃掉 token 预算，
+    因此 max_tokens 给足，并在 content 为空时从 reasoning 尾部提取答案。"""
+    try:
+        key = _get_llm_key()
+        if not key:
+            return None
+        import requests
+        r = requests.post(LLM_ENDPOINT, json={
+            "model": LLM_MODEL,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": 1600,
+            "temperature": 0.3,
+        }, headers={"Authorization": f"Bearer {key}"}, timeout=timeout)
+        if r.status_code != 200:
+            return None
+        msg = r.json()["choices"][0]["message"]
+        text = (msg.get("content") or "").strip()
+        if not text:
+            reason = (msg.get("reasoning_content") or "").strip()
+            # 从推理尾部抓最终答案（引号包裹的最后一段）
+            quotes = re.findall(r'["“「]([^"”」]{10,120})["”」]', reason)
+            if quotes:
+                text = max(quotes, key=len)
+            else:
+                text = reason[-max_len:] if reason else ""
+        text = re.sub(r"\s+", "", text)
+        if len(text) > max_len:
+            text = text[:max_len]
+        return text or None
+    except Exception:
+        return None
+
+
+def refine_trending_desc(category, intro_body, highlight_body, max_len=75):
+    """D1: 把热榜「项目是干什么的」+「特别亮眼」+ 分类 精炼成一句话。
+    输出格式：【分类】解决X问题，适用于Y，上手Z。失败返回空串（由调用方降级规则提取）。"""
+    intro = re.sub(r"\s+", "", intro_body)[:400]
+    high = re.sub(r"\s+", "", highlight_body)[:300]
+    prompt = f"""你是信息精炼助手。基于以下GitHub项目资料，输出一句话，包含这三点：
+1.解决什么问题
+2.适用什么应用场景
+3.如何应用（上手方式）
+格式：【{category}】…解决…，适用于…，…。
+要求：不超过{max_len}字，不换行，不要列表，不用markdown。
+
+资料：
+【项目介绍】{intro}
+【亮点】{high}
+输出："""
+    return _llm_summarize(prompt, max_len=max_len, timeout=25) or ""
+
+
+def refine_release_summary(repo_name, title, body, max_len=70):
+    """D2: 把 release notes 提炼成"解决了什么/新增了什么"一句话。
+    支持 HTML（Atom feed）与 markdown（API）两种正文格式：
+    优先取 Highlights 的首条 li/bullet，去掉 PR 编号噪音。"""
+    if not body:
+        return ""
+    text = body
+    # HTML → 纯文本：li 转换行标记，去掉所有标签
+    if "<li" in text or "<p" in text:
+        text = re.sub(r"</li>", "\n", text)
+        text = re.sub(r"<li[^>]*>", "\n- ", text)
+        text = re.sub(r"</p>", "\n", text)
+        text = re.sub(r"<[^>]+>", "", text)
+        text = html_mod.unescape(text)
+    # 去掉 PR/issue 链接编号噪音，如 (#180668, #181695)
+    text = re.sub(r"\(\s*#[0-9,\s#]+\s*\)", "", text)
+    text = re.sub(r"#[0-9]{4,}", "", text)
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)  # markdown 链接
+    text = re.sub(r"`([^`]+)`", r"\1", text)
+    # 提取 bullet
+    bullets = re.findall(r"^\s*[-*]\s+(.+?)$", text, re.MULTILINE)
+    if not bullets:
+        bullets = [l.strip() for l in text.split("\n") if l.strip() and not l.strip().endswith(":")]
+    # 过滤纯标题行（Highlights/Breaking/What's Changed 等）
+    JUNK = {"highlights", "breaking changes", "what's changed", "features", "fixes", "improvements", "其他", "更新", "新特性"}
+    bullets = [b for b in bullets if b.strip().lower().rstrip(":") not in JUNK and len(b.strip()) > 8]
+    parts = []
+    for b in bullets[:2]:
+        b = re.sub(r"\s+", " ", b).strip(" -·")
+        # 去掉 weak `<strong>x:</strong>` 残留的冒号引导，保留内容
+        if len("；".join(parts) + b) + 1 > max_len:
+            if not parts:
+                parts.append(b[:max_len])
+            break
+        parts.append(b)
+    return "；".join(parts)[:max_len]
+
+
+# ============ 双仓库 GitHub 更新（openclaw + hermes-agent，Atom feed 免限流） ============
+def get_repo_updates(repo, atype=None, max_items=2):
+    """用 GitHub releases Atom feed 取更新（无需认证、不限流、含完整 release notes）。"""
+    atype = atype or ("OpenClaw" if "openclaw" in repo.lower() else "Hermes Agent")
+    label = "🦞" if atype == "OpenClaw" else "🚀"
+    news = []
+    url = f"https://github.com/{repo}/releases.atom"
+    try:
+        r = subprocess.run(
+            ["curl", "-sL", "--socks5-hostname", "127.0.0.1:1080", "-m", "20",
+             "-H", "User-Agent: Mozilla/5.0", url],
+            capture_output=True, timeout=25)
+        xml = (r.stdout or b"").decode("utf-8", "replace")
+        if not xml.startswith("<?xml"):
+            return news
+        # 解析 entry
+        entries = re.findall(r"<entry>(.*?)</entry>", xml, re.DOTALL)
+        parsed = []
+        for e in entries[:12]:
+            mt = re.search(r"<title>(.*?)</title>", e, re.DOTALL)
+            ml = re.search(r'<link rel="alternate"[^>]*href="([^"]+)"', e)
+            mc = re.search(r'<content type="html">(.*?)</content>', e, re.DOTALL)
+            mu = re.search(r"<updated>(.*?)</updated>", e)
+            if not mt:
+                continue
+            parsed.append({
+                "title": html_mod.unescape(mt.group(1)).strip(),
+                "url": ml.group(1) if ml else f"https://github.com/{repo}/releases",
+                "body": html_mod.unescape(mc.group(1)) if mc else "",
+                "date": (mu.group(1) or "")[:10] if mu else "",
+            })
+        # 优先稳定版：剔除 canary/rc（除非只有 canary）
+        stable = [p for p in parsed if "canary" not in p["title"].lower()
+                  and "-rc" not in p["title"].lower() and "rc." not in p["title"].lower()]
+        picked = (stable or parsed)[:max_items]
+        for p in picked:
+            title = p["title"]
+            # ① 规则提取（英文原文要点）
+            rule_desc = refine_release_summary(repo, title, p["body"], max_len=70)
+            # ② LLM 中文精炼：解决了什么问题/新增什么能力/价值
+            desc = ""
+            if p["body"]:
+                plain = re.sub(r"<[^>]+>", " ", p["body"])
+                plain = html_mod.unescape(plain)
+                plain = re.sub(r"\s+", " ", plain)[:800]
+                prompt = (f"{atype} 项目发布 {title}。下面是更新说明。"
+                          f"请用一句中文（60字内）说明：这次更新解决了什么问题或新增了什么能力、对使用者有什么价值。"
+                          f"不要分点、不要英文原句照搬、不要解释。\n更新说明：{plain}\n输出：")
+                cand = _llm_summarize(prompt, max_len=64, timeout=25)
+                if cand and len(re.findall(r"[\u4e00-\u9fa5]", cand)) >= 18:
+                    desc = cand
+            if not desc:
+                desc = rule_desc
+            # 正文无有效信息（canary 空 notes）时降级说明
+            if not desc or desc.replace(" ", "") in ("", title.replace(" ", "")):
+                desc = "新版本发布（细节见 release 页）"
+            news.append({
+                "title": f"{label} {title[:34]}",
+                "url": p["url"],
+                "summary": f"{p['date']} {desc}".strip(),
+                "source": repo,
+                "category": f"{label} {atype}",
+                "agent_type": atype,
+                "score": 260,
+            })
+    except Exception as e:
+        print(f"  取 {repo} release 错误: {e}")
+    return news
+
+
+def get_github_dual_updates():
+    """D2: 双仓库更新——openclaw + NousResearch/hermes-agent"""
+    all_n = []
+    for repo in ("openclaw/openclaw", "NousResearch/hermes-agent"):
+        all_n.extend(get_repo_updates(repo))
+    return all_n
+
+
+# ============ 焦点聚类（D3：跨源同题材合并，突出热点） ============
+def _cluster_keywords(text):
+    """从标题提取 2~4 字中文词 + 英文词（2 字以上），过滤停用词"""
+    if not text:
+        return set()
+    # 英文词
+    en = re.findall(r"[a-zA-Z]{3,}", text.lower())
+    # 中文 2~4 字片段（简单窗口）
+    cn = set()
+    cn_text = re.sub(r"[^\u4e00-\u9fa5]", "", text)
+    for w in range(2, 5):
+        for i in range(len(cn_text) - w + 1):
+            cn.add(cn_text[i:i + w])
+    words = set(en) | cn
+    words -= CLUSTER_STOPWORDS
+    return words
+
+
+def cluster_focus_articles(pool, limit=8):
+    """D3: 跨源聚合。两两比较共享关键词数 ≥2 视为同焦点，计算"多源命中数"，焦点组置顶。
+    返回按 焦点热度 > 单篇打分 排序的文章列表，每篇附 _focus_count（同题材篇数）。"""
+    kw_list = [_cluster_keywords(a.get("title", "") + (a.get("summary", "") or "")[:60]) for a in pool]
+    n = len(pool)
+    parent = list(range(n))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(a, b):
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[ra] = rb
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            if not kw_list[i] or not kw_list[j]:
+                continue
+            shared = len(kw_list[i] & kw_list[j])
+            # 共享 ≥2 个非停用关键词 → 同焦点
+            if shared >= 2:
+                union(i, j)
+
+    groups = {}
+    for i in range(n):
+        r = find(i)
+        groups.setdefault(r, []).append(i)
+
+    # 给每篇标注焦点热度 = 组大小
+    focus_count = {}
+    for ids in groups.values():
+        sz = len(ids)
+        for i in ids:
+            focus_count[i] = sz
+
+    for i, a in enumerate(pool):
+        a["_focus"] = focus_count.get(i, 1)
+        a["_final"] = a.get("_final", 0) + (focus_count.get(i, 1) - 1) * 30  # 多源加权
+
+    # 来源均衡：同类目最多 3 条，避免单一源霸榜
+    src_count = {}
+    result = []
+    for a in sorted(pool, key=lambda x: x.get("_final", 0), reverse=True):
+        cat = a.get("category", a.get("source", ""))
+        if src_count.get(cat, 0) >= 3:
+            continue
+        src_count[cat] = src_count.get(cat, 0) + 1
+        result.append(a)
+        if len(result) >= limit:
+            break
+    return result
+
+
+def clean_summary(text, max_len=60):
+    """清洗 RSS 摘要：去图片/链接/引用符/作者行/HTML，压缩空白。"""
+    if not text:
+        return ""
+    t = text
+    # 图片（URL 里可能带括号，先按 ![ 到最后一层 ) 粗切）
+    t = re.sub(r"!\[[^\]]*\]\([^\s)]*(?:\([^)]*\)[^\s)]*)*\)", "", t)
+    t = re.sub(r"!\[[^\]]*\]", "", t)                    # 残留图片标记
+    t = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", t)      # 链接保留文字
+    t = re.sub(r"<[^>]+>", "", t)                        # HTML 标签
+    t = html_mod.unescape(t)
+    t = re.sub(r"^\s*[>·•\-]\s*", "", t, flags=re.MULTILINE)  # 引用/列表符
+    t = re.sub(r"\(?\s*https?://[^\s)]*\)?", "", t)          # 残留裸链接
+    t = re.sub(r"\s+", " ", t).strip()
+    # 去掉常见开头噪音：文|xxx / 作者｜xxx / 编辑｜xxx / 图源 / emoji 列表符
+    t = re.sub(r"^(文|作者|编辑|来源|图源)\s*[|｜:：].{0,20}?\s+", "", t)
+    t = re.sub(r"^[💵📱🔥👀💡🚀📌\s|｜:：,，、\-]+", "", t)
+    return t[:max_len]
+
+
+# ============ 主函数重构：D2 双仓库 + D3 焦点聚合 + D4 虎嗅 + D5 各维度均衡 ============
+def get_top_headlines(limit=8):
+    """D2+D3+D5：双仓库 GitHub + 国内RSS + 海外RSS → 焦点聚类 → 8条精选。
+    每维度（产品/创业/AI趋势/海外）各覆盖 2-3 条，多源焦点置顶。"""
+    pool = []
+
+    # 国内 RSS（5 源：量子位=AI趋势 / 36氪虎嗅=创业 / 钛媒体woshipm=产品）
+    for feed in RSS_FEEDS:
+        print(f"  获取 {feed['name']}...")
+        xml = fetch_rss(feed["url"], use_proxy=False)
+        if xml:
+            items = parse_rss_simple(xml, feed["name"], feed.get("limit", 4), use_summarize=False)
+            for it in items:
+                it["category"] = feed["category"]
+                it["source"] = feed["name"]
+            pool.extend(items)
+
+    # 海外 RSS（BBC等 = 海外新闻维度）
+    pool.extend(get_overseas_news())
+
+    # GitHub 双仓库（openclaw + hermes-agent）——含 LLM 精炼 release 摘要
+    pool.extend(get_github_dual_updates())
+
+    # 基础分：每篇文章计算相关性分
+    for a in pool:
+        s = a.get("score", 0) + score_agent_article(a)
+        if a.get("source") in OVERSEAS_SOURCES:
+            s = max(s, 60)
+        a["_final"] = s
+
+    # 去重
+    seen, deduped = set(), []
+    for a in sorted(pool, key=lambda x: x["_final"], reverse=True):
+        k1 = re.sub(r"\s+", "", (a.get("title") or "").lower())[:20]
+        k2 = (a.get("url") or "").split("?")[0]
+        if k1 in seen or (k2 and k2 in seen):
+            continue
+        seen.add(k1)
+        if k2:
+            seen.add(k2)
+        deduped.append(a)
+
+    # D3: 焦点聚类（同题材加权 + 多源标🔥，但不做最终选品）
+    for a in deduped:
+        a["_focus"] = 1  # 默认
+    # 简单聚类后加权重
+    kw_list = [_cluster_keywords(a.get("title", "") + (a.get("summary", "") or "")[:60]) for a in deduped]
+    focus_hit = [0] * len(deduped)
+    for i in range(len(deduped)):
+        for j in range(i + 1, len(deduped)):
+            if kw_list[i] and kw_list[j] and len(kw_list[i] & kw_list[j]) >= 2:
+                focus_hit[i] += 1
+                focus_hit[j] += 1
+    for i, a in enumerate(deduped):
+        a["_focus"] = focus_hit[i] + 1
+        a["_final"] = a["_final"] + focus_hit[i] * 30
+
+    # D5: 按维度配额选品 + GitHub 双仓库保底（Boss 明确要求必现，每仓库各 1 条）
+    # 先把早报/快讯类聚合文压缩到 1 条（否则配额会被它们占满、去重后又补不回来）
+    ROUNDUP_KW_PRE = ("早报", "快讯", "晚报", "日报", "午报")
+
+    def _is_roundup_pre(t):
+        return any(k in t for k in ROUNDUP_KW_PRE) or t.count("；") >= 2 or t.count("|") >= 3
+
+    _roundups = [a for a in deduped if _is_roundup_pre(a.get("title", ""))]
+    _others = [a for a in deduped if not _is_roundup_pre(a.get("title", ""))]
+    if _roundups:
+        deduped = _others + _roundups[:1]
+    gh_pick = []
+    for repo, atype in (("openclaw/openclaw", "OpenClaw"),
+                        ("NousResearch/hermes-agent", "Hermes Agent")):
+        cand = [a for a in deduped if a.get("agent_type") == atype]
+        # 优先 Release，其次最新 issue/PR
+        if cand:
+            gh_pick.append(cand[0])
+
+    selected = select_by_dimension(deduped,
+        dim_quota={"AI趋势": 2, "创业": 2, "产品经理": 2, "海外新闻": 2})
+    # 确保双仓库在列：移除选品中的 github 项，再插入保底
+    selected = [a for a in selected if a.get("agent_type") not in ("OpenClaw", "Hermes Agent")]
+    for g in reversed(gh_pick):
+        if g not in selected:
+            selected.insert(0, g)
+    selected = selected[:8]
+
+    # Reach 兜底补正文
+    enrich_short_summaries(selected, threshold=200, max_enrich=2)
+    for a in selected:
+        a["summary"] = clean_summary(a.get("summary", ""), 60)
+
+    # 近重复合并：同题材多条只留最高分，🔥数累加（避免早报/快讯重复刷屏）
+    def _tri(s):
+        s = re.sub(r"[\s\W_]+", "", (s or "").lower())
+        return {s[i:i + 3] for i in range(len(s) - 2)}
+    merged = []
+    for a in selected:
+        ta = _tri(a.get("title", ""))
+        dup = None
+        for m in merged:
+            tb = _tri(m.get("title", ""))
+            if not ta or not tb:
+                continue
+            jac = len(ta & tb) / len(ta | tb)
+            # 早报/快讯类聚合文（标题含「早报/快讯/晚报」）阈值放宽
+            is_roundup = any(k in (a.get("title", "") + m.get("title", "")) for k in ("早报", "快讯", "晚报", "日报"))
+            if jac >= (0.3 if is_roundup else 0.45):
+                dup = m
+                break
+        if dup is not None:
+            dup["_focus"] = max(dup.get("_focus", 1), a.get("_focus", 1)) + 1
+            continue
+        merged.append(a)
+
+    # 早报/快讯类聚合文只保留 1 条（含多个「；」分条的多故事速览也算）
+    ROUNDUP_KW = ("早报", "快讯", "晚报", "日报", "午报")
+
+    def _is_roundup(title):
+        if any(k in title for k in ROUNDUP_KW):
+            return True
+        # 多故事聚合：2 个以上分号分隔
+        return title.count("；") >= 2 or title.count("|") >= 3
+
+    roundup_kept = False
+    dedup_roundup = []
+    for a in merged:
+        if _is_roundup(a.get("title", "")):
+            if roundup_kept:
+                continue
+            roundup_kept = True
+        dedup_roundup.append(a)
+    merged = dedup_roundup
+
+    # 合并后不足 8 条时，从候选池补齐（跳过已用/近重复）
+    if len(merged) < 8:
+        used_titles = [m.get("title", "") for m in merged]
+        used_urls = {m.get("url", "") for m in merged}
+        for cand in sorted(deduped, key=lambda x: x.get("_final", 0), reverse=True):
+            if len(merged) >= 8:
+                break
+            if cand.get("url") in used_urls:
+                continue
+            # 已有早报类就不再补早报类
+            if roundup_kept and any(k in cand.get("title", "") for k in ROUNDUP_KW):
+                continue
+            tc = _tri(cand.get("title", ""))
+            if any(tc and (len(tc & _tri(t)) / max(1, len(tc | _tri(t)))) >= 0.45
+                   for t in used_titles if t):
+                continue
+            cand["summary"] = clean_summary(cand.get("summary", ""), 60)
+            cand["_dim"] = cand.get("_dim") or _tag_dimension(cand)
+            merged.append(cand)
+            used_titles.append(cand.get("title", ""))
+            used_urls.add(cand.get("url", ""))
+    return merged
+
+# ============ GitHub 热榜（TTlook111/github-trending-daily，2026-10-28 集成） ============
+TRENDING_REPO_RAW = "https://raw.githubusercontent.com/TTlook111/github-trending-daily/main/{y}/{m}/{date}.md"
+
+def fetch_trending_report(max_back=3):
+    """取最近一期热榜日报：今天→昨天→前天逐日回退。返回 (日期字符串, markdown) 或 (None, None)"""
+    for back in range(max_back):
+        d = datetime.now() - timedelta(days=back)
+        date_s = d.strftime('%Y-%m-%d')
+        url = TRENDING_REPO_RAW.format(y=d.strftime('%Y'), m=d.strftime('%m'), date=date_s)
+        try:
+            r = subprocess.run(
+                ['curl', '-sL', '--max-time', '20', '--socks5-hostname', '127.0.0.1:1080',
+                 '-H', 'User-Agent: Mozilla/5.0', url],
+                capture_output=True, timeout=25)
+            text = (r.stdout or b'').decode('utf-8', 'replace')
+            if r.returncode == 0 and text.startswith('#') and '### #' in text:
+                return date_s, text
+        except Exception:
+            pass
+    return None, None
+
+def _valid_refined(text, min_len=28):
+    """校验 LLM 精炼结果是否可用（防止推理残片/自述行混入）。"""
+    if not text or len(text) < min_len:
+        return False
+    # 中文量要够（英文项目名会拉低占比，用绝对字数 + 放宽比例双重判断）
+    cjk = len(re.findall(r"[\u4e00-\u9fa5]", text))
+    if cjk < 22 or cjk / max(1, len(text)) < 0.4:
+        return False
+    # 过滤典型的模型自述/计数痕迹
+    BAD = ("Good", "Count", "markdown", "Under", "字数", "字符", "Oneline", "output", "需要", "可以：")
+    if any(b in text for b in BAD):
+        return False
+    # 排除连续英文/数字混排的残片（如 .66incl?27+39）
+    if re.search(r"[A-Za-z]{2,}\d|\d+[A-Za-z]{2,}", text):
+        return False
+    # 必须有「解决/适用/上手」类语义之一，确保是结构化一句话
+    if not any(k in text for k in ("解决", "适用", "上手", "用于", "适合", "即可", "安装")):
+        return False
+    return True
+
+
+def parse_trending_report(md, max_items=5, max_desc=78, use_llm=True):
+    """解析日报：分类 + 一句话（D1: LLM 精炼「解决X/适用Y/上手Z」，失败降级规则提取）。"""
+    items = []
+    blocks = re.split(r'\n###\s+#\d+\s+', md)
+    for block in blocks[1:]:
+        head = block.split('\n', 1)[0].strip()
+        repo = head.replace('⭐', '').strip()
+        # stars
+        m = re.search(r'⭐\s*Stars\s*\|\s*([\d,]+)\s*(\(\+[\d,]+\))?', block)
+        stars = f"⭐{m.group(1)}" + (f"({m.group(2).strip('()')})" if m and m.group(2) else "") if m else ""
+        # 分类
+        mcat = re.search(r'📦\s*分类\s*\|\s*([^|]+)\|', block)
+        category = mcat.group(1).strip() if mcat else ""
+        # 语言
+        mlang = re.search(r'💻\s*语言\s*\|\s*([^|]+)\|', block)
+        lang = mlang.group(1).strip() if mlang else ""
+        # 项目介绍 = 解决什么问题（整段，直到下一个 emoji 小节）
+        mintro = re.search(r'项目是干什么的\s*\n+(.*?)(?=\n\s*(?:💡|🌟|📥|📊|###|---)|\Z)', block, re.DOTALL)
+        intro_text = re.sub(r'<[^>]+>', '', mintro.group(1)).strip() if mintro else ""
+        intro_text = re.sub(r'\s+', '', intro_text)
+        # 亮点 = 价值点
+        mhigh = re.search(r'(?:特别亮眼的地方|为什么受欢迎|核心优势)\s*\n+(.*?)(?=\n\s*(?:📥|📊|###|---)|\Z)', block, re.DOTALL)
+        high_text = re.sub(r'<[^>]+>', '', mhigh.group(1)).strip() if mhigh else ""
+        high_text = re.sub(r'\s+', '', high_text)
+
+        # ① LLM 精炼（三要素：问题/场景/用法 + 分类），失败重试 1 次
+        desc = ""
+        if use_llm and intro_text and category:
+            for _attempt in range(2):
+                llm_desc = refine_trending_desc(category, intro_text, high_text, max_len=max_desc)
+                if _valid_refined(llm_desc):
+                    desc = llm_desc
+                    break
+        # ② 降级：规则提取（首句 + 亮点句），并把三要素拼成【分类】句式
+        if not desc:
+            sents = [s for s in re.split(r'(?<=[。！？])', intro_text) if s.strip()]
+            body = ""
+            if sents:
+                body = sents[0]
+                if len(sents) > 1 and len(body) + len(sents[1]) <= max_desc - 16:
+                    body += sents[1]
+            if high_text and len(body) < max_desc - 30:
+                hs = [h.strip() for h in re.split(r'(?<=[。！？])', high_text)
+                      if h.strip() and not h.strip().startswith(('-', '•', '*')) and 6 <= len(h.strip()) <= 30]
+                if hs:
+                    body += "；" + hs[0]
+            body = body.strip()
+            if len(body) > max_desc:
+                # 截断到最近的句读，避免半句
+                cut = max(body.rfind("，", 0, max_desc), body.rfind("；", 0, max_desc),
+                          body.rfind("。", 0, max_desc), body.rfind("：", 0, max_desc))
+                body = (body[:cut] if cut >= max_desc * 0.6 else body[:max_desc - 1]) + "…"
+            desc = (f"【{category}】{body}" if category else body)[:max_desc + 1]
+        # 卡片已单独展示分类，这里去掉描述里重复的【分类】前缀
+        desc = re.sub(r"^【[^】]{1,30}】\s*", "", desc).strip()[:max_desc]
+        if repo:
+            items.append({"repo": repo, "url": f"https://github.com/{repo}",
+                          "stars": stars, "lang": lang, "category": category, "desc": desc})
+        if len(items) >= max_items:
+            break
+    return items
+
 def generate_briefing():
-    """生成早间简报"""
+    """生成早间简报（2026-10-28 A案重构：4板块12条，聚焦一屏）"""
     now = datetime.now()
     time_str = now.strftime('%m月%d日')
     weekday = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'][now.weekday()]
-    
+
     elements = []
-    
-    # 1. 天气
+
+    # ① 今日关注：天气 + 邮件TOP3
     print("获取天气...")
     weather = get_weather()
     elements.append({
         "tag": "div",
-        "text": {
-            "tag": "lark_md",
-            "content": f"**🌤️ 深圳天气** {weather['text']}"
-        }
+        "text": {"tag": "lark_md", "content": f"**🌤️ 深圳天气** {weather['text']}\n💡 {weather['advice']}"}
     })
+
+    print("获取邮件...")
+    mail_results, mail_count = get_new_emails()
+    if mail_count == 0:
+        mail_content = "**📭 邮件** 无新邮件"
+    else:
+        mail_content = f"**📧 邮件** 新增 {mail_count} 封"
+        top_mails = [e for acc in mail_results for e in acc['new']][:3]
+        for e in top_mails:
+            mail_content += f"\n• {e['from']} - {e['subject'][:30]}"
+    elements.append({"tag": "div", "text": {"tag": "lark_md", "content": mail_content}})
+
+    # ② AI 要闻：4维度×2条 = 8条（D2双仓库 + D3焦点聚合 + D5维度配额）
+    print("获取AI要闻...")
+    elements.append({"tag": "hr"})
+    headlines = get_top_headlines(8)
     elements.append({
         "tag": "div",
-        "text": {
-            "tag": "lark_md",
-            "content": f"**💡 出行建议** {weather['advice']}"
-        }
+        "text": {"tag": "lark_md", "content": f"**🗞️ AI 要闻** {len(headlines)} 条精选（产品/创业/AI趋势/海外）"}
     })
-    
-    # 2. 邮件
-    print("获取邮件...")
+    DIM_EMOJI = {"AI趋势": "🤖", "创业": "💼", "产品经理": "📱", "海外新闻": "🌏", "其他": "📌"}
+    for h in headlines:
+        dim = h.get("_dim", "其他")
+        emoji = DIM_EMOJI.get(dim, "📌")
+        focus = h.get("_focus", 1)
+        ftag = f" 🔥{focus}源报道" if focus > 1 else ""
+        line = f"• {emoji} [{h['title']}]({h['url']}){ftag}"
+        if h.get('summary'):
+            line += f"\n  {h['summary']}"
+        elements.append({"tag": "div", "text": {"tag": "lark_md", "content": line}})
+
+    # ③ GitHub 热榜（2026-10-28 集成：TTlook111/github-trending-daily）
+    print("获取GitHub热榜...")
     elements.append({"tag": "hr"})
-    mail_results, mail_count = get_new_emails()
-    
-    if mail_count == 0:
+    t_date, t_md = fetch_trending_report()
+    t_items = parse_trending_report(t_md) if t_md else []
+    if not t_items:
         elements.append({
             "tag": "div",
-            "text": {"tag": "lark_md", "content": "**📭 邮件** 暂无新邮件"}
+            "text": {"tag": "lark_md", "content": "**🔥 GitHub 热榜** 今日暂无"}
         })
     else:
+        label = t_date[5:] if t_date else ""
         elements.append({
             "tag": "div",
-            "text": {"tag": "lark_md", "content": f"**📧 邮件** 新增 {mail_count} 封"}
+            "text": {"tag": "lark_md", "content": f"**🔥 GitHub 热榜** Top5（{label}）"}
         })
-        for acc in mail_results:
-            elements.append({
-                "tag": "div",
-                "text": {"tag": "lark_md", "content": f"**【{acc['name']}】**"}
-            })
-            for e in acc['new']:
-                elements.append({
-                    "tag": "div",
-                    "text": {"tag": "lark_md", "content": f"• **{e['from']}** - {e['subject']}"}
-                })
-    
-    # 3. 海外中文资讯
-    print("获取海外中文资讯...")
+        for it in t_items:
+            meta = " ".join(x for x in (it["stars"], it["lang"]) if x)
+            line = f"• [{it['repo']}]({it['url']}) {meta}"
+            if it.get("category"):
+                line += f"\n  【{it['category']}】"
+            if it["desc"]:
+                line += f"\n  {it['desc']}"
+            elements.append({"tag": "div", "text": {"tag": "lark_md", "content": line}})
+
+    # ④ B站精选（2条）
+    print("获取B站AI资讯...")
     elements.append({"tag": "hr"})
-    overseas_articles = get_overseas_news()
-    
-    if not overseas_articles:
+    bili_items = reach_bilibili("AI 大模型", 2)
+    if bili_items:
         elements.append({
             "tag": "div",
-            "text": {"tag": "lark_md", "content": "**🌍 海外资讯** 暂无更新"}
+            "text": {"tag": "lark_md", "content": f"**📺 B站精选** {len(bili_items)} 条"}
         })
-    else:
-        elements.append({
-            "tag": "div",
-            "text": {"tag": "lark_md", "content": f"**🌍 海外中文资讯** {len(overseas_articles)} 条精选"}
-        })
-        
-        # 按源分组显示
-        current_source = ""
-        for article in overseas_articles:
-            if article['source'] != current_source:
-                current_source = article['source']
-                elements.append({
-                    "tag": "div",
-                    "text": {"tag": "lark_md", "content": f"**【{current_source}】**"}
-                })
-            
-            elements.append({
-                "tag": "div",
-                "text": {"tag": "lark_md", "content": f"• **{article['title']}**\n  {article['summary']}\n  [阅读原文]({article['url']})"}
-            })
-    
-    # 4. 国内资讯（精选9条）
-    print("获取国内资讯...")
-    elements.append({"tag": "hr"})
-    news_articles = get_news()
-    
-    if not news_articles:
-        elements.append({
-            "tag": "div",
-            "text": {"tag": "lark_md", "content": "**📰 国内资讯** 暂无更新"}
-        })
-    else:
-        elements.append({
-            "tag": "div",
-            "text": {"tag": "lark_md", "content": f"**📰 国内AI/科技资讯** {len(news_articles)} 条精选"}
-        })
-        
-        for article in news_articles:
-            # 标题
-            elements.append({
-                "tag": "div",
-                "text": {"tag": "lark_md", "content": f"[{article['title']}]({article['url']})"}
-            })
-            # 摘要（直接使用RSS中的description）
-            summary = article.get('summary', '')
-            if summary:
-                elements.append({
-                    "tag": "div",
-                    "text": {"tag": "lark_md", "content": f"*{summary}* ·{article['source']} {article['category']}"}
-                })
-            else:
-                elements.append({
-                    "tag": "div",
-                    "text": {"tag": "lark_md", "content": f"*{article['source']} {article['category']}"}
-                })
-    
-    # 5. AI Agent 综合资讯（OpenClaw + Hermes Agent + 其他）
-    print("获取AI Agent相关资讯...")
-    elements.append({"tag": "hr"})
-    agent_articles = get_agent_news()
-    
-    if not agent_articles:
-        elements.append({
-            "tag": "div",
-            "text": {"tag": "lark_md", "content": "**🤖 AI Agent 资讯** 暂无更新"}
-        })
-    else:
-        elements.append({
-            "tag": "div",
-            "text": {"tag": "lark_md", "content": f"**🤖 AI Agent 综合资讯** {len(agent_articles)} 条精选"}
-        })
-        elements.append({
-            "tag": "div",
-            "text": {"tag": "lark_md", "content": "*涵盖：OpenClaw、Hermes Agent、AI Agent 框架及生态*"}
-        })
-        
-        # 按 Agent 类型分组展示
-        agent_types_order = ["OpenClaw", "Hermes Agent", "AI Agent"]
-        for agent_type in agent_types_order:
-            type_articles = [a for a in agent_articles if a.get('agent_type') == agent_type]
-            if not type_articles:
-                continue
-            
-            # 类型标题
-            type_icon = {"OpenClaw": "🦞", "Hermes Agent": "🚀", "AI Agent": "🔬"}
-            icon = type_icon.get(agent_type, "🤖")
-            elements.append({
-                "tag": "div",
-                "text": {"tag": "lark_md", "content": f"**{icon} {agent_type}** ({len(type_articles)} 条)"}
-            })
-            
-            for article in type_articles[:5]:
-                # 标题和链接
-                elements.append({
-                    "tag": "div",
-                    "text": {"tag": "lark_md", "content": f"• [{article.get('title', '')}]({article.get('url', '')})"}
-                })
-                # 摘要和来源
-                summary = article.get('summary', '')
-                if summary:
-                    elements.append({
-                        "tag": "div",
-                        "text": {"tag": "lark_md", "content": f"  *{summary}* ·{article.get('source', '')}"}
-                    })
-                else:
-                    elements.append({
-                        "tag": "div",
-                        "text": {"tag": "lark_md", "content": f"  *{article.get('source', '')}*"}
-                    })
-    
+        for item in bili_items:
+            line = f"• [{item['title']}]({item['url']})"
+            if item.get("author"):
+                line += f"（{item['author']}）"
+            elements.append({"tag": "div", "text": {"tag": "lark_md", "content": line}})
+
+    # ⑤ 页脚
     elements.append({"tag": "hr"})
     elements.append({
         "tag": "note",
         "elements": [{"tag": "plain_text", "content": f"{time_str} {weekday} | 早安"}]
     })
-    
+
     title = f"☀️ 早间简报 | {time_str} {weekday}"
     return title, elements
-
+    
 if __name__ == "__main__":
     print("=" * 40)
     print("生成早间简报...")
