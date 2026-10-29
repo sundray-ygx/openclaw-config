@@ -73,17 +73,22 @@ MEM_AVAIL=$(free -m | awk '/Mem:/{print $7}')
 SWAP_PCT=$(free | awk '/Swap:/{if($2>0) printf "%.0f", $3/$2*100; else print 0}')
 [ -n "$SWAP_PCT" ] && [ "$SWAP_PCT" -ge 50 ] && ALERTS+=("swap 使用 ${SWAP_PCT}% (阈值50%)")
 
-# 4. hermes-gateway 服务 (2026-10-08 网关切换 openclaw→hermes,检查对象同步更新)
-GW_STATUS=$(systemctl is-active hermes-gateway 2>/dev/null || echo "unknown")
-if [ "$GW_STATUS" != "active" ]; then
-  ALERTS+=("hermes-gateway 服务状态: $GW_STATUS")
-else
-  RESTARTS=$(systemctl show hermes-gateway --property=NRestarts --value 2>/dev/null)
+# 4. 网关服务 (2026-10-29 网关回切 hermes→openclaw；过渡期两者任一 active 即视为健康)
+OC_STATUS=$(systemctl is-active openclaw-gateway 2>/dev/null || echo "unknown")
+HM_STATUS=$(systemctl is-active hermes-gateway 2>/dev/null || echo "unknown")
+if [ "$OC_STATUS" != "active" ] && [ "$HM_STATUS" != "active" ]; then
+  ALERTS+=("网关服务均未运行: openclaw=$OC_STATUS hermes=$HM_STATUS")
+fi
+GW_STATUS="$OC_STATUS"
+
+# 4a. openclaw-gateway 异常重启检测 (2026-10-29 起主网关)
+if [ "$OC_STATUS" = "active" ]; then
+  RESTARTS=$(systemctl show openclaw-gateway --property=NRestarts --value 2>/dev/null)
   TODAY_MARK="$STATE_DIR/gw-restarts.baseline"
   if [ -n "$RESTARTS" ] && [ -f "$TODAY_MARK" ]; then
     BASE=$(cat "$TODAY_MARK")
     DELTA=$((RESTARTS - BASE))
-    [ "$DELTA" -ge 3 ] && [ "$DELTA" -le 20 ] && ALERTS+=("hermes-gateway 今日异常重启 ${DELTA} 次 (累计$RESTARTS)")
+    [ "$DELTA" -ge 3 ] && [ "$DELTA" -le 20 ] && ALERTS+=("openclaw-gateway 今日异常重启 ${DELTA} 次 (累计$RESTARTS)")
   fi
 fi
 
@@ -92,7 +97,17 @@ fi
 #     注意: 实际进程 cmdline 为 "python -m hermes_cli.main gateway run",
 #     且 systemd MainPID 是 1.5M 的 shim,真实内存在其子进程 —— 按 cmdline 匹配后求和进程树
 #     (2026-10-08 修正: 旧模式 'hermes gateway' 匹配不到实际 cmdline,导致 RSS 检查空转)
-if [ "$GW_STATUS" = "active" ]; then
+#     (2026-10-29 回切: hermes 段保留; openclaw 网关按 'openclaw.mjs gateway' 匹配, 阈值500M[unit MemoryMax=520M])
+if [ "$OC_STATUS" = "active" ]; then
+  OC_RSS_KB=0
+  for P in $(pgrep -f 'openclaw.mjs gateway' 2>/dev/null); do
+    R=$(ps -o rss= -p "$P" 2>/dev/null)
+    [ -n "$R" ] && OC_RSS_KB=$((OC_RSS_KB + R))
+  done
+  [ "$OC_RSS_KB" -gt 0 ] && OC_RSS_MB=$((OC_RSS_KB / 1024))
+  [ -n "${OC_RSS_MB:-}" ] && [ "$OC_RSS_MB" -ge 500 ] && ALERTS+=("openclaw-gateway 进程 RSS ${OC_RSS_MB}M (阈值500M)")
+fi
+if [ "$HM_STATUS" = "active" ]; then
   GW_RSS_KB=0
   for P in $(pgrep -f 'hermes_cli.main gateway' 2>/dev/null); do
     R=$(ps -o rss= -p "$P" 2>/dev/null)

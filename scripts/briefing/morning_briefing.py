@@ -32,11 +32,11 @@ EMAIL_ACCOUNTS = [
     {"name": "企业邮箱", "email": "ygx@sundray.com", "password": "2hh2dPEMmGEx#m8d", "imap_server": "imap.qiye.163.com", "imap_port": 993},
 ]
 
-# AI 大模型/产品经理/创业/AI趋势/海外新闻 RSS 源
+# AI趋势/创业/产品经理 RSS 源（2026-10-29 用户核定清单，全部实测可用；海外板块已取消）
 RSS_FEEDS = [
     {"name": "量子位", "url": "https://www.qbitai.com/feed", "category": "AI趋势", "limit": 4},
-    {"name": "爱范儿", "url": "https://www.ifanr.com/feed", "category": "创业", "limit": 3},
-    {"name": "极客公园", "url": "https://www.geekpark.net/rss", "category": "创业", "limit": 3},
+    {"name": "创业邦", "url": "https://www.cyzone.cn/rss/", "category": "创业", "limit": 3},
+    {"name": "创业学院", "url": "https://www.woshipm.com/category/chuangye/feed", "category": "创业", "limit": 3},
     {"name": "钛媒体", "url": "https://www.tmtpost.com/rss.xml", "category": "产品经理", "limit": 3},
     {"name": "人人都是产品经理", "url": "https://www.woshipm.com/feed", "category": "产品经理", "limit": 3},
 ]
@@ -62,27 +62,20 @@ FOCUS_DIMENSIONS = {
         "strong": ["产品经理", "需求", "交互", "用户体验", "产品设计", "功能", "内测", "迭代", "留存", "转化", "用户增长", "PM"],
         "weak": ["产品", "用户", "设计"],
     },
-    "海外新闻": {"strong": [], "weak": []},  # 来源匹配
 }
 # 弱词权重（强词=1.0，弱词=0.35）——避免"AI"这种万能词吃掉所有文章
 DIM_WEAK_WEIGHT = 0.35
-OVERSEAS_SOURCES = {"TechCrunch", "The Verge", "Ars Technica"}
 
 
 def _tag_dimension(article):
-    """给文章打维度标签：AI趋势 / 创业 / 产品经理 / 海外新闻 / 其他
-    加权评分：强词 1.0，弱词 0.35，按分数最高者归类。"""
-    src = article.get("source", "")
-    if src in OVERSEAS_SOURCES:
-        return "海外新闻"
+    """给文章打维度标签：AI趋势 / 创业 / 产品经理 / 其他
+    加权评分：强词 1.0，弱词 0.35，按分数最高者归类。（2026-10-29 海外维度已取消）"""
     agent_type = article.get("agent_type", "")
     if agent_type in ("OpenClaw", "Hermes Agent"):
         return "AI趋势"
     title = article.get("title", "") + " " + (article.get("summary", "") or "")[:80]
     scores = {}
     for dim, kws in FOCUS_DIMENSIONS.items():
-        if dim == "海外新闻":
-            continue
         s = 0.0
         for k in kws.get("strong", []):
             if k in title:
@@ -97,8 +90,9 @@ def _tag_dimension(article):
         # 分数太低（只有弱词单命中）时按源兜底
         if best[1] >= 0.6:
             return best[0]
-    # 按源归类
-    if src in ("爱范儿", "极客公园"):
+    # 按源归类（2026-10-29 更新为核定源清单）
+    src = article.get("source", "")
+    if src in ("创业邦", "创业学院"):
         return "创业"
     if src in ("人人都是产品经理", "钛媒体"):
         return "产品经理"
@@ -115,10 +109,10 @@ CLUSTER_STOPWORDS = {"ai", "大模型", "科技", "互联网", "公司", "平台
 
 
 def select_by_dimension(pool, dim_quota=None):
-    """D5: 按维度配额精选，每维度 2-3 条。
+    """D5: 按维度配额精选（2026-10-29：3+3+3，海外维度已取消）。
     配额填不满时，从剩余最高分文章补位，保证总条数达标。"""
     if dim_quota is None:
-        dim_quota = {"AI趋势": 3, "创业": 2, "产品经理": 2, "海外新闻": 2}
+        dim_quota = {"AI趋势": 3, "创业": 3, "产品经理": 3}
     for a in pool:
         a["_dim"] = _tag_dimension(a)
     dim_groups = {}
@@ -128,7 +122,7 @@ def select_by_dimension(pool, dim_quota=None):
 
     result = []
     used_ids = set()
-    order = ["AI趋势", "创业", "产品经理", "海外新闻"]
+    order = ["AI趋势", "创业", "产品经理"]
     for d in order:
         for a in dim_groups.get(d, [])[:dim_quota.get(d, 2)]:
             result.append(a)
@@ -156,12 +150,7 @@ def select_by_dimension(pool, dim_quota=None):
                 used_ids.add(id(a))
     return result
 
-# 海外 RSS 源（科技/创业，通过代理访问）——对齐「产品/创业/AI」定位
-OVERSEAS_RSS_FEEDS = [
-    {"name": "TechCrunch", "url": "https://techcrunch.com/feed/", "limit": 4},
-    {"name": "The Verge", "url": "https://www.theverge.com/rss/index.xml", "limit": 3},
-    {"name": "Ars Technica", "url": "https://feeds.arstechnica.com/arstechnica/technology-lab", "limit": 3},
-]
+# 海外 RSS 板块已于 2026-10-29 经用户决策整体取消（原 OVERSEAS_RSS_FEEDS/get_overseas_news 移除）
 
 # ============ Agent Reach 集成（2026-10-28 P0-P2 增强，Boss 批准） ============
 REACH_BIN = "/root/.local/bin/agent-reach"
@@ -171,7 +160,8 @@ REACH_ENV = {**os.environ, "ALL_PROXY": "socks5h://127.0.0.1:1080",
 def reach(args, timeout=45):
     """调用 agent-reach CLI；失败返回 None（静默降级，绝不影响早报其余板块）"""
     try:
-        r = subprocess.run([REACH_BIN] + args, capture_output=True, text=True,
+        r = subprocess.run([REACH_BIN] + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                           universal_newlines=True,
                            timeout=timeout, env=REACH_ENV)
         out = (r.stdout or "").strip()
         if r.returncode == 0 and out.startswith("{"):
@@ -812,47 +802,8 @@ def fetch_rss(feed_url, use_proxy=False):
         return None
 
 def parse_overseas_rss(xml_content, source_name, limit):
-    """解析海外中文RSS（处理命名空间）"""
-    articles = []
-    try:
-        # 移除命名空间
-        xml_str = xml_content.decode('utf-8', errors='ignore')
-        xml_str = re.sub(r'xmlns[^=]*="[^"]*"', '', xml_str)
-        xml_str = re.sub(r'xmlns:[^=]*="[^"]*"', '', xml_str)
-        xml_str = re.sub(r'<([a-zA-Z0-9_]+):', r'<', xml_str)
-        xml_str = re.sub(r'</([a-zA-Z0-9_]+):', r'</', xml_str)
-        
-        root = ET.fromstring(xml_str)
-        
-        for item in root.findall('.//item')[:limit]:
-            title = item.find('title')
-            desc = item.find('description')
-            link = item.find('link')
-            
-            title_text = title.text if title is not None else ''
-            desc_text = desc.text if desc is not None else ''
-            link_text = link.text if link is not None else ''
-            
-            # 清理CDATA和HTML
-            title_text = re.sub(r'<!\[CDATA\[(.*?)\]\]>', r'\1', title_text, flags=re.DOTALL)
-            desc_text = re.sub(r'<!\[CDATA\[(.*?)\]\]>', r'\1', desc_text, flags=re.DOTALL)
-            desc_text = re.sub(r'<[^>]+>', '', desc_text)
-            
-            # 截取摘要
-            if len(desc_text) > 100:
-                desc_text = desc_text[:100] + '...'
-            
-            title_text = re.sub(r'[#*_`]', '', title_text).strip()[:50]
-            
-            articles.append({
-                "title": title_text,
-                "summary": desc_text.strip(),
-                "url": link_text.strip(),
-                "source": source_name
-            })
-    except Exception as e:
-        print(f"  解析错误: {e}")
-    return articles
+    """[已废弃 2026-10-29] 海外板块取消，保留空实现避免外部引用报错"""
+    return []
 
 def score_article(title, source):
     """根据关键词和来源给文章打分"""
@@ -875,10 +826,36 @@ def score_article(title, source):
     
     return score
 
+def _normalize_xml(xml_content):
+    """py3.6 兼容（2026-10-29）：GBK 等多字节编码声明 expat 不支持；
+    且部分 feed 声明与实际编码不符（如 cyzone 声明 gbk 实为 utf-8，
+    误解码会吃掉 CDATA 结束符 ']' 破坏结构）——按坏字符数+CDATA 配对数择优选编码，
+    最后统一改写声明为 utf-8 供 ET 解析。"""
+    if isinstance(xml_content, bytes):
+        head = xml_content[:200].decode("ascii", errors="ignore")
+        m = re.search(r'encoding=["\']([a-zA-Z0-9_-]+)["\']', head)
+        declared = m.group(1).lower() if m else "utf-8"
+        best_s, best_score = None, None
+        for enc in dict.fromkeys([declared, "utf-8"]):
+            try:
+                t = xml_content.decode(enc, errors="replace")
+            except LookupError:
+                continue
+            score = t.count("\ufffd") * 10 + abs(t.count("<![CDATA[") - t.count("]]>"))
+            if best_score is None or score < best_score:
+                best_s, best_score = t, score
+        s = best_s if best_s is not None else xml_content.decode("utf-8", errors="replace")
+    else:
+        s = xml_content
+    s = re.sub(r'(<\?xml[^>]*encoding=["\'])[a-zA-Z0-9_-]+(["\'])', r'\g<1>utf-8\g<2>', s, count=1)
+    return s.encode("utf-8")
+
+
 def parse_rss_simple(xml_content, source_name, limit, use_summarize=False):
     """解析RSS并按热度筛选，可选使用summarize生成AI摘要"""
     articles = []
     try:
+        xml_content = _normalize_xml(xml_content)
         root = ET.fromstring(xml_content)
         if root.tag == "rss":
             channel = root.find("channel")
@@ -888,7 +865,7 @@ def parse_rss_simple(xml_content, source_name, limit, use_summarize=False):
                     link = item.find("link")
                     desc = item.find("description")
                     
-                    title_text = title.text if title is not None else ""
+                    title_text = (title.text or "") if title is not None else ""
                     title_text = re.sub(r'<!\[CDATA\[(.*?)\]\]>', r'\1', title_text, flags=re.DOTALL)
                     title_text = re.sub(r'<[^>]+>', '', title_text)
                     title_text = title_text.strip()
@@ -896,10 +873,10 @@ def parse_rss_simple(xml_content, source_name, limit, use_summarize=False):
                     if not title_text or len(title_text) < 5:
                         continue
                     
-                    link_text = link.text if link is not None else ""
+                    link_text = (link.text or "") if link is not None else ""
                     
                     # 获取RSS中的原始摘要作为备选
-                    desc_text = desc.text if desc is not None else ""
+                    desc_text = (desc.text or "") if desc is not None else ""
                     desc_text = re.sub(r'<!\[CDATA\[(.*?)\]\]>', r'\1', desc_text, flags=re.DOTALL)
                     desc_text = re.sub(r'<[^>]+>', '', desc_text)
                     desc_text = desc_text.strip()
@@ -997,73 +974,71 @@ def get_news():
 
     return selected
 
-def get_overseas_news():
-    """获取海外中文资讯"""
-    articles = []
-    for feed in OVERSEAS_RSS_FEEDS:
-        print(f"  获取 {feed['name']}...")
-        xml = fetch_rss(feed["url"], use_proxy=True)
-        if xml:
-            items = parse_overseas_rss(xml, feed["name"], feed.get("limit", 3))
-            articles.extend(items)
-    # P1 兜底（2026-10-28）：海外源 RSS 常只给标题，agent-reach 补正文
-    enrich_short_summaries(articles, threshold=200, max_enrich=2)
-    return articles
-
 # ============ 主函数 ============
 # ============ LLM 精炼（热榜/Release 摘要，2026-10-28 集成） ============
 LLM_ENDPOINT = "https://api.ygxpro.online/v1/chat/completions"
 LLM_MODEL = "deepseek-v4-flash"
 
 
-def _get_llm_key():
-    """优先用 new-api key（更稳），fallback 到火山。"""
-    k = os.environ.get("NEWAPI_API_KEY", "") or os.environ.get("OPENAI_API_KEY", "")
-    if k:
-        return k
+def _get_llm_keys():
+    """候选 key 列表（2026-10-29 修复：环境里的 OPENAI_API_KEY 可能属于其他服务，
+    对本网关 401 且被静默吞掉——改为多候选按序尝试，.env 的 NEWAPI key 优先于环境 OPENAI key）。"""
+    file_keys = {}
     try:
         with open(os.path.expanduser("~/.hermes/.env")) as f:
             for line in f:
-                if line.startswith("NEWAPI_API_KEY=") or line.startswith("OPENAI_API_KEY="):
-                    return line.split("=", 1)[1].strip()
+                if "=" in line:
+                    k, v = line.split("=", 1)
+                    file_keys[k.strip()] = v.strip()
     except Exception:
         pass
-    return os.environ.get("VOLCENGINE_API_KEY", "")
+    cands = []
+    for k in (os.environ.get("NEWAPI_API_KEY", ""),
+              file_keys.get("NEWAPI_API_KEY", ""),
+              file_keys.get("OPENAI_API_KEY", ""),
+              os.environ.get("OPENAI_API_KEY", ""),
+              os.environ.get("VOLCENGINE_API_KEY", "")):
+        k = (k or "").strip()
+        if k and k not in cands:
+            cands.append(k)
+    return cands
 
 
 def _llm_summarize(prompt, max_len=80, timeout=12):
     """轻量 LLM 调用（new-api 网关 deepseek-v4-flash），失败返回 None。
+    2026-10-29：多候选 key 逐个尝试（401/403 换下一个），避免单个无效环境变量导致全部静默降级。
     注意：网关可能路由到推理模型，reasoning_content 会吃掉 token 预算，
     因此 max_tokens 给足，并在 content 为空时从 reasoning 尾部提取答案。"""
-    try:
-        key = _get_llm_key()
-        if not key:
-            return None
-        import requests
-        r = requests.post(LLM_ENDPOINT, json={
-            "model": LLM_MODEL,
-            "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 1600,
-            "temperature": 0.3,
-        }, headers={"Authorization": f"Bearer {key}"}, timeout=timeout)
-        if r.status_code != 200:
-            return None
-        msg = r.json()["choices"][0]["message"]
-        text = (msg.get("content") or "").strip()
-        if not text:
-            reason = (msg.get("reasoning_content") or "").strip()
-            # 从推理尾部抓最终答案（引号包裹的最后一段）
-            quotes = re.findall(r'["“「]([^"”」]{10,120})["”」]', reason)
-            if quotes:
-                text = max(quotes, key=len)
-            else:
-                text = reason[-max_len:] if reason else ""
-        text = re.sub(r"\s+", "", text)
-        if len(text) > max_len:
-            text = text[:max_len]
-        return text or None
-    except Exception:
-        return None
+    import requests
+    for key in _get_llm_keys():
+        try:
+            r = requests.post(LLM_ENDPOINT, json={
+                "model": LLM_MODEL,
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": 1600,
+                "temperature": 0.3,
+            }, headers={"Authorization": f"Bearer {key}"}, timeout=timeout)
+            if r.status_code in (401, 403):
+                continue  # key 无效，换下一个候选
+            if r.status_code != 200:
+                return None
+            msg = r.json()["choices"][0]["message"]
+            text = (msg.get("content") or "").strip()
+            if not text:
+                reason = (msg.get("reasoning_content") or "").strip()
+                # 从推理尾部抓最终答案（引号包裹的最后一段）
+                quotes = re.findall(r'["“「]([^"”」]{10,120})["”」]', reason)
+                if quotes:
+                    text = max(quotes, key=len)
+                else:
+                    text = reason[-max_len:] if reason else ""
+            text = re.sub(r"\s+", "", text)
+            if len(text) > max_len:
+                text = text[:max_len]
+            return text or None
+        except Exception:
+            continue
+    return None
 
 
 def refine_trending_desc(category, intro_body, highlight_body, max_len=75):
@@ -1134,7 +1109,7 @@ def get_repo_updates(repo, atype=None, max_items=2):
         r = subprocess.run(
             ["curl", "-sL", "--socks5-hostname", "127.0.0.1:1080", "-m", "20",
              "-H", "User-Agent: Mozilla/5.0", url],
-            capture_output=True, timeout=25)
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=25)
         xml = (r.stdout or b"").decode("utf-8", "replace")
         if not xml.startswith("<?xml"):
             return news
@@ -1194,10 +1169,10 @@ def get_repo_updates(repo, atype=None, max_items=2):
 
 
 def get_github_dual_updates():
-    """D2: 双仓库更新——openclaw + NousResearch/hermes-agent"""
+    """D2: 双仓库更新——openclaw + NousResearch/hermes-agent（独立板块，各取最新 1 条 release）"""
     all_n = []
     for repo in ("openclaw/openclaw", "NousResearch/hermes-agent"):
-        all_n.extend(get_repo_updates(repo))
+        all_n.extend(get_repo_updates(repo, max_items=1))
     return all_n
 
 
@@ -1293,16 +1268,20 @@ def clean_summary(text, max_len=60):
     # 去掉常见开头噪音：文|xxx / 作者｜xxx / 编辑｜xxx / 图源 / emoji 列表符
     t = re.sub(r"^(文|作者|编辑|来源|图源)\s*[|｜:：].{0,20}?\s+", "", t)
     t = re.sub(r"^[💵📱🔥👀💡🚀📌\s|｜:：,，、\-]+", "", t)
-    return t[:max_len]
+    # 标点边界截断（2026-10-29：硬切 60 字会产生半句话——改为优先在标点处收口）
+    if len(t) > max_len:
+        cut = max(t.rfind(p, 0, max_len) for p in "。！？；;，,")
+        t = t[:cut + 1] if cut >= max_len * 0.5 else t[:max_len]
+    return t
 
 
-# ============ 主函数重构：D2 双仓库 + D3 焦点聚合 + D4 虎嗅 + D5 各维度均衡 ============
-def get_top_headlines(limit=8):
-    """D2+D3+D5：双仓库 GitHub + 国内RSS + 海外RSS → 焦点聚类 → 8条精选。
-    每维度（产品/创业/AI趋势/海外）各覆盖 2-3 条，多源焦点置顶。"""
+# ============ 主函数重构：D3 焦点聚合 + D5 各维度均衡 ============
+def get_top_headlines(limit=9):
+    """D3+D5：国内 RSS → 焦点聚类 → 9 条精选（AI趋势/创业/产品经理 各 3 条）。
+    2026-10-29：海外板块取消；GitHub 双仓库更新移至独立板块，不再入池。"""
     pool = []
 
-    # 国内 RSS（5 源：量子位=AI趋势 / 36氪虎嗅=创业 / 钛媒体woshipm=产品）
+    # 国内 RSS（5 源：量子位=AI趋势 / 创业邦+创业学院=创业 / 钛媒体+woshipm=产品）
     for feed in RSS_FEEDS:
         print(f"  获取 {feed['name']}...")
         xml = fetch_rss(feed["url"], use_proxy=False)
@@ -1313,17 +1292,9 @@ def get_top_headlines(limit=8):
                 it["source"] = feed["name"]
             pool.extend(items)
 
-    # 海外 RSS（BBC等 = 海外新闻维度）
-    pool.extend(get_overseas_news())
-
-    # GitHub 双仓库（openclaw + hermes-agent）——含 LLM 精炼 release 摘要
-    pool.extend(get_github_dual_updates())
-
     # 基础分：每篇文章计算相关性分
     for a in pool:
         s = a.get("score", 0) + score_agent_article(a)
-        if a.get("source") in OVERSEAS_SOURCES:
-            s = max(s, 60)
         a["_final"] = s
 
     # 去重
@@ -1364,27 +1335,33 @@ def get_top_headlines(limit=8):
     _others = [a for a in deduped if not _is_roundup_pre(a.get("title", ""))]
     if _roundups:
         deduped = _others + _roundups[:1]
-    gh_pick = []
-    for repo, atype in (("openclaw/openclaw", "OpenClaw"),
-                        ("NousResearch/hermes-agent", "Hermes Agent")):
-        cand = [a for a in deduped if a.get("agent_type") == atype]
-        # 优先 Release，其次最新 issue/PR
-        if cand:
-            gh_pick.append(cand[0])
 
+    # D5: 维度配额选品（3+3+3；GitHub 双仓库已移至独立板块）
     selected = select_by_dimension(deduped,
-        dim_quota={"AI趋势": 2, "创业": 2, "产品经理": 2, "海外新闻": 2})
-    # 确保双仓库在列：移除选品中的 github 项，再插入保底
-    selected = [a for a in selected if a.get("agent_type") not in ("OpenClaw", "Hermes Agent")]
-    for g in reversed(gh_pick):
-        if g not in selected:
-            selected.insert(0, g)
-    selected = selected[:8]
+        dim_quota={"AI趋势": 3, "创业": 3, "产品经理": 3})
+    selected = selected[:limit]
 
     # Reach 兜底补正文
     enrich_short_summaries(selected, threshold=200, max_enrich=2)
+    # LLM 摘要精炼（2026-10-29 恢复历史决策：每条生成流畅中文一句话，替代 RSS 原文硬截断）
+    print(f"  LLM 摘要精炼 ({len(selected)}条)...")
+    for i, a in enumerate(selected, 1):
+        raw = (a.get("summary") or "").strip()
+        title = a.get("title", "")
+        llm_ok = False
+        if title and (len(re.sub(r"<[^>]+>", "", raw)) < 40 or raw.endswith("...") or not raw):
+            prompt = ("请根据科技新闻标题和摘要，用一句流畅完整的中文概括核心信息"
+                      "（谁做了什么、有什么影响或看点），80字内，不要分点，不要照搬英文原句。"
+                      f"\n标题：{title}\n摘要：{re.sub(r'<[^>]+>', '', raw)[:300]}\n输出：")
+            cand = _llm_summarize(prompt, max_len=85, timeout=20)
+            if cand and len(re.findall(r"[\u4e00-\u9fa5]", cand)) >= 15:
+                a["summary"] = cand
+                llm_ok = True
+        if not llm_ok:
+            a["summary"] = a.get("summary") or ""
+        print(f"    [{i}/{len(selected)}] {'LLM✓' if llm_ok else 'RSS原文'} {title[:30]}")
     for a in selected:
-        a["summary"] = clean_summary(a.get("summary", ""), 60)
+        a["summary"] = clean_summary(a.get("summary", ""), 90)
 
     # 近重复合并：同题材多条只留最高分，🔥数累加（避免早报/快讯重复刷屏）
     def _tri(s):
@@ -1464,7 +1441,7 @@ def fetch_trending_report(max_back=3):
             r = subprocess.run(
                 ['curl', '-sL', '--max-time', '20', '--socks5-hostname', '127.0.0.1:1080',
                  '-H', 'User-Agent: Mozilla/5.0', url],
-                capture_output=True, timeout=25)
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=25)
             text = (r.stdout or b'').decode('utf-8', 'replace')
             if r.returncode == 0 and text.startswith('#') and '### #' in text:
                 return date_s, text
@@ -1528,7 +1505,18 @@ def parse_trending_report(md, max_items=5, max_desc=78, use_llm=True):
                     break
         # ② 降级：规则提取（首句 + 亮点句），并把三要素拼成【分类】句式
         if not desc:
-            sents = [s for s in re.split(r'(?<=[。！？])', intro_text) if s.strip()]
+            # py3.6 不支持零宽断言 split（2026-10-29 改为逐字符切句）
+            def _split_sents(t):
+                parts, buf = [], []
+                for ch in t:
+                    buf.append(ch)
+                    if ch in "。！？":
+                        parts.append("".join(buf))
+                        buf = []
+                if buf:
+                    parts.append("".join(buf))
+                return parts
+            sents = [s for s in _split_sents(intro_text) if s.strip()]
             body = ""
             if sents:
                 body = sents[0]
@@ -1582,15 +1570,15 @@ def generate_briefing():
             mail_content += f"\n• {e['from']} - {e['subject'][:30]}"
     elements.append({"tag": "div", "text": {"tag": "lark_md", "content": mail_content}})
 
-    # ② AI 要闻：4维度×2条 = 8条（D2双仓库 + D3焦点聚合 + D5维度配额）
+    # ② AI 要闻：3维度×3条 = 9条（D3焦点聚合 + D5维度配额；2026-10-29 海外取消）
     print("获取AI要闻...")
     elements.append({"tag": "hr"})
-    headlines = get_top_headlines(8)
+    headlines = get_top_headlines(9)
     elements.append({
         "tag": "div",
-        "text": {"tag": "lark_md", "content": f"**🗞️ AI 要闻** {len(headlines)} 条精选（产品/创业/AI趋势/海外）"}
+        "text": {"tag": "lark_md", "content": f"**🗞️ AI 要闻** {len(headlines)} 条精选（AI趋势/创业/产品）"}
     })
-    DIM_EMOJI = {"AI趋势": "🤖", "创业": "💼", "产品经理": "📱", "海外新闻": "🌏", "其他": "📌"}
+    DIM_EMOJI = {"AI趋势": "🤖", "创业": "💼", "产品经理": "📱", "其他": "📌"}
     for h in headlines:
         dim = h.get("_dim", "其他")
         emoji = DIM_EMOJI.get(dim, "📌")
@@ -1601,7 +1589,27 @@ def generate_briefing():
             line += f"\n  {h['summary']}"
         elements.append({"tag": "div", "text": {"tag": "lark_md", "content": line}})
 
-    # ③ GitHub 热榜（2026-10-28 集成：TTlook111/github-trending-daily）
+    # ③ GitHub 双仓库更新（openclaw + hermes-agent，2026-10-29 独立板块）
+    print("获取GitHub双仓库更新...")
+    elements.append({"tag": "hr"})
+    gh_news = get_github_dual_updates()
+    if not gh_news:
+        elements.append({
+            "tag": "div",
+            "text": {"tag": "lark_md", "content": "**🦞🚀 双仓库更新** 暂无"}
+        })
+    else:
+        elements.append({
+            "tag": "div",
+            "text": {"tag": "lark_md", "content": f"**🦞🚀 双仓库更新** {len(gh_news)} 条（openclaw + hermes-agent）"}
+        })
+        for g in gh_news:
+            line = f"• [{g['title']}]({g['url']})"
+            if g.get("summary"):
+                line += f"\n  {g['summary']}"
+            elements.append({"tag": "div", "text": {"tag": "lark_md", "content": line}})
+
+    # ④ GitHub 热榜（2026-10-28 集成：TTlook111/github-trending-daily）
     print("获取GitHub热榜...")
     elements.append({"tag": "hr"})
     t_date, t_md = fetch_trending_report()
