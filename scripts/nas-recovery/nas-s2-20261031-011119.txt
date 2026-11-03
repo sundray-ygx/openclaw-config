@@ -1,0 +1,106 @@
+==================================================
+ NAS 恢复 S2 — hermes 骨架重建  2026-10-31 01:11:19
+==================================================
+
+########## A. 前置校验 ##########
+✅ 源仓库存在: /volume1/hermes-config
+✅ /volume1/hermes-config/knowledge
+✅ /volume1/hermes-config/memory
+✅ /volume1/hermes-config/skills
+✅ /volume1/hermes-config/config
+-rw-r--r-- 1 root root 885972992 Oct 30 21:40 /volume1/hermes-data/state.db
+
+########## B. 恢复前 .hermes 现状 ##########
+[尚未创建]
+
+########## C. 恢复（已批准的变更） ##########
+--- knowledge ---
+OK
+--- memory ---
+OK
+--- skills ---
+OK
+--- 顶层配置四件 ---
+OK config.yaml
+OK AGENTS.md
+OK SOUL.md
+OK MEMORY.md
+
+########## D. state.db 软链回接 ##########
+✅ 软链已建
+lrwxrwxrwx 1 root root 29 Oct 31 01:11 /root/.hermes/state.db -> /volume1/hermes-data/state.db
+--- 只读完整性 ---
+784
+
+########## E. .env 模板生成（不含密钥值） ##########
+✅ 模板已生成（600）
+
+########## F. hermes 启动链诊断（只读） ##########
+--- /usr/local/bin/hermes 内容 ---
+#!/usr/bin/env bash
+unset PYTHONPATH
+unset PYTHONHOME
+exec "/usr/local/lib/hermes-agent/venv/bin/python" "/usr/local/lib/hermes-agent/hermes" "$@"
+--- 各版本 venv 检查 ---
+/usr/local/lib/hermes-agent -> ❌ venv 缺失/损坏 (找: /usr/local/lib/hermes-agent/venv)
+acp_adapter
+acp_registry
+agent
+AGENTS.md
+apps
+assets
+/usr/local/lib/hermes-agent-v0.19.0 -> ❌ venv 缺失/损坏 (找: /usr/local/lib/hermes-agent-v0.19.0/venv)
+acp_adapter
+acp_registry
+agent
+AGENTS.md
+apps
+assets
+/usr/local/lib/hermes-agent-v0.21.0 -> ❌ venv 缺失/损坏 (找: /usr/local/lib/hermes-agent-v0.21.0/venv)
+acp_adapter
+agent
+apps
+batch_runner.py
+bin
+cli-config.yaml.example
+/usr/local/lib/hermes-agent-v0.21.6 -> ❌ venv 缺失/损坏 (找: /usr/local/lib/hermes-agent-v0.21.6/venv)
+acp_adapter
+activate
+activate.fish
+activate.ps1
+agent
+AGENTS.md
+/usr/local/lib/hermes-agent-v0.22.4 -> ❌ venv 缺失/损坏 (找: /usr/local/lib/hermes-agent-v0.22.4/venv)
+acp_adapter
+activate
+activate.fish
+activate.ps1
+agent
+AGENTS.md
+--- hermes --version 完整报错 ---
+/usr/local/bin/hermes: line 4: /usr/local/lib/hermes-agent/venv/bin/python: No such file or directory
+--- /opt 幸存检查（bill-to-notion 等） ---
+total 12
+drwx--x--x  3 root root 4096 Oct 31 01:04 .
+drwxr-xr-x 23 root root 4096 Oct 31 01:04 ..
+drwx--x--x  4 root root 4096 Oct 31 01:04 containerd
+
+########## G. 恢复后规模核验 ##########
+555M	/root/.hermes/knowledge
+27M	/root/.hermes/memory
+14M	/root/.hermes/skills
+skills 数: 215
+memory 条目: 266
+AGENTS.md
+config.yaml
+knowledge
+logs
+memory
+MEMORY.md
+skills
+SOUL.md
+state.db
+
+########## S2 完成 ##########
+结束: 2026-10-31 01:13:21
+输出文件: /tmp/nas-s2-20261031-011119.txt

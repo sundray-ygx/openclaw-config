@@ -168,8 +168,14 @@ def reach(args, timeout=45):
             d = json.loads(out)
             if d.get("ok"):
                 return d
-    except Exception:
-        pass
+            print(f"  [归因] reach {' '.join(args[:3])} 失败: ok=false (returncode={r.returncode})")
+        else:
+            err = (r.stderr or "").strip().split("\n")[-1][:120]
+            print(f"  [归因] reach {' '.join(args[:3])} 失败: returncode={r.returncode} 输出非JSON err={err}")
+    except subprocess.TimeoutExpired:
+        print(f"  [归因] reach {' '.join(args[:3])} 失败: 超时(>{timeout}s, socks5代理或上游抖动)")
+    except Exception as e:
+        print(f"  [归因] reach {' '.join(args[:3])} 失败: {type(e).__name__}: {e}")
     return None
 
 def reach_search_repos(query, limit=3):
@@ -1112,6 +1118,7 @@ def get_repo_updates(repo, atype=None, max_items=2):
             stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=25)
         xml = (r.stdout or b"").decode("utf-8", "replace")
         if not xml.startswith("<?xml"):
+            print(f"  [归因] {repo} releases.atom 失败: curl rc={r.returncode} 响应头={xml[:80]!r}")
             return news
         # 解析 entry
         entries = re.findall(r"<entry>(.*?)</entry>", xml, re.DOTALL)
@@ -1445,8 +1452,10 @@ def fetch_trending_report(max_back=3):
             text = (r.stdout or b'').decode('utf-8', 'replace')
             if r.returncode == 0 and text.startswith('#') and '### #' in text:
                 return date_s, text
-        except Exception:
-            pass
+            print(f"  [归因] 热榜 {date_s} 取回失败: curl rc={r.returncode} 响应头={text[:60]!r}")
+        except Exception as e:
+            print(f"  [归因] 热榜 {date_s} 异常: {type(e).__name__}: {e}")
+    print(f"  [归因] 热榜连续 {max_back} 天回退全空（上游断更或代理持续不通）")
     return None, None
 
 def _valid_refined(text, min_len=28):
@@ -1523,7 +1532,8 @@ def parse_trending_report(md, max_items=5, max_desc=78, use_llm=True):
                 if len(sents) > 1 and len(body) + len(sents[1]) <= max_desc - 16:
                     body += sents[1]
             if high_text and len(body) < max_desc - 30:
-                hs = [h.strip() for h in re.split(r'(?<=[。！？])', high_text)
+                # py3.6 不支持零宽断言 split，用上面的 _split_sents 逐字符切句
+                hs = [h.strip() for h in _split_sents(high_text)
                       if h.strip() and not h.strip().startswith(('-', '•', '*')) and 6 <= len(h.strip()) <= 30]
                 if hs:
                     body += "；" + hs[0]

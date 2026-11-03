@@ -1,0 +1,40 @@
+==================================================
+ NAS 恢复 S6 — cron 任务重建  2026-10-31 08:28:43
+==================================================
+
+########## A. 现状核查 ##########
+total 8
+drwx------  2 root root 4096 Oct 31 01:29 .
+drwx------ 15 root root 4096 Oct 31 01:35 ..
+✅ jobs.json 不存在，安全重建
+
+########## B. 重建 jobs.json（全部 enabled=false） ##########
+✅ JSON 语法合法
+
+########## C. 语义校验 ##########
+任务数: 13
+  5a8d236f9706 | 早报 morning-briefing    | 0 8 * * *            | enabled=False
+  6df1cbff8e20 | 日反思 daily-reflection   | 0 22 * * *           | enabled=False
+  b6b0e8771fa2 | 日安排滚动修正                | 30 22 * * *          | enabled=False
+  c94ba5f4353c | 周复盘首发（周五19:30）         | 30 19 * * 5          | enabled=False
+  75202c8dbe48 | 周计划起草（周五22:10）         | 10 22 * * 5          | enabled=False
+  f590e89b228b | 周复盘完整版更新（周日22:15）      | 15 22 * * 0          | enabled=False
+  aeeb5d21a122 | 周末复盘提醒（周六日21:30）       | 30 21 * * 0,6        | enabled=False
+  c71bcef473a6 | 月复盘 periodic-review-   | 0 22 28-31 * *       | enabled=False
+  772a5c340243 | 月计划起草（月末23:30）         | 30 23 28-31 * *      | enabled=False
+  94f20499bcb1 | 季复盘 periodic-review-   | 30 22 28-31 3,6,9,12 * | enabled=False
+  1d64dccf22af | 季计划起草（季末23:00）         | 0 23 28-31 3,6,9,12 * | enabled=False
+  ad2f249c865b | 年复盘（12/31 23:00）       | 0 23 31 12 *         | enabled=False
+  4bc53d856191 | 年计划三连（12/31 23:10）     | 10 23 31 12 *        | enabled=False
+✅ 13 任务全部 enabled=false / workdir 显式 / deliver=feishu —— 点火权在 Boss
+
+########## D. 输出目录与权限 ##########
+total 20
+drwx------  3 root root 4096 Oct 31 08:28 .
+drwx------ 15 root root 4096 Oct 31 01:35 ..
+-rw-------  1 root root 5869 Oct 31 08:28 jobs.json
+drwx------  2 root root 4096 Oct 31 08:28 output
+
+########## S6 完成 ##########
+结束: 2026-10-31 08:28:43
+输出文件: /tmp/nas-s6-20261031-082843.txt
