@@ -1111,15 +1111,13 @@ def get_repo_updates(repo, atype=None, max_items=2):
     label = "🦞" if atype == "OpenClaw" else "🚀"
     news = []
     url = f"https://github.com/{repo}/releases.atom"
+    xml, src = _fetch_url_multi(url, timeout=20)
+    if not xml or not xml.startswith("<?xml"):
+        print(f"  [归因] {repo} releases.atom 三级回退全失败(proxy→mirror→cdn)")
+        return news
+    if src != "proxy":
+        print(f"  [注] {repo} releases.atom 经回退链 [{src}] 取得（机场代理主路不通）")
     try:
-        r = subprocess.run(
-            ["curl", "-sL", "--socks5-hostname", "127.0.0.1:1080", "-m", "20",
-             "-H", "User-Agent: Mozilla/5.0", url],
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=25)
-        xml = (r.stdout or b"").decode("utf-8", "replace")
-        if not xml.startswith("<?xml"):
-            print(f"  [归因] {repo} releases.atom 失败: curl rc={r.returncode} 响应头={xml[:80]!r}")
-            return news
         # 解析 entry
         entries = re.findall(r"<entry>(.*?)</entry>", xml, re.DOTALL)
         parsed = []
@@ -1169,6 +1167,7 @@ def get_repo_updates(repo, atype=None, max_items=2):
                 "category": f"{label} {atype}",
                 "agent_type": atype,
                 "score": 260,
+                "src_note": "" if src == "proxy" else "经镜像回退取得(机场代理不通)",
             })
     except Exception as e:
         print(f"  取 {repo} release 错误: {e}")
@@ -1283,6 +1282,40 @@ def clean_summary(text, max_len=60):
 
 
 # ============ 主函数重构：D3 焦点聚合 + D5 各维度均衡 ============
+# ============ 多源 HTTP 回退（2026-11-04 F1：机场数据面入口瘫痪，GitHub 板块三级回退） ============
+# 链路：① socks5 1080 主路（机场恢复后自动回归）→ ② gh-proxy.com 镜像直连 → ③ jsDelivr CDN（仅热榜仓库可用）
+# 镜像实测（2026-11-04）：gh-proxy.com 取 releases.atom 200/12KB/0.63s；jsDelivr 取热榜 200/18KB
+MIRROR_GH = "https://gh-proxy.com/"          # 前缀式镜像：拼在完整 GitHub URL 前
+CDN_JSDELIVR = "https://cdn.jsdelivr.net/gh/"  # CDN 式：仅适用 raw.githubusercontent 的仓库文件
+
+def _fetch_url_multi(url, timeout=20, via_jsdelivr=False):
+    """三级回退取 URL 文本。返回 (text, source) 或 (None, None)。source: proxy|mirror|cdn
+    py3.6 兼容：无 f-string=、无 walrus。"""
+    variants = [("proxy", ["curl", "-sL", "--socks5-hostname", "127.0.0.1:1080", "-m", str(timeout),
+                           "-H", "User-Agent: Mozilla/5.0", url])]
+    if url.startswith("https://github.com/") or url.startswith("https://raw.githubusercontent.com/"):
+        variants.append(("mirror", ["curl", "-sL", "-m", str(timeout),
+                                    "-H", "User-Agent: Mozilla/5.0", MIRROR_GH + url]))
+    if via_jsdelivr and url.startswith(TRENDING_REPO_RAW.split("/main/")[0] if False else "https://raw.githubusercontent.com/TTlook111/"):
+        # 热榜仓库专用：raw.githubusercontent.com/TTlook111/<repo>/main/<path> → cdn.jsdelivr.net/gh/TTlook111/<repo>@main/<path>
+        _pref, path = url.split("/main/", 1)
+        repo = _pref.rsplit("/", 1)[1]
+        variants.append(("cdn", ["curl", "-sL", "-m", str(timeout),
+                                 "-H", "User-Agent: Mozilla/5.0",
+                                 CDN_JSDELIVR + "TTlook111/" + repo + "@main/" + path]))
+    for src, cmd in variants:
+        try:
+            r = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout + 5)
+            text = (r.stdout or b"").decode("utf-8", "replace")
+            if r.returncode == 0 and text:
+                return text, src
+            print("  [归因] {0} 取 {1} 失败: curl rc={2} 响应头={3}".format(
+                src, url[:70], r.returncode, text[:60]))
+        except Exception as e:
+            print("  [归因] {0} 取 {1} 异常: {2}: {3}".format(src, url[:70], type(e).__name__, e))
+    return None, None
+
+
 def get_top_headlines(limit=9):
     """D3+D5：国内 RSS → 焦点聚类 → 9 条精选（AI趋势/创业/产品经理 各 3 条）。
     2026-10-29：海外板块取消；GitHub 双仓库更新移至独立板块，不再入池。"""
@@ -1439,23 +1472,19 @@ def get_top_headlines(limit=9):
 TRENDING_REPO_RAW = "https://raw.githubusercontent.com/TTlook111/github-trending-daily/main/{y}/{m}/{date}.md"
 
 def fetch_trending_report(max_back=3):
-    """取最近一期热榜日报：今天→昨天→前天逐日回退。返回 (日期字符串, markdown) 或 (None, None)"""
+    """取最近一期热榜日报：今天→昨天→前天逐日回退。返回 (日期字符串, markdown) 或 (None, None)
+    2026-11-04 F1：三级回退 proxy→gh-proxy镜像→jsDelivr CDN"""
     for back in range(max_back):
         d = datetime.now() - timedelta(days=back)
         date_s = d.strftime('%Y-%m-%d')
         url = TRENDING_REPO_RAW.format(y=d.strftime('%Y'), m=d.strftime('%m'), date=date_s)
-        try:
-            r = subprocess.run(
-                ['curl', '-sL', '--max-time', '20', '--socks5-hostname', '127.0.0.1:1080',
-                 '-H', 'User-Agent: Mozilla/5.0', url],
-                stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=25)
-            text = (r.stdout or b'').decode('utf-8', 'replace')
-            if r.returncode == 0 and text.startswith('#') and '### #' in text:
-                return date_s, text
-            print(f"  [归因] 热榜 {date_s} 取回失败: curl rc={r.returncode} 响应头={text[:60]!r}")
-        except Exception as e:
-            print(f"  [归因] 热榜 {date_s} 异常: {type(e).__name__}: {e}")
-    print(f"  [归因] 热榜连续 {max_back} 天回退全空（上游断更或代理持续不通）")
+        text, src = _fetch_url_multi(url, timeout=20, via_jsdelivr=True)
+        if text and text.startswith('#') and '### #' in text:
+            if src != "proxy":
+                print(f"  [注] 热榜 {date_s} 经回退链 [{src}] 取得（机场代理主路不通）")
+            return date_s, text
+        print(f"  [归因] 热榜 {date_s} 三级回退取回失败(proxy→mirror→cdn)")
+    print(f"  [归因] 热榜连续 {max_back} 天回退全空（上游断更或代理+镜像持续不通）")
     return None, None
 
 def _valid_refined(text, min_len=28):
@@ -1606,12 +1635,16 @@ def generate_briefing():
     if not gh_news:
         elements.append({
             "tag": "div",
-            "text": {"tag": "lark_md", "content": "**🦞🚀 双仓库更新** 暂无"}
+            "text": {"tag": "lark_md", "content": "**🦞🚀 双仓库更新** 本期缺席：数据源不可达（代理与镜像均未取到，详见日志归因）"}
         })
     else:
+        src_notes = [g.get("src_note", "") for g in gh_news if g.get("src_note")]
+        hdr = f"**🦞🚀 双仓库更新** {len(gh_news)} 条（openclaw + hermes-agent）"
+        if src_notes:
+            hdr += "\n  ⚠️ " + "；".join(sorted(set(src_notes)))
         elements.append({
             "tag": "div",
-            "text": {"tag": "lark_md", "content": f"**🦞🚀 双仓库更新** {len(gh_news)} 条（openclaw + hermes-agent）"}
+            "text": {"tag": "lark_md", "content": hdr}
         })
         for g in gh_news:
             line = f"• [{g['title']}]({g['url']})"
@@ -1627,7 +1660,7 @@ def generate_briefing():
     if not t_items:
         elements.append({
             "tag": "div",
-            "text": {"tag": "lark_md", "content": "**🔥 GitHub 热榜** 今日暂无"}
+            "text": {"tag": "lark_md", "content": "**🔥 GitHub 热榜** 本期缺席：数据源不可达（代理与镜像均未取到）"}
         })
     else:
         label = t_date[5:] if t_date else ""

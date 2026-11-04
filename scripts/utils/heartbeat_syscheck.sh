@@ -127,6 +127,51 @@ done
 ZOMBIES=$(ps aux | awk '$8=="Z"' | wc -l)
 [ "$ZOMBIES" -ge 10 ] && ALERTS+=("僵尸进程 ${ZOMBIES} 个 (阈值10)")
 
+# 7. 代理链路看门狗 (2026-11-04 F2: 机场数据面入口瘫痪事故后新增)
+#    探活方式: curl 经 socks5 1080 访问 GitHub, 拿到真实 HTTP 状态码才算通
+#    (仅 TCP 连上 1080 不代表上游机场通——本次事故中 sing-box 入站正常、上游全断)
+#    语义: 连续死亡 ≥6h 推红卡(去抖6h); 期间恢复推绿卡并清零
+PROXY_STATE="$STATE_DIR/proxy-dead.count"
+probe_proxy() {
+  CODE=$(curl -s -o /dev/null -w '%{http_code}' -m 8 --socks5-hostname 127.0.0.1:1080 \
+         -H 'User-Agent: Mozilla/5.0' 'https://github.com/' 2>/dev/null)
+  [ "$CODE" = "200" ] || [ "$CODE" = "301" ] || [ "$CODE" = "302" ]
+}
+if probe_proxy; then
+  if [ -f "$PROXY_STATE" ]; then
+    N=$(cat "$PROXY_STATE" 2>/dev/null || echo 0)
+    send_card "✅ 代理链路已恢复" "socks5://127.0.0.1:1080 → GitHub 探活恢复 (此前连续死亡 ${N} 小时)。
+$(hostname) · $(date '+%F %T')" "green"
+    echo "$LOG_TAG proxy recovered after ${N}h dead"
+  fi
+  rm -f "$PROXY_STATE" "$STATE_DIR/proxy-down.state"
+else
+  if [ -f "$PROXY_STATE" ]; then
+    N=$(cat "$PROXY_STATE" 2>/dev/null || echo 0)
+    N=$((N + 1))
+  else
+    N=1
+  fi
+  echo "$N" > "$PROXY_STATE"
+  echo "$LOG_TAG proxy probe dead, consecutive hours=$N"
+  if [ "$N" -ge 6 ]; then
+    # 独立去抖 key(后缀.state避免被末尾rm -f *.last清除); 文案里带N但key固定
+    PROXY_ALERT_FILE="$STATE_DIR/proxy-down.state"
+    NOW=$(date +%s)
+    LAST=0
+    [ -f "$PROXY_ALERT_FILE" ] && LAST=$(cat "$PROXY_ALERT_FILE" 2>/dev/null || echo 0)
+    if [ $((NOW - LAST)) -ge 3600 ]; then
+      echo "$NOW" > "$PROXY_ALERT_FILE"
+      send_card "⚠️ 代理链路故障" "socks5://127.0.0.1:1080 → GitHub 探活连续失败 ≥6 小时 (当前已连续${N}小时)。
+
+早间简报 GitHub 板块已自动走镜像回退（gh-proxy / jsDelivr），国内板块不受影响。
+$(hostname) · $(date '+%F %T')
+(同类告警 1 小时内不重复提醒)" "red"
+      echo "$LOG_TAG proxy-down alert sent (${N}h)"
+    fi
+  fi
+fi
+
 # --- 结果处理 ---
 echo "$LOG_TAG $(date '+%F %T') disk=${DISK}% mem_avail=${MEM_AVAIL}M swap=${SWAP_PCT}% gw=$GW_STATUS gw_rss=${GW_RSS_MB:-NA}M zombies=$ZOMBIES alerts=${#ALERTS[@]}"
 
