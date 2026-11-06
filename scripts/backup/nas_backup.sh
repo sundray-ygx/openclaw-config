@@ -224,15 +224,34 @@ cp /root/.openclaw/scripts/*.sh "$LOCAL_BACKUP_DIR/06-security-scripts/" 2>/dev/
 log "备份: Nginx配置"
 cp /etc/nginx/conf.d/*.conf "$LOCAL_BACKUP_DIR/07-nginx/" 2>/dev/null || log "⚠️ Nginx配置目录为空"
 
-# 8. new-api 网关数据（SQLite 用 .backup 保证一致性）
+# 8. new-api 网关数据（宿主侧 sqlite3 .backup 保证一致性；2026-11-06 G1 修复）
+#    背景: 09-27 容器重建后镜像内无 sqlite3，原「容器内 .backup」链路慢性失效并静默
+#          降级为裸 cp 活库（WAL 模式下快照一致性无保证）。改用宿主 sqlite3 直连
+#          bind mount 路径 /opt/new-api/data（与第 10 步 hermes state.db 同款模式）。
+#          快照自包含，不再与活库 -wal/-shm 混装（异时刻 WAL 混装是恢复期损坏隐患）。
 log "备份: new-api 网关数据"
 mkdir -p "$LOCAL_BACKUP_DIR/08-new-api"
-docker exec new-api sqlite3 /data/one-api.db ".backup /data/one-api-backup.db" 2>/dev/null || docker exec new-api sh -c 'cp /data/one-api.db /data/one-api-backup.db' 2>/dev/null || true
-cp /opt/new-api/data/one-api-backup.db "$LOCAL_BACKUP_DIR/08-new-api/" 2>/dev/null || cp /opt/new-api/data/one-api.db "$LOCAL_BACKUP_DIR/08-new-api/" 2>/dev/null || log "⚠️ new-api 数据库备份失败"
-cp /opt/new-api/data/one-api.db-wal /opt/new-api/data/one-api.db-shm "$LOCAL_BACKUP_DIR/08-new-api/" 2>/dev/null || true
-cp /opt/new-api/admin-credentials.txt "$LOCAL_BACKUP_DIR/08-new-api/" 2>/dev/null || true
+NEWAPI_OK=0
+if sqlite3 /opt/new-api/data/one-api.db ".backup '$LOCAL_BACKUP_DIR/08-new-api/one-api.db'" 2>>"$LOG_FILE"; then
+    NEWAPI_OK=1
+    log "new-api: 宿主侧 .backup 一致性快照完成"
+else
+    log "⚠️ new-api: 宿主侧 .backup 失败，回退容器内快照 + docker cp"
+    if docker exec new-api sqlite3 /data/one-api.db ".backup /data/one-api-backup.db" 2>>"$LOG_FILE" \
+       && docker cp new-api:/data/one-api-backup.db "$LOCAL_BACKUP_DIR/08-new-api/one-api.db" 2>>"$LOG_FILE"; then
+        NEWAPI_OK=1
+        log "new-api: 容器内快照经 docker cp 完成"
+    else
+        # 最终兜底：同一时刻 db+wal+shm 三元组裸拷 —— 可抢救但非一致性快照，显式记录降级
+        cp /opt/new-api/data/one-api.db "$LOCAL_BACKUP_DIR/08-new-api/one-api.db" 2>>"$LOG_FILE" || true
+        cp /opt/new-api/data/one-api.db-wal "$LOCAL_BACKUP_DIR/08-new-api/one-api.db-wal" 2>/dev/null || true
+        cp /opt/new-api/data/one-api.db-shm "$LOCAL_BACKUP_DIR/08-new-api/one-api.db-shm" 2>/dev/null || true
+        log "🔴 new-api: 一致性快照链全部失败，已降级裸拷三元组（恢复需 WAL 回放，非一致性快照）"
+    fi
+    docker exec new-api rm -f /data/one-api-backup.db /data/one-api-backup.db-wal /data/one-api-backup.db-shm 2>/dev/null || true
+fi
+cp /opt/new-api/data/admin-credentials.txt "$LOCAL_BACKUP_DIR/08-new-api/" 2>/dev/null || true
 docker inspect new-api --format '{{json .Config.Env}}{{json .HostConfig.Binds}}' > "$LOCAL_BACKUP_DIR/08-new-api/container-meta.json" 2>/dev/null || true
-docker exec new-api rm -f /data/one-api-backup.db 2>/dev/null || true
 
 # 9. Hermes Gateway 配置（2026-10-08 补：ECS hermes 主力网关）
 # 范围：小而关键的配置（config/cron/memory/技能清单），排除 cache 等大目录；.env 密钥仅入包（WebDAV 私有通道），权限 600
