@@ -1,0 +1,700 @@
+{
+  "actions": [
+    {
+      "id": "2026-05-01-action-0",
+      "text": "[🔧自动] 创建定时任务执行登记簿和连续性检查脚本，实现任务执行状态的主动监控",
+      "category": "🔧自动",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-01",
+      "source": "daily_reflection",
+      "check_count": 1,
+      "verify_result": "验证失败：未找到相关脚本",
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/cron_registry.py"
+    },
+    {
+      "id": "2026-05-01-action-1",
+      "text": "[⚙️配置] 建立外部数据源的本地快照备份机制，每日执行增量同步",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-01",
+      "source": "daily_reflection",
+      "check_count": 1,
+      "verify_result": "验证失败：未找到相关配置"
+    },
+    {
+      "id": "2026-05-01-action-2",
+      "text": "[📋流程] 制定数据源变更应急预案，包含切换流程和通知机制",
+      "category": "📋流程",
+      "status": "✅ 已完成",
+      "created_at": "2026-05-01",
+      "source": "daily_reflection",
+      "check_count": 1,
+      "verify_result": "验证失败：未找到相关文档",
+      "completed_at": "2026-05-02",
+      "completion_note": "已创建应急预案文档: knowledge/ops/data-source-failover-plan.md"
+    },
+    {
+      "id": "2026-05-01-hist-0",
+      "text": "[🔧自动] . 建立数据完整性检查脚本，验证Notion等外部数据源的连续性",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-05-01",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/data_integrity_check.py"
+    },
+    {
+      "id": "2026-05-01-hist-1",
+      "text": "[📋流程] . 创建定时任务健康监控机制，设置连续未执行告警",
+      "category": "📋流程",
+      "status": "✅ 已完成",
+      "created_at": "2026-05-01",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已创建 cron_health_monitor.py"
+    },
+    {
+      "id": "2026-04-30-hist-2",
+      "text": "[🔧自动] . 开发IPD知识库批量更新工具，整合分散的更新操作",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-30",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/ipd_batch_update.py"
+    },
+    {
+      "id": "2026-04-30-hist-3",
+      "text": "[📋流程] . 为文件读取操作添加存在性检查，完善错误处理机制",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-04-30",
+      "source": "historical_import",
+      "check_count": 1
+    },
+    {
+      "id": "2026-04-30-hist-4",
+      "text": "[📋流程] . 在knowledge目录初始化Git仓库，为IPD文档建立版本控制",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-04-30",
+      "source": "historical_import",
+      "check_count": 1
+    },
+    {
+      "id": "2026-04-30-hist-5",
+      "text": "[⚙️配置] . 清理openclaw.json中skillhub插件的残留配置项",
+      "category": "⚙️配置",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-30",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已确认无残留"
+    },
+    {
+      "id": "2026-04-29-hist-6",
+      "text": "[⚙️配置] . 配置AI视觉服务的主备切换机制，测试自动故障转移能力",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-04-29",
+      "source": "historical_import",
+      "check_count": 1
+    },
+    {
+      "id": "2026-04-29-hist-7",
+      "text": "[📋流程] . 为当前流程优化项目设置关键验证节点和质量指标体系",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-04-29",
+      "source": "historical_import",
+      "check_count": 1
+    },
+    {
+      "id": "2026-04-29-hist-8",
+      "text": "[🔧自动] . 集成OCR工具链作为AI视觉的降级备选方案，测试图片信息提取能力",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-29",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/ocr_fallback.py"
+    },
+    {
+      "id": "2026-04-29-hist-9",
+      "text": "[📋流程] . 为流程优化项目设置关键验证节点和周度回顾机制",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-04-29",
+      "source": "historical_import",
+      "check_count": 1
+    },
+    {
+      "id": "2026-04-28-hist-10",
+      "text": "[🔧自动] . 创建Excel文件质量预检脚本，实施分级处理策略",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-28",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/excel_quality_check.py"
+    },
+    {
+      "id": "2026-04-28-hist-11",
+      "text": "[🔧自动] . 建立Excel处理工具链的版本锁定和自动化测试流程",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-28",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/excel_toolchain.py"
+    },
+    {
+      "id": "2026-04-28-hist-12",
+      "text": "[🔧自动] . 创建Excel文件预处理脚本，增加格式检测和降级处理机制",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-28",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/excel_preprocessor.py"
+    },
+    {
+      "id": "2026-04-28-hist-13",
+      "text": "[🔧自动] . 建立每周系统健康检查清单，主动清理技术债务",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-28",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/weekly_health_checklist.py"
+    },
+    {
+      "id": "2026-04-27-hist-14",
+      "text": "[📋流程] . 制定《会议材料制作Checklist》，纳入标准作业流程",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-04-27",
+      "source": "historical_import",
+      "check_count": 1
+    },
+    {
+      "id": "2026-04-27-hist-15",
+      "text": "[📋流程] . 设计《跨部门会议范围定义表》模板，用于协作项目的前置澄清",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-04-27",
+      "source": "historical_import",
+      "check_count": 1
+    },
+    {
+      "id": "2026-04-27-hist-16",
+      "text": "[📋流程] . 制定会议材料制作Checklist，纳入标准作业流程",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-04-27",
+      "source": "historical_import",
+      "check_count": 1
+    },
+    {
+      "id": "2026-04-27-hist-17",
+      "text": "[📋流程] . 设计《会议范围定义表》模板，用于跨部门协作的前置澄清",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-04-27",
+      "source": "historical_import",
+      "check_count": 1
+    },
+    {
+      "id": "2026-04-26-hist-18",
+      "text": "[🔧自动] . 创建插件卸载清理脚本，自动处理配置文件中的插件残留项",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-26",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/plugin_cleanup.py"
+    },
+    {
+      "id": "2026-04-26-hist-19",
+      "text": "[🔧自动] . 实施定时任务执行锁机制，防止并发执行导致的重复推送",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-26",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/cron_lock.py"
+    },
+    {
+      "id": "2026-04-26-hist-20",
+      "text": "[⚙️配置] . 全面审计所有定时任务配置位置，建立统一的cron任务管理清单",
+      "category": "⚙️配置",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-26",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已审计，发现crontab与openclaw cron重复"
+    },
+    {
+      "id": "2026-04-25-hist-21",
+      "text": "[📋流程] . 统一迁移所有定时任务到`/etc/cron.d/openclaw-cron`文件管理",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-04-25",
+      "source": "historical_import",
+      "check_count": 1,
+      "completion_note": "待清理crontab后完成"
+    },
+    {
+      "id": "2026-04-25-hist-22",
+      "text": "[⚙️配置] . 建立异常分级机制，将预期异常降级为INFO级别",
+      "category": "⚙️配置",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-25",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/daily/error_classifier.py"
+    },
+    {
+      "id": "2026-04-25-hist-23",
+      "text": "[⚙️配置] . 为定时任务添加执行频率监控和重复执行告警机制",
+      "category": "⚙️配置",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-25",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已创建 cron_health_monitor.py"
+    },
+    {
+      "id": "2026-04-25-hist-24",
+      "text": "[⚙️配置] . 创建标准化账单模板配置文件，实现账单格式参数化",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-04-25",
+      "source": "historical_import",
+      "check_count": 1
+    },
+    {
+      "id": "2026-04-24-hist-25",
+      "text": "[🔧自动] . 创建插件安装验证脚本，包含参数检查和格式验证",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-24",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/plugin_install_validator.py"
+    },
+    {
+      "id": "2026-04-24-hist-26",
+      "text": "[⚙️配置] . 为外部服务调用添加重试机制和失败统计",
+      "category": "⚙️配置",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-24",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成工具: scripts/utils/retry_utils.py (3次重试+指数退避)"
+    },
+    {
+      "id": "2026-04-24-hist-27",
+      "text": "[🔧自动] . 创建ClawHub命令验证脚本，避免无效参数安装失败",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-24",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/clawhub_validator.py"
+    },
+    {
+      "id": "2026-04-23-hist-28",
+      "text": "[🔧自动] . 开发配置健康检查脚本，监控关键任务和配置状态",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-23",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/config_health_check.py"
+    },
+    {
+      "id": "2026-04-23-hist-29",
+      "text": "[🔧自动] . 封装路径验证工具函数，在所有文件操作中统一使用",
+      "category": "🔧自动",
+      "status": "✅ 已完成",
+      "created_at": "2026-04-23",
+      "source": "historical_import",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已生成脚本: scripts/utils/path_utils.py"
+    },
+    {
+      "id": "2026-05-01-action-0",
+      "text": "[🔧自动] 开发定时任务执行连续性监控脚本，实现异常预警功能",
+      "category": "🔧自动",
+      "status": "⏳ 进行中",
+      "created_at": "2026-05-01",
+      "source": "daily_reflection",
+      "check_count": 0
+    },
+    {
+      "id": "2026-05-01-action-1",
+      "text": "[⚙️配置] 建立外部数据源健康检查机制，每日验证可用性",
+      "category": "⚙️配置",
+      "status": "⏳ 进行中",
+      "created_at": "2026-05-01",
+      "source": "daily_reflection",
+      "check_count": 0
+    },
+    {
+      "id": "2026-05-01-action-2",
+      "text": "[📋流程] 制定数据源故障应急预案，包含自动切换流程",
+      "category": "📋流程",
+      "status": "✅ 已完成",
+      "created_at": "2026-05-01",
+      "source": "daily_reflection",
+      "check_count": 0,
+      "completed_at": "2026-05-02",
+      "completion_note": "已创建应急预案文档: knowledge/ops/data-source-failover-plan.md"
+    },
+    {
+      "id": "2026-05-03-action-0",
+      "text": "[🔧自动] 实施异常日志分级处理机制，区分FATAL/ERROR/WARN/INFO等级",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-03",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-03-action-1",
+      "text": "[⚙️配置] 为外部调用接口实现指数退避重试策略，最大等待60秒",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-03",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-03-action-2",
+      "text": "[📋流程] 建立异常统计日报，监控重试成功率指标",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-03",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-04-action-0",
+      "text": "[🔧自动] 修改文件命名规则，为反思文件添加精确时间戳避免命名冲突",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-04",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-04-action-1",
+      "text": "[⚙️配置] 创建统一路径配置文件paths.json，集中管理所有关键路径",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-04",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-04-action-2",
+      "text": "[📋流程] 建立路径有效性检查机制，执行文件操作前验证路径存在性",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-04",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-05-action-0",
+      "text": "[🔧自动] 建立插件配置一致性检查机制，自动清理无效插件配置",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-05",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-05-action-1",
+      "text": "[⚙️配置] 实施文件读取前的存在性验证，建立缺失文件恢复机制",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-05",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-05-action-2",
+      "text": "[📋流程] 创建数据完整性检查脚本，每日验证关键数据文件",
+      "category": "🔧自动",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-05",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-06-action-0",
+      "text": "[🔧自动] 创建系统健康检查清单，每日验证所有依赖项存在性",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-06",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-06-action-1",
+      "text": "[⚙️配置] 建立插件状态同步机制，定期验证配置与实际安装状态",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-06",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-06-action-2",
+      "text": "[📋流程] 为每个插件创建安装/卸载清单，确保步骤完整执行",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-06",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-09-action-0",
+      "text": ". [⚙️配置] 修改 `openclaw.json` 的 `plugins.allow` 策略，添加 `\"ai\"` 权限以恢复反思脚本。",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-09",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-09-action-1",
+      "text": ". [🔧自动] 开发基于无头浏览器的 HTML/PNG 报表生成与截图验证脚本（包含 JS 错误捕获逻辑）。",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-09",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-09-action-2",
+      "text": ". [📋流程] 建立《全局配置变更前检查清单》，强制要求修改权限/网络配置后对核心定时任务进行 dry-run 联调。",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-09",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-10-action-0",
+      "text": ". [🔧自动] 为飞书消息发送器开发净化/回退脚本。",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-10",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-10-action-1",
+      "text": ". [⚙️配置] 使用新基准更新 `openclaw.json`，确保升级到 4.2 后没有遗留的配置漂移（检查 `xai` 的 apiKey 和 command not found 错误）。",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-10",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-10-action-2",
+      "text": ".  **起草回复（使用中文，严格遵守结构）：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-10",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-12-action-0",
+      "text": "行动项进展回顾",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-12",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-16-action-0",
+      "text": ".  **行动项进展回顾**：",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-16",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-16-action-1",
+      "text": ".  **最终复查**：",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-16",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-19-action-0",
+      "text": ".  **处理输入并识别关键事件：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-19",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-19-action-1",
+      "text": ".  **起草反思点（对照历史去重）：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-19",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-19-action-2",
+      "text": ".  **起草亮点：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-19",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-20-action-0",
+      "text": "026-05-20 的实际上下文仅仅是“睡眠”日志。",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-20",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-20-action-1",
+      "text": ".  系统在“睡眠模式”下运行，回放了旧记忆（4月1日-9日），且“没有出现强烈模式”。",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-20",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-20-action-2",
+      "text": ".  每周安全配置巡检运行了（`bcf8f252-0549-4c74-977c-78e500bb254a weekly-security-config-check`）。",
+      "category": "⚙️配置",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-20",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-22-action-0",
+      "text": ".  **分析具体事件（2026-05-22）：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-22",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-22-action-1",
+      "text": ".  **起草反思（连问3个为什么）：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-22",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-22-action-2",
+      "text": ".  **格式化输出：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-22",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-28-action-0",
+      "text": ". **分析具体事件（2026-05-28）：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-28",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-28-action-1",
+      "text": ". **起草反思（连问3个为什么）：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-28",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-28-action-2",
+      "text": ". **起草“做得好的”（亮点）：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-28",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-29-action-0",
+      "text": ".  **评估输入数据（2026-05-29）：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-29",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-29-action-1",
+      "text": ".  **起草反思：**",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-29",
+      "source": "daily_reflection",
+      "check_count": 1
+    },
+    {
+      "id": "2026-05-29-action-2",
+      "text": ".  在 Light Sleep 处理期间，提取了 4 个主题（`user`、`heartbeat-ok`、`heartbeat.md`、`context`），但全部被赋予 0.00 置信度并保持“staged”状态。",
+      "category": "📋流程",
+      "status": "✅ 可能完成",
+      "created_at": "2026-05-29",
+      "source": "daily_reflection",
+      "check_count": 1
+    }
+  ]
+}

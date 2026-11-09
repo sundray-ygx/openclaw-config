@@ -1,0 +1,90 @@
+==================================================
+ NAS 恢复 S7 — gateway 真启动  2026-10-31 08:28:52
+==================================================
+✅ 主机守卫通过: enjoysynology
+
+########## A. 前置盘点（只读） ##########
+/usr/local/bin/bw
+2026.7.0
+-rwx------ 1 root root 141537838 Aug 14 11:25 /usr/local/bin/bw
+/root/.hermes/.bw_session ❌缺失（rootfs 丢失，预期内）
+/root/.hermes/.bw_password ❌缺失（rootfs 丢失，预期内）
+
+########## B. 重建 load_secrets 脚本（已批准变更） ##########
+total 20
+drwx------  2 root root 4096 Oct 31 08:29 .
+drwx------ 16 root root 4096 Oct 31 08:29 ..
+-rwx------  1 root root 4633 Oct 31 08:29 load_secrets.py
+-rwx------  1 root root  293 Oct 31 08:29 load_secrets.sh
+
+########## C. load_secrets 试跑（--check + 实跑） ##########
+[load_secrets] WARN: bw session 缺失，已用 .env 回退生成 .env.vaultwarden（过渡策略）
+--- 实跑 ---
+[load_secrets] WARN: bw session 缺失，已用 .env 回退生成 .env.vaultwarden（过渡策略）
+退出码: 0
+-rw------- 1 root root 1267 Oct 31 08:29 /root/.hermes/.env.vaultwarden
+键数: 11
+
+########## D. gateway 启动（已批准变更） ##########
+active
+--- journal 最近 25 行 ---
+Oct 31 08:28:51 enjoysynology systemd[1]: Starting Hermes Agent Gateway...
+Oct 31 08:28:51 enjoysynology systemd[1]: hermes-gateway.service: control process exited, code=exited status=127
+Oct 31 08:28:51 enjoysynology systemd[1]: Failed to start Hermes Agent Gateway.
+Oct 31 08:28:51 enjoysynology systemd[1]: Unit hermes-gateway.service entered failed state.
+Oct 31 08:28:51 enjoysynology systemd[1]: hermes-gateway.service failed.
+Oct 31 08:28:51 enjoysynology hermes-gateway[3153]: /bin/bash: /root/.hermes/scripts/load_secrets.sh: No such file or directory
+Oct 31 08:28:56 enjoysynology systemd[1]: hermes-gateway.service holdoff time over, scheduling restart.
+Oct 31 08:28:56 enjoysynology systemd[1]: Starting Hermes Agent Gateway...
+Oct 31 08:28:56 enjoysynology hermes-gateway[3565]: /bin/bash: /root/.hermes/scripts/load_secrets.sh: No such file or directory
+Oct 31 08:28:56 enjoysynology systemd[1]: hermes-gateway.service: control process exited, code=exited status=127
+Oct 31 08:28:56 enjoysynology systemd[1]: Failed to start Hermes Agent Gateway.
+Oct 31 08:28:56 enjoysynology systemd[1]: Unit hermes-gateway.service entered failed state.
+Oct 31 08:28:56 enjoysynology systemd[1]: hermes-gateway.service failed.
+Oct 31 08:29:02 enjoysynology systemd[1]: hermes-gateway.service holdoff time over, scheduling restart.
+Oct 31 08:29:02 enjoysynology systemd[1]: Starting Hermes Agent Gateway...
+Oct 31 08:29:02 enjoysynology hermes-gateway[3671]: /bin/bash: /root/.hermes/scripts/load_secrets.sh: No such file or directory
+Oct 31 08:29:02 enjoysynology systemd[1]: hermes-gateway.service: control process exited, code=exited status=127
+Oct 31 08:29:02 enjoysynology systemd[1]: Failed to start Hermes Agent Gateway.
+Oct 31 08:29:02 enjoysynology systemd[1]: Unit hermes-gateway.service entered failed state.
+Oct 31 08:29:02 enjoysynology systemd[1]: hermes-gateway.service failed.
+Oct 31 08:29:04 enjoysynology systemd[1]: Starting Hermes Agent Gateway...
+Oct 31 08:29:04 enjoysynology hermes-gateway[3764]: [load_secrets] WARN: bw session 缺失，已用 .env 回退生成 .env.vaultwarden（过渡策略）
+Oct 31 08:29:04 enjoysynology systemd[1]: Started Hermes Agent Gateway.
+Oct 31 08:29:12 enjoysynology hermes-gateway[3768]: WARNING gateway.session: gateway.session: pruning stale sessions.json entry 'agent:main:feishu:dm:oc_135c7ddfef5c3a57f2a37e7dd092f267:om_x100b611ec58b84a4dffbc4491d31198' -> 20261029_100306_829c225a (end_reason='session_reset'); left by a crashed gateway
+Oct 31 08:29:12 enjoysynology hermes-gateway[3768]: WARNING gateway.session: gateway.session: pruning stale sessions.json entry 'agent:main:feishu:dm:oc_135c7ddfef5c3a57f2a37e7dd092f267:omt_1987207d468f5a53' -> 20261029_102447_0d475113 (end_reason='session_reset'); left by a crashed gateway
+
+########## E. 启动后观察（90s） ##########
+active
+--- 飞书/模型连接迹象 ---
+Oct 31 08:29:12 enjoysynology hermes-gateway[3768]: WARNING gateway.session: gateway.session: pruning stale sessions.json entry 'agent:main:feishu:dm:oc_135c7ddfef5c3a57f2a37e7dd092f267:om_x100b611ec58b84a4dffbc4491d31198' -> 20261029_100306_829c225a (end_reason='session_reset'); left by a crashed gateway
+Oct 31 08:29:12 enjoysynology hermes-gateway[3768]: WARNING gateway.session: gateway.session: pruning stale sessions.json entry 'agent:main:feishu:dm:oc_135c7ddfef5c3a57f2a37e7dd092f267:omt_1987207d468f5a53' -> 20261029_102447_0d475113 (end_reason='session_reset'); left by a crashed gateway
+Oct 31 08:29:15 enjoysynology hermes-gateway[3768]: [Lark] [2026-10-31 08:29:15,254] [INFO] connected to wss://msg-frontier.feishu.cn/ws/v2?fpid=493&aid=552564&device_id=7702622458100796664&access_key=8023d0c8d5c36bf68cc718191f7cb77e&service_id=33554678&ticket=1e1dd327-0e9d-4630-a03d-2d16492e59ec [conn_id=7702622458100796664]
+--- 进程 ---
+root      3768  6.7  4.4 1120000 262696 ?      Ssl  08:29   0:06 /usr/local/lib/hermes-agent/venv/bin/python -m hermes_cli.main gateway run --replace
+
+########## F. console-api 日志诊断（只读） ##########
+
+Node.js v20.20.2
+node:internal/modules/esm/resolve:283
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/app/data/cache.mjs' imported from /app/routes/system.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:283:11)
+    at moduleResolve (node:internal/modules/esm/resolve:952:10)
+    at defaultResolve (node:internal/modules/esm/resolve:1188:11)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:708:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:657:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:640:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:264:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:168:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///app/data/cache.mjs'
+}
+
+Node.js v20.20.2
+
+########## S7 完成 ##########
+结束: 2026-10-31 08:30:44
+输出文件: /tmp/nas-s7-20261031-082852.txt

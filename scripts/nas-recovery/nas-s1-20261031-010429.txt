@@ -1,0 +1,65 @@
+==================================================
+ NAS 恢复 S1 — 容器恢复  2026-10-31 01:04:29
+ 主机: enjoysynology
+==================================================
+
+########## A. 起步前快照（只读） ##########
+{"aspect":{"active":{"status":"stop","status_code":273,"status_description":"translate from systemd status"}},"description":"Status: [273], package is stopped","package":"ContainerManager","status":"stop"}
+注册表容器目录数: 12
+开始: 2026-10-31 01:04:30
+
+########## B. 启动 ContainerManager（已批准的变更） ##########
+{"action":"start","beta":false,"error":{"code":0},"finished":true,"language":"enu","last_stage":"started","package":"ContainerManager","pid":15035,"scripts":[{"code":0,"message":"","type":"start"}],"stage":"started","status":"running","success":true,"username":"","version":"24.0.2-1543"}
+synopkg start 退出码: 0
+{"aspect":{"active":{"status":"running","status_code":0,"status_description":"retrieve from status script"}},"description":"Status: [0], package is started","package":"ContainerManager","status":"running"}
+
+########## C. 轮询 docker daemon 就绪（最长 150s） ##########
+docker 命令: docker
+daemon 就绪（第 1 次探测, 01:08:48）
+
+########## D. 容器全量清单（含自启回归情况） ##########
+NAMES                    IMAGE                              STATUS                             PORTS
+survhl                   python:3.8-slim                    Exited (0) 25 hours ago            
+jellyfin                 jellyfin/jellyfin:latest           Up 2 minutes (healthy)             
+iptv-api                 guovern/iptv-api:latest            Up 2 minutes                       0.0.0.0:9978->8080/tcp, :::9978->8080/tcp
+new-api                  calciumion/new-api:latest          Up 3 minutes                       172.17.0.1:3000->3000/tcp
+survhl2                  python:3.8-slim                    Exited (0) 5 weeks ago             
+hardcore_moore           mwader/static-ffmpeg:6.1           Created                            
+projects-console-1       projects-console                   Restarting (1) 5 seconds ago       
+projects-console-api-1   projects-console-api               Exited (137) 3 hours ago           0.0.0.0:3300->3300/tcp, :::3300->3300/tcp
+newapi-bridge            nginx:alpine                       Up 3 minutes                       172.17.0.1:8081->80/tcp
+hermes-studio            ekkoye8888/hermes-web-ui:latest    Exited (0) 4 weeks ago             
+vaultwarden              vaultwarden/server:1.37.1          Up 27 seconds (health: starting)   0.0.0.0:3012->3012/tcp, :::3012->3012/tcp, 0.0.0.0:3011->80/tcp, :::3011->80/tcp
+sing-box                 ghcr.io/sagernet/sing-box:latest   Up 10 seconds                      
+--- 运行中数量 ---
+7
+--- RestartPolicy 对照（找出本应自启却没回来的） ---
+survhl | policy=on-failure | running=false
+jellyfin | policy=unless-stopped | running=true
+iptv-api | policy=unless-stopped | running=true
+new-api | policy=always | running=true
+survhl2 | policy=on-failure | running=false
+hardcore_moore | policy=no | running=false
+projects-console-1 | policy=unless-stopped | running=
+projects-console-api-1 | policy=unless-stopped | running=false
+newapi-bridge | policy=always | running=true
+hermes-studio | policy=unless-stopped | running=false
+vaultwarden | policy=unless-stopped | running=true
+sing-box | policy=unless-stopped | running=true
+
+########## E. 关键服务本地连通验证（NAS 本机视角） ##########
+vaultwarden(3011)  : HTTP 200
+vaultwarden-ws(3012) : HTTP 000CONN-FAIL
+newapi-docker0(3000) : HTTP 000CONN-FAIL
+vaultwarden /alive : HTTP 200
+
+########## F. 磁盘/内存收尾快照（只读） ##########
+Filesystem              Size  Used Avail Use% Mounted on
+/dev/md0                7.9G  2.2G  5.6G  29% /
+/dev/mapper/cryptvol_1  1.8T  726G  1.1T  41% /volume1
+              total        used        free      shared  buff/cache   available
+Mem:           5776         962         574         233        4239        4291
+
+########## S1 完成 ##########
+结束: 2026-10-31 01:09:05
+输出文件: /tmp/nas-s1-20261031-010429.txt

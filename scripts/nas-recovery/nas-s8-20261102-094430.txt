@@ -1,0 +1,50 @@
+==================================================
+ NAS 恢复 S8 — Node 运行时移植  2026-11-02 09:44:30
+==================================================
+✅ 主机守卫通过: enjoysynology
+
+########## A. 前置校验 ##########
+✅ 供体包在位 (58688335 bytes)
+sha256: af8b562ecb2f8b76bbf3f61deed23c3a897e72346de94a3611c8e3c6251fa5ee
+✅ sha 一致
+
+########## B. 解压供体（已批准变更） ##########
+tar 退出码: 0
+v24.22.2
+
+########## C. PATH 注入（已批准变更） ##########
+/volume1/aliyun_backup/nas-recovery/exec-S8.sh: line 45: /etc/profile.d/node-runtime.sh: No such file or directory
+chmod: cannot access '/etc/profile.d/node-runtime.sh': No such file or directory
+cat: /etc/profile.d/node-runtime.sh: No such file or directory
+
+########## D. 自检 ##########
+v24.22.2
+11.19.1
+/volume1/hermes-data/node-runtime/v24.22.2/bin/node
+v24.22.2
+/volume1/hermes-data/node-runtime/v24.22.2/bin/npm
+11.19.1
+
+########## E. hermes --tui 烟测（启动即退） ##########
+退出码: 0（124=超时被杀=其实TUI活着，也算通）
+hermes-tui: no TTY
+Installing TUI dependencies…
+
+Resume this session with:
+  hermes --tui --resume 20261030_175459_e05537
+  hermes --tui -c "DeepTutor项目解析与console学练测融合可行性评估"
+
+Session:        20261030_175459_e05537
+Title:          DeepTutor项目解析与console学练测融合可行性评估
+Messages:       28
+Tokens:         938046 (in 95709, out 3495, cache 838592, reasoning 250)
+判读：TUI 正常启动并退出
+
+########## F. ui-tui node_modules 状态（只读，判断是否需 npm install） ##########
+ui-tui: /volume1/hermes-data/hermes-agent-v0.19.0/ui-tui
+  node_modules ✅在位 (2.7M) — 无需 npm install
+  dist ✅在位（预构建）
+
+########## S8 完成 ##########
+结束: 2026-11-02 09:44:46
+输出文件: /tmp/nas-s8-20261102-094430.txt

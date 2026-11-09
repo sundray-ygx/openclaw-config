@@ -1,31 +1,10 @@
-# HEARTBEAT.md - 定时任务处理
+# HEARTBEAT.md — 心跳清单（2026-10-06 起）
 
-## 早间简报
-**触发条件**: 每天 8:00 自动执行，无需确认
+## 网关内存告警口径（硬规则）
+- 用**进程 RSS**（`ps -o rss= -p $(pgrep -f openclaw-gateway | head -1)`），阈值 **750M** 才报
+- ⚠️ **勿用 cgroup `MemoryCurrent`**——它含可回收 page cache，会把 68% 真实占用报成 94% 假警报（2026-10-06 诊断结论）
+- 该检查已内建在 `scripts/utils/heartbeat_syscheck.sh`（每小时 cron 零 LLM），心跳 turn **不要重复做**内存/磁盘/swap 检查（AGENTS.md 硬规则）
 
-**执行命令**:
-```bash
-python3 /root/scripts/morning_briefing.py
-```
-
-**包含内容**:
-- 🌤️ 深圳天气预报
-- 📧 新增邮件汇总
-- 📰 精选资讯（带AI摘要）
-
-**执行方式**: 自动触发，不询问用户
-
-## 手动测试
-```bash
-python3 /root/scripts/morning_briefing.py
-```
-
-## 记忆维护（每周一次）
-
-读取 `memory/heartbeat-state.json`，检查 `lastMemoryMaintenance` 字段。
-如果距今 >= 7 天：
-1. 读最近 7 天的 `memory/YYYY-MM-DD.md` 日志
-2. 提炼有价值的信息到对应文件（projects.md / lessons.md）
-3. 压缩已完成一次性任务的日志为一行结论
-4. 删除过期信息
-5. 更新 `heartbeat-state.json` 的 `lastMemoryMaintenance` 为今天
+## 重启策略（2026-10-06 起）
+- gateway 由 systemd timer **Mon/Thu 04:30** 定期重启（原每日，诊断确认无泄漏后降频）
+- 04:30 重启后 1 小时内 RSS 冲高（启动潮 ~800M）属正常，勿告警

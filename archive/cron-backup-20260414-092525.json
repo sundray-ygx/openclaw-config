@@ -1,0 +1,12 @@
+{
+  "backupTime": "$(date -Iseconds)",
+  "originalJobCount": 16,
+  "jobsRemoved": [
+    "NAS备份通知",
+    "周计划制定提醒",
+    "日计划生成",
+    "claude-budget-reminder",
+    "月反思报告",
+    "月度inbox整理提醒"
+  ]
+}

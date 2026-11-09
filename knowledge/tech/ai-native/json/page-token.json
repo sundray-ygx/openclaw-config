@@ -1,0 +1,31 @@
+{
+  "url": "http://10.65.134.124:8080/metrics/token-usage",
+  "title": "AI Native研发平台",
+  "timestamp": "2026-04-20T14:56:07.328211",
+  "tech_stack": {
+    "framework": "Vue",
+    "ui_library": "unknown"
+  },
+  "navigation": {
+    "tabs": []
+  },
+  "filters": {
+    "fields": []
+  },
+  "metric_cards": [],
+  "table": {
+    "headers": [],
+    "rows": [],
+    "row_count": 0
+  },
+  "breadcrumb": {
+    "items": []
+  },
+  "network_requests": [],
+  "api_calls": [
+    {
+      "_source": "no_api_detected",
+      "message": "未检测到任何 API 请求。可能原因：1) 页面使用 SSR；2) 使用 WebSocket；3) 需要先点击查询按钮触发请求。建议手动 F12 抓包确认。"
+    }
+  ]
+}

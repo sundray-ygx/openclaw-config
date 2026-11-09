@@ -1,0 +1,13 @@
+{
+  "backupTime": "2026-04-14T09:24:00+08:00",
+  "originalJobCount": 16,
+  "jobsRemoved": [
+    {"id": "86b2ca34-a5a0-4f56-b434-43fa98e1640f", "name": "NAS备份通知-main"},
+    {"id": "0fbc3577-3467-43fe-a47d-3bb0a6404345", "name": "周计划制定提醒-OpenClaw"},
+    {"id": "daed76d4-8400-4ab7-ac77-f59638259f3a", "name": "日计划生成"},
+    {"id": "c81ec6ba-edf2-4aec-aa35-eed2660edf71", "name": "claude-budget-reminder"},
+    {"id": "45bb07d7-5763-4453-90d1-7c2c52e7ffc7", "name": "月反思报告"},
+    {"id": "364f8d67-f2cc-436d-9a8d-6970b290a408", "name": "月度inbox整理提醒"}
+  ],
+  "retainedJobCount": 10
+}

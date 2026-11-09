@@ -1,0 +1,91 @@
+==================================================
+ NAS 恢复 S9 — Shell 环境恢复  2026-11-02 16:21:22
+==================================================
+✅ 主机守卫通过: enjoysynology
+
+########## A. 探测 (只读) ##########
+登录 shell: /bin/ash  (当前: exec-S9.sh)
+bash: /bin/bash
+vim:  /bin/vim  vi: /bin/vi
+TERM=xterm  tput colors: 无tput
+busybox ls --color: ✅支持
+grep --color: ✅
+--- D4 手动软链复核 (只读) ---
+node -> /usr/local/bin/node (v22.22.3)
+npm -> /usr/local/bin/npm (11.19.1)
+npx -> /usr/local/bin/npx (11.19.1)
+--- 现存 /etc/profile 尾部 3 行 ---
+if [ -f /etc.defaults/.bashrc_profile ]; then
+	source /etc.defaults/.bashrc_profile
+fi
+--- 现存 /root/.profile ---
+
+#This fixes the backspace when telnetting in.
+#if [ "$TERM" != "linux" ]; then
+#        stty erase
+#fi
+
+HOME=/root
+export HOME
+
+#only for console (ssh/telnet works w/o resize)
+isTTY=$(ps | grep $$ | grep tty)
+#only for bash (bash needs to resize and can support these commands)
+isBash=$(echo $BASH_VERSION)
+#only for interactive (not necessary for "su -")
+isInteractive=$(echo $- | grep i)
+
+if [ -n "$isTTY" -a -n "$isBash" -a -n "$isInteractive" ]; then
+	shopt -s checkwinsize
+	checksize='echo -en "\E7 \E[r \E[999;999H \E[6n"; read -sdR CURPOS;CURPOS=${CURPOS#*[}; IFS="?; \t\n"; read lines columns <<< "$(echo $CURPOS)"; unset IFS'
+	eval $checksize
+	# columns is 1 in Procomm ANSI-BBS
+	if [ 1 != "$columns" ]; then
+		export_stty='export COLUMNS=$columns; export LINES=$lines; stty columns $columns; stty rows $lines'
+		alias resize="$checksize; columns=\$((\$columns - 1)); $export_stty"
+		eval "$checksize; columns=$(($columns - 1)); $export_stty"
+
+		alias vim='function _vim(){ eval resize; TERM=xterm vi $@; }; _vim'
+	else
+		alias vim='TERM=xterm vi $@'
+	fi
+	alias vi='vim'
+	alias ps='COLUMNS=1024 ps'
+fi
+
+if [ "screen-256color" == $TERM ]; then
+	alias htop='TERM=screen htop'
+elif [ "xterm-256color" == $TERM ]; then
+	alias htop='TERM=xterm htop'
+fi
+
+[ -f ".profile.size_check" ] && . .profile.size_check
+
+########## B. 落地主副本 (已批准变更) ##########
+✅ profile-master.sh
+✅ vimrc (167 行, 忠实拷贝)
+✅ gitconfig (最小化)
+
+########## C. 薄指针落地 (已批准变更, 全部幂等) ##########
+/etc/profile: ✅ 追加薄指针
+/root/.profile: ✅ 写入
+/root/.vimrc -> master: ✅
+/root/.gitconfig -> master: ✅
+✅ restore.sh (自愈脚本)
+
+########## D. 验证 ##########
+--- 模拟全新登录 (env -i, 无继承) ---
+PS1=\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ 
+PATH=/volume1/hermes-data/node-runtime/v24.22.2/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/syno/sbin:/usr/syno/bin:/usr/loca
+dir='ls -al'
+grep='grep --color=auto'
+ll='ls -la'
+ls='ls --color=auto'
+--- vimrc 冒烟 (vim 存在才跑) ---
+vim 加载 vimrc 退出码: 1 (0=干净)
+--- git 冒烟 ---
+status
+gitconfig ✅
+
+########## S9 完成 ##########
+结束: 2026-11-02 16:21:26

@@ -1,9 +1,40 @@
 ---
 name: security-audit
-description: Skill/MCP 安装前安全审计工具。在安装任何 Skill 或 MCP 扩展前自动执行安全检查，扫描代码和文档中的恶意指令、后门、密钥硬编码等风险。发现风险直接拦截，推送管理员确认。触发条件：安装新 Skill/MCP 前必须执行。
+description: Skill/MCP 安装前安全审计工具 V2。增强版支持语义意图分析、依赖包 CVE 扫描、供应链安全检查。在安装任何 Skill 或 MCP 扩展前自动执行安全检查，扫描代码和文档中的恶意指令、后门、密钥硬编码等风险。发现风险直接拦截，推送管理员确认。触发条件：安装新 Skill/MCP 前必须执行。
 ---
 
-# Security Audit Skill - Skill/MCP 安装前安全审计
+# Security Audit Skill V2 - Skill/MCP 安装前安全审计
+
+## 快速使用
+
+```bash
+# 审计本地 Skill
+python3 ~/.openclaw/workspace/skills/security-audit/scripts/audit_skill.py <skill-path>
+
+# 审计并生成报告
+python3 ~/.openclaw/workspace/skills/security-audit/scripts/audit_skill.py <skill-path> -o /tmp/audit-report.md
+
+# 审计并在高危时发送告警
+python3 ~/.openclaw/workspace/skills/security-audit/scripts/audit_skill.py <skill-path> --alert
+```
+
+## 增强功能 (V2)
+
+### 1. 语义意图分析
+- 读取 SKILL.md 提取声称功能
+- 分析代码实际行为 (网络、文件、执行)
+- 检测声称功能与实际行为不匹配
+
+### 2. 依赖包安全检查
+- 扫描 requirements.txt 可疑包名 (typo-squatting)
+- 扫描 package.json 可疑依赖
+- 检测供应链攻击风险
+
+### 3. 标准化报告
+- 结构化风险分类 (高危/中危/低危)
+- 风险评分计算
+- Markdown 格式审计报告
+- 明确的通过/需审核/拒绝建议
 
 ## 审计触发条件
 

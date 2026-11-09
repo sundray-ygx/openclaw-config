@@ -1,0 +1,517 @@
+{
+  "version": 3,
+  "files": {
+    "scheduler:sessions/0450cdf7-aec8-48c8-87a3-c1ba09a3ff4f.jsonl": {
+      "mtimeMs": 1773790838662,
+      "size": 108999,
+      "contentHash": "3cc58c70ab5c92565668336dc69c82ad8c2c0e8237108b4600a6c1164d4981a2",
+      "lineCount": 22,
+      "lastContentLine": 22
+    },
+    "scheduler:sessions/05b5c75e-170f-47e9-9484-8899f016dea8.jsonl": {
+      "mtimeMs": 1773622563223,
+      "size": 7651,
+      "contentHash": "0a4acc44f3efa856bdcb9850e71ea6ed69061890293822cb97519049dab72b06",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/079165f8-1349-443e-8b54-e48c43e64bf5.jsonl": {
+      "mtimeMs": 1773997566498,
+      "size": 85979,
+      "contentHash": "63bdd5990648f124a58b690c0f1f3e716093105362fceff50809b7b602f3e4c2",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/079165f8-1349-443e-8b54-e48c43e64bf5.jsonl.reset.2026-03-20T09-02-41.929Z": {
+      "mtimeMs": 1773901704098,
+      "size": 686651,
+      "contentHash": "96fdcf3ae125df89ad2694b12f32cce2347f675bdf4035f8a880ade0e29570df",
+      "lineCount": 63,
+      "lastContentLine": 63
+    },
+    "scheduler:sessions/0cd90c7b-d868-437f-87c8-9927ff16303d.jsonl": {
+      "mtimeMs": 1773619634770,
+      "size": 35226,
+      "contentHash": "5fcc366d619e3ea2b848586f4b1f33601bd998ad4d2fd133df3d7ab5649a7757",
+      "lineCount": 3,
+      "lastContentLine": 3
+    },
+    "scheduler:sessions/0dcf5dc6-e590-4b3d-bb8c-992192034a55.jsonl": {
+      "mtimeMs": 1773622908918,
+      "size": 3868,
+      "contentHash": "8a4df4bc64f765671868f5ddf1ba1253bf3393729558aca83e6f735aaac8cb06",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/0e5cb4b8-da84-4209-a9d8-0d839ac605a2.jsonl": {
+      "mtimeMs": 1773997308242,
+      "size": 6032,
+      "contentHash": "866dbe9da309d3df3aa183754fb8203dc4fea77b0628451cae968f2f167a5160",
+      "lineCount": 3,
+      "lastContentLine": 3
+    },
+    "scheduler:sessions/0ebe7130-0c6b-4238-946e-a6cba4b7968b.jsonl.deleted.2026-03-21T00-14-35.940Z": {
+      "mtimeMs": 1773965422170,
+      "size": 3046,
+      "contentHash": "fa5aebe1a5aa964fb2be8636a74a24a28c2f255435d785f279feea390a762cfa",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/11ccd86b-6f0f-498e-9294-0d2dd4ecd133.jsonl.reset.2026-04-08T00-14-52.159Z": {
+      "mtimeMs": 1775173137505,
+      "size": 28306,
+      "contentHash": "84428ec058d966dfd69e1e51e44234b25ab63f017a28b8d01742d8d4763a434a",
+      "lineCount": 11,
+      "lastContentLine": 11
+    },
+    "scheduler:sessions/1ab4ef3f-3671-4dae-90cf-70374697c7fa.jsonl.reset.2026-03-22T07-48-10.321Z": {
+      "mtimeMs": 1774079625649,
+      "size": 6716,
+      "contentHash": "abd1dfcd285df2bbc4278f314d9e14af2cb30b6d1088d5fc7fd3faad8ec4ff82",
+      "lineCount": 4,
+      "lastContentLine": 4
+    },
+    "scheduler:sessions/1c0ccaca-3d5e-4ee1-abbb-9124653acc89.jsonl": {
+      "mtimeMs": 1774018830769,
+      "size": 3365,
+      "contentHash": "59e9f42a9395b7560addff3165b1664faef70a7ed9f035fac4bbbd6f437dc043",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/1c5193db-571f-48a7-a9dd-cc77976ec1d7.jsonl": {
+      "mtimeMs": 1773795678140,
+      "size": 6583,
+      "contentHash": "6b858cf6f7c76edc5389d60e8eb0841695bbacef2810350b180756e1ea11fae5",
+      "lineCount": 1,
+      "lastContentLine": 1
+    },
+    "scheduler:sessions/1ea517c4-7dff-483b-854d-205efe8d89c7.jsonl.deleted.2026-03-21T00-32-32.796Z": {
+      "mtimeMs": 1774053151737,
+      "size": 1988,
+      "contentHash": "ef3a3bf8258da85c8aa032c911c30816c145687234283ea656af064865012126",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/2a6c551d-1fe3-4c86-9578-98ff30a0dec4.jsonl.reset.2026-03-18T00-04-25.993Z": {
+      "mtimeMs": 1773723786084,
+      "size": 746582,
+      "contentHash": "0bbb6ad40de67f03567c918ee19268d49c9fc65f2494e458579605d323a8d76b",
+      "lineCount": 142,
+      "lastContentLine": 142
+    },
+    "scheduler:sessions/2caad300-5074-44c6-8ef2-82c49d350dd5.jsonl.deleted.2026-03-21T00-09-34.680Z": {
+      "mtimeMs": 1773965400159,
+      "size": 12605,
+      "contentHash": "daef684d63ecddf51177e409e9a18d0b027364eb32160cce06048a4304df2823",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/2cf6da5a-5b3e-4b4c-81c8-a104e1e5705a.jsonl.reset.2026-03-27T05-32-52.550Z": {
+      "mtimeMs": 1774484425870,
+      "size": 429224,
+      "contentHash": "b6ed7417047cfe2322933c339d9ffddb88ecd7561eaab5eb65b9857327f935cd",
+      "lineCount": 52,
+      "lastContentLine": 52
+    },
+    "scheduler:sessions/2eee1ec5-efc9-4e1a-902f-5a8570cd816b.jsonl.reset.2026-03-22T00-08-16.947Z": {
+      "mtimeMs": 1774052889737,
+      "size": 224727,
+      "contentHash": "515bb6269316fce498e764583426bfd15f1c96afc1a3fa8d23cb9396b0a82d81",
+      "lineCount": 38,
+      "lastContentLine": 38
+    },
+    "scheduler:sessions/3085f807-0778-4de4-a043-254e5c67ccc4.jsonl": {
+      "mtimeMs": 1774051328582,
+      "size": 39070,
+      "contentHash": "0c1cc96c3757cc32dedbd5ad5c8028e6d2c7ce16f8b78a16c50c8010046504c4",
+      "lineCount": 5,
+      "lastContentLine": 5
+    },
+    "scheduler:sessions/31b4614f-c050-413e-81c3-4e29ed4af987.jsonl.deleted.2026-03-21T00-32-38.093Z": {
+      "mtimeMs": 1774053157759,
+      "size": 2448,
+      "contentHash": "a2dfe1e0b333e873c9bcec3adb059aa510c6d67697756f383a7cd2b673a93533",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/3357b608-fffc-4484-94ca-bb902c809a4c.jsonl.deleted.2026-03-20T18-04-31.149Z": {
+      "mtimeMs": 1773943277334,
+      "size": 6008,
+      "contentHash": "7a6885801a65e3e356e67198c967c0c56a4faabce9940796cefad7403b69a02c",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/3add9d3c-a4b3-4f39-b327-ba85ce9a1705.jsonl.reset.2026-03-26T00-10-44.397Z": {
+      "mtimeMs": 1774395320318,
+      "size": 2307,
+      "contentHash": "f16e00c16024c333e9aa24dcc609ebe6f845948829bc614bb7173fd618096411",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/43be76a3-2a25-41e3-a019-057eb238377d.jsonl": {
+      "mtimeMs": 1777791578253,
+      "size": 59256,
+      "contentHash": "0f7cece8bb336790653bcac775e73b6955d95770168843c2c280c97bad7df98e",
+      "lineCount": 5,
+      "lastContentLine": 5
+    },
+    "scheduler:sessions/4bcc888c-e6e3-4d14-83d0-7cab91e55953.jsonl": {
+      "mtimeMs": 1773792392964,
+      "size": 3334,
+      "contentHash": "93e892580f2eb6c5ad607d36c4fe6fb2f5d48d24480aae819d9a1e6225d2017c",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/4e43250b-f745-48f8-a2ac-3cec526e09f6.jsonl.reset.2026-04-02T23-35-36.290Z": {
+      "mtimeMs": 1774589679134,
+      "size": 28824,
+      "contentHash": "7776524a80e515c8794cc47b5dc0a52d4b32ff48eb72f12a88e826264de5a9aa",
+      "lineCount": 4,
+      "lastContentLine": 4
+    },
+    "scheduler:sessions/51c8c3de-ad4a-4b40-a186-19d4923fee14.jsonl.reset.2026-05-03T06-57-14.892Z": {
+      "mtimeMs": 1777541603376,
+      "size": 40498,
+      "contentHash": "06caf08855d7e2483db8bcf4e24a7a5614986d7108835014626f4402d60c5fd1",
+      "lineCount": 5,
+      "lastContentLine": 5
+    },
+    "scheduler:sessions/5aa3040a-f8b9-4cd0-acab-7897b7373da3.jsonl": {
+      "mtimeMs": 1774053220008,
+      "size": 4938,
+      "contentHash": "ecaac10bbc7713a5bfe8cba7fa7ce2e7029d7e8bfe5e67a5276a174454faa62a",
+      "lineCount": 1,
+      "lastContentLine": 1
+    },
+    "scheduler:sessions/5b5ec6ae-ff40-4745-92e6-414988695e61.jsonl": {
+      "mtimeMs": 1774002642437,
+      "size": 36720,
+      "contentHash": "72277636a63356688088e5dead505e7e774722564b72275395f91afb1a49f73e",
+      "lineCount": 4,
+      "lastContentLine": 4
+    },
+    "scheduler:sessions/64fe652f-5f23-4bdd-a250-c19b25f6e05d.jsonl.reset.2026-03-21T05-27-51.875Z": {
+      "mtimeMs": 1774005042454,
+      "size": 192077,
+      "contentHash": "a6fbe681c9b3156d9247865b9058ff90947f0d480e80199b1cd023040ab5c8f5",
+      "lineCount": 9,
+      "lastContentLine": 9
+    },
+    "scheduler:sessions/667b9f2e-193a-4a2f-ad5f-e0fc0966e23d.jsonl": {
+      "mtimeMs": 1773741660050,
+      "size": 2644,
+      "contentHash": "d04fe8688d1d5c88c071aca46f70d7fa9e8b1e331ddcb879420f987fe0c3267d",
+      "lineCount": 1,
+      "lastContentLine": 1
+    },
+    "scheduler:sessions/6828e1d1-9b3b-429c-87ba-b281152de5df.jsonl.reset.2026-04-23T00-43-19.544Z": {
+      "mtimeMs": 1776297770434,
+      "size": 44921,
+      "contentHash": "65c855dab30b72fd03b59b4f848bbd8da040d3060ed18ee2f0bba6f4b5529e5d",
+      "lineCount": 4,
+      "lastContentLine": 4
+    },
+    "scheduler:sessions/69b3d579-07a9-48fc-995b-0ace544484e7.jsonl": {
+      "mtimeMs": 1773622956051,
+      "size": 6528,
+      "contentHash": "bd9c967db2fe7ae7b1c3324b472261f26ae0c9f283c5fe1d522d7633b87c4478",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/69ffd5f2-cc41-4c4e-b0e7-e5cbddea4dfc.jsonl.reset.2026-04-01T00-35-10.655Z": {
+      "mtimeMs": 1774653201165,
+      "size": 3510,
+      "contentHash": "e468054b066facfdcd7ca477e5fce110872081e24988c46848c713cb74bd03ad",
+      "lineCount": 1,
+      "lastContentLine": 1
+    },
+    "scheduler:sessions/6c1a87b4-3984-4be8-b053-98a81e2a44ac.jsonl.reset.2026-03-19T00-37-42.638Z": {
+      "mtimeMs": 1773793730138,
+      "size": 215651,
+      "contentHash": "5bfbcfaf006dfd7ce77c4badb117ce40b7d53d59f77a36b87ecbb66294b66d7b",
+      "lineCount": 24,
+      "lastContentLine": 24
+    },
+    "scheduler:sessions/6fdbd911-157b-4e9a-ba4f-a1ddd85f19aa.jsonl": {
+      "mtimeMs": 1773621723239,
+      "size": 35628,
+      "contentHash": "1001dcf17e08a28bf3d012ddd405c9cefa43e10d3b1a231062145fd77acf0c44",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/70682b26-2793-46e3-97d0-e974c4f1aa49.jsonl.reset.2026-03-17T03-11-13.083Z": {
+      "mtimeMs": 1773622647134,
+      "size": 27131,
+      "contentHash": "10c9b7cea468fb9c74ab254c6973dd56a90623976bd7b5a002bf5a828c08a2b3",
+      "lineCount": 7,
+      "lastContentLine": 7
+    },
+    "scheduler:sessions/7912c9b4-1fc9-4a8f-b715-f0ef29f586c8.jsonl": {
+      "mtimeMs": 1773966908507,
+      "size": 4570,
+      "contentHash": "80ee88bdd874c077924c3092eb23148e455e4d0459549946874ca53fdd829392",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/7fa46ce4-f2d1-4ff7-bf3a-6b22148af4a1.jsonl": {
+      "mtimeMs": 1774053223524,
+      "size": 2088,
+      "contentHash": "5b6024ecc631b4072ced142de0bb00183a6ed665c4b9aa5b5b9f324b1172e0a6",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/80e4bfae-ec60-432f-979c-3a6d96991ef6.jsonl.reset.2026-03-19T00-59-44.045Z": {
+      "mtimeMs": 1773841673087,
+      "size": 38301,
+      "contentHash": "90beebcc74e3564e0fe0a30548a6a16e3770c71d8762c1becd5ac06ea4591bfa",
+      "lineCount": 6,
+      "lastContentLine": 6
+    },
+    "scheduler:sessions/8d0597a7-760d-4577-8371-393dad8c03bf.jsonl.deleted.2026-03-20T15-03-49.211Z": {
+      "mtimeMs": 1773932412175,
+      "size": 3247,
+      "contentHash": "ec793e19bc6cd22b72027dc361087d56a582ee858046c52db377d275da733849",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/92aa562e-be56-4b4e-ba21-8305fd6b959b.jsonl": {
+      "mtimeMs": 1774365992878,
+      "size": 3510,
+      "contentHash": "f39108ffae5065ef5bdb3dd08a6d36538ed11dca90b125096caf79faa2ad6e69",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/9ced9a88-fc08-44f3-8b8e-842558b42117.jsonl": {
+      "mtimeMs": 1774051798993,
+      "size": 8652,
+      "contentHash": "c5c94a726204d82e6b37670acd8daed4d7522394449596ed974d29a2cfe00a56",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/a2fcc056-86cb-4b2c-8540-1d3ece4dfe75.jsonl": {
+      "mtimeMs": 1773966630108,
+      "size": 3724,
+      "contentHash": "c931d80a6601d882e759ee610c8d58717098ed505c2bb74068c5c1f026759bb3",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/a95c3a59-de05-4680-bbf7-9cc628d30555.jsonl.reset.2026-03-24T23-35-13.356Z": {
+      "mtimeMs": 1774365992291,
+      "size": 6681,
+      "contentHash": "64d3876ae5f2a428fb25d6a3a450789feefb982d817a74ac07326b7b40dc26e2",
+      "lineCount": 6,
+      "lastContentLine": 6
+    },
+    "scheduler:sessions/b0821947-5d28-4e8e-89d1-d7fa07a24945.jsonl": {
+      "mtimeMs": 1773619683635,
+      "size": 8010,
+      "contentHash": "1d05e39f947e9773ece23f3fe2bd0a54e4c3d258cdca0663ab73fc5783d3090a",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/bb5359c3-7bf2-4182-a232-bb39ae7af1b3.jsonl": {
+      "mtimeMs": 1773709260063,
+      "size": 2674,
+      "contentHash": "7b05f56e6e3058a1219925c60c629de80e3fdc0f92f12c7c0657992529472fa3",
+      "lineCount": 1,
+      "lastContentLine": 1
+    },
+    "scheduler:sessions/bbc0c91e-83dd-428c-8ce1-ae016d2bdd40.jsonl.reset.2026-03-27T23-12-57.324Z": {
+      "mtimeMs": 1774511574154,
+      "size": 44321,
+      "contentHash": "b180f1ac8a285475cbbaada5c95860860ff0b6b6b9853e2f3e16a7f502e3154a",
+      "lineCount": 11,
+      "lastContentLine": 11
+    },
+    "scheduler:sessions/bcaea16c-fd8c-4ba0-9fab-a9e390c33a48.jsonl.reset.2026-03-25T00-28-20.774Z": {
+      "mtimeMs": 1774366000835,
+      "size": 32171,
+      "contentHash": "ae0e162d26ee1b0f344db703b10a480d480b5151b574b8eac153c767ba688fb1",
+      "lineCount": 9,
+      "lastContentLine": 9
+    },
+    "scheduler:sessions/bfdeb07d-926a-4e0a-9a54-f19c6e63af7f.jsonl.deleted.2026-03-21T00-32-39.955Z": {
+      "mtimeMs": 1774053159539,
+      "size": 1776,
+      "contentHash": "66f55f73e5d4957cd5d093a61835fba81c50b0c586abc36bdcc327f183236e64",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/c7ed8f08-ebce-4415-8912-b5584627aece.jsonl.reset.2026-04-16T00-02-17.536Z": {
+      "mtimeMs": 1776211655906,
+      "size": 58120,
+      "contentHash": "4633dd8e0cb4f725ab2354947943d94a7bb0e4beba19e1780b4c838ed3fdd87c",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/c7f5df03-4101-4d27-9396-208cd37b9a9d.jsonl.reset.2026-04-30T09-04-34.002Z": {
+      "mtimeMs": 1777075841138,
+      "size": 25838,
+      "contentHash": "3dffbd62d1467667f6a0d9da4b00c08d163627cd1a2aea71d773f0999247c4c3",
+      "lineCount": 7,
+      "lastContentLine": 7
+    },
+    "scheduler:sessions/cd86d12a-6066-4ee1-a7e9-de22e7af6fad.jsonl.reset.2026-04-25T00-06-17.999Z": {
+      "mtimeMs": 1776905216788,
+      "size": 96389,
+      "contentHash": "0fbf4c4a5c1a9eeac7d312e1b75f936c9f1ab5a71af31c66787e726be1d77fb2",
+      "lineCount": 5,
+      "lastContentLine": 5
+    },
+    "scheduler:sessions/cf32a357-3a37-44a9-b395-c5572da24592.jsonl.reset.2026-04-15T00-06-09.348Z": {
+      "mtimeMs": 1775608204550,
+      "size": 353435,
+      "contentHash": "7c884c2de473283cbd1c5ff6e4386247c4847502a97a8ff205615eee6b241d8e",
+      "lineCount": 29,
+      "lastContentLine": 29
+    },
+    "scheduler:sessions/d53cc4b6-f48e-41fc-b055-e6bae1528f58.jsonl.reset.2026-03-16T00-52-05.556Z": {
+      "mtimeMs": 1773592112647,
+      "size": 20150,
+      "contentHash": "5f61ad7c60223bda5ba584113cac2d317962614ec5ab53e5b4a30c3d18f3aa67",
+      "lineCount": 10,
+      "lastContentLine": 10
+    },
+    "scheduler:sessions/dc1278ec-861a-4288-90b8-a8c1003bf12d.jsonl.reset.2026-03-23T00-17-33.141Z": {
+      "mtimeMs": 1774171132536,
+      "size": 233641,
+      "contentHash": "8bd3203d07f7b99318d6a53d65ffd8dc0164958c7c7442c820e1c8ed7c89f73b",
+      "lineCount": 35,
+      "lastContentLine": 35
+    },
+    "scheduler:sessions/dd729043-e929-4692-b261-570ce7ebec8f.jsonl.reset.2026-03-17T23-42-55.070Z": {
+      "mtimeMs": 1773723933852,
+      "size": 969786,
+      "contentHash": "c9956dbaad21a84c30f6b936cf753e4f7a12f4c57938a8e8056127b3de24650b",
+      "lineCount": 8,
+      "lastContentLine": 8
+    },
+    "scheduler:sessions/e099ab62-e6c7-433f-9f27-ef60c2267526.jsonl.deleted.2026-03-21T01-04-37.329Z": {
+      "mtimeMs": 1773968460045,
+      "size": 2072,
+      "contentHash": "c88f574db3d2fea3ac34e9e27e03a3ee82bb036f4e340c8b3fdac2202c11ce1a",
+      "lineCount": 1,
+      "lastContentLine": 1
+    },
+    "scheduler:sessions/e2799fc0-627a-413b-a4cd-d169782fc2e0.jsonl": {
+      "mtimeMs": 1775003917152,
+      "size": 30280,
+      "contentHash": "bd9e05c82a9626eb66e8d44f408f78d485320585c32ad39d674536a524ef5ea0",
+      "lineCount": 11,
+      "lastContentLine": 11
+    },
+    "scheduler:sessions/e30ac41f-31bc-49dd-8339-9f3101476480.jsonl.reset.2026-03-26T00-06-34.453Z": {
+      "mtimeMs": 1774398725142,
+      "size": 170413,
+      "contentHash": "384a4cc17fa7f2f9aed8d7fa0a0455c1d6fb521c3fe415a112ecec3204f15391",
+      "lineCount": 14,
+      "lastContentLine": 14
+    },
+    "scheduler:sessions/e7d1759b-7b0b-4a6f-9436-7afcbef6d170.jsonl.reset.2026-03-20T11-09-23.473Z": {
+      "mtimeMs": 1773926758265,
+      "size": 14162,
+      "contentHash": "6775cd73faa88cf55497f99adc253d1ab7cee407a14f1022f5633bb713255483",
+      "lineCount": 14,
+      "lastContentLine": 14
+    },
+    "scheduler:sessions/f275ab80-98b5-4027-935b-9f8aa66c94ce.jsonl": {
+      "mtimeMs": 1774029713223,
+      "size": 5931,
+      "contentHash": "e28b41be92caa215f99ba3c989796a7592361b7875a7380f8b769d3420f5dc18",
+      "lineCount": 2,
+      "lastContentLine": 2
+    },
+    "scheduler:sessions/f94c52dd-6703-4344-b051-034989c3cccc.jsonl.reset.2026-03-21T00-19-20.395Z": {
+      "mtimeMs": 1774019025855,
+      "size": 51759,
+      "contentHash": "26d3b8c92cf063e339b0718e01dd47e3294da66c6b1b58dcdf7d2acc95c26a1c",
+      "lineCount": 21,
+      "lastContentLine": 21
+    },
+    "scheduler:sessions/fcf5facb-c99d-4ebf-b977-735f6f5bdff5.jsonl.reset.2026-03-24T15-05-25.429Z": {
+      "mtimeMs": 1774194523189,
+      "size": 5936,
+      "contentHash": "14f3fa12c89c440c568febaab9cbf21100b212ff1c2a51b15e76c990922b3804",
+      "lineCount": 4,
+      "lastContentLine": 4
+    },
+    "scheduler:sessions/fd75f289-b466-452f-8cbe-1485b9752d1a.jsonl": {
+      "mtimeMs": 1774277099433,
+      "size": 79461,
+      "contentHash": "dbdd1aaa5e064e7fc1df4fb6c2a6335d2d81a5297b0ab0c64a9ba10613ceb735",
+      "lineCount": 8,
+      "lastContentLine": 8
+    },
+    "scheduler:sessions/fd75f289-b466-452f-8cbe-1485b9752d1a.jsonl.reset.2026-03-24T01-12-24.955Z": {
+      "mtimeMs": 1774225601760,
+      "size": 79461,
+      "contentHash": "dbdd1aaa5e064e7fc1df4fb6c2a6335d2d81a5297b0ab0c64a9ba10613ceb735",
+      "lineCount": 8,
+      "lastContentLine": 8
+    }
+  },
+  "seenMessages": {
+    "scheduler:0450cdf7-aec8-48c8-87a3-c1ba09a3ff4f": [],
+    "scheduler:05b5c75e-170f-47e9-9484-8899f016dea8": [],
+    "scheduler:079165f8-1349-443e-8b54-e48c43e64bf5": [],
+    "scheduler:0cd90c7b-d868-437f-87c8-9927ff16303d": [],
+    "scheduler:0dcf5dc6-e590-4b3d-bb8c-992192034a55": [],
+    "scheduler:0e5cb4b8-da84-4209-a9d8-0d839ac605a2": [],
+    "scheduler:0ebe7130-0c6b-4238-946e-a6cba4b7968b": [],
+    "scheduler:11ccd86b-6f0f-498e-9294-0d2dd4ecd133": [],
+    "scheduler:1ab4ef3f-3671-4dae-90cf-70374697c7fa": [],
+    "scheduler:1c0ccaca-3d5e-4ee1-abbb-9124653acc89": [],
+    "scheduler:1c5193db-571f-48a7-a9dd-cc77976ec1d7": [],
+    "scheduler:1ea517c4-7dff-483b-854d-205efe8d89c7": [],
+    "scheduler:2a6c551d-1fe3-4c86-9578-98ff30a0dec4": [],
+    "scheduler:2caad300-5074-44c6-8ef2-82c49d350dd5": [],
+    "scheduler:2cf6da5a-5b3e-4b4c-81c8-a104e1e5705a": [],
+    "scheduler:2eee1ec5-efc9-4e1a-902f-5a8570cd816b": [],
+    "scheduler:3085f807-0778-4de4-a043-254e5c67ccc4": [],
+    "scheduler:31b4614f-c050-413e-81c3-4e29ed4af987": [],
+    "scheduler:3357b608-fffc-4484-94ca-bb902c809a4c": [],
+    "scheduler:3add9d3c-a4b3-4f39-b327-ba85ce9a1705": [],
+    "scheduler:43be76a3-2a25-41e3-a019-057eb238377d": [],
+    "scheduler:4bcc888c-e6e3-4d14-83d0-7cab91e55953": [],
+    "scheduler:4e43250b-f745-48f8-a2ac-3cec526e09f6": [],
+    "scheduler:51c8c3de-ad4a-4b40-a186-19d4923fee14": [],
+    "scheduler:5aa3040a-f8b9-4cd0-acab-7897b7373da3": [],
+    "scheduler:5b5ec6ae-ff40-4745-92e6-414988695e61": [],
+    "scheduler:64fe652f-5f23-4bdd-a250-c19b25f6e05d": [],
+    "scheduler:667b9f2e-193a-4a2f-ad5f-e0fc0966e23d": [],
+    "scheduler:6828e1d1-9b3b-429c-87ba-b281152de5df": [],
+    "scheduler:69b3d579-07a9-48fc-995b-0ace544484e7": [],
+    "scheduler:69ffd5f2-cc41-4c4e-b0e7-e5cbddea4dfc": [],
+    "scheduler:6c1a87b4-3984-4be8-b053-98a81e2a44ac": [],
+    "scheduler:6fdbd911-157b-4e9a-ba4f-a1ddd85f19aa": [],
+    "scheduler:70682b26-2793-46e3-97d0-e974c4f1aa49": [],
+    "scheduler:7912c9b4-1fc9-4a8f-b715-f0ef29f586c8": [],
+    "scheduler:7fa46ce4-f2d1-4ff7-bf3a-6b22148af4a1": [],
+    "scheduler:80e4bfae-ec60-432f-979c-3a6d96991ef6": [],
+    "scheduler:8d0597a7-760d-4577-8371-393dad8c03bf": [],
+    "scheduler:92aa562e-be56-4b4e-ba21-8305fd6b959b": [],
+    "scheduler:9ced9a88-fc08-44f3-8b8e-842558b42117": [],
+    "scheduler:a2fcc056-86cb-4b2c-8540-1d3ece4dfe75": [],
+    "scheduler:a95c3a59-de05-4680-bbf7-9cc628d30555": [],
+    "scheduler:b0821947-5d28-4e8e-89d1-d7fa07a24945": [],
+    "scheduler:bb5359c3-7bf2-4182-a232-bb39ae7af1b3": [],
+    "scheduler:bbc0c91e-83dd-428c-8ce1-ae016d2bdd40": [],
+    "scheduler:bcaea16c-fd8c-4ba0-9fab-a9e390c33a48": [],
+    "scheduler:bfdeb07d-926a-4e0a-9a54-f19c6e63af7f": [],
+    "scheduler:c7ed8f08-ebce-4415-8912-b5584627aece": [],
+    "scheduler:c7f5df03-4101-4d27-9396-208cd37b9a9d": [],
+    "scheduler:cd86d12a-6066-4ee1-a7e9-de22e7af6fad": [],
+    "scheduler:cf32a357-3a37-44a9-b395-c5572da24592": [],
+    "scheduler:d53cc4b6-f48e-41fc-b055-e6bae1528f58": [],
+    "scheduler:dc1278ec-861a-4288-90b8-a8c1003bf12d": [],
+    "scheduler:dd729043-e929-4692-b261-570ce7ebec8f": [],
+    "scheduler:e099ab62-e6c7-433f-9f27-ef60c2267526": [],
+    "scheduler:e2799fc0-627a-413b-a4cd-d169782fc2e0": [],
+    "scheduler:e30ac41f-31bc-49dd-8339-9f3101476480": [],
+    "scheduler:e7d1759b-7b0b-4a6f-9436-7afcbef6d170": [],
+    "scheduler:f275ab80-98b5-4027-935b-9f8aa66c94ce": [],
+    "scheduler:f94c52dd-6703-4344-b051-034989c3cccc": [],
+    "scheduler:fcf5facb-c99d-4ebf-b977-735f6f5bdff5": [],
+    "scheduler:fd75f289-b466-452f-8cbe-1485b9752d1a": []
+  }
+}

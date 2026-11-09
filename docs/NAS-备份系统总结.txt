@@ -1,0 +1,39 @@
+NAS自动备份系统总结
+====================
+
+备份时间: 2026-03-31 02:03:07
+备份状态: 成功
+服务器IP: 47.119.177.194
+
+备份内容结构:
+----------
+├── 01-sing-box/        - 网络代理配置 (config.json)
+├── 02-frp/             - 内网穿透配置 (frps.toml, frpc.toml, 二进制文件)
+├── 03-scripts/         - 自动化脚本 (早间简报、日报、备份脚本、RSS抓取)
+├── 04-workspace/       - OpenClaw工作区核心文档 (配置文件)
+├── 05-openclaw-config/ - OpenClaw完整配置 (workspace打包)
+├── 06-security-scripts/ - 安全基线脚本 (配置检查、进程监控等)
+├── backup-info.json    - 备份元数据
+└── README.txt          - 详细恢复说明
+
+备份文件: server-backup-20260331.tar.gz
+备份路径: /aliyun_backup/server-backup/20260331/
+
+WebDAV配置:
+- URL: http://47.119.177.194:5005
+- 用户: aliyun-ygx
+- 基础路径: /aliyun_backup/server-backup/
+
+系统版本: 3.0 (Workspace结构优化)
+
+定时任务: 每天02:00执行
+
+恢复指南:
+----------
+1. sing-box: cp 01-sing-box/config.json /etc/sing-box/ && docker restart sing-box
+2. FRP: cp 02-frp/* /root/frp_0.60.0_linux_amd64/ && systemctl restart frps
+3. 脚本: cp 03-scripts/* /home/openclaw/.openclaw/workspace/scripts/
+4. 工作区: cp 04-workspace/* /home/openclaw/.openclaw/workspace/
+5. 完整配置: tar -xzf 05-openclaw-config/openclaw-workspace.tar.gz -C /home/openclaw/.openclaw/
+
+日志位置: /var/log/nas-backup.log

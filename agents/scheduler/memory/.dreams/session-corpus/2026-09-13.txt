@@ -1,0 +1,2 @@
+[scheduler/sessions/scheduler/d0fc4f51-9488-406a-9eae-3f4b7cb891e4#L15] Assistant: Audit complete — no review was possible because the workshop is empty. **What I checked:** - Listed `/root/.openclaw/agents/scheduler/agent/workshop-skills` via both directory listing and `find` (including hidden files): **zero entries** — no skill folders, no 
+[scheduler/sessions/scheduler/d0fc4f51-9488-406a-9eae-3f4b7cb891e4#L15] Assistant: expected here, the job owner should confirm the intended directory before the next run; if emptiness is expected, this run can be treated as a no-op.

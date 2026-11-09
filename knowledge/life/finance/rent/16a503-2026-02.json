@@ -1,0 +1,41 @@
+{
+  "room": "16A503",
+  "month": "2026-02",
+  "billing_date": "2026-04-25",
+  "rent": {
+    "amount": 5700,
+    "period": "1.28-2.28",
+    "notes": ""
+  },
+  "property_fee": {
+    "amount": 197.05,
+    "period": "2026-02",
+    "notes": ""
+  },
+  "water": {
+    "amount": 105.8,
+    "usage": 0,
+    "unit": "m³",
+    "period": "2026-02",
+    "notes": ""
+  },
+  "electric": {
+    "amount": 228.81,
+    "usage": 0,
+    "unit": "度",
+    "period": "2026-01",
+    "notes": "1月电费，按整月收取，前次度数3791，抄表底度3735"
+  },
+  "gas": {
+    "amount": 119.35,
+    "usage": 0,
+    "unit": "m³",
+    "period": "1.18-2.28",
+    "notes": ""
+  },
+  "total": 6351.01,
+  "payment_status": "已缴",
+  "paid_date": null,
+  "notes": "小计：6351元",
+  "created_at": "2026-04-25T12:05:00+08:00"
+}

@@ -1,0 +1,478 @@
+---
+{
+  "source": "memory",
+  "date": "2026-05-06",
+  "tags": [
+    "lessons",
+    "productivity",
+    "work",
+    "tech"
+  ],
+  "created_at": "2026-05-07T05:00:16.786076",
+  "status": "pending_review"
+}
+---
+
+# 记忆归档 - 2026-05-06
+
+**自动标签**: lessons, productivity, work, tech
+
+**建议归档位置**:
+- lessons
+- productivity
+- work
+- tech
+
+---
+
+## 原始内容
+
+## Light Sleep
+<!-- openclaw:dreaming:light:start -->
+- Candidate: 📊 概览: **日期**: 2026-05-04; **本地会话**: 5 个文件, 925 条消息; **飞书消息**: 3 条; **定时任务**: 3 个
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:7-10
+  - recalls: 0
+  - status: staged
+- Candidate: 📊 概览: **本地交互**: 17 次; **飞书交互**: 1 次; **错误/异常**: 87 条
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:11-13
+  - recalls: 0
+  - status: staged
+- Candidate: ⏰ 定时任务执行记录: **01:00** `7588045e-1221-472a-8c1e-14a28f619e73 Cron健康检查`: 运行Cron健康检查脚本: python3 /root/.openclaw/workspace/scripts/utils/cron_health_monito; **00:45** `0b5f7ab0-424c-49ff-aa03-69a2acf1a864 每日反思生成`: 执行每日反思脚本: python3 /root/.openclaw/workspace/scripts/daily/daily_reflec
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:16-18
+  - recalls: 0
+  - status: staged
+- Candidate: 💬 本地交互概要: **01:35** [Tue 2026-04-28 09:35 GMT+8] 采用 方案B，结构化摘要可采用现有 Notion 周复盘数据库的"周复盘"字段的模板，填充具体内容即可。先理解需求，做好规划，经我决策后，再执...; **01:59** [Tue 2026-04-28 09:59 GMT+8] 可以，执行; **02:01** [Tue 2026-04-28 09:59 GMT+8] 可以，执行; **02:04** [Tue 2026-04-28 10:04 GMT+8] 重新执行上周五的周复盘内容，Notion "周
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:21-24
+  - recalls: 0
+  - status: staged
+- Candidate: 💬 本地交互概要: **02:13** [Tue 2026-04-28 10:13 GMT+8] 之前的脚本是有数据库访问权限的，确认下是不是在环境变量中读取，请重新尝试; **02:14** [Tue 2026-04-28 10:13 GMT+8] 之前的脚本是有数据库访问权限的，确认下是不是在环境变量中读取，请重新尝试; **02:16** [Tue 2026-04-28 10:13 GMT+8] 之前的脚本是有数据库访问权限的，确认下是不是在环境变量中读取，请重新尝试; **02:16** [Tue 2026-04-28 10:15 GMT+8]
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:25-28
+  - recalls: 0
+  - status: staged
+- Candidate: 💬 本地交互概要: **02:33** [Tue 2026-04-28 10:33 GMT+8] 请进一步诊断并修复问题，针对摘要信息和详细信息都比较空洞，没有实质的内容，没有提取日复盘的内容做总结复盘，请优化周复盘机制。; **02:37** System (untrusted): [2026-04-28 10:36:53 GMT+8] Exec completed (quick-sl, code 0) :: -04-24 (第17周) 📊...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:29-30
+  - recalls: 0
+  - status: staged
+- Candidate: 💬 本地交互概要: _... 及其他 7 条_
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:31-31
+  - recalls: 0
+  - status: staged
+- Candidate: 📱 飞书交互概要: **21:01** 怎么有两个5-3的每日反思，请诊断问题并修复
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:34-34
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 💻 **15:33** │
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:38-38
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: ◇ Config warnings ──────────────────────────────────────────────────────╮ │ │ │ - plugins.entries.skillhub: plugin not found:...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:39-41
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 💻 **15:30** [feature-52273 8e0bb1d] Auto sync: 2026-05-02 23:30:09
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:42-42
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 41 files changed, 7965 insertions(+), 593 deletions(-) create mode 100644 archive/daily/2026-05/daily-report-2026-05-01.md create mode 100644 ...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:43-45
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 💻 **23:32** {
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:46-46
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: "status": "error", "tool": "read", "error": "ENOENT: no such file or directory, access '/root/.openclaw/workspace/knowledge/finance/支出记录.md'"
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:47-49
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: "status": "error", "tool": "read", "error": "ENOENT: no such file or directory, access '/root/.openclaw/workspace/memory/2026-04-28.md'"
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:52-54
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 💻 **00:30** 生成日报: 2026-04-27
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:56-56
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 时间范围: 2026-04-27 00:00 - 2026-04-27 23:59 找到 4 个本地会话文件 本地消息: 185 条 获取飞书消息...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:57-60
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 从缓存获取chat_id: oc_cc41677495d651af079e5c6286306c23 飞书消息: 4 条
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:61-62
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 推送飞书日报卡片... ✅ 飞书卡片发送成功
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:64-65
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: ✅ 记忆文件已生成: /root/...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:67-67
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 💻 **00:30** ✅ 日报已生成并推送
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:68-68
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: **2026-04-27 日报摘要**：
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:70-70
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 本地会话：4 个文件，185 条消息; 飞书消息：4 条; 定时任务：2 个; 本地交互：16 次
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:71-74
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 飞书交互：1 次; 错误/异常：14 条
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:75-76
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 日报卡片已发送至飞书，详情已归档至 `archive/daily/2026-04/`
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:78-78
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 💻 **01:32** System: [2026-04-28 09:32:12 GMT+8] Feishu[main] DM | ou_c2cde251e01a87fc09ba7561f76d8606 [msg:om_x100b5034af6610b8b2785b33cfd8cf0, reply_to:om_x100b518133f54ca8c334bfe407980c3, @bot]
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:79-79
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: Conversation in...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:81-81
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 💻 **01:32** {
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:82-82
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: "status": "error", "tool": "read", "error": "ENOENT: no such file or directory, access '/root/.openclaw/workspace/scripts/weekly/weekly_report.py'"
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:83-85
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 💻 **01:32** #!/usr/bin/env python3
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:87-87
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: Weekly Reflection Report - 周反思报告生成器 汇总本周每日反思，提取核心教训，生成周报
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:89-90
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: import os import re import json import requests
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:93-96
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: from datetime import datetime, timedelta
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:97-97
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: REFLECTION_DIR = "/ro...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:99-99
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: Weekly Review Skill - 自动周复盘生成器 v2.0.0 - 增强版：结构化教训与优化建议
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:102-103
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: import os import sys import json import requests
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:106-109
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: import re from datetime import datetime, timedelta from typing i...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:110-112
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: 💻 **01:36** 查询失败: 404 - {"object":"error","status":404,"code":"object_not_found","message":"Could not find database with ID: 345f5210-acd8-4c1a-8d69-27a55263e4e7. Make sure the relevant pages and databases are sh...; 💻 **01:36** # 📋 第17周复盘报告（2026-04-20 至 2026-04-24）
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:113-114
+  - recalls: 0
+  - status: staged
+- Candidate: ⚠️ 错误与异常: > 生成时间: 2026-04-24 19:45 > 数据源: memory日志 + Notion日复盘 + 每日反思 > 方法: AI 深度分析
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:116-118
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 本周呈现**系统性运维失控**基调。表面上完成了服务器迁移的技术动作，实际上暴露了严重的运维治理缺失——关键定时任务失效14...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:125-125
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **02:00** "date": review["date"]
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:126-126
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: work_lessons.append(lesson)
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:128-128
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: return {"tech": tech_lessons, "work": work_lessons}
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:130-130
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: def _...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:132-132
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **02:04** {
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:133-133
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: "status": "error", "tool": "exec", "error": "exec preflight: complex interpreter invocation detected; refusing to run without script preflight validation. Use a direct `python <file>.py` or `n...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:134-136
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 📅 本周范围: 2026-04-20 至 2026-04-24 (第17周) 📊 读取日复盘数据... 查询数据库失败: 404 - {"object":"error","status":404,"code":"object_not_found","message":"Could not find database with ID: 2bd7772a-4011-8033-...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:138-140
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **02:04** Notion 数据库访问失败（404），集成"账单收集"没有权限访问日复盘数据库。
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:141-141
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 这个脚本依赖两个 Notion 数据库：
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:143-143
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: `DAILY_REVIEW_DB_ID`（日复盘数据源）; `WEEKLY_REVIEW_DB_ID`（周复盘目标）
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:144-145
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 当前集成都没有权限访问它们。代码改造已完成，但执行需要：
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:147-147
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 在 Notion 中将这两个数据库共享给"账单收集"集成，或者; 更新脚本中的...; 💻 **02:18** Traceback (most recent call last):
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:148-150
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: File "<string>", line 4, in <module> KeyError: 'properties'
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:151-152
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: (Command exited with code 1)
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:154-154
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **02:18** {
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:155-155
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: "object": "error", "status": 404, "code": "object_not_found", "message": "Could not find page with ID: 3477772a-4011-81c4-8ee6-d6543639943c. Make sure the relevant pages and databases are sh...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:156-159
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **02:20** API Key 权限有问题，无法直接查询页面。不过脚本执行成功了，你可以直接去 Notion 查看"周复盘"字段的新格式。
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:160-160
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: **改造结果：**
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:162-162
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: | 飞书通知 | ✅ 成功 | | 本地归档 | ✅ 完成 |
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:168-169
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: **新格式预览（应...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:171-171
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **02:35** 🚀 开始生成周复盘...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:172-172
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 📅 本周范围: 2026-04-20 至 2026-04-24 (第17周) 📊 读取日复盘数据... ✅ 读取到 5 条日复盘 🤖 生成周复盘摘要...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:173-176
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: ✅ 生成摘要: 34 项成果, 1 条技术教训, 9 条工作教训 ✅ 找到周复盘页面: 3477772a-4011-81c4-8ee6-d6543639943c ⚠️ 未找到详细复盘子页面，正在创建... ✅ 创建详细...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:177-180
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **02:35** 数据提取修复了：34项成果、1条技术教训、9条工作教训。但详细子页面更新失败，让我看看归档文件确认内容质量：; 💻 **02:35** 数据提取成功了！内容丰富。但有几个问题需要进一步优化：
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:181-182
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: **成果太多（34条）**，需要去重和精简（安排和复盘重复提取）; **教训识别太宽泛**，把"未完成"的待办也当教训了; **详细子页面更新失败**，需要修复
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:184-186
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 让我做一轮精准优化：
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:188-188
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: "status": "error", "tool": "edit", "error": "Could not find the exact text in /root/.openclaw/workspace/skills/weekly-review/weekly_review.py. The old text must match exactly including all whi...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:190-192
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **02:36** def generate_summary(self, daily_reviews: List[Dict]) -> Dict:
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:193-193
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: """生成周复盘摘要 - 从日复盘内容中提取结构化信息""" all_items = [] # 所有每日工作条目 all_plans = []
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:194-196
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: for review in daily...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:198-198
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **02:36** 现在修复详细子页面更新失败的问题。看看 `append_detail_to_child_page` 的错误：; 💻 **02:37** ✅ 全部修复完成，重新执行成功。
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:199-200
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: **修复内容：**
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:202-202
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: | 问题 | 修复 | |------|------| | 字段映射错误 | 新增 `_split_review_reflection` 兼容合并字段 `今日复盘&反思` | | 成果重复（34条） | 改为只从复盘内容提取 + 模糊去重（20条） |
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:204-207
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: | 教训误判（9条） | 严格匹配末尾 `—未完成`/`—未完结` 标记（2条） |
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:208-208
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **00:30** 生成日报: 2026-04-28
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:210-210
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 时间范围: 2026-04-28 00:00 - 2026-04-28 23:59 找到 5 个本地会话文件 本地消息: 148 条 获取飞书消息...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:211-214
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 从缓存获取chat_id: oc_cc41677495d651af079e5c6286306c23 飞书消息: 9 条
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:215-216
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 推送飞书日报卡片... ✅ 飞书卡片发送成功
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:218-219
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **00:30** 生成日报: 2026-04-29
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:222-222
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 时间范围: 2026-04-29 00:00 - 2026-04-29 23:59 找到 3 个本地会话文件 本地消息: 234 条 获取飞书消息...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:223-226
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 从缓存获取chat_id: oc_cc41677495d651af079e5c6286306c23 飞书消息: 2 条
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:227-228
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **00:30** 生成日报: 2026-04-30
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:234-234
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 时间范围: 2026-04-30 00:00 - 2026-04-30 23:59 找到 4 个本地会话文件 本地消息: 127 条 获取飞书消息...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:235-238
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **00:30** 生成日报: 2026-05-01
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:246-246
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 时间范围: 2026-05-01 00:00 - 2026-05-01 23:59 找到 4 个本地会话文件 本地消息: 117 条 获取飞书消息...
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:247-250
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 从缓存获取chat_id: oc_cc41677495d651af079e5c6286306c23 飞书消息: 7 条
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:251-252
+  - recalls: 0
+  - status: staged
+- Candidate: 一、本周概况: 💻 **08:11** System: [2026-05-02 16:11:31 GMT+8] Feishu[main] DM | ou_c2cde251e01a87fc09ba7561f76d8606 [msg:om_x100b506f55e580a0b4ca0b9a28a0d73, reply_to:om_x100b5060edeeb8a0c3b65a9c2344378]
+  - confidence: 0.00
+  - evidence: memory/2026-05-04.md:258-258
+  - recalls: 0
+  - status: staged
+<!-- openclaw:dreaming:light:end -->
+
+
+---
+
+## 人工整理说明
+
+1. 阅读以上内容
+2. 确认标签是否准确
+3. 移动到对应目录: `knowledge/{category}/`
+4. 重命名为: `YYYY-MM-DD-title.md`
+5. 删除此 inbox 文件

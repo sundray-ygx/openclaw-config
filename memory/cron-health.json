@@ -1,0 +1,231 @@
+{
+  "checks": [
+    {
+      "time": "2026-09-15 00:02",
+      "total": 9,
+      "healthy": 7,
+      "issues": [
+        "⚠️ skill-collection-review-coding: 上次更新 2026-09-11 14:49 (> 48h)",
+        "⚠️ skill-collection-review-main: 上次更新 2026-09-12 23:03 (> 48h)"
+      ]
+    },
+    {
+      "time": "2026-09-15 00:04",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-09-17 00:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-09-19 00:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-09-21 00:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-09-22 17:52",
+      "total": 9,
+      "healthy": 8,
+      "issues": [
+        "⚠️ heartbeat-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-09-22 17:53",
+      "total": 9,
+      "healthy": 8,
+      "issues": [
+        "⚠️ heartbeat-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-09-23 11:05",
+      "total": 10,
+      "healthy": 8,
+      "issues": [
+        "⚠️ heartbeat-main: 上次运行失败 (status=error)",
+        "⚠️ GitHub每日同步: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-09-24 00:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-09-25 00:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-09-27 22:13",
+      "total": 9,
+      "healthy": 5,
+      "issues": [
+        "⚠️ heartbeat-main: 上次运行失败 (status=error)",
+        "⚠️ GitHub每日同步: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-09-28 06:03",
+      "total": 9,
+      "healthy": 7,
+      "issues": [
+        "⚠️ skill-collection-review-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-09-29 09:02",
+      "total": 9,
+      "healthy": 7,
+      "issues": [
+        "⚠️ skill-collection-review-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-09-30 05:02",
+      "total": 9,
+      "healthy": 6,
+      "issues": [
+        "⚠️ heartbeat-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-10-01 05:02",
+      "total": 9,
+      "healthy": 7,
+      "issues": [
+        "⚠️ skill-collection-review-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-10-01 05:03",
+      "total": 9,
+      "healthy": 7,
+      "issues": [
+        "⚠️ skill-collection-review-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-10-02 05:02",
+      "total": 9,
+      "healthy": 7,
+      "issues": [
+        "⚠️ skill-collection-review-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-10-02 05:03",
+      "total": 9,
+      "healthy": 7,
+      "issues": [
+        "⚠️ skill-collection-review-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-10-03 05:02",
+      "total": 9,
+      "healthy": 7,
+      "issues": [
+        "⚠️ skill-collection-review-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-10-03 05:03",
+      "total": 9,
+      "healthy": 7,
+      "issues": [
+        "⚠️ skill-collection-review-main: 上次运行失败 (status=error)",
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-10-04 05:02",
+      "total": 9,
+      "healthy": 8,
+      "issues": [
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-10-04 05:03",
+      "total": 9,
+      "healthy": 8,
+      "issues": [
+        "⚠️ skill-collection-review-scheduler: 上次运行失败 (status=error)"
+      ]
+    },
+    {
+      "time": "2026-10-05 05:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-10-05 05:03",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-10-06 05:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-10-06 05:03",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-10-07 05:03",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-10-07 11:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-10-08 05:02",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    },
+    {
+      "time": "2026-10-08 05:03",
+      "total": 9,
+      "healthy": 9,
+      "issues": []
+    }
+  ]
+}

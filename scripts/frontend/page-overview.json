@@ -1,0 +1,183 @@
+{
+  "url": "http://10.65.134.124:8080/metrics",
+  "title": "AI Native研发平台",
+  "timestamp": "2026-04-20T16:23:55.402214",
+  "tech_stack": {
+    "framework": "Vue",
+    "ui_library": "unknown"
+  },
+  "navigation": {
+    "tabs": []
+  },
+  "filters": {
+    "fields": [
+      {
+        "tag": "button",
+        "type": "submit",
+        "name": "",
+        "id": "",
+        "placeholder": "",
+        "value": "",
+        "text": "全部团队"
+      },
+      {
+        "tag": "button",
+        "type": "submit",
+        "name": "",
+        "id": "",
+        "placeholder": "",
+        "value": "",
+        "text": "全部职类"
+      },
+      {
+        "tag": "button",
+        "type": "submit",
+        "name": "",
+        "id": "",
+        "placeholder": "",
+        "value": "",
+        "text": "最近 30 天"
+      },
+      {
+        "tag": "input",
+        "type": "number",
+        "name": "",
+        "id": "",
+        "placeholder": "",
+        "value": "0.1"
+      },
+      {
+        "tag": "button",
+        "type": "submit",
+        "name": "",
+        "id": "",
+        "placeholder": "",
+        "value": "",
+        "text": "刷新"
+      }
+    ]
+  },
+  "metric_cards": [],
+  "table": {
+    "headers": [
+      "#",
+      "团队名称",
+      "AI-NATIVE人数\n!",
+      "TOTAL TOKENS",
+      "请求次数",
+      "人均费用/总费用（占比）",
+      "操作"
+    ],
+    "rows": [
+      [
+        "1",
+        "溯源研发部",
+        "123\n/ 132\n93%",
+        "21732.42M",
+        "329.16k",
+        "0.13 / 17.53 万元\n11.7%",
+        "成员明细"
+      ],
+      [
+        "2",
+        "挖掘研发部",
+        "12\n/ 13\n92%",
+        "978.49M",
+        "51.22k",
+        "0.07 / 0.97 万元\n0.6%",
+        "成员明细"
+      ],
+      [
+        "3",
+        "后端事务产品部",
+        "62\n/ 68\n91%",
+        "14481.31M",
+        "221.93k",
+        "0.10 / 6.81 万元\n4.5%",
+        "成员明细"
+      ],
+      [
+        "4",
+        "赋能产品研发部",
+        "28\n/ 31\n90%",
+        "2546.21M",
+        "63.79k",
+        "0.11 / 3.51 万元\n2.3%",
+        "成员明细"
+      ],
+      [
+        "5",
+        "模块研发部",
+        "46\n/ 51\n90%",
+        "6257.27M",
+        "127.99k",
+        "0.17 / 8.78 万元\n5.8%",
+        "成员明细"
+      ]
+    ],
+    "row_count": 20
+  },
+  "breadcrumb": {
+    "items": []
+  },
+  "network_requests": [
+    {
+      "duration": 12,
+      "type": "fetch",
+      "url": "http://10.65.134.124:8080/api/metrics/token-usage/dept-tree?team_type=department"
+    },
+    {
+      "duration": 15,
+      "type": "fetch",
+      "url": "http://10.65.134.124:8080/api/metrics/token-usage/dept-tree"
+    },
+    {
+      "duration": 20,
+      "type": "fetch",
+      "url": "http://10.65.134.124:8080/api/metrics/token-usage/zhilei-list"
+    },
+    {
+      "duration": 4636,
+      "type": "fetch",
+      "url": "http://10.65.134.124:8080/api/metrics/token-usage/stats-by-project"
+    }
+  ],
+  "api_calls": [
+    {
+      "method": "GET",
+      "requestBody": null,
+      "responseBody": "{\"data\":{\"total\":47,\"tree\":[{\"children\":[{\"children\":[{\"children\":[],\"dept_id\":905,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u5ba1\\u8ba1\\u7b2c\\u4e00\\u56e2\\u961f\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":906,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u9879\\u76ee\\u6280\\u672f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":904,\"dept_level\":1,\"member_count\":15,\"name\":\"\\u4e91\\u4fe1\\u606f\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":908,\"dept_level\":1,\"member_count\":0,\"name\":\"UEDC-\\u4e0a\\u6d77\\u5206\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":909,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u65e5\\u5fd7\\u76d1\\u63a7\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":910,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u805a\\u7c7b\\u4e1a\\u52a1\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":907,\"dept_level\":1,\"member_count\":34,\"name\":\"\\u524d\\u7aef\\u8fd0\\u8425\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":912,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u54cd\\u5e94\\u6280\\u672f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":913,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u6316\\u6398\\u7b2c\\u4e00\\u56e2\\u961f\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":914,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u68c0\\u7d22\\u5206\\u652f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":911,\"dept_level\":1,\"member_count\":25,\"name\":\"\\u5907\\u4efd\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":915,\"dept_level\":1,\"member_count\":6,\"name\":\"\\u654f\\u6377\\u4e2d\\u5fc3\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":916,\"dept_level\":1,\"member_count\":6,\"name\":\"\\u843d\\u5730\\u5907\\u4efd\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":918,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u7ec8\\u7aef\\u4e0a\\u7ebf\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":917,\"dept_level\":1,\"member_count\":1,\"name\":\"\\u843d\\u5730\\u6d4b\\u8bd5\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":920,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u4e91\\u4e09\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":921,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u526a\\u679d\\u7b97\\u6cd5\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":922,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u8bbf\\u95ee\\u6cbb\\u7406\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":919,\"dept_level\":1,\"member_count\":34,\"name\":\"\\u8c03\\u5ea6\\u8fd0\\u8425\\u90e8\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":903,\"dept_level\":0,\"member_count\":123,\"name\":\"AI\\u5b58\\u50a8\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":924,\"dept_level\":1,\"member_count\":9,\"name\":\"\\u54cd\\u5e94\\u5e73\\u53f0\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":926,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u540e\\u7aef\\u4e1a\\u52a1\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":927,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u56fe\\u8c31\\u5c0f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":928,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u6388\\u6743\\u5206\\u652f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":929,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u7814\\u7a76\\u6280\\u672f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":925,\"dept_level\":1,\"member_count\":9,\"name\":\"\\u57fa\\u7840\\u56e2\\u961f\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":930,\"dept_level\":1,\"member_count\":8,\"name\":\"\\u6280\\u672f\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":932,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u5ba1\\u8ba1\\u57fa\\u7840\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":931,\"dept_level\":1,\"member_count\":1,\"name\":\"\\u865a\\u62df\\u5e73\\u53f0\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":934,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u7ec4\\u4ef6D\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":935,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u8fc1\\u79fb\\u4e5d\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":933,\"dept_level\":1,\"member_count\":7,\"name\":\"\\u8bbf\\u95ee\\u5e73\\u53f0\\u90e8\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":923,\"dept_level\":0,\"member_count\":36,\"name\":\"SASE\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[{\"children\":[],\"dept_id\":938,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u5347\\u7ea7\\u8fd0\\u8425\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":937,\"dept_level\":1,\"member_count\":1,\"name\":\"\\u5f15\\u9886\\u751f\\u547d\\u5468\\u671f\\u7ba1\\u7406\\u90e8\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":936,\"dept_level\":0,\"member_count\":10,\"name\":\"\\u4e91\\u667a\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":939,\"dept_level\":0,\"member_coun...[truncated]",
+      "status": 200,
+      "timestamp": 1776673431111,
+      "url": "/api/metrics/token-usage/dept-tree?team_type=department",
+      "_source": "js_intercept"
+    },
+    {
+      "method": "GET",
+      "requestBody": null,
+      "responseBody": "{\"data\":{\"total\":47,\"tree\":[{\"children\":[{\"children\":[{\"children\":[],\"dept_id\":905,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u5ba1\\u8ba1\\u7b2c\\u4e00\\u56e2\\u961f\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":906,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u9879\\u76ee\\u6280\\u672f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":904,\"dept_level\":1,\"member_count\":15,\"name\":\"\\u4e91\\u4fe1\\u606f\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":908,\"dept_level\":1,\"member_count\":0,\"name\":\"UEDC-\\u4e0a\\u6d77\\u5206\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":909,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u65e5\\u5fd7\\u76d1\\u63a7\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":910,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u805a\\u7c7b\\u4e1a\\u52a1\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":907,\"dept_level\":1,\"member_count\":34,\"name\":\"\\u524d\\u7aef\\u8fd0\\u8425\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":912,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u54cd\\u5e94\\u6280\\u672f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":913,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u6316\\u6398\\u7b2c\\u4e00\\u56e2\\u961f\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":914,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u68c0\\u7d22\\u5206\\u652f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":911,\"dept_level\":1,\"member_count\":25,\"name\":\"\\u5907\\u4efd\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":915,\"dept_level\":1,\"member_count\":6,\"name\":\"\\u654f\\u6377\\u4e2d\\u5fc3\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":916,\"dept_level\":1,\"member_count\":6,\"name\":\"\\u843d\\u5730\\u5907\\u4efd\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":918,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u7ec8\\u7aef\\u4e0a\\u7ebf\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":917,\"dept_level\":1,\"member_count\":1,\"name\":\"\\u843d\\u5730\\u6d4b\\u8bd5\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":920,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u4e91\\u4e09\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":921,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u526a\\u679d\\u7b97\\u6cd5\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":922,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u8bbf\\u95ee\\u6cbb\\u7406\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":919,\"dept_level\":1,\"member_count\":34,\"name\":\"\\u8c03\\u5ea6\\u8fd0\\u8425\\u90e8\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":903,\"dept_level\":0,\"member_count\":123,\"name\":\"AI\\u5b58\\u50a8\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":924,\"dept_level\":1,\"member_count\":9,\"name\":\"\\u54cd\\u5e94\\u5e73\\u53f0\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":926,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u540e\\u7aef\\u4e1a\\u52a1\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":927,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u56fe\\u8c31\\u5c0f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":928,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u6388\\u6743\\u5206\\u652f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":929,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u7814\\u7a76\\u6280\\u672f\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":925,\"dept_level\":1,\"member_count\":9,\"name\":\"\\u57fa\\u7840\\u56e2\\u961f\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":930,\"dept_level\":1,\"member_count\":8,\"name\":\"\\u6280\\u672f\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":932,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u5ba1\\u8ba1\\u57fa\\u7840\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":931,\"dept_level\":1,\"member_count\":1,\"name\":\"\\u865a\\u62df\\u5e73\\u53f0\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[],\"dept_id\":934,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u7ec4\\u4ef6D\\u7ec4\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":935,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u8fc1\\u79fb\\u4e5d\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":933,\"dept_level\":1,\"member_count\":7,\"name\":\"\\u8bbf\\u95ee\\u5e73\\u53f0\\u90e8\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":923,\"dept_level\":0,\"member_count\":36,\"name\":\"SASE\\u7814\\u53d1\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[{\"children\":[{\"children\":[],\"dept_id\":938,\"dept_level\":1,\"member_count\":0,\"name\":\"\\u5347\\u7ea7\\u8fd0\\u8425\\u7ec4\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":937,\"dept_level\":1,\"member_count\":1,\"name\":\"\\u5f15\\u9886\\u751f\\u547d\\u5468\\u671f\\u7ba1\\u7406\\u90e8\",\"tags\":[],\"team_type\":\"department\"}],\"dept_id\":936,\"dept_level\":0,\"member_count\":10,\"name\":\"\\u4e91\\u667a\\u90e8\",\"tags\":[],\"team_type\":\"department\"},{\"children\":[],\"dept_id\":939,\"dept_level\":0,\"member_coun...[truncated]",
+      "status": 200,
+      "timestamp": 1776673431112,
+      "url": "/api/metrics/token-usage/dept-tree",
+      "_source": "js_intercept"
+    },
+    {
+      "method": "GET",
+      "requestBody": null,
+      "responseBody": "{\"data\":{\"total\":24,\"zhilei_list\":[\"AI\\u7c7b\",\"\\u4e00\\u7ea7\\u90e8\\u95e8\\u7c7b\",\"\\u4ea4\\u4ed8\\u9879\\u76ee\\u7ba1\\u7406\\u7c7b\",\"\\u4ea7\\u54c1\\u7c7b\",\"\\u4eba\\u529b\\u8d44\\u6e90\\u7c7b\",\"\\u5176\\u4ed6\",\"\\u5b89\\u5168\\u7c7b\",\"\\u5b9e\\u4e60\\u751f\",\"\\u5e73\\u53f0\\u8fd0\\u8425\\u7c7b\",\"\\u5f00\\u53d1\\u7c7b\",\"\\u6280\\u672f\\u4ea4\\u4ed8\\u7c7b\",\"\\u6570\\u636e\\u5206\\u6790\\u7c7b\",\"\\u6d41\\u7a0b\\u7ba1\\u7406\\u7c7b\",\"\\u6d4b\\u8bd5\\u7c7b\",\"\\u751f\\u6001\\u5408\\u4f5c\\u7c7b\",\"\\u7814\\u7a76\\u7c7b\",\"\\u7ba1\\u7406\\u7c7b\",\"\\u7ffb\\u8bd1\\u7c7b\",\"\\u884c\\u653f\\u7c7b\",\"\\u8bbe\\u8ba1\\u7c7b\",\"\\u8d28\\u91cf\\u7ba1\\u7406\\u7c7b\",\"\\u8f6f\\u4ef6\\u5f00\\u53d1\\u7c7b\",\"\\u8fd0\\u7ef4\\u7c7b\",\"\\u9879\\u76ee\\u7ba1\\u7406\\u7c7b\"]},\"success\":true}\n",
+      "status": 200,
+      "timestamp": 1776673431112,
+      "url": "/api/metrics/token-usage/zhilei-list",
+      "_source": "js_intercept"
+    },
+    {
+      "method": "POST",
+      "requestBody": "{\"days\":30,\"limit\":10000,\"start_date\":null,\"end_date\":null,\"teams\":[],\"zhilei\":[],\"ai_native_threshold\":0.1,\"team_type\":\"department\"}",
+      "responseBody": "{\"data\":{\"cards_by_zhilei\":{\"dev\":{\"ai_native_count\":1282,\"ai_native_percentage\":75,\"daily_external_median\":426598.53,\"daily_local_median\":92990.6,\"daily_total_median\":1186698.6,\"external_price\":914199.576946,\"external_tokens\":87615248376,\"local_price\":266466.062517,\"local_tokens\":74564712701,\"total_members\":1701,\"total_price\":1180665.639463,\"total_tokens\":162179961077},\"other\":{\"ai_native_count\":144,\"ai_native_percentage\":29,\"daily_external_median\":0.0,\"daily_local_median\":0.0,\"daily_total_median\":0.0,\"external_price\":133250.063391,\"external_tokens\":10063330248,\"local_price\":45499.323611,\"local_tokens\":15256535740,\"total_members\":498,\"total_price\":178749.387002,\"total_tokens\":25319865988},\"test\":{\"ai_native_count\":270,\"ai_native_percentage\":51,\"daily_external_median\":8710.75,\"daily_local_median\":3993.7,\"daily_total_median\":114425.75,\"external_price\":92750.507201,\"external_tokens\":10453414916,\"local_price\":52182.015703,\"local_tokens\":15515755677,\"total_members\":530,\"total_price\":144932.522904,\"total_tokens\":25969170593},\"total\":{\"ai_native_count\":1696,\"ai_native_percentage\":62,\"daily_external_median\":135262.87,\"daily_local_median\":7784.93,\"daily_total_median\":550902.17,\"external_price\":1140200.147538,\"external_tokens\":108131993540,\"local_price\":364147.401831,\"local_tokens\":105337004118,\"total_members\":2729,\"total_price\":1504347.54937,\"total_tokens\":213468997658}},\"daily_median\":550902.1666666666,\"filter_days\":30,\"projects\":[{\"ai_native_count\":123,\"children_data\":[{\"children\":[],\"dept_id\":1245,\"has_children\":false,\"name\":\"\\u54cd\\u5e94\\u7ba1\\u7406\\u90e8\"},{\"children\":[],\"dept_id\":1246,\"has_children\":false,\"name\":\"\\u5ba1\\u8ba1\\u7814\\u53d1\\u90e8\"},{\"children\":[],\"dept_id\":1247,\"has_children\":false,\"name\":\"\\u5de5\\u7a0b\\u4e2d\\u5fc3\"},{\"children\":[{\"children\":[],\"dept_id\":1249,\"has_children\":false,\"name\":\"\\u4ea4\\u4e92\\u6280\\u672f\\u7ec4\"},{\"children\":[],\"dept_id\":1250,\"has_children\":false,\"name\":\"\\u4f20\\u627fA\\u7ec4\"},{\"children\":[],\"dept_id\":1251,\"has_children\":false,\"name\":\"\\u5173\\u952e\\u4e8c\\u7ec4\"},{\"children\":[],\"dept_id\":1252,\"has_children\":false,\"name\":\"\\u96c6\\u7fa4\\u5206\\u6790\\u7ec4\"}],\"dept_id\":1248,\"has_children\":true,\"name\":\"\\u6548\\u80fd\\u5347\\u7ea7\\u7814\\u53d1\\u90e8\"},{\"children\":[{\"children\":[],\"dept_id\":1254,\"has_children\":false,\"name\":\"\\u4e1a\\u52a1\\u6d4b\\u8bd5\\u7ec4\"},{\"children\":[],\"dept_id\":1255,\"has_children\":false,\"name\":\"\\u684c\\u9762\\u4e1a\\u52a1\\u7ec4\"},{\"children\":[],\"dept_id\":1256,\"has_children\":false,\"name\":\"\\u7f51\\u683cH\\u7ec4\"},{\"children\":[],\"dept_id\":1257,\"has_children\":false,\"name\":\"\\u91cd\\u70b9\\u5f00\\u53d1\\u7ec4\"},{\"children\":[],\"dept_id\":1258,\"has_children\":false,\"name\":\"\\u96c6\\u6210\\u68c0\\u6d4b\\u7ec4\"}],\"dept_id\":1253,\"has_children\":true,\"name\":\"\\u6570\\u636e\\u7ba1\\u7406\\u90e8\"},{\"children\":[],\"dept_id\":1259,\"has_children\":false,\"name\":\"\\u6a21\\u5757\\u5e73\\u53f0\\u90e8\"},{\"children\":[],\"dept_id\":1260,\"has_children\":false,\"name\":\"\\u6c89\\u6dc0\\u4e1a\\u52a1\\u90e8\"},{\"children\":[],\"dept_id\":1261,\"has_children\":false,\"name\":\"\\u751f\\u6001\\u8d28\\u91cf\\u4e0e\\u6548\\u80fd\\u90e8\"},{\"children\":[],\"dept_id\":1262,\"has_children\":false,\"name\":\"\\u76d1\\u63a7\\u4e1a\\u52a1\\u90e8\"},{\"children\":[],\"dept_id\":1263,\"has_children\":false,\"name\":\"\\u77e5\\u8bc6\\u4e2d\\u5fc3\"},{\"children\":[],\"dept_id\":1264,\"has_children\":false,\"name\":\"\\u8d85\\u878d\\u5408\\u56e2\\u961f\"},{\"children\":[],\"dept_id\":1265,\"has_children\":false,\"name\":\"\\u96c6\\u6210\\u56e2\\u961f\"},{\"children\":[],\"dept_id\":1266,\"has_children\":false,\"name\":\"\\u96f6\\u4fe1\\u4efb\\u56e2\\u961f\"},{\"children\":[],\"dept_id\":1267,\"has_children\":false,\"name\":\"\\u9a71\\u52a8\\u56e2\\u961f\"}],\"completion_tokens\":135104934,\"dept_id\":1244,\"dept_level\":0,\"external_price\":138413.84709728067,\"external_request_count\":191205,\"external_tokens\":12180966334,\"has_children\":true,\"local_price\":36905.10919862756,\"local_request_count\":137956,\"local_tokens\":9551450569,\"project_name\":\"\\u6eaf\\u6e90\\u7814\\u53d1\\u90e8\",\"prompt_tokens\":25196639373,\"request_count\":329161,\"tags\":[],\"total_members\":132,\"total_price\":175318.95629590828,\"total_tokens\":21732416903},{\"ai_native_count\":12,\"children_data\":[],\"completion_tokens\":11711588,\"dept_id\":1189,\"dept_level\":0,\"external_price\":8936.183301150413,\"external_request_count\":48294,\"external_tokens\":760633436,\"has_children\":false,\"local_price\":787.6113003822684,\"local_request_count\":2924,\"local_tokens\":217859001,\"project_name\":\"\\u6316\\u6398\\u7814\\u53d1\\u90e8\",\"prompt_tokens\":1290314254,\"request_count\":51218,\"tags\":[],\"total_members\":13,\"total_price\":9723.794601532682,\"total_tokens\":978492437},{\"ai_native_count\":62,\"children_data\":[{\"children\":[],\"dept_id\":1049,\"has_children\":false,\"name\":\"\\u4f53\\u9a8c\\u8fd0\\u8425\\u90e8\"},{\"children\":[],\"dept_id\":1050,\"has_children\":false,\"name\":\"\\u4fe1\\u606f\\u7ba1\\u7406\\u90e8\"},{\"children\":[],\"dept_id\":1051,\"has_children\":false,\"name\":\"\\u524d\\u7aef\\u4e2d\\u5fc3\"},{\"children\":[],\"dept_id\":1052,\"has_children\":false,\"name\":\"\\u57fa\\u7840\\u8c03\\u5ea6\\u7814\\u53d1\\u90e8\"},{\"children\":[],\"dept_id\":1053,\"has_children\":false,\"name\":\"\\u8bad\\u7ec...[truncated]",
+      "status": 200,
+      "timestamp": 1776673435724,
+      "url": "/api/metrics/token-usage/stats-by-project",
+      "_source": "js_intercept"
+    }
+  ]
+}

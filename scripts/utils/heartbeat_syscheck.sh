@@ -1,0 +1,195 @@
+#!/bin/bash
+# ============================================================
+# 系统健康巡检 - 零LLM心跳（2026-09-28 由方案A'创建）
+# 背景: OpenClaw 心跳(agentTurn)曾每小时用 LLM 做系统巡检并推飞书
+#       (24次/天, ~180万 token/天)。本脚本接管确定性检查: 零 token,
+#       正常态静默写日志, 异常才推飞书卡片, 同类异常 1h 内不重复推。
+# cron: 0 * * * * (每小时)
+# 手动: bash heartbeat_syscheck.sh [--test-push]
+# ============================================================
+
+LOG_TAG="[syscheck]"
+STATE_DIR=/tmp/heartbeat-syscheck
+mkdir -p "$STATE_DIR"
+
+# --- 飞书推送(复用 ecs-failover-probe 同款已验证逻辑与凭证) ---
+FEISHU_APP_ID="cli_a93c6b1e1ff89bd4"
+FEISHU_APP_SECRET="gK0tXRdPTOHq3kZVKsP2PgZrUBoGSAsl"
+FEISHU_USER_ID="ou_d8ae71cd421f8954a9c97e973d4f03d1"
+
+send_card() { # $1=标题 $2=正文 $3=green|red
+  python3 - "$1" "$2" "$3" << 'PYEOF' >/dev/null 2>&1
+import sys, json, urllib.request, urllib.parse
+title, body, color = sys.argv[1:4]
+req = urllib.request.Request(
+    "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal",
+    data=json.dumps({"app_id": "cli_a93c6b1e1ff89bd4", "app_secret": "gK0tXRdPTOHq3kZVKsP2PgZrUBoGSAsl"}).encode(),
+    headers={"Content-Type": "application/json"}, method="POST")
+with urllib.request.urlopen(req, timeout=10) as resp:
+    token = json.loads(resp.read().decode()).get("tenant_access_token")
+card = {"config": {"wide_screen_mode": True},
+        "header": {"title": {"tag": "plain_text", "content": title}, "template": color},
+        "elements": [{"tag": "div", "text": {"tag": "lark_md", "content": body}}]}
+msg = {"receive_id": "ou_d8ae71cd421f8954a9c97e973d4f03d1", "msg_type": "interactive",
+       "content": json.dumps(card, ensure_ascii=False)}
+url = "https://open.feishu.cn/open-apis/im/v1/messages?" + urllib.parse.urlencode({"receive_id_type": "open_id"})
+r = urllib.request.Request(url, data=json.dumps(msg, ensure_ascii=False).encode(),
+    headers={"Content-Type": "application/json", "Authorization": f"Bearer {token}"}, method="POST")
+with urllib.request.urlopen(r, timeout=10) as resp:
+    json.loads(resp.read().decode())
+PYEOF
+}
+
+# 去抖: 同一 key 告警后 3600s 内不重推
+should_alert() { # $1=key
+  local f="$STATE_DIR/$1.last"
+  local now=$(date +%s)
+  if [ -f "$f" ]; then
+    local last=$(cat "$f" 2>/dev/null || echo 0)
+    [ $((now - last)) -lt 3600 ] && return 1
+  fi
+  echo "$now" > "$f"
+  return 0
+}
+
+# --- 测试模式: 验证推送链路后退出 ---
+if [ "${1:-}" = "--test-push" ]; then
+  send_card "🧪 系统巡检推送测试" "心跳巡检脚本(heartbeat_syscheck.sh)推送链路验证,收到即链路正常。" "green"
+  echo "$LOG_TAG test push sent"
+  exit 0
+fi
+
+ALERTS=()
+
+# 1. 磁盘 (根分区 >85% 告警)
+DISK=$(df -h / | awk 'NR==2{print $5}' | tr -d '%')
+[ -n "$DISK" ] && [ "$DISK" -ge 85 ] && ALERTS+=("磁盘使用率 ${DISK}% (阈值85%)")
+
+# 2. 内存 (available < 300M 告警)
+MEM_AVAIL=$(free -m | awk '/Mem:/{print $7}')
+[ -n "$MEM_AVAIL" ] && [ "$MEM_AVAIL" -lt 300 ] && ALERTS+=("内存 available ${MEM_AVAIL}M (阈值300M)")
+
+# 3. swap (使用 >50% 告警)
+SWAP_PCT=$(free | awk '/Swap:/{if($2>0) printf "%.0f", $3/$2*100; else print 0}')
+[ -n "$SWAP_PCT" ] && [ "$SWAP_PCT" -ge 50 ] && ALERTS+=("swap 使用 ${SWAP_PCT}% (阈值50%)")
+
+# 4. 网关服务 (2026-10-29 网关回切 hermes→openclaw；过渡期两者任一 active 即视为健康)
+OC_STATUS=$(systemctl is-active openclaw-gateway 2>/dev/null || echo "unknown")
+HM_STATUS=$(systemctl is-active hermes-gateway 2>/dev/null || echo "unknown")
+if [ "$OC_STATUS" != "active" ] && [ "$HM_STATUS" != "active" ]; then
+  ALERTS+=("网关服务均未运行: openclaw=$OC_STATUS hermes=$HM_STATUS")
+fi
+GW_STATUS="$OC_STATUS"
+
+# 4a. openclaw-gateway 异常重启检测 (2026-10-29 起主网关)
+if [ "$OC_STATUS" = "active" ]; then
+  RESTARTS=$(systemctl show openclaw-gateway --property=NRestarts --value 2>/dev/null)
+  TODAY_MARK="$STATE_DIR/gw-restarts.baseline"
+  if [ -n "$RESTARTS" ] && [ -f "$TODAY_MARK" ]; then
+    BASE=$(cat "$TODAY_MARK")
+    DELTA=$((RESTARTS - BASE))
+    [ "$DELTA" -ge 3 ] && [ "$DELTA" -le 20 ] && ALERTS+=("openclaw-gateway 今日异常重启 ${DELTA} 次 (累计$RESTARTS)")
+  fi
+fi
+
+# 4b. gateway 进程 RSS (>=750M 告警)
+#     口径=进程RSS; 勿用 cgroup MemoryCurrent(含可回收page cache, 68%真实占用会报成94%假警报) 2026-10-06 诊断结论
+#     注意: 实际进程 cmdline 为 "python -m hermes_cli.main gateway run",
+#     且 systemd MainPID 是 1.5M 的 shim,真实内存在其子进程 —— 按 cmdline 匹配后求和进程树
+#     (2026-10-08 修正: 旧模式 'hermes gateway' 匹配不到实际 cmdline,导致 RSS 检查空转)
+#     (2026-10-29 回切: hermes 段保留; openclaw 网关按 'openclaw.mjs gateway' 匹配, 阈值500M[unit MemoryMax=520M])
+if [ "$OC_STATUS" = "active" ]; then
+  OC_RSS_KB=0
+  for P in $(pgrep -f 'openclaw.mjs gateway' 2>/dev/null); do
+    R=$(ps -o rss= -p "$P" 2>/dev/null)
+    [ -n "$R" ] && OC_RSS_KB=$((OC_RSS_KB + R))
+  done
+  [ "$OC_RSS_KB" -gt 0 ] && OC_RSS_MB=$((OC_RSS_KB / 1024))
+  [ -n "${OC_RSS_MB:-}" ] && [ "$OC_RSS_MB" -ge 500 ] && ALERTS+=("openclaw-gateway 进程 RSS ${OC_RSS_MB}M (阈值500M)")
+fi
+if [ "$HM_STATUS" = "active" ]; then
+  GW_RSS_KB=0
+  for P in $(pgrep -f 'hermes_cli.main gateway' 2>/dev/null); do
+    R=$(ps -o rss= -p "$P" 2>/dev/null)
+    [ -n "$R" ] && GW_RSS_KB=$((GW_RSS_KB + R))
+  done
+  [ "$GW_RSS_KB" -gt 0 ] && GW_RSS_MB=$((GW_RSS_KB / 1024))
+  [ -n "${GW_RSS_MB:-}" ] && [ "$GW_RSS_MB" -ge 750 ] && ALERTS+=("hermes-gateway 进程 RSS ${GW_RSS_MB}M (阈值750M)")
+fi
+
+# 5. 关键容器 (new-api)
+for C in new-api; do
+  CS=$(docker inspect "$C" --format '{{.State.Status}}' 2>/dev/null)
+  [ "$CS" != "running" ] && ALERTS+=("容器 $C 状态: ${CS:-不存在}")
+done
+
+# 6. 僵尸进程 (>< 10 告警)
+ZOMBIES=$(ps aux | awk '$8=="Z"' | wc -l)
+[ "$ZOMBIES" -ge 10 ] && ALERTS+=("僵尸进程 ${ZOMBIES} 个 (阈值10)")
+
+# 7. 代理链路看门狗 (2026-11-04 F2: 机场数据面入口瘫痪事故后新增)
+#    探活方式: curl 经 socks5 1080 访问 GitHub, 拿到真实 HTTP 状态码才算通
+#    (仅 TCP 连上 1080 不代表上游机场通——本次事故中 sing-box 入站正常、上游全断)
+#    语义: 连续死亡 ≥6h 推红卡(去抖6h); 期间恢复推绿卡并清零
+PROXY_STATE="$STATE_DIR/proxy-dead.count"
+probe_proxy() {
+  CODE=$(curl -s -o /dev/null -w '%{http_code}' -m 8 --socks5-hostname 127.0.0.1:1080 \
+         -H 'User-Agent: Mozilla/5.0' 'https://github.com/' 2>/dev/null)
+  [ "$CODE" = "200" ] || [ "$CODE" = "301" ] || [ "$CODE" = "302" ]
+}
+if probe_proxy; then
+  if [ -f "$PROXY_STATE" ]; then
+    N=$(cat "$PROXY_STATE" 2>/dev/null || echo 0)
+    send_card "✅ 代理链路已恢复" "socks5://127.0.0.1:1080 → GitHub 探活恢复 (此前连续死亡 ${N} 小时)。
+$(hostname) · $(date '+%F %T')" "green"
+    echo "$LOG_TAG proxy recovered after ${N}h dead"
+  fi
+  rm -f "$PROXY_STATE" "$STATE_DIR/proxy-down.state"
+else
+  if [ -f "$PROXY_STATE" ]; then
+    N=$(cat "$PROXY_STATE" 2>/dev/null || echo 0)
+    N=$((N + 1))
+  else
+    N=1
+  fi
+  echo "$N" > "$PROXY_STATE"
+  echo "$LOG_TAG proxy probe dead, consecutive hours=$N"
+  if [ "$N" -ge 6 ]; then
+    # 独立去抖 key(后缀.state避免被末尾rm -f *.last清除); 文案里带N但key固定
+    PROXY_ALERT_FILE="$STATE_DIR/proxy-down.state"
+    NOW=$(date +%s)
+    LAST=0
+    [ -f "$PROXY_ALERT_FILE" ] && LAST=$(cat "$PROXY_ALERT_FILE" 2>/dev/null || echo 0)
+    if [ $((NOW - LAST)) -ge 3600 ]; then
+      echo "$NOW" > "$PROXY_ALERT_FILE"
+      send_card "⚠️ 代理链路故障" "socks5://127.0.0.1:1080 → GitHub 探活连续失败 ≥6 小时 (当前已连续${N}小时)。
+
+早间简报 GitHub 板块已自动走镜像回退（gh-proxy / jsDelivr），国内板块不受影响。
+$(hostname) · $(date '+%F %T')
+(同类告警 1 小时内不重复提醒)" "red"
+      echo "$LOG_TAG proxy-down alert sent (${N}h)"
+    fi
+  fi
+fi
+
+# --- 结果处理 ---
+echo "$LOG_TAG $(date '+%F %T') disk=${DISK}% mem_avail=${MEM_AVAIL}M swap=${SWAP_PCT}% gw=$GW_STATUS gw_rss=${GW_RSS_MB:-NA}M zombies=$ZOMBIES alerts=${#ALERTS[@]}"
+
+if [ ${#ALERTS[@]} -eq 0 ]; then
+  # 全部正常: 清除告警去抖状态, 保持静默
+  rm -f "$STATE_DIR"/*.last 2>/dev/null
+  exit 0
+fi
+
+# 有异常: 逐项去抖推送
+SENT=0
+for A in "${ALERTS[@]}"; do
+  KEY=$(echo "$A" | md5sum | cut -c1-8)
+  if should_alert "$KEY"; then
+    send_card "⚠️ 系统巡检异常" "$A
+$(hostname) · $(date '+%F %T')
+(同类异常 1 小时内不重复提醒)" "red"
+    SENT=$((SENT+1))
+  fi
+done
+echo "$LOG_TAG pushed=$SENT pending=${#ALERTS[@]}"

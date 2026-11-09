@@ -1,0 +1,140 @@
+==================================================
+ NAS 恢复 S5 — gateway 复活  2026-10-31 01:35:26
+==================================================
+
+########## A. gateway 单元文件全貌（只读） ##########
+# /etc/systemd/system/hermes-gateway.service
+[Unit]
+Description=Hermes Agent Gateway
+After=network.target docker.service
+Wants=docker.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/.hermes
+
+# Load secrets from Vaultwarden-generated env file (primary)
+EnvironmentFile=/root/.hermes/.env.vaultwarden
+
+# Original .env kept as fallback during transition period
+EnvironmentFile=/root/.hermes/.env
+
+Environment=HOME=/root
+Environment=PATH=/usr/local/lib/hermes-agent/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Synology DSM 用 systemd 219，不给服务注入 INVOCATION_ID，导致 hermes
+# 的 supervised-conflict 守卫把自家启动误判为"shell 里重复启动"而死循环。
+# 此变量是 hermes 官方出口：声明本进程由外部 supervisor 管理（见 gateway/restart.py）。
+Environment=HERMES_GATEWAY_EXTERNAL_SUPERVISOR=1
+
+# Load secrets from Vaultwarden before starting
+ExecStartPre=/bin/bash /root/.hermes/scripts/load_secrets.sh
+
+ExecStart=/usr/local/lib/hermes-agent/venv/bin/python -m hermes_cli.main gateway run --replace
+
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+LimitNOFILE=65536
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=hermes-gateway
+
+[Install]
+WantedBy=multi-user.target
+--- 单元引用路径存在性逐项核对 ---
+  WorkingDirectory=/root/.hermes → ✅存在
+  EnvironmentFile=/root/.hermes/.env.vaultwarden → ❌缺失
+  EnvironmentFile=/root/.hermes/.env → ✅存在
+  ExecStartPre=/bin/bash → ✅存在
+  ExecStart=/usr/local/lib/hermes-agent/venv/bin/python → ✅存在
+
+########## B. console-api 第二次尝试（已批准变更） ##########
+projects-console-api-1
+NAMES                    STATUS
+projects-console-api-1   Up 4 seconds
+console-api 3300: HTTP 000
+console-api: CONN-FAIL（若仍 bind 失败，报告下一条缺失路径）
+"Source":"/root/.hermes/projects/console-api/data"
+"Source":"/root/.hermes/courses"
+"Source":"/root/.hermes/knowledge"
+"Source":"/volume1/books"
+
+########## C. EnvironmentFile 缺失修复（已批准变更，自适应） ##########
+单元要的 env 文件: /root/.hermes/.env.vaultwarden（缺失）
+✅ 已从 /root/.hermes/.env 复制到 /root/.hermes/.env.vaultwarden（600）
+
+########## D. ExecStartPre 缺失脚本报告（只读不强修） ##########
+ExecStartPre: /bin/bash ✅
+ExecStartPre=/bin/bash /root/.hermes/scripts/load_secrets.sh
+
+ExecStart=/usr/local/lib/hermes-agent/venv/bin/python -m hermes_cli.main gateway run --replace
+
+########## E. 启动 gateway（已批准变更） ##########
+Job for hermes-gateway.service failed. See "systemctl status hermes-gateway.service" and "journalctl -xe" for details.
+Job for hermes-gateway.service failed. See "systemctl status hermes-gateway.service" and "journalctl -xe" for details.
+● hermes-gateway.service - Hermes Agent Gateway
+   Loaded: loaded (/etc/systemd/system/hermes-gateway.service; enabled; vendor preset: disabled)
+   Active: activating (auto-restart) (Result: exit-code) since Sat 2026-10-31 01:35:59 CST; 2s ago
+  Process: 5570 ExecStartPre=/bin/bash /root/.hermes/scripts/load_secrets.sh (code=exited, status=127)
+
+Oct 31 01:35:59 enjoysynology systemd[1]: hermes-gateway.service: control process exited, code=exited status=127
+Oct 31 01:35:59 enjoysynology systemd[1]: Failed to start Hermes Agent Gateway.
+Oct 31 01:35:59 enjoysynology systemd[1]: Unit hermes-gateway.service entered failed state.
+Oct 31 01:35:59 enjoysynology systemd[1]: hermes-gateway.service failed.
+
+########## F. 启动后观察（75s 窗口，hermes 启动惯例） ##########
+activating
+--- journal 最近 30 行 ---
+Oct 31 01:36:51 enjoysynology systemd[1]: Unit hermes-gateway.service entered failed state.
+Oct 31 01:36:51 enjoysynology systemd[1]: hermes-gateway.service failed.
+Oct 31 01:36:56 enjoysynology systemd[1]: hermes-gateway.service holdoff time over, scheduling restart.
+Oct 31 01:36:56 enjoysynology systemd[1]: Starting Hermes Agent Gateway...
+Oct 31 01:36:56 enjoysynology hermes-gateway[9211]: /bin/bash: /root/.hermes/scripts/load_secrets.sh: No such file or directory
+Oct 31 01:36:56 enjoysynology systemd[1]: hermes-gateway.service: control process exited, code=exited status=127
+Oct 31 01:36:56 enjoysynology systemd[1]: Failed to start Hermes Agent Gateway.
+Oct 31 01:36:56 enjoysynology systemd[1]: Unit hermes-gateway.service entered failed state.
+Oct 31 01:36:56 enjoysynology systemd[1]: hermes-gateway.service failed.
+Oct 31 01:37:01 enjoysynology systemd[1]: hermes-gateway.service holdoff time over, scheduling restart.
+Oct 31 01:37:01 enjoysynology systemd[1]: Starting Hermes Agent Gateway...
+Oct 31 01:37:01 enjoysynology hermes-gateway[9294]: /bin/bash: /root/.hermes/scripts/load_secrets.sh: No such file or directory
+Oct 31 01:37:01 enjoysynology systemd[1]: hermes-gateway.service: control process exited, code=exited status=127
+Oct 31 01:37:01 enjoysynology systemd[1]: Failed to start Hermes Agent Gateway.
+Oct 31 01:37:01 enjoysynology systemd[1]: Unit hermes-gateway.service entered failed state.
+Oct 31 01:37:01 enjoysynology systemd[1]: hermes-gateway.service failed.
+Oct 31 01:37:07 enjoysynology systemd[1]: hermes-gateway.service holdoff time over, scheduling restart.
+Oct 31 01:37:07 enjoysynology systemd[1]: Starting Hermes Agent Gateway...
+Oct 31 01:37:07 enjoysynology hermes-gateway[9476]: /bin/bash: /root/.hermes/scripts/load_secrets.sh: No such file or directory
+Oct 31 01:37:07 enjoysynology systemd[1]: hermes-gateway.service: control process exited, code=exited status=127
+Oct 31 01:37:07 enjoysynology systemd[1]: Failed to start Hermes Agent Gateway.
+Oct 31 01:37:07 enjoysynology systemd[1]: Unit hermes-gateway.service entered failed state.
+Oct 31 01:37:07 enjoysynology systemd[1]: hermes-gateway.service failed.
+Oct 31 01:37:12 enjoysynology systemd[1]: hermes-gateway.service holdoff time over, scheduling restart.
+Oct 31 01:37:12 enjoysynology systemd[1]: Starting Hermes Agent Gateway...
+Oct 31 01:37:12 enjoysynology hermes-gateway[9730]: /bin/bash: /root/.hermes/scripts/load_secrets.sh: No such file or directory
+Oct 31 01:37:12 enjoysynology systemd[1]: hermes-gateway.service: control process exited, code=exited status=127
+Oct 31 01:37:12 enjoysynology systemd[1]: Failed to start Hermes Agent Gateway.
+Oct 31 01:37:12 enjoysynology systemd[1]: Unit hermes-gateway.service entered failed state.
+Oct 31 01:37:12 enjoysynology systemd[1]: hermes-gateway.service failed.
+--- 飞书连接迹象 ---
+Oct 31 01:36:04 enjoysynology bash[6150]: BASH_ERR: report_error [ (0)"" -> (1)"/sbin/init" -> (6150)"/bin/bash /root/.hermes/scripts/load_secrets.sh" ] /bin/bash: /root/.hermes/scripts/load_secrets.sh: No such file or directory
+--- gateway 进程 ---
+
+########## G. 收尾全景（只读） ##########
+NAMES                    STATUS
+jellyfin                 Up 30 minutes (healthy)
+iptv-api                 Up 30 minutes
+new-api                  Up 32 minutes
+projects-console-api-1   Restarting (1) 7 seconds ago
+newapi-bridge            Up 32 minutes
+vaultwarden              Up 28 minutes (healthy)
+sing-box                 Up 28 minutes
+/dev/md0        7.9G  2.8G  5.0G  36% /
+              total        used        free      shared  buff/cache   available
+Mem:           5776         965         215         226        4595        4295
+
+########## S5 完成 ##########
+结束: 2026-10-31 01:37:17
+输出文件: /tmp/nas-s5-20261031-013526.txt

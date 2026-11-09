@@ -1,0 +1,68 @@
+==================================================
+ NAS 恟复 S4 — runtime 移植 + venv 修复  2026-10-31 01:29:48
+==================================================
+
+########## A. 前置校验 ##########
+✅ 供体包在位: /volume1/aliyun_backup/nas-recovery/python-runtime-donor.tar.gz (33257681 bytes)
+供体 sha256: c4ee7916a272a415288c49827e2a7beaf04cded35be209483a4504ad5fb98ef2
+期望 sha256: c4ee7916a272a415288c49827e2a7beaf04cded35be209483a4504ad5fb98ef2
+✅ sha 一致
+
+########## B. 解压供体到 volume1（已批准变更） ##########
+tar 退出码: 0
+cpython-3.11.15-linux-x86_64-gnu
+--- 供体自检 ---
+Python 3.11.15
+stdlib ok: OpenSSL 3.5.7 9 Jun 2026
+
+########## C. 修复 venv 软链（已批准变更，逐个处理） ##########
+=== /usr/local/lib/hermes-agent ===
+  修复前: lrwxrwxrwx 1 root root 10 Aug 25 11:05 /usr/local/lib/hermes-agent/venv/bin/python -> python3.11 lrwxrwxrwx 1 root root 10 Aug 25 11:05 /usr/local/lib/hermes-agent/venv/bin/python3 -> python3.11 lrwxrwxrwx 1 root root 73 Aug 25 11:05 /usr/local/lib/hermes-agent/venv/bin/python3.11 -> /root/.local/share/uv/python/cpython-3.11-linux-x86_64-gnu/bin/python3.11 
+  ✅ python -> /volume1/hermes-data/python-runtime/cpython-3.11.15-linux-x86_64-gnu/bin/python3
+  ✅ python3 -> /volume1/hermes-data/python-runtime/cpython-3.11.15-linux-x86_64-gnu/bin/python3
+  ✅ python3.11 -> /volume1/hermes-data/python-runtime/cpython-3.11.15-linux-x86_64-gnu/bin/python3
+  pyvenv.cfg 修复前: home = /root/.local/share/uv/python/cpython-3.11-linux-x86_64-gnu/bin version = 3.11.15 
+  pyvenv.cfg 修复后: home = /volume1/hermes-data/python-runtime/cpython-3.11.15-linux-x86_64-gnu/bin version = 3.11.15 
+  --- venv 自检 ---
+Python 3.11.15
+venv stdlib ok, prefix: /usr/local/lib/hermes-agent/venv
+=== /usr/local/lib/hermes-agent-v0.22.4 ===
+  修复前: lrwxrwxrwx 1 root root 75 Oct 22 09:15 /usr/local/lib/hermes-agent-v0.22.4/venv/bin/python -> /root/.local/share/uv/python/cpython-3.14.7-linux-x86_64-gnu/bin/python3.14 lrwxrwxrwx 1 root root  6 Oct 22 09:15 /usr/local/lib/hermes-agent-v0.22.4/venv/bin/python3 -> python lrwxrwxrwx 1 root root  6 Oct 22 09:15 /usr/local/lib/hermes-agent-v0.22.4/venv/bin/python3.14 -> python 
+  ✅ python -> /volume1/hermes-data/python-runtime/cpython-3.11.15-linux-x86_64-gnu/bin/python3
+  pyvenv.cfg 修复前: home = /root/.local/share/uv/python/cpython-3.14.7-linux-x86_64-gnu/bin version_info = 3.14.7 
+  pyvenv.cfg 修复后: home = /volume1/hermes-data/python-runtime/cpython-3.11.15-linux-x86_64-gnu/bin version_info = 3.14.7 
+  --- venv 自检 ---
+Python 3.11.15
+venv stdlib ok, prefix: /usr/local/lib/hermes-agent-v0.22.4/venv
+
+########## D. hermes CLI 复活验证 ##########
+Hermes Agent v0.19.0 (2026.7.20)
+Install directory: /volume1/hermes-data/hermes-agent-v0.19.0
+Install method: pip
+--- gateway 预检（不启动） ---
+● hermes-gateway.service - Hermes Agent Gateway
+   Loaded: loaded (/etc/systemd/system/hermes-gateway.service; enabled; vendor preset: disabled)
+   Active: activating (auto-restart) (Result: resources) since Sat 2026-10-31 01:30:16 CST; 4s ago
+
+Oct 31 01:30:16 enjoysynology systemd[1]: Failed to load environment files: No such file or directory
+Oct 31 01:30:16 enjoysynology systemd[1]: hermes-gateway.service failed to run 'start-pre' task: No such file or directory
+Oct 31 01:30:16 enjoysynology systemd[1]: Failed to start Hermes Agent Gateway.
+Oct 31 01:30:16 enjoysynology systemd[1]: Unit hermes-gateway.service entered failed state.
+
+########## E. console-api 复活（已批准变更） ##########
+Error response from daemon: Bind mount failed: '/root/.hermes/courses' does not exist
+Error: failed to start containers: projects-console-api-1
+NAMES     STATUS
+console-api 3300: HTTP 000
+console-api 3300: CONN-FAIL
+
+########## F. 收尾全景 ##########
+/dev/mapper/cryptvol_1  1.8T  726G  1.1T  41% /volume1
+--- 本次修复清单 ---
+✅ python runtime → /volume1/hermes-data/python-runtime/cpython-3.11.15-linux-x86_64-gnu
+✅ venv 修复: /usr/local/lib/hermes-agent(=0.22.4 别名) + v0.22.4
+✅ console-api data 目录补建 + 容器拉起
+
+########## S4 完成 ##########
+结束: 2026-10-31 01:30:31
+输出文件: /tmp/nas-s4-20261031-012948.txt

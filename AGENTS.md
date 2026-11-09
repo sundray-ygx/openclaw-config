@@ -257,9 +257,43 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 
 **Don't overdo it:** One reaction per message max. Pick the one that fits best.
 
+## Workspace 文件管理规范
+
+### 文件存放决策树
+
+生成新文件时，按以下规则存放：
+
+```
+├─ 是脚本/工具？
+│  ├─ 自动化任务脚本 → scripts/{daily,weekly,monthly,backup,briefing,...}/
+│  ├─ 系统管理脚本 → scripts/utils/
+│  └─ 技术方案/配置 → knowledge/tech/{automation,data-pipeline,infrastructure,...}/
+│
+├─ 是报告/分析？
+│  ├─ 日报/周报/月报 → archive/{daily,weekly,monthly}/
+│  ├─ 技术报告 → knowledge/tech/对应子目录/
+│  └─ 项目报告 → knowledge/projects/项目名称/
+│
+├─ 是工作记录？
+│  ├─ 当日工作日志 → memory/YYYY-MM-DD.md
+│  ├─ 项目跟踪 → memory/projects.md
+│  └─ 经验教训 → memory/lessons.md
+│
+└─ 其他 → knowledge/inbox/ (待分类)
+```
+
+### 禁止行为
+- ❌ 不要将脚本/报告直接放在 workspace 根目录
+- ❌ 不要将临时文件留在 workspace
+- ✅ 生成文件前先确定存放位置
+
+---
+
 ## Tools
 
-Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
+### Local notes
+
+Skills define how tools work. Keep environment-specific local notes in this section.
 
 **🎭 Voice Storytelling:** If you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and "storytime" moments! Way more engaging than walls of text. Surprise people with funny voices.
 
@@ -269,9 +303,58 @@ Skills provide your tools. When you need one, check its `SKILL.md`. Keep local n
 - **Discord links:** Wrap multiple links in `<>` to suppress embeds: `<https://example.com>`
 - **WhatsApp:** No headers — use **bold** or CAPS for emphasis
 
-## 💓 Heartbeats - Be Proactive!
+### Local notes (migrated from TOOLS.md)
 
-When you receive a heartbeat poll (message matches the configured heartbeat prompt), don't just reply `HEARTBEAT_OK` every time. Use heartbeats productively!
+# TOOLS.md - Local Notes
+
+Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
+
+## What Goes Here
+
+Things like:
+
+- Camera names and locations
+- SSH hosts and aliases
+- Preferred voices for TTS
+- Speaker/room names
+- Device nicknames
+- Anything environment-specific
+
+## Examples
+
+```markdown
+### Cameras
+
+- living-room → Main area, 180° wide angle
+- front-door → Entrance, motion-triggered
+
+### SSH
+
+- home-server → 192.168.1.100, user: admin
+
+### TTS
+
+- Preferred voice: "Nova" (warm, slightly British)
+- Default speaker: Kitchen HomePod
+```
+
+## Why Separate?
+
+Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
+
+---
+
+Add whatever helps you do your job. This is your cheat sheet.
+
+## 💓 Heartbeats - 静默优先（2026-09-28 更新）
+
+收到心跳轮询时，**默认回复 `HEARTBEAT_OK` 静默**。心跳是后台维护通道，不是定期汇报通道。
+
+**硬规则（2026-09-28 方案A'生效）：**
+- ❌ 禁止在心跳中做系统资源巡检（df/free/docker/systemctl）——已由零LLM脚本 `scripts/utils/heartbeat_syscheck.sh`（每小时 cron）接管，异常自动推飞书，重复巡检纯属浪费 token
+- ❌ 正常状态下不要输出任何状态报告——历史教训：`NO_REPLY` 不是有效静默关键字，只有 `HEARTBEAT_OK` 会被识别，只要输出了内容就会推送到飞书
+- ✅ 心跳只做：HEARTBEAT.md 清单检查（若存在）、到期提醒、低频记忆维护
+- ✅ 只有发现用户必须知道的事（异常、到期、重要变化）才输出，且一条以内、简短
 
 Default heartbeat prompt:
 `Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`

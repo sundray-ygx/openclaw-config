@@ -1,0 +1,37 @@
+# ==================== 早间简报 ====================
+0 8 * * * python3 /root/scripts/briefing/morning_briefing.py >> /var/log/morning-briefing.log 2>&1
+
+
+# ==================== NAS备份 ====================
+0 2 * * * bash /root/.openclaw/workspace/scripts/backup/nas_backup.sh >> /var/log/nas-backup.log 2>&1
+
+# ==================== 安全巡检 ====================
+0 9 * * 1 bash /root/.openclaw/workspace/scripts/weekly/security_check.sh >> /var/log/security-check.log 2>&1
+
+# ==================== 租金提醒 ====================
+# 0 9 25 * * python3 /root/.openclaw/workspace/scripts/rent/rent_expense_remind.py >> /var/log/rent-reminder.log 2>&1
+# 0 9 27 * * python3 /root/.openclaw/workspace/scripts/rent/rent_expense_remind.py >> /var/log/rent-reminder.log 2>&1
+
+# ==================== 磁盘清理 ====================
+0 10 * * 1 rm -rf /tmp/pip-* && find /root/.openclaw/workspace -name '__pycache__' -exec rm -rf {} + 2>/dev/null && df -h / >> /var/log/disk-cleanup.log 2>&1
+
+6 22 * * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
+
+# ==================== hermes-config 每日同步(NAS 03:00 push 后拉取) ====================
+0 5 * * * /root/scripts/hermes-sync/pull.sh >> /var/log/hermes-config-pull.log 2>&1
+
+# ==================== new-api 网关巡检 ====================
+20 8 * * * bash /root/.openclaw/workspace/scripts/utils/check_newapi.sh >> /var/log/newapi-check.log 2>&1
+# ==================== new-api 故障切换探测(ECS主网关) ====================
+*/5 * * * * /root/scripts/utils/ecs-failover-probe.sh >/dev/null 2>&1
+# ==================== 系统健康巡检(零LLM心跳,2026-09-28) ====================
+0 * * * * bash /root/.openclaw/workspace/scripts/utils/heartbeat_syscheck.sh >> /var/log/heartbeat-syscheck.log 2>&1
+
+# ==================== GitHub每日同步(2026-10-08自openclaw cron迁移,方案A) ==================== 
+30 23 * * * bash /root/scripts/utils/github-sync-cron.sh >> /var/log/github-sync.log 2>&1
+# ==================== GLM渠道健康检查(2026-10-08自openclaw cron迁移,静默模式) ====================
+30 9 * * * bash /root/scripts/utils/glm-check-cron.sh >> /var/log/glm-channel-check-cron.log 2>&1
+
+# perf-sentinel 性能哨兵 (2026-10-22): 阈值探测+周一全量, 见 ecs-health-audit skill
+*/30 * * * * python3 /root/.openclaw/workspace/scripts/utils/perf_sentinel.py --probe >> /var/log/perf-sentinel.log 2>&1
+30 10 * * 1 python3 /root/.openclaw/workspace/scripts/utils/perf_sentinel.py --full >> /var/log/perf-sentinel.log 2>&1

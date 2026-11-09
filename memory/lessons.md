@@ -1,0 +1,409 @@
+# 经验教训
+
+## 📊 系统配置管理
+
+### 定时任务配置检查机制缺失
+**问题**: 日报脚本配置错误（只扫描scheduler目录）运行多天未发现
+**根因**: 缺少配置验证和监控告警
+**Fix**: 建立配置检查清单，增加任务失败告警机制
+**级别**: 🟡 中
+
+### 多用户环境路径规划不足
+**问题**: OpenClauw迁移中，/root vs /home/openclaw路径混乱
+**根因**: 迁移前未充分规划路径映射
+**Fix**: 迁移前明确所有脚本/配置的路径依赖，建立路径对照表
+**级别**: 🟡 中
+
+---
+
+## 🔧 技术架构
+
+### 系统升级依赖兼容性
+**问题**: skillhub CLI因Python 3.6兼容性问题无法运行
+**根因**: 升级时未检查运行环境依赖版本
+**Fix**: 升级前检查Python版本，升级后验证CLI可用性
+**级别**: 🟢 低
+
+### 归档任务sessionTarget配置错误
+**问题**: 归档任务配置为"main"导致400错误，改为"isolated"解决
+**根因**: 不理解sessionTarget作用机制
+**Fix**: 记录：systemEvent+main=可能有400错误，使用isolated隔离执行
+**级别**: 🟢 低
+
+### 工具调用文本被传输层清洗（secret 模式静默替换为 ***）
+**问题**: 2026-09-13 写脚本时 `$(grep` 和 `"$KEY`" 插值被替换成字面 `***`，先致语法错误、后致 401（Bearer ***），两轮排障
+**根因**: 传输层对 secret 相关模式做内容清洗，静默替换无告警；同一构造偶尔能通过，不稳定
+**Fix**: 脚本写入用 exec heredoc；脚本设计零命令替换（curl -w 落文件 + read 回读）；secret 不经 shell 文本（sed 把 .env 行转 curl -K 头配置文件）；写入后必跑 bash -n + 成败双路径运行时测试
+**级别**: 🔴 高（静默破坏，难排查）
+
+---
+
+## 📈 流程改进
+
+### 日报与反思任务时间错位
+**问题**: 反思任务4:00执行，但记忆文件8:30才生成
+**根因**: 任务依赖关系未梳理清楚
+**Fix**: 调整反思到9:00，确保依赖数据就绪
+**级别**: 🟡 中
+
+### 日报生成到archive但memory文件为空
+**问题**: 归档任务连续2天失败，记忆文件未更新
+**根因**: 依赖23:00归档任务，但任务失败无告警
+**Fix**: 日报生成时直接更新memory文件，不依赖归档任务
+**级别**: 🟡 中
+
+---
+
+## 🤖 AI 辅助工作
+
+### 培训课题设计难度控制
+**问题**: 校招新员工 AI-Coding 培训课题最初过于专业，涉及公司业务
+**根因**: 未充分考虑校招新生的技术背景和学习曲线
+**Fix**: 采用通用类课题，纯软件可完成，聚焦 AI-Coding 实践过程而非业务知识
+**级别**: 🟢 低
+
+### 定时任务重复执行未及时发现
+**问题**: 每日反思任务在 4/8 一天执行了 8 次才被发现
+**根因**: 缺少定时任务执行频率监控和异常告警
+**Fix**: 为高频任务添加执行计数器，超过阈值时触发告警
+**级别**: 🟡 中
+
+---
+
+## 🔒 安全与权限
+
+### OpenClaw用户迁移PAM限制
+**问题**: openclaw用户无crontab权限，迁移卡住
+**根因**: 未预检查openclaw用户的crontab权限
+**Fix**: 迁移前检查目标用户权限，或使用root执行crontab任务
+**级别**: 🟢 低
+
+### 百炼API月配额耗尽导致failover雪崩
+**问题**: NAS备份cron看似"重复触发"（18-36个error日志），实际是bailian provider配额耗尽后failover链路全部429
+**根因**: 百炼provider下所有模型共享月配额，配额耗尽后整个provider不可用
+**Fix**: (1) cron任务model直接设为非bailian模型 (2) 月初检查配额 (3) provider级429应跳过该provider下所有模型
+**级别**: 🟡 中
+
+### cron任务重复触发的误判
+**问题**: 多个error日志 ≠ 多次触发，需要区分failover重试和真正的重复调度
+**根因**: 对gateway failover机制理解不足
+**Fix**: 排查时先查cron runs确认触发次数，再分析单次run内部的error链路
+**级别**: 🟢 低
+
+### skillhub配置残留导致持续告警
+**问题**: `plugins.entries.skillhub` 已卸载但配置残留，每次CLI操作都产生warning
+**根因**: 卸载插件时未清理openclaw.json配置
+**Fix**: 从openclaw.json的plugins.entries中删除skillhub条目
+**级别**: 🟢 低
+
+---
+
+## 📝 最佳实践
+
+### 配置变更流程
+1. 修改配置/脚本
+2. 本地测试验证
+3. 部署到生产
+4. 监控首次执行
+5. 确认无异常后关闭监控
+
+### 问题排查流程
+1. 检查脚本路径和权限
+2. 查看cron运行日志
+3. 检查环境变量
+4. 手动执行脚本验证
+5. 对比系统crontab和OpenClaw cron配置
+
+### 多目录扫描模式
+```python
+SESSIONS_DIRS = [
+    "/root/.openclaw/agents/scheduler/sessions",
+    "/root/.openclaw/agents/main/sessions"
+]
+```
+适用于需要整合多个agent会话数据的场景。
+
+### 记忆维护过期导致信息堆积
+**问题**: heartbeat-state.json 的 lastMemoryMaintenance 为 2026-01-01，过期 90+ 天
+**根因**: 记忆维护脚本未定期执行，缺少提醒机制
+**Fix**: 将记忆维护加入 HEARTBEAT.md，每周自动检查并执行
+**级别**: 🟡 中
+
+---
+
+## 🚀 系统监控与告警
+
+### 定时任务监控告警机制缺失
+**问题**: 早间简报和工作日报推送了两次，且关键定时任务失效14天无人察觉
+**根因**: 缺少定时任务执行频率监控和异常告警机制
+**Fix**: (1) 为高频任务添加执行计数器，超过阈值时触发告警 (2) 创建定时任务健康检查脚本，监控关键任务运行状态 (3) 实施定时任务执行锁机制，防止并发执行导致的重复推送
+**级别**: 🔴 高
+
+### 每日反思数据源错误
+**问题**: V2 版每日反思从错误日志里提取「教训」，结果把文件路径、脚本内容都当反思内容
+**根因**: 输入源太窄，只从固定格式提取，实际工作格式不包含该 section
+**Fix**: 不靠模板匹配，而是把当日工作内容交给 AI 做真正的反思
+**级别**: 🟡 中
+
+### 周复盘数据提取逻辑错误
+**问题**: 脚本读取 `今日复盘`+`今日反思`，实际 Notion 字段是 `今日复盘&反思`（合并字段）
+**根因**: 对 Notion 字段结构理解不足，未考虑字段合并的情况
+**Fix**: 新增 `_split_review_reflection` 方法，兼容合并字段和独立字段
+**级别**: 🟡 中
+
+---
+
+## 🔧 配置管理
+
+### 配置管理混乱导致运维问题
+**问题**: `daily_report.py` 中函数重复定义，`openclaw.json` 配置不合规，定时任务分散在多个位置
+**根因**: 缺少统一的配置管理规范，修改后未进行验证
+**Fix**: (1) 统一迁移所有定时任务到 `/etc/cron.d/openclaw-cron` 文件管理 (2) 建立配置检查清单 (3) 修改配置后进行本地测试验证
+**级别**: 🟡 中
+
+### 插件生命周期管理缺失
+**问题**: GitHub skill 卸载后，`plugins.entries.skillhub` 配置残留，每次 CLI 操作都产生 warning
+**根因**: 卸载插件时未清理 openclaw.json 配置
+**Fix**: 创建插件卸载清理脚本，自动处理配置文件中的插件残留项
+**级别**: 🟡 中
+
+### 异常监控阈值设置不合理
+**问题**: 预期异常被记录为错误，日志污染严重
+**根因**: 缺少异常分级机制
+**Fix**: 建立异常分级机制，将预期异常降级为 INFO 级别
+**级别**: 🟢 低
+
+---
+
+## 📊 账单与财务
+
+### 记账模板标准化
+**问题**: 每次生成账单都需要手动调整格式，效率低且容易出错
+**根因**: 缺少标准化的账单模板
+**Fix**: 创建标准化账单模板配置文件，实现账单格式参数化
+**级别**: 🟢 低
+
+---
+
+## 📋 文档与 PPT 开发
+
+### PPT 开发流程优化
+**问题**: 研讨会 PPT 需求变更频繁，反复调整影响效率
+**根因**: 缺少分阶段确认流程
+**Fix**: (1) 先精简版确认内容 (2) 逐页添加演讲者备注 (3) 完整补充所有会议环节 (4) 需求变更采用增量更新策略
+**级别**: 🟢 低
+
+---
+
+## 🛠️ 前端开发
+
+### Unicode编码导致脚本执行失败
+**问题**: Python脚本包含emoji字符，在Win10 PowerShell中执行时报 "There's a Unicode encoding error with emoji characters in the script"
+**根因**: PowerShell默认编码不支持emoji，脚本文件保存时未指定UTF-8编码
+**Fix**: (1) 在Python脚本顶部添加 `# -*- coding: utf-8 -*-` (2) 确保文件保存为UTF-8格式 (3) PowerShell执行前设置 `$OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = [System.Text.Encoding]::UTF8`
+**级别**: 🟢 低
+
+### Selenium环境配置复杂性
+**问题**: (1) ChromeDriver版本与Chrome版本不匹配 (2) 网络超时（ERR_CONNECTION_TIMED_OUT） (3) CDP Network 域启用失败
+**根因**: (1) Chrome自动更新后驱动版本未同步 (2) 内网环境网络配置复杂（代理、防火墙） (3) Chromium headless模式CDP支持有限
+**Fix**: (1) 使用 webdriver-manager 自动管理驱动版本 (2) 配置代理设置（$env:HTTPS_PROXY） (3) 增加重试机制和超时配置 (4) CDP失败不影响主要功能，仅降级处理
+**级别**: 🟡 中
+
+### 前端页面数据加载问题（CORS）
+**问题**: 后端API可通，但前端页面看不到数据
+**根因**: 跨域（CORS）问题 - 前端端口与后端端口不一致
+**Fix**: (1) 检查后端CORS配置（FastAPI添加CORSMiddleware） (2) 检查前端JS中API路径是否硬编码了原平台地址 (3) 确保前端代理配置正确
+**级别**: 🟡 中
+
+---
+
+## 🎯 考试与技术评估
+
+### 考试平台技术限制评估
+**问题**: 担心考试方通过技术限制阻止自动化提取（如禁用F12、限制API拦截）
+**评估结果**: 浏览器必须接收HTML才能渲染，因此无法阻止 `driver.page_source` 获取；CDP网络拦截无法阻止（浏览器内置功能）；但可能限制截图、阻止devtools协议
+**建议**: 以JSON提取为主，截图为辅；假设最坏情况（部分功能受限），提前准备替代方案
+**级别**: 🟢 低
+
+---
+
+## 🔒 安全与运维
+
+### 公开仓库密钥泄露（2026-07-31）
+**问题**: workspace 配置仓库设为公开，导致阿里云 AK、GitHub PAT、Notion key 全部泄露
+**根因**: (1) 仓库可见性为 public (2) 日报/记忆归档把密钥写进 markdown 自动同步 (3) 无提交前密钥扫描
+**处理**: git filter-repo 重写 87 个提交脱敏 → force push 全分支 → .gitignore + pre-commit 钩子
+**教训**: 
+- 配置仓库必须私有；密钥入库前必须脱敏；每日自动同步会把任何文件推上公网
+- 密钥一旦公开必须轮换（删历史≠密钥失效）
+**级别**: 🔴 高
+
+### GitHub 同步失效（2026-07-31）
+**问题**: 同步 2 个月失效，远程停在 4-19
+**根因**: 提交落在 feature 分支但脚本 push master；agents/coding/ 嵌套仓库导致 git add 失败
+**处理**: 合并分支、脚本固定 master、gitignore 嵌套仓库
+**教训**: 同步脚本要固定目标分支；嵌套 git 仓库会静默破坏 add/commit
+**级别**: 🟡 中
+
+---
+
+### 智谱 GLM 端点计费差异（2026-08-14）
+**问题**: 同一 key 调 GLM 时而成功时而报"余额不足(1113)"
+**根因**: 智谱有 3 条端点：coding 套餐（`/api/coding/paas/v4`）、按量（`/api/paas/v4`）、Anthropic 兼容（`/api/anthropic`）。套餐 key 走按量端点必然 1113
+**教训**: 智谱套餐用户必须统一用 coding 端点；排查"余额不足"先确认端点路径而非账户
+**级别**: 🟡 中
+
+### 环境变量死代码误导排障（2026-08-14）
+**问题**: 脚本设 ANTHROPIC_API_KEY/BASE_URL 指向智谱，被误认为摘要走智谱
+**根因**: `summarize` 工具已重构为 volcengine/deepseek 双 provider，根本不读这些环境变量
+**教训**: 排障时先读下游工具源码确认它实际消费什么配置，勿凭环境变量名推断调用链
+**级别**: 🟢 低
+
+### 硬链接文件双路径修改（2026-08-14）
+**教训**: /root/scripts 与 workspace/scripts 部分文件同 inode，sed/python 改一处后另一路径 grep 旧值"无匹配"是正常同步结果；改共享文件前先 `ls -li` 确认链接关系
+**级别**: 🟢 低
+
+### 阿里云 AccessKey 风控封禁特征（2026-08-25）
+**问题**: DNS 写操作全部失败但读操作正常，导致 acme.sh 证书续期静默失败数月
+**根因**: AccessKey 被阿里云风控判定泄露风险封禁（"There is a risk of leakage"），只封写不封读
+**教训**: API"读正常写失败"优先怀疑 key 权限/风控而非代码；续期类任务必须有到期监控兜底，否则双故障（cron 缺失+key 失效）会静默叠加
+**级别**: 🟡 中
+
+### 套餐端点 vs 标准端点测可用性（2026-09-03）
+**问题**: 误判火山引擎欠费数周，实际配置走的 Coding Plan 端点完全正常
+**根因**: 火山引擎标准端点 `/api/v3` 按量欠费，Coding Plan 端点 `/api/coding/v3` 套餐正常；测试时用了错误端点
+**教训**: 测 API 可用性必须用配置中实际的 baseUrl，而非官方文档默认端点；智谱/火山均存在双端点模式（见 8-14 智谱教训，同一模式）
+**级别**: 🟡 中
+
+### OpenClaw 模型 allowlist 机制（2026-09-02）
+**问题**: providers 里加了新模型但 TUI /model 列表看不到
+**根因**: `agents.defaults.models` 是 allowlist+目录，只加 providers 定义不加 allowlist 则模型"存在但不可选"
+**教训**: 加模型必须同时改两处——providers 定义 + agents.defaults.models allowlist（含 alias）
+**级别**: 🟢 低
+
+## [2026-09-08] OpenClaw/Hermes 接 OpenAI 兼容网关必须带 /v1
+- **严重度**: P0（agent 全挂，fallback 链同 URL 一起死）
+- **现象**: baseUrl 写 https://api.ygxpro.online → 实际请求 /chat/completions → 404 报 "Connection error"，极具迷惑性（像网络问题）
+- **根因**: OpenClaw/Hermes 的 openai-completions API 直接拼 baseUrl + /chat/completions，不加 /v1
+- **规则**: OpenAI 兼容网关 baseUrl 一律写到版本路径：`https://<host>/v1`（Claude Code 除外，ANTHROPIC_BASE_URL 写裸域名）
+- **续**: 第二层根因（401）：OpenClaw 忽略 provider 的 apiKey 字段，真实取 key 路径 = ①env 变量（<PROVIDER>_API_KEY 命名约定）②auth_profile_store 的 profile（zai:default / volcengine:default），两处都要改成网关令牌；原上游 key 备份于 /opt/new-api/original-upstream-keys.json
+
+---
+
+## 🚀 OpenClaw 升级与 systemd（2026-09-11/12）
+
+### busctl --json 需 systemd ≥243，老系统上 gateway install 必失败
+**问题**: `openclaw gateway install` 报 SERVICE_DEFINITION_UNKNOWN，user 级迁移不可行
+**根因**: 9.3 install 用 `busctl --user --json=short` 查 D-Bus，Alibaba Linux 8 的 systemd 239 不支持 --json（243+ 才有），且 CLI 靠精确匹配错误串判定 unit 缺失
+**Fix**: 老系统保留系统级 systemd unit，doctor 用 `OPENCLAW_SERVICE_REPAIR_POLICY=external openclaw doctor --fix --yes`
+**级别**: 🔴 高
+
+### 跨停机操作必须脱离网关 cgroup 且带自愈兜底
+**问题**: 停机脚本导致 28 分钟失联，Boss 手工救援；exec 会话随网关死亡
+**根因**: exec 子进程在网关 cgroup 内，KillMode=control-group 全杀
+**Fix**: 停机类操作用 `systemd-run --collect bash <script>`（独立 transient unit），脚本无论成败最后必须拉回服务
+**级别**: 🔴 高
+
+### 升级前必须释放内存（2GB 机器）
+**问题**: 升级 2026.9.3 时 npm install 触发系统级 OOM 连杀 4 次，之后 78/CONFIG 退出两次
+**Fix**: 升级前 free 检查，必要时先停网关/清缓存再升；swap 6G 只是缓冲不是解法
+**级别**: 🟡 中
+
+### 插件"加载成功"≠"消息处理正常"
+**问题**: 网关升级后飞书插件正常加载收消息，但每条消息处理时 TypeError 崩，表现为"发消息没响应"
+**根因**: 9.3 把 runtime.config 从 API 对象改为纯配置对象，插件调 loadConfig() 崩
+**Fix**: 排障关键路径 `journalctl | grep 'error handling message'`；给插件调用点做三级降级 shim
+**级别**: 🔴 高
+
+### new-api 渠道配置以 SQL 直改最可靠（补充 9-08 条目）
+**问题**: glm-4.7-flash 在网关"No available channel"（分组/渠道缺失），OpenClaw 同模型重试 8 次+退避 → 每条消息慢 86s
+**Fix**: 上游模型渠道缺失时先在 OpenClaw 侧换可用主模型止血，网关侧渠道后补
+**级别**: 🟡 中
+
+### cron announce 投递目标必须显式
+**问题**: 每日健康检查任务 delivery=last 无路由，连续 3 天 fail-closed（检查本身正常）
+**Fix**: `openclaw cron edit <id> --announce --channel feishu --to feishu:<openId>`
+**级别**: 🟢 低
+
+---
+
+## 🤖 定时任务与自动化成本（2026-09-13/18）
+
+### 机械型 cron 任务用 command 而非 agentTurn
+**问题**: 每日 GLM 渠道健康检查用 agentTurn 单次消耗 70,386 tokens（runs usage 实测），纯 shell 就能干的事天天烧 LLM
+**Fix**: payload 改 command 型零 LLM；有价值变更摘要的任务（如 GitHub 同步）保留 agentTurn；正常静默、异常才 failureAlert 推送
+**级别**: 🟡 中（省钱效果显著）
+
+### 传输层 secret 清洗会破坏脚本文本（scrubber 坑）
+**问题**: 工具调用文本里 `$(grep` 和 `"$KEY` 插值被替换成字面 `***`，两轮排障（先语法错误后 401）
+**Fix**: exec heredoc 写脚本 + 全脚本零命令替换（read/-w 文件回读）+ key 不经 shell 文本（sed 把 .env 行转 curl -K 配置文件）
+**级别**: 🔴 高（写含密脚本必踩）
+
+### 多 agent 停机窗口内所有依赖方（含 LLM 自身）都会失联
+**问题**: new-api 迁 NAS 切流窗口，依赖网关的 agent 协作全断；首次编排因 hermes 配置问题 600s 超时
+**Fix**: 原子化脚本+信号握手+自动回滚是唯一可靠模式（回滚机制本次实战兑现价值）；窗口内验证必须打本机 172.17.0.1 而非域名
+**级别**: 🔴 高
+
+---
+
+## 🌐 网关与部署（2026-09-27）
+
+### new-api 渠道 base_url 必须走 bridge，不能直连上游
+**问题**: 部署文档要求把渠道 1/2 的 base_url 从 NAS bridge 改为上游公网直连（z.ai / ark），照做后两个渠道全部 404
+**根因**: new-api(type=1) 固定拼接 `/v1/chat/completions`。直连 `https://api.z.ai/api/coding/paas/v4` 会拼成 `.../paas/v4/v1/chat/completions` → 上游 404。只有 deepseek（base_url 无版本后缀）幸免
+**Fix**: 渠道 base_url 指向 ECS 本地 bridge `http://172.17.0.1:8081/zai|volc`；bridge 配置 `/etc/nginx/conf.d/newapi-upstream.conf` 必须在位（监听 docker0，仅容器可达）
+**教训**: 迁移前先确认"目标环境缺少某组件"的假设是否成立——文档说 ECS 无 bridge，实际 ECS 一直有。直连测试通过 ≠ 经网关通过（网关会改写路径）
+**级别**: 🔴 高（照文档执行会直接打断两个主力渠道）
+
+### SQLite 保留字 group + 容器无 sqlite3
+**问题**: 种子 SQL 用 `group` 作列名 → `near "group": syntax error`；容器内既无 sqlite3 也 apk 装不上
+**Fix**: 宿主机 Python `sqlite3.executescript()` 导入（列名双引号或交给 Python 处理）；容器数据卷在宿主机可直接访问，无需进容器
+**级别**: 🟡 中
+
+---
+
+### 上游协议别信文档，直连实测
+**问题**: cc-manager 部署文档写 `proxy_pass http://`，实际监听 HTTPS（自签），导致 502 Empty reply
+**根因**: 文档可能过时/抄错/漏写；探活数据里有 `"https":true` 但被忽略
+**Fix**: 判断上游协议永远直连实测（curl -v 看 TLS 握手/响应头），不信文档；纯 HTTP 打 TLS 端口的症状是 TCP 通但 Empty reply
+**级别**: 🟡 中
+
+### nginx reload 后旧 worker 仍短暂服务旧配置
+**问题**: reload 后立即 curl 撞上旧 worker 的 502（error.log 显示打到已下线的端口）
+**Fix**: reload 后隔 1-2 秒再验证，或看 error.log 的 upstream 端口判断新旧配置
+**级别**: 🟢 低
+
+### nginx 静态 DNS 解析与 IPv6 坑
+**问题**: zai bridge 当日失败 12+ 次，nginx proxy_pass 写死域名=启动时一次性解析，api.z.ai 优先 AAAA，ECS 无 IPv6 → Network is unreachable
+**Fix**: 对无 IPv6 出口的主机，上游带 AAAA 时用 `resolver + set变量 + ipv6=off` 强制 IPv4 运行时解析；volc 无 AAAA 不动（避免引入运行时 DNS 依赖）
+**级别**: 🔴 高
+
+### systemd 定时重启是小内存机跑 Node 长进程的务实方案
+**场景**: 1-2G 机器跑 Node 网关，大上下文持续累积，GC 回收不彻底
+**Fix**: 每日（或按需 Mon/Thu）systemd timer 重启，配合 TimeoutStopSec ≥ 进程退出预算（55s+）；Persistent=true 确保错过也补跑
+**级别**: 🟡 中
+
+### 心跳告警必须区分 anon 内存和 file cache
+**问题**: 心跳告警用 cgroup MemoryCurrent 当"内存临界"，实际含 ~190M 可回收 page cache，真实 RSS 仅 600M，制造假警报
+**Fix**: 内存告警统一用 RSS 口径（/proc 或 ps），阈值 750M（距 880M 留 130M）；cgroup current 仅作参考
+**级别**: 🟡 中
+
+### 重启本身是内存峰值制造者
+**问题**: 以为每日重启是"释放内存"，实际冷启动潮（292 会话恢复 + prep）冲到 802M，离 880M 仅 9% 余量，比运行期还危险
+**Fix**: 重启降频（每日 → Mon/Thu），观察运行期内存是否真的涨；启动潮才是最危险的时刻，需要余量最足
+**级别**: 🟡 中
+
+### 配置热生效 vs 需重启
+**发现**: openclaw.json 部分字段（heartbeat.every、agents.defaults 模型列表）支持热重载，改完无需重启网关；但堆内存/环境变量类的还是要重启
+**Fix**: 改配置后先 `openclaw gateway status` 看是否已生效，避免不必要的重启（重启=启动潮=峰值）
+**级别**: 🟢 低
+
+### 闲置+暴露型风险（sing-box 教训）
+**问题**: sing-box 5 个月仅 70MB 流量，但 1080 端口无鉴权绑定 0.0.0.0，若安全组放行就是公网开放代理
+**教训**: 巡检 Docker 容器不能只看资源占用，要结合端口暴露面+流量计数判断"闲置+暴露"型风险；低流量+公网端口=优先审查对象
+**级别**: 🟡 中
+
+### plugin staging 目录累积会暴涨磁盘
+**问题**: plugins update/install 每次产生 /tmp/openclaw-plugin-build-* staging 目录，升级中断+重启竞态两天累积 174 个/3.5G
+**Fix**: 升级/安装后检查 /tmp 残留；磁盘清理清单加入 staging 目录项
+**级别**: 🟡 中
