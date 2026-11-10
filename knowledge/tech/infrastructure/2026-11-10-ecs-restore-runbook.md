@@ -74,7 +74,12 @@ docker run -d --name sing-box --restart unless-stopped -p 1080:1080 -p 9090:9090
   -v /etc/sing-box/config.json:/etc/sing-box/config.json:ro \
   -v /etc/sing-box/cache.db:/etc/sing-box/cache.db ghcr.io/sagernet/sing-box:latest
 ```
-镜像版本以 container-meta json 的 `Labels["org.opencontainers.image.version"]` 为准（本基线：sing-box v1.14.4），恢复后建议把 :latest 换成具体 tag 钉死。
+镜像版本以 container-meta json 的 `Labels["org.opencontainers.image.version"]` 为准（本基线：sing-box v1.14.4）。恢复后建议把 :latest 换成具体 tag 钉死。
+**digest 钉版本（2026-11-10 基线，恢复时对照 11b-ecs-misc/docker-images.txt）**：
+- ghcr.io/sagernet/sing-box:latest → sha256:0788ffbd…（v1.14.4）
+- calciumion/new-api:latest → sha256:2e2f2306…
+- ghcr.io/sagernet/sing-box:v1.11.3 → sha256:63292822…（本地备胎）
+重拉验证：`docker pull <image>@<digest>` 或拉 tag 后 `docker inspect --format '{{.RepoDigests}}'` 比对。
 
 **hermes 网关（0.22.4）**：
 1. node：nvm 未备份——`dnf module install nodejs:20` 或重装 nvm（原 v24.22.2）

@@ -298,15 +298,16 @@ for U in hermes-gateway openclaw-gateway openclaw-gateway-daily-restart frps bil
 done
 
 # 11b. ECS 杂项配置快照（v5.1 2026-11-10 D3 新增：审计发现的备份盲区）
-#   含 /etc/cron.d/（crontab -l 不含它）、nginx 主配置、docker daemon.json、acme 证书资产
-log "备份: ECS 杂项配置(cron.d/nginx/docker/acme)"
+#   含 /etc/cron.d/（crontab -l 不含它）、nginx 主配置、docker daemon.json、acme 证书资产、.ssh（任务书 O2 批复入包）
+log "备份: ECS 杂项配置(cron.d/nginx/docker/acme/ssh)"
 mkdir -p "$LOCAL_BACKUP_DIR/11b-ecs-misc"
 tar -czf "$LOCAL_BACKUP_DIR/11b-ecs-misc/etc-cron-d.tar.gz" -C /etc cron.d 2>/dev/null || log "⚠️ /etc/cron.d 备份失败"
 cp /etc/nginx/nginx.conf "$LOCAL_BACKUP_DIR/11b-ecs-misc/" 2>/dev/null || true
 cp /etc/docker/daemon.json "$LOCAL_BACKUP_DIR/11b-ecs-misc/" 2>/dev/null || true
 tar -czf "$LOCAL_BACKUP_DIR/11b-ecs-misc/acme.sh.tar.gz" -C /root .acme.sh 2>/dev/null \
     --exclude='.acme.sh/http.header' || log "⚠️ acme 备份失败"
-docker images --format '{{.Repository}}:{{.Tag}} {{.ID}} {{.Size}}' > "$LOCAL_BACKUP_DIR/11b-ecs-misc/docker-images.txt" 2>/dev/null || true
+tar -czf "$LOCAL_BACKUP_DIR/11b-ecs-misc/ssh.tar.gz" -C /root .ssh 2>/dev/null || log "⚠️ .ssh 备份失败"
+docker images --format '{{.Repository}}:{{.Tag}}\t{{.Digest}}\t{{.ID}}\t{{.Size}}' > "$LOCAL_BACKUP_DIR/11b-ecs-misc/docker-images.txt" 2>/dev/null || true
 for C in sing-box new-api; do
     docker inspect "$C" > "$LOCAL_BACKUP_DIR/11b-ecs-misc/container-meta-$C.json" 2>/dev/null || true
 done
@@ -426,7 +427,9 @@ for dir in $BACKUP_DIRS; do
     if [ "$dir" -lt "$CUTOFF_DATE" ] 2>/dev/null; then
         log "删除过期备份: $dir"
         dir_response=$(curl -s -u "$WEBDAV_USER:$WEBDAV_PASS" -X PROPFIND -H "Depth: 1" "$WEBDAV_URL$WEBDAV_BASE/$dir/" 2>/dev/null)
-        files=$(echo "$dir_response" | grep -oP '(?<=href>)[^<]+' | grep -v "/$dir/\?$")
+        # v5.1.1 (O1 加固): href 提取不按行 grep——任务书要求兼容跨行 DSM XML；
+        #   tr 压成单段后按 href> 锚定提取（兼容 <D:href>/<href> 前缀变体，NAS 侧同思路）
+        files=$(echo "$dir_response" | tr '\n' ' ' | grep -oP '(?<=href>)[^<>]+(?=</)' | grep -v "/$dir/\?$")
         for file in $files; do
             http_code=$(curl -s -o /dev/null -w "%{http_code}" -X DELETE -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$file" 2>/dev/null)
             if echo "$http_code" | grep -qE "^(200|201|204|404)$"; then
@@ -448,7 +451,8 @@ done
 
 log "清理完成: 删除 ${deleted_count} 项, 失败 ${delete_fail} 项"
 
-# 任一 DELETE 失败即推飞书告警（防再次假绿静默）
+# 任一 DELETE 失败即推飞书告警（防再次假绿静默）+ exit 非零（任务书 O1 要求）
 if [ "$delete_fail" -gt 0 ]; then
     send_feishu_card "失败" "N/A" "0s" "未验证" "⚠️ 过期备份清理部分失败（${delete_fail} 项 DELETE 非 2xx）\n详见 /var/log/nas-backup.log"
+    exit 1
 fi
