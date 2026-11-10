@@ -290,12 +290,35 @@ tar -czf "$HP_TMP/hermes-profile.tar.gz" \
 [ -f "$HP_TMP/state.db" ] || log "⚠️ profile state.db 缺失"
 tar -tzf "$HP_TMP/hermes-profile.tar.gz" >/dev/null 2>&1 || { rm -f "$HP_TMP/hermes-profile.tar.gz"; log "⚠️ profile tar 损坏已移除"; }
 
-# 11. systemd 服务单元快照（v5.0：网关切换后 hermes-gateway 单元文件是恢复关键）
+# 11. systemd 服务单元快照（v5.1 2026-11-10 D3：从 2 个扩到 6 个——审计发现 frps/bill-import 等 4 个 unit 不在备份）
 log "备份: systemd 服务单元"
 mkdir -p "$LOCAL_BACKUP_DIR/11-systemd"
-for U in hermes-gateway openclaw-gateway; do
+for U in hermes-gateway openclaw-gateway openclaw-gateway-daily-restart frps bill-import notion-bill-import; do
     cp "/etc/systemd/system/$U.service" "$LOCAL_BACKUP_DIR/11-systemd/" 2>/dev/null || true
 done
+
+# 11b. ECS 杂项配置快照（v5.1 2026-11-10 D3 新增：审计发现的备份盲区）
+#   含 /etc/cron.d/（crontab -l 不含它）、nginx 主配置、docker daemon.json、acme 证书资产
+log "备份: ECS 杂项配置(cron.d/nginx/docker/acme)"
+mkdir -p "$LOCAL_BACKUP_DIR/11b-ecs-misc"
+tar -czf "$LOCAL_BACKUP_DIR/11b-ecs-misc/etc-cron-d.tar.gz" -C /etc cron.d 2>/dev/null || log "⚠️ /etc/cron.d 备份失败"
+cp /etc/nginx/nginx.conf "$LOCAL_BACKUP_DIR/11b-ecs-misc/" 2>/dev/null || true
+cp /etc/docker/daemon.json "$LOCAL_BACKUP_DIR/11b-ecs-misc/" 2>/dev/null || true
+tar -czf "$LOCAL_BACKUP_DIR/11b-ecs-misc/acme.sh.tar.gz" -C /root .acme.sh 2>/dev/null \
+    --exclude='.acme.sh/http.header' || log "⚠️ acme 备份失败"
+docker images --format '{{.Repository}}:{{.Tag}} {{.ID}} {{.Size}}' > "$LOCAL_BACKUP_DIR/11b-ecs-misc/docker-images.txt" 2>/dev/null || true
+for C in sing-box new-api; do
+    docker inspect "$C" > "$LOCAL_BACKUP_DIR/11b-ecs-misc/container-meta-$C.json" 2>/dev/null || true
+done
+
+# 10b. Hermes default profile state.db（v5.1 2026-11-10 D3 新增：审计发现 55M 主力会话库零备份——最大单点缺口）
+#   与第 10 项 scheduler 同款 sqlite3 .backup 一致性快照模式
+log "备份: Hermes default profile state.db"
+mkdir -p "$LOCAL_BACKUP_DIR/10b-hermes-default"
+sqlite3 /root/.hermes/state.db ".backup '$LOCAL_BACKUP_DIR/10b-hermes-default/state.db'" 2>>"$LOG_FILE" \
+    || cp /root/.hermes/state.db "$LOCAL_BACKUP_DIR/10b-hermes-default/state.db" 2>/dev/null \
+    || log "⚠️ default state.db 备份失败"
+[ -f "$LOCAL_BACKUP_DIR/10b-hermes-default/state.db" ] || log "⚠️ default state.db 缺失"
 
 # 生成备份信息
 SERVER_IP=$(curl -s --connect-timeout 5 ifconfig.me 2>/dev/null || echo "47.119.177.194")
@@ -305,7 +328,7 @@ cat > "$LOCAL_BACKUP_DIR/backup-info.json" << EOF
   "backup_time": "$BACKUP_TIME",
   "server_hostname": "$(hostname)",
   "server_ip": "$SERVER_IP",
-  "backup_version": "5.0",
+  "backup_version": "5.1",
   "upload_method": "webdav",
   "structure": "workspace-organized"
 }
@@ -385,6 +408,9 @@ fi
 log "飞书通知已发送 ($UPLOAD_STATUS)"
 
 # ==================== 自动清理过期备份 ====================
+# v5.1 (2026-11-10 D2): 修复假删除 bug——原 (?<=<href>) 匹配不到 DSM 的 <D:href> 前缀，
+#   文件列表恒空 → DELETE 非空目录被 DSM 拒(405) → 3 个历史散目录滞留多日而日志假绿。
+#   修法: ①href 提取改 (?<=href>) 无前缀锚定 ②每个 DELETE 校验 HTTP 码并如实计数 ③失败推飞书
 RETAIN_DAYS=15
 log "开始清理过期备份（保留最近 ${RETAIN_DAYS} 天）..."
 
@@ -392,20 +418,37 @@ CUTOFF_DATE=$(date -d "-${RETAIN_DAYS} days" +%Y%m%d)
 log "清理截止日期: $CUTOFF_DATE"
 
 LIST_RESPONSE=$(curl -s -u "$WEBDAV_USER:$WEBDAV_PASS" -X PROPFIND -H "Depth: 1" "$WEBDAV_URL$WEBDAV_BASE/" 2>/dev/null)
-BACKUP_DIRS=$(echo "$LIST_RESPONSE" | grep -oP '(?<=server-backup/)\d{8}' | sort -u)
+BACKUP_DIRS=$(echo "$LIST_RESPONSE" | grep -oP '(?<=server-backup/)\d{8}(?=/)' | sort -u)
 
 deleted_count=0
+delete_fail=0
 for dir in $BACKUP_DIRS; do
     if [ "$dir" -lt "$CUTOFF_DATE" ] 2>/dev/null; then
         log "删除过期备份: $dir"
         dir_response=$(curl -s -u "$WEBDAV_USER:$WEBDAV_PASS" -X PROPFIND -H "Depth: 1" "$WEBDAV_URL$WEBDAV_BASE/$dir/" 2>/dev/null)
-        files=$(echo "$dir_response" | grep -oP "(?<=<href>)[^<]+" | grep -v "^$WEBDAV_BASE/$dir/?$")
+        files=$(echo "$dir_response" | grep -oP '(?<=href>)[^<]+' | grep -v "/$dir/\?$")
         for file in $files; do
-            curl -s -o /dev/null -X DELETE -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$file" 2>/dev/null
+            http_code=$(curl -s -o /dev/null -w "%{http_code}" -X DELETE -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$file" 2>/dev/null)
+            if echo "$http_code" | grep -qE "^(200|201|204|404)$"; then
+                deleted_count=$((deleted_count + 1))
+            else
+                delete_fail=$((delete_fail + 1))
+                log "⚠️ 删除文件失败 HTTP $http_code: $file"
+            fi
         done
-        curl -s -o /dev/null -X DELETE -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$WEBDAV_BASE/$dir/" 2>/dev/null
-        deleted_count=$((deleted_count + 1))
+        http_code=$(curl -s -o /dev/null -w "%{http_code}" -X DELETE -u "$WEBDAV_USER:$WEBDAV_PASS" "$WEBDAV_URL$WEBDAV_BASE/$dir/" 2>/dev/null)
+        if echo "$http_code" | grep -qE "^(200|201|204|404)$"; then
+            deleted_count=$((deleted_count + 1))
+        else
+            delete_fail=$((delete_fail + 1))
+            log "⚠️ 删除目录失败 HTTP $http_code: $dir"
+        fi
     fi
 done
 
-log "清理完成: 删除 ${deleted_count} 个过期备份"
+log "清理完成: 删除 ${deleted_count} 项, 失败 ${delete_fail} 项"
+
+# 任一 DELETE 失败即推飞书告警（防再次假绿静默）
+if [ "$delete_fail" -gt 0 ]; then
+    send_feishu_card "失败" "N/A" "0s" "未验证" "⚠️ 过期备份清理部分失败（${delete_fail} 项 DELETE 非 2xx）\n详见 /var/log/nas-backup.log"
+fi

@@ -14,8 +14,10 @@ if [ "$(git rev-parse --abbrev-ref HEAD)" != "master" ]; then
     git checkout master
 fi
 
-# 检查是否有变更
-if git diff --quiet && git diff --cached --quiet; then
+# 检查是否有变更（2026-11-10 修复：原 git diff --quiet 只认已跟踪文件的修改，
+#   新建文件（?? 状态）完全不可见，导致 11-07 起连续 3 天假绿"没有变更"而 5 个新文件未推。
+#   改用 git status --porcelain 全覆盖：修改/暂存/未跟踪三类变更都能检出）
+if [ -z "$(git status --porcelain)" ]; then
     echo "✅ 没有变更需要同步"
     exit 0
 fi
