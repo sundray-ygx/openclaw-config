@@ -59,3 +59,7 @@
 4. 现有服务无回归：console/api 均 200
 5. **DNS 已生效（Boss 2026-11-13 添加）**：权威侧（阿里 DoH）三条 A 记录均 → 47.119.177.194；三域名 HTTPS 全链路实测 kuma 302 / pdf 200 / note 401（严格 TLS）；80→443 301 全通；稳定性绕 DNS 直打 EIP 15/15。**执行回执已回写 WebDAV 任务书（PUT 204，双端 6272 字节 diff 一致），NAS 侧第四节可启动。**
    - 备注：ECS 本机内部 DNS 有负缓存残留（本机 curl 偶发 0.002s 瞬断），权威侧正常，公网不受影响，自然衰减无需处理。
+
+## 五、2026-11-17 后记：WS 头硬编码的坑（note POST 超时事故）
+
+后端从 SiYuan 换成 calibre-web（复用 [siyuan] 隧道 6800）后，note.ygxpro.online 出现「GET 正常、POST 挂死（000 超时）」。根因：本方案模板硬编码 `proxy_set_header Connection "upgrade"`，对 Node/SiYuan 后端无害，但 Python 后端（calibre-web）收到 POST+`Connection: upgrade` 即挂死不响应。判别法：直打 frps 回环端口复刻该头 → 复现挂死；去掉 → 毫秒回。修复：note.conf 改标准 map 兜底（`'' → close`）。**教训：反代模板凡带 WS 头，必须用 map 兜底写法，禁止硬编码 "upgrade"——后端换类型时不会提前通知你。** 详见 2026-11-17-note-subdomain-post-timeout-diagnosis.md。
